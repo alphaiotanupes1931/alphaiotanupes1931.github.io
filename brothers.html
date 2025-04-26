@@ -542,29 +542,49 @@ body.light-mode .modal-year {
         }
 
         @media (max-width: 480px) {
+            .nav {
+                padding: 1rem 0;
+                flex-direction: column;
+            }
+            
             .chapter-name {
                 font-size: 1.4rem;
+                margin-bottom: 1rem;
             }
             
             .menu {
+                flex-direction: column;
                 gap: 1rem;
+                margin-top: 0.5rem;
             }
             
             .menu-link {
-                font-size: 0.7rem;
+                font-size: 0.9rem;
+                padding: 0.4rem 0;
+            }
+            
+            .theme-toggle {
+                margin: 0.8rem auto 0;
+            }
+            
+            .hero-banner {
+                height: 200px;
+                margin-top: 180px;
             }
 
             .years-grid {
                 grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                padding: 0.5rem;
             }
 
             .year-diamond {
-                width: 140px;
-                height: 140px;
+                width: 130px;
+                height: 130px;
             }
 
             .year-text {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
             .semester-text {
@@ -582,9 +602,48 @@ body.light-mode .modal-year {
             .section-header {
                 margin-bottom: 2.5rem;
             }
+            
+            .search-input {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .search-container {
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+            
+            .modal-year {
+                font-size: 1.6rem;
+            }
+            
+            .line-title {
+                font-size: 1.3rem;
+            }
+            
+            .line-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .brother-item {
+                padding: 1rem;
+            }
+            
+            .brother-name {
+                font-size: 0.9rem;
+            }
+            
+            .brother-alias {
+                font-size: 0.8rem;
+            }
         }
     </style>
-<script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script></head>
+<script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script></head>
 <body data-aos-easing="ease" data-aos-duration="800" data-aos-delay="0">
     <!-- Navigation -->
     <nav class="nav">
@@ -615,32 +674,438 @@ body.light-mode .modal-year {
             <input type="text" id="brotherSearch" class="search-input" placeholder="Search by name, year, or line...">
         </div>
         
-        <div class="years-grid"><div class="year-diamond aos-init aos-animate" data-year-key="2024FALL" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="0">
+        <div class="years-grid"><div class="year-diamond aos-init aos-animate" data-year-key="2024FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="0">
                 <div class="diamond-shape">
                     <div class="year-content">
                         <span class="year-text">2024</span>
-                        <span class="semester-text">FALL</span>
+                        <span class="semester-text">FA</span>
                     </div>
                 </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2024SPRING" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2024</span>
-                        <span class="semester-text">SPRING</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2023FALL" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+            </div><div class="year-diamond aos-init aos-animate" data-year-key="2023FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
                 <div class="diamond-shape">
                     <div class="year-content">
                         <span class="year-text">2023</span>
-                        <span class="semester-text">FALL</span>
+                        <span class="semester-text">FA</span>
                     </div>
                 </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2023SPRING" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+            </div><div class="year-diamond aos-init" data-year-key="2023SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
                 <div class="diamond-shape">
                     <div class="year-content">
                         <span class="year-text">2023</span>
-                        <span class="semester-text">SPRING</span>
+                        <span class="semester-text">SP</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2021FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2021</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2018FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2018</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2016FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2016</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2013FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2013</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2011FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="700">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2011</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2009FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2009</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2008FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="900">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2008</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2007FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1000">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2007</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2006FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1100">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2006</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2005SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1200">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2005</span>
+                        <span class="semester-text">SP</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2005FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1300">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2005</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2003FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1400">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2003</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="2001FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1500">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">2001</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1999SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1600">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1999</span>
+                        <span class="semester-text">SP</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1998SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1700">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1998</span>
+                        <span class="semester-text">SP</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1996SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1800">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1996</span>
+                        <span class="semester-text">SP</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1993FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1900">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1993</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1992SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2000">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1992</span>
+                        <span class="semester-text">SP</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1992FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2100">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1992</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1990FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2200">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1990</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1989FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2300">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1989</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1988FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2400">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1988</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1987FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2500">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1987</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1985FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2600">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1985</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1984FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2700">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1984</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1983FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2800">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1983</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1982FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2900">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1982</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1981FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3000">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1981</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1980FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3100">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1980</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1979FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3200">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1979</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1978FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3300">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1978</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1977FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3400">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1977</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1976FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3500">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1976</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1975FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3600">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1975</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1974FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3700">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1974</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1973FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3800">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1973</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1972FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3900">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1972</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1971FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4000">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1971</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1970FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4100">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1970</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1969FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4200">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1969</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1968FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4300">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1968</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1967FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4400">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1967</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1966FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4500">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1966</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1965FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4600">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1965</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1964FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4700">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1964</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1963FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4800">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1963</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1962FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4900">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1962</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1961FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5000">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1961</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1960FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5100">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1960</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1959FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5200">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1959</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1958FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5300">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1958</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1957FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5400">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1957</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1956FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5500">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1956</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1955FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5600">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1955</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1954FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5700">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1954</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1953FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5800">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1953</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1952FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5900">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1952</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1951FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="6000">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1951</span>
+                        <span class="semester-text">FA</span>
+                    </div>
+                </div>
+            </div><div class="year-diamond aos-init" data-year-key="1931FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="6100">
+                <div class="diamond-shape">
+                    <div class="year-content">
+                        <span class="year-text">1931</span>
+                        <span class="semester-text">FA</span>
                     </div>
                 </div>
             </div></div>
@@ -1944,6 +2409,8 @@ body.light-mode .modal-year {
         // Add search functionality
         const searchInput = document.getElementById('brotherSearch');
         const yearDiamonds = document.querySelectorAll('.year-diamond');
+        
+        // No mobile menu toggle needed for the vertical menu
 
         searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase().trim();
