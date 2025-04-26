@@ -1,0 +1,787 @@
+<html lang="en" data-theme="light"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Alpha Iota Chapter | Kappa Alpha Psi® Fraternity, Inc.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Darker+Grotesque:wght@300;600;800&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Dark Theme (Default) */
+            --color-background: #121212;
+            --color-secondary-bg: #000000;
+            --color-primary: #dc143c;
+            --color-text: #ffffff;
+            --color-text-secondary: #ffffff;
+            --color-card-bg: #000000;
+            --color-overlay: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s ease-in-out;
+        }
+        
+        /* Light Theme Variables */
+        [data-theme="light"] {
+            --color-background: #F5F5DC; /* Cream/beige */
+            --color-secondary-bg: #ffffff;
+            --color-primary: #dc143c;  /* Keep crimson accent */
+            --color-text: #000000;     /* Dark text color for light theme */
+            --color-text-secondary: #fafafa;
+            --color-card-bg: #f2f2e6;
+            --color-overlay: rgba(255, 255, 255, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Darker Grotesque', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Theme transition effects */
+        .theme-transition * {
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease !important;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: background-color 0.3s ease;
+        }
+        
+        [data-theme="light"] .nav {
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            padding: 0.5rem 0;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        [data-theme="light"] .logo {
+            color: #ffffff;
+        }
+
+        .menu {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        
+        [data-theme="light"] .menu-link {
+            color: #ffffff;
+        }
+
+        .menu-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .menu-link:hover:after {
+            width: 100%;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            position: relative;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .theme-toggle:active {
+            transform: scale(0.9);
+        }
+        
+        .theme-toggle .fa-sun {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(-180deg) scale(0.5);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        .theme-toggle .fa-moon {
+            position: relative;
+            opacity: 1;
+            transform: rotate(0) scale(1);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        [data-theme="light"] .theme-toggle {
+            box-shadow: 0 0 10px 2px rgba(220, 20, 60, 0.3);
+            color: #ffffff;
+        }
+        
+        [data-theme="light"] .theme-toggle .fa-sun {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+        }
+        
+        [data-theme="light"] .theme-toggle .fa-moon {
+            opacity: 0;
+            transform: rotate(180deg) scale(0.5);
+        }
+
+        /* Page header */
+        .page-header {
+            background-color: #000000;
+            padding: 160px 0 40px;
+            text-align: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://i.ibb.co/whzKkyyt/IMG-3584.jpg);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .page-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #ffffff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Container styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Section styles */
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--color-primary);
+        }
+        
+        .section-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        /* History section */
+        .history {
+            background-color: var(--color-card-bg);
+            padding: 5rem 0;
+        }
+        
+        /* Founders section */
+        .founders {
+            background-color: var(--color-background);
+            padding: 5rem 0;
+        }
+        
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .founder-card {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .founder-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Objectives section */
+        .objectives {
+            background-color: var(--color-card-bg);
+            padding: 5rem 0;
+        }
+        
+        .objective-item {
+            display: flex;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+        
+        .objective-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-right: 1.5rem;
+            line-height: 1;
+            font-family: 'Permanent Marker', cursive;
+        }
+        
+        .objective-text {
+            flex: 1;
+        }
+        
+        .objective-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Chapter section */
+        .chapter {
+            background-color: var(--color-background);
+            padding: 5rem 0;
+        }
+        
+        .charter-members {
+            margin-top: 2rem;
+        }
+        
+        .charter-member {
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--color-primary);
+        }
+
+        /* Awards section */
+        .awards {
+            background-color: var(--color-card-bg);
+            padding: 5rem 0;
+        }
+        
+        .award-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .award-category {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .award-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+        
+        .award-list {
+            list-style: none;
+        }
+        
+        .award-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .award-year {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Leadership section */
+        .leadership {
+            background-color: var(--color-background);
+            padding: 5rem 0;
+        }
+        
+        .leader-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--color-primary);
+        }
+        
+        .leader-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .leader-title {
+            font-style: italic;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--color-secondary-bg);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(220, 20, 60, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        [data-theme="light"] .footer {
+            color: #333333;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.2rem;
+        }
+
+        .diamond-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            transform-style: preserve-3d;
+            animation: rotate 12s linear infinite;
+        }
+
+        .diamond {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: linear-gradient(45deg, var(--color-primary), #ff1a1a);
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.5));
+        }
+
+        .diamond::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .diamond::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--color-primary);
+            filter: blur(20px);
+            opacity: 0.3;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg) rotateX(15deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(15deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+
+        .copyright {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+            transition: color 0.3s ease;
+        }
+        
+        [data-theme="light"] .copyright {
+            color: #333333;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .menu {
+                margin-top: 1rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .founders-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .award-categories {
+                flex-direction: column;
+            }
+        }
+    </style>
+<script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script></head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="logo">ALPHA IOTA</a>
+            <div class="menu">
+                <a href="index.html" class="menu-link">HOME</a>
+                <a href="about.html" class="menu-link">ABOUT</a>
+                <a href="brothers.html" class="menu-link">BROTHERS</a>
+                <a href="gallery.html" class="menu-link">GALLERY</a>
+                <a href="brothersonly.html" class="menu-link">PORTAL</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">ABOUT US</h1>
+            <p class="page-subtitle">Alpha Iota Chapter of Kappa Alpha Psi® Fraternity, Inc.</p>
+        </div>
+    </header>
+
+    <!-- History Section -->
+    <section class="section history">
+        <div class="container">
+            <h2 class="section-title">ORGANIZATIONAL HISTORY</h2>
+            <p>Kappa Alpha Psi Fraternity, Inc. was founded on January 5, 1911, at Indiana University Bloomington by ten visionary young men. The fraternity was established during a time of significant racial segregation and limited opportunities for African American students in higher education.</p>
+            <br>
+            <p>Through commitment, vision, and perseverance, these young men established an organization that would transcend generations and shape the lives of countless members who would join their ranks in the ongoing pursuit of achievement and brotherhood.</p>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section class="section founders">
+        <div class="container">
+            <h2 class="section-title">FOUNDERS</h2>
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-name">Elder Watson Diggs</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">Byron Kenneth Armstrong</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">Ezra Dee Alexander</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">Henry Tourner Asher</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">Marcus Peter Blakemore</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">Paul Waymond Caine</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">George Wesley Edmonds</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">Guy Levis Grant</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">Edward Giles Irvin</div>
+                </div>
+                <div class="founder-card">
+                    <div class="founder-name">John Milton Lee</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section class="section objectives">
+        <div class="container">
+            <h2 class="section-title">OBJECTIVES</h2>
+            
+            <div class="objective-item">
+                <div class="objective-number">01</div>
+                <div class="objective-text">
+                    <h3>To unite college men of culture, patriotism and honor in a bond of fraternity</h3>
+                    <p>Creating a strong brotherhood among men who share similar values and aspirations, fostering lifelong connections that extend far beyond campus life.</p>
+                </div>
+            </div>
+            
+            <div class="objective-item">
+                <div class="objective-number">02</div>
+                <div class="objective-text">
+                    <h3>To encourage honorable achievement in every field of human endeavor</h3>
+                    <p>Motivating members to strive for excellence in their academic, professional, and personal pursuits, setting high standards for accomplishment.</p>
+                </div>
+            </div>
+            
+            <div class="objective-item">
+                <div class="objective-number">03</div>
+                <div class="objective-text">
+                    <h3>To promote the spiritual, social, intellectual, and moral welfare of its members</h3>
+                    <p>Supporting the holistic development of every brother, ensuring growth in all aspects of life that contribute to becoming well-rounded individuals.</p>
+                </div>
+            </div>
+            
+            <div class="objective-item">
+                <div class="objective-number">04</div>
+                <div class="objective-text">
+                    <h3>To aid the aims and purposes of colleges and universities</h3>
+                    <p>Aligning with educational institutions to enhance the academic environment and contribute positively to campus culture and initiatives.</p>
+                </div>
+            </div>
+            
+            <div class="objective-item">
+                <div class="objective-number">05</div>
+                <div class="objective-text">
+                    <h3>To inspire service in the public interest</h3>
+                    <p>Encouraging members to give back to their communities through service, leadership, and civic engagement, making lasting positive impacts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alpha Iota Chapter Section -->
+    <section class="section chapter">
+        <div class="container">
+            <h2 class="section-title">ALPHA IOTA CHAPTER</h2>
+            <p>Chartered on Friday, May 29, 1931, at Morgan College, the Alpha Iota Chapter has been a cornerstone of excellence within the Kappa Alpha Psi fraternity. For over nine decades, the chapter has maintained a legacy of leadership, service, and achievement.</p>
+            
+            <h3 class="section-subtitle">CHARTER MEMBERS</h3>
+            <div class="charter-members">
+                <div class="charter-member">
+                    <h4>Charles Law</h4>
+                </div>
+                <div class="charter-member">
+                    <h4>Thomas "Rap" Wheatley</h4>
+                </div>
+                <div class="charter-member">
+                    <h4>Howard "Jack" Spencer</h4>
+                </div>
+                <div class="charter-member">
+                    <h4>Robert C. Tartar</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Excellence Section -->
+    <section class="section awards">
+        <div class="container">
+            <h2 class="section-title">EXCELLENCE</h2>
+            <div class="award-categories">
+                <div class="award-category">
+                    <h3 class="award-title">INTERNATIONAL RECOGNITION</h3>
+                    <ul class="award-list">
+                        <li class="award-item">
+                            <span class="award-year">2009</span>
+                            International Chapter of the Year
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="award-category">
+                    <h3 class="award-title">EASTERN PROVINCE</h3>
+                    <ul class="award-list">
+                        <li class="award-item">
+                            <span class="award-year">2012</span>
+                            Chapter of the Year
+                        </li>
+                        <li class="award-item">
+                            <span class="award-year">2011</span>
+                            Chapter of the Year
+                        </li>
+                        <li class="award-item">
+                            <span class="award-year">2010</span>
+                            Chapter of the Year
+                        </li>
+                        <li class="award-item">
+                            <span class="award-year">2009</span>
+                            Chapter of the Year
+                        </li>
+                        <li class="award-item">
+                            <span class="award-year">2008</span>
+                            Chapter of the Year
+                        </li>
+                        <li class="award-item">
+                            <span class="award-year">2007</span>
+                            Chapter of the Year
+                        </li>
+                        <li class="award-item">
+                            <span class="award-year">2006</span>
+                            Chapter of the Year
+                        </li>
+                        <li class="award-item">
+                            <span class="award-year">2005</span>
+                            Chapter of the Year
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="award-category">
+                    <h3 class="award-title">DISTINGUISHED AWARDS</h3>
+                    <ul class="award-list">
+                        <li class="award-item">
+                            Marvin D. Carr 
+                            <br>Guy Levis Grant Award
+                        </li>
+                        <li class="award-item">
+                            Charles Sims
+                            <br>Provincial Leadership
+                        </li>
+                        <li class="award-item">
+                            Enyinna Anthony
+                            <br>Exceptional Service
+                        </li>
+                        <li class="award-item">
+                            Howard L. Tutman
+                            <br>Grand Chapter Leadership
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alumni Leadership Section -->
+    <section class="section leadership">
+        <div class="container">
+            <h2 class="section-title">ALUMNI LEADERSHIP</h2>
+            <h3 class="section-subtitle">DISTINGUISHED LEADERSHIP FROM ALPHA IOTA (AI)</h3>
+            
+            <div class="leader-item">
+                <div class="leader-name">Howard L. Tutman Jr.</div>
+                <div class="leader-title">Past International Grand Polemarch</div>
+                <p>Brother Tutman served as the 29th Grand Polemarch, leading the fraternity with distinction and vision at the international level.</p>
+            </div>
+            
+            <div class="leader-item">
+                <div class="leader-name">Dr. G. James Fleming</div>
+                <div class="leader-title">Received Fraternity's Laurel Wreath</div>
+                <p>Dr. Fleming was recognized with one of the fraternity's highest honors for his exceptional contributions to the organization and society.</p>
+            </div>
+            
+            <div class="leader-item">
+                <div class="leader-name">George L. Russell, Jr.</div>
+                <div class="leader-title">Laurel Wreath Recipient (2007)</div>
+                <p>Brother Russell was awarded the prestigious Laurel Wreath in recognition of his outstanding achievements and service to the fraternity.</p>
+            </div>
+            
+            <div class="leader-item">
+                <div class="leader-name">Marvin D. Carr</div>
+                <div class="leader-title">Prominent Chapter Leader</div>
+                <p>Brother Carr has served the Alpha Iota Chapter with dedication and excellence, receiving the Guy Levis Grant Award for his exceptional leadership and commitment to the values of Kappa Alpha Psi.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                // Check for saved theme preference
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                
+                themeToggle.addEventListener('click', function() {
+                    const htmlEl = document.documentElement;
+                    const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    htmlEl.setAttribute('data-theme', newTheme);
+                    
+                    // Save theme preference
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+        });
+    </script>
+
+</body></html>

@@ -1,0 +1,1359 @@
+<html lang="en" data-theme="light"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Iota Chapter | Kappa Alpha Psi® Fraternity, Inc.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Darker+Grotesque:wght@300;600;800&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Dark Theme (Default) */
+            --color-background: #121212;
+            --color-secondary-bg: #000000;
+            --color-primary: #dc143c;
+            --color-text: #ffffff;
+            --color-text-secondary: #ffffff;
+            --color-card-bg: #000000;
+            --color-overlay: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s ease-in-out;
+        }
+        
+        /* Hide YouTube elements and loading indicators */
+        .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, .ytp-youtube-button,
+        .ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-spinner-left, 
+        .ytp-spinner-right, .ytp-spinner-circle, .ytp-large-play-button, 
+        .ytp-large-play-button-bg {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        
+        /* Light Theme Variables */
+        [data-theme="light"] {
+            --color-background: #F5F5DC; /* Cream/beige */
+            --color-secondary-bg: #ffffff;
+            --color-primary: #dc143c;  /* Keep crimson accent */
+            --color-text: #000000;     /* Dark text color for light theme */
+            --color-text-secondary: #fafafa;
+            --color-card-bg: #f2f2e6;
+            --color-overlay: rgba(255, 255, 255, 0.5);
+            /* For text on light backgrounds we'll use specific overrides */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Darker Grotesque', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Theme transition effects */
+        .theme-transition * {
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease !important;
+        }
+        
+        .theme-ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: ripple 1s ease-out forwards;
+            z-index: -1;
+        }
+        
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.8;
+            }
+            100% {
+                width: 1000px;
+                height: 1000px;
+                opacity: 0;
+            }
+        }
+
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader-logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .loader-progress {
+            width: 200px;
+            height: 3px;
+            background: rgba(220, 20, 60, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-progress::after {
+            content: '';
+            position: absolute;
+            left: -50%;
+            width: 50%;
+            height: 100%;
+            background: var(--color-primary);
+            animation: loading 1s ease infinite;
+        }
+
+        @keyframes loading {
+            0% { left: -50% }
+            100% { left: 100% }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: background-color 0.3s ease;
+        }
+        
+        [data-theme="light"] .nav {
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            padding: 0.5rem 0;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        [data-theme="light"] .logo {
+            color: #ffffff;
+        }
+
+        .menu {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        
+        [data-theme="light"] .menu-link {
+            color: #ffffff;
+        }
+
+        .menu-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .menu-link:hover:after {
+            width: 100%;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            position: relative;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .theme-toggle:active {
+            transform: scale(0.9);
+        }
+        
+        .theme-toggle .fa-sun {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(-180deg) scale(0.5);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        .theme-toggle .fa-moon {
+            position: relative;
+            opacity: 1;
+            transform: rotate(0) scale(1);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        [data-theme="light"] .theme-toggle {
+            box-shadow: 0 0 10px 2px rgba(220, 20, 60, 0.3);
+            color: #ffffff;
+        }
+        
+        [data-theme="light"] .theme-toggle .fa-sun {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+        }
+        
+        [data-theme="light"] .theme-toggle .fa-moon {
+            opacity: 0;
+            transform: rotate(180deg) scale(0.5);
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        #background-player {
+            position: absolute;
+            top: -60px;  /* Hide YouTube controls at the bottom */
+            left: -60px; /* Extend beyond boundaries to hide logo */
+            width: calc(100% + 120px); /* Compensate for the negative positioning */
+            height: calc(100% + 120px);
+            pointer-events: none;
+        }
+        
+        /* Hide YouTube loading spinner */
+        .ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-spinner-left, .ytp-spinner-right {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+            z-index: 2;
+            transition: background 0.3s ease;
+        }
+        
+        [data-theme="light"] .hero-overlay {
+            background: linear-gradient(to bottom, rgba(236, 236, 236, 0.5), rgba(0, 0, 0, 0.7));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .fraternity-title {
+            margin-bottom: 2rem;
+        }
+
+        .fraternity-title h2 {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--color-primary);
+            transition: color 0.3s ease;
+        }
+
+        .fraternity-title h3 {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--color-text-secondary);
+            transition: color 0.3s ease;
+        }
+        
+        [data-theme="light"] .fraternity-title h3 {
+            color: #ffffff;
+        }
+
+        .chapter-title h1 .chapter-letters {
+            color: var(--color-primary);
+        }
+
+        .chapter-title h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: var(--color-text);
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        
+        [data-theme="light"] .chapter-title h1 {
+            color: #ffffff;
+            text-shadow: none;
+        }
+
+        .chapter-subtitle {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: var(--color-primary);
+            transition: color 0.3s ease;
+        }
+        
+        [data-theme="light"] .chapter-subtitle {
+            color: var(--color-primary);
+        }
+
+        .hero-info {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--color-text);
+            transition: color 0.3s ease;
+        }
+        
+        [data-theme="light"] .hero-info {
+            color: #ffffff;
+        }
+
+        .polemarch-welcome {
+            padding: 8rem 2rem;
+            background-color: var(--color-card-bg);
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .polemarch-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .polemarch-image-wrapper {
+            position: relative;
+            border: 1px solid rgba(220, 20, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .polemarch-image {
+            width: 100%;
+            aspect-ratio: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .polemarch-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(110%);
+            transition: all 0.6s ease;
+        }
+
+        .polemarch-content {
+            display: flex;
+            flex-direction: column;
+            gap: .0 rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        /* Override section titles on white/cream backgrounds */
+        [data-theme="light"] .mean-mugging .section-title,
+        [data-theme="light"] .polemarch-welcome .section-title,
+        [data-theme="light"] .about .section-title,
+        [data-theme="light"] .achievement .section-title {
+            color: #000000;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, .ytp-youtube-button,
+    .ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-spinner-left, 
+    .ytp-spinner-right, .ytp-spinner-circle, .ytp-large-play-button, 
+    .ytp-large-play-button-bg, .ytp-title-text, .ytp-show-cards-title,
+    .ytp-pause-overlay, .ytp-cued-thumbnail-overlay, .ytp-progress-bar-container, 
+    .ytp-time-display, .ytp-volume-panel, .ytp-replay-button, .ytp-buffer-container,
+    .ytp-gradient-top, .ytp-gradient-bottom, .ytp-scrubber-container, 
+    .ytp-thumbnail-overlay, .ytp-ce-element, .ytp-iv-player-content {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+    
+    #background-player {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        pointer-events: none !important;
+    }
+    
+    .video-container {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        overflow: hidden !important;
+    }
+    
+    /* Clean transition between videos */
+    .hero-overlay {
+        transition: background 0.5s ease-in-out;
+    }
+    
+    /* Dark mode for content beneath hero */
+    [data-dark-mode="true"] .mean-mugging,
+    [data-dark-mode="true"] .polemarch-welcome,
+    [data-dark-mode="true"] .footer,
+    [data-dark-mode="true"] .footer .container,
+    [data-dark-mode="true"] .footer-content,
+    [data-dark-mode="true"] .diamond-container,
+    [data-dark-mode="true"] .instagram-embed-container,
+    [data-dark-mode="true"] section {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+    }
+    
+    [data-dark-mode="true"] .section-title,
+    [data-dark-mode="true"] .polemarch-text,
+    [data-dark-mode="true"] p {
+        color: #ffffff !important;
+    }
+
+        
+        
+        /* Added styles for content sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            overflow-x: auto;
+        }
+        
+        .mean-mugging {
+            background-color: var(--color-card-bg);
+            padding: 4rem 0;
+            color: var(--color-text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .mug-card {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
+        }
+        
+        .mug-image {
+            position: relative;
+            aspect-ratio: 3/4;
+        }
+        
+        .mug-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(110%) grayscale(50%);
+        }
+        
+        .brother-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .line-name {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #FFFFFF;
+            letter-spacing: 0.1em;
+            display: block;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .line-year {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.9rem;
+            color: #FFFFFF;
+            display: block;
+            margin-top: 0.5rem;
+            transition: color 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--color-secondary-bg);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(220, 20, 60, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        [data-theme="light"] .footer {
+            color: #333333;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.2rem;
+        }
+
+        .diamond-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            transform-style: preserve-3d;
+            animation: rotate 12s linear infinite;
+        }
+
+        .diamond {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: linear-gradient(45deg, var(--color-primary), #ff1a1a);
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.5));
+        }
+
+        .diamond::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .diamond::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--color-primary);
+            filter: blur(20px);
+            opacity: 0.3;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg) rotateX(15deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(15deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .menu {
+                margin-top: 1rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .polemarch-welcome {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        .copyright {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+            transition: color 0.3s ease;
+        }
+        
+        [data-theme="light"] .copyright {
+            color: #333333;
+        }
+    </style>
+<script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
+            .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, 
+            .ytp-youtube-button, .ytp-spinner, .ytp-spinner-container, 
+            .ytp-spinner-rotator, .ytp-spinner-left, .ytp-spinner-right, 
+            .ytp-spinner-circle, .ytp-large-play-button, .ytp-large-play-button-bg,
+            .ytp-title-text, .ytp-show-cards-title {
+                display: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+            }
+            
+            #background-player {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                pointer-events: none !important;
+            }
+            
+            .video-container {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                overflow: hidden !important;
+            }
+        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script></head>
+
+
+
+<body class="">
+    <!-- Loading Screen -->  
+    <div class="loader" style="opacity: 0; display: none;">
+        <div class="loader-progress"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="logo">ALPHA IOTA</a>
+            <div class="menu">
+                <a href="#" class="menu-link">HOME</a>
+                <a href="about.html" class="menu-link">ABOUT</a>
+                <a href="brothers.html" class="menu-link">BROTHERS</a>
+                <a href="gallery.html" class="menu-link">GALLERY</a>
+                <a href="brothersonly.html" class="menu-link">PORTAL</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="hero-bg">
+            <div class="video-container">
+                <iframe id="background-player" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Rick Astley - Never Gonna Give You Up (Official Music Video)" width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;loop=0&amp;rel=0&amp;mute=1&amp;iv_load_policy=3&amp;fs=0&amp;playsinline=1&amp;disablekb=1&amp;enablejsapi=1&amp;origin=https%3A%2F%2F7a7a5462-99cd-440c-8da4-f78176caaa2b.preview.yourware.so&amp;widget_referrer=https%3A%2F%2Fwww.yourware.so%2F&amp;widgetid=1&amp;forigin=https%3A%2F%2F7a7a5462-99cd-440c-8da4-f78176caaa2b.preview.yourware.so%2F&amp;aoriginsup=1&amp;aorigins=https%3A%2F%2Fwww.yourware.so&amp;gporigin=https%3A%2F%2Fwww.yourware.so%2F&amp;vf=5"></iframe>
+            </div>
+            
+            
+            <div class="hero-overlay" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="fraternity-title">
+                <h2>KAPPA ALPHA PSI®</h2>
+                <h3>FRATERNITY, INCORPORATED</h3>
+            </div>
+            <div class="chapter-title">
+                <h1>
+                    <span>ALPHA</span>
+                    <span>IOTA</span>
+                    <span class="chapter-letters">(AI)</span>
+                </h1>
+                <div class="chapter-subtitle">THE MOST NOTORIOUS CHAPTER</div>
+            </div>
+            <div class="hero-info">
+                <p>Morgan State University Chapter of Alpha Iota</p>
+                <p>Chartered May 29, 1931</p>
+            </div>
+        </div>
+        
+
+    </main>
+
+    <!-- Polemarch's Welcome Section -->
+    <section class="polemarch-welcome">
+        <div class="polemarch-container">
+            <div class="">
+                <div class="polemarch-image">
+                    <img src="https://i.ibb.co/gbMVPdbC/IMG-7817.jpg" alt="Polemarch">
+                </div>
+            </div>
+            <div class="polemarch-content">
+                <div class="section-header">
+                    <h2 class="section-title">Polemarch's Welcome</h2>
+                </div>
+                <div>
+                    <p class="polemarch-text">
+                        Greetings to all who have come to learn more about "THE NOTORIOUS" Alpha Iota Chapter of Kappa Alpha Psi Fraternity, Inc. As the current Polemarch, I am honored to welcome you to our beloved chapter.
+                    </p>
+                    <br>
+                    <p class="polemarch-text">
+                        Our brothers are trailblazers, innovators, and visionaries who have made indelible marks in their respective fields. From Grand Chapter Officers to Province Leaders, the Alpha Iota Chapter continues to embody the ideals of Kappa Alpha Psi and inspire the next generation of change-makers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brother Spotlight Section -->
+    <section class="mean-mugging">
+        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto;">
+            <h2 class="section-title">BROTHER SPOTLIGHT</h2>
+            <div class="mean-mug-grid" style="display: inline-flex; flex-wrap: nowrap; min-width: max-content; gap: 2rem; padding: 1rem;">
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/gbMVPdbC/IMG-7817.jpg" alt="Fraternity Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Godley Pierre</span>
+                            <span class="line-year">Current Polemarch of the Alpha Iota Chapter </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brother 1 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://www.kappaalphapsi1911.com/wp-content/uploads/2023/11/29th-htutman.jpg" alt="Fraternity Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Howard Tutman, Jr.</span>
+                            <span class="line-year">Past 29th Grand International Polemarch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brother 2 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQEqEL7HWgv1xA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1667310331726?e=1750896000&amp;v=beta&amp;t=ZeOGO3hXr5AeZ2v5sC8OnKVYsCJoxsVCvnMSW1gYlN4" alt="Fraternity Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Enyinna Anthony</span>
+                            <span class="line-year">44th Guy Levis Grant Awardee</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brother 3 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQFTDqBdwlalkw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1675480873091?e=1750896000&amp;v=beta&amp;t=BjW5aKpVLkO-ZwaPIyamQLoTJCE-sxeY8SJ680LMfqo" alt="Fraternity Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Dr. Marvin Carr</span>
+                            <span class="line-year">68th Guy Levis Grant Awardee</span>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Brother 2 -->
+
+                    <div class="mug-card">
+                        <div class="mug-image">
+                            <img src="https://i.ibb.co/XfKPKByg/xavier.jpg" alt="Fraternity Brother">
+                            <div class="brother-info">
+                                <span class="line-name">Xaver Johnson</span>
+                                <span class="line-year">Past Junior Province Vice Polemarch (E)</span>
+                                <span class="line-year">37th Mister Morgan State University</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mug-card">
+                        <div class="mug-image">
+                            <img src="https://i.ibb.co/qLmY1476/IMG-3558.jpg" alt="Fraternity Brother">
+                            <div class="brother-info">
+                                <span class="line-name">Terell Reed</span>
+                                <span class="line-year">Current Webmaster for the Alpha Iota Chapter</span>
+                            </div>
+                        </div>
+                    </div>
+                
+    
+            </div>
+        </div>
+    </section>
+
+   <!-- Service Highlights Section -->
+<!-- Service Highlights Section -->
+<section class="mean-mugging">
+    <div class="container" style="max-width: 90%; margin: 0 auto; padding: 2rem 0;">
+        <h2 class="section-title">SERVICE HIGHLIGHTS</h2>
+        <div style="margin-top: 2rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Instagram Embed 1 -->
+                <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0" src="https://www.instagram.com/p/DIJ8O3XvDru/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="612" data-instgrm-payload-id="instagram-media-payload-0" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                </div>
+                
+                <!-- Instagram Embed 2 -->
+                <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-1" src="https://www.instagram.com/p/DIMvqutSS8h/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="666" data-instgrm-payload-id="instagram-media-payload-1" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                </div>
+                
+                <!-- Instagram Embed 3 -->
+                <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-2" src="https://www.instagram.com/p/DIg3QWntvuG/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="613" data-instgrm-payload-id="instagram-media-payload-2" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                </div>
+            </div>
+            
+            <!-- Instagram JS -->
+            <script async="" src="//www.instagram.com/embed.js"></script>
+        </div>
+        <div style="margin-top: 3rem; text-align: center;">
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; line-height: 1.8;">Follow our social media to see more of our impactful initiatives and community service events.</p>
+            <a href="https://www.instagram.com/ainupes1931/" target="_blank" style="display: inline-block; margin-top: 1.5rem; padding: 0.8rem 2rem; background-color: var(--color-primary); color: white; text-decoration: none; border-radius: 4px; font-family: 'Syncopate', sans-serif; font-size: 0.9rem; letter-spacing: 1px; transition: all 0.3s ease;">VIEW MORE ON INSTAGRAM</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Recent Lines Section -->
+    <section class="mean-mugging">
+        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto;">
+            <h2 class="section-title">RECENT LINES</h2>
+            <div class="mean-mug-grid" style="display: inline-flex; flex-wrap: nowrap; min-width: max-content; gap: 2rem; padding: 1rem;">
+                <!-- Line 1 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/0VJbrTT4/welcome.jpg" alt="Fraternity Line">
+                        <div class="brother-info">
+                            <span class="line-name">"11 S.O.D"</span>
+                            <span class="line-year">FALL '24</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Line 2 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/20nyWFns/kappa.jpg" alt="Fraternity Line">
+                        <div class="brother-info">
+                            <span class="line-name">"5 K.O.K"</span>
+                            <span class="line-year">FALL '23</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Line 3 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/zVwmMLf1/sp23.jpg" alt="Fraternity Line">
+                        <div class="brother-info">
+                            <span class="line-name">"5 A.O.A"</span>
+                            <span class="line-year">SPRING '23</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Brothers Section -->
+    <section class="mean-mugging">
+        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto;">
+            <h2 class="section-title">ACTIVE BROTHERS <span style="color: var(--color-primary); font-weight: bold; margin-left: 10px;">18</span></h2>
+            <div class="mean-mug-grid" style="display: inline-flex; flex-wrap: nowrap; min-width: max-content; gap: 2rem; padding: 1rem;">
+                <!-- Active Brother 1 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E22AQHN2oQLp1EhOQ/feedshare-shrink_800/feedshare-shrink_800/0/1681577237293?e=1748476800&amp;v=beta&amp;t=r8iYtnIKqLHqV1jMSuVqfyMaMRCAEGDkdEhu8caB63o" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">David Osadiaye</span>
+                            <span class="line-year">"6AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Brother 2 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="TFM59415.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Jaden Koranteng</span>
+                            <span class="line-year">"1AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Brother 3 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E22AQEZsZrfca0CZQ/feedshare-shrink_1280/B4EZPV4fPeGwAo-/0/1734460178817?e=1748476800&amp;v=beta&amp;t=XfCKX1kLMkzTgWdKjLFxQoSBbDzxTRV1iLkpbRDmP3E" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Marcus McClean</span>
+                            <span class="line-year">"9AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+                          <!-- Active Brother 2 -->
+                          <div class="mug-card">
+                            <div class="mug-image">
+                                <img src="https://i.ibb.co/XfKPKByg/xavier.jpg" alt="Active Brother">
+                                <div class="brother-info">
+                                    <span class="line-name">Xavier Johnson</span>
+                                    <span class="line-year">"0AI23SP"</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                                  <!-- Active Brother 2 -->
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/gbMVPdbC/IMG-7817.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Godley Pierre</span>
+                            <span class="line-year">"1AI23FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/qLmY1476/IMG-3558.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Terell Reed</span>
+                            <span class="line-year">"8AI23FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/QvB804Mx/TFM59430.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Mohammed Cole</span>
+                            <span class="line-year">"3AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/qFNYc6kd/TFM59447.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Anthony Noakes</span>
+                            <span class="line-year">"5AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/LdcFhTs0/TFM59395.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Kamron Hampton</span>
+                            <span class="line-year">"0AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+         
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/XfJpPPWh/TFM59421.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Lesley Ofuso</span>
+                            <span class="line-year">"2AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/VcQkYBcL/4H7A0032.png" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Tyrus Pinchan</span>
+                            <span class="line-year">"3AI23SP"</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/YFm2byw9/4H7A0023.png" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Chaz Crockett</span>
+                            <span class="line-year">"2AI23FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/svmP5p6x/4H7A9980.png" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Corey Greene</span>
+                            <span class="line-year">"0AI23FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/Z6TNp0n4/4H7A9985.png" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Miles Hooper</span>
+                            <span class="line-year">"2AI23SP"</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/ymqZ0r6X/4H7A9992.png" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Nicholas Porter</span>
+                            <span class="line-year">"3AI23FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/1fpd3CBL/IMG-2464.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Christian Sampson</span>
+                            <span class="line-year">"3AI23FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/Hp96y8Jy/IMG-3609.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Seydina Salla</span>
+                            <span class="line-year">"7AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://i.ibb.co/1twCtS6b/IMG-3610.jpg" alt="Active Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Demier Shipley</span>
+                            <span class="line-year">"10AI24FA"</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                
+                                            </div>
+                    
+
+            </div>
+        
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="diamond-container">
+                <div class="glow"></div>
+                <div class="diamond"></div>
+            </div>
+            <div style="margin-top: 1rem;">
+                <span style="color: var(--color-primary); font-weight: bold; letter-spacing: 2px;">ACHIEVERS OF THE IMPOSSIBLE</span>
+            </div>
+            <div style="margin-top: 0.5rem; font-style: italic; font-size: 0.75rem; opacity: 0.7; color: var(--color-text);">
+                designed by <span style="color: var(--color-primary);">8AI24FA Reezy</span>
+            </div>
+            <div style="margin-top: 1rem; display: flex; gap: 2rem;">
+                <a href="https://www.instagram.com/ainupes1931/" style="color: var(--color-text); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/p/The-Alpha-Iota-Chapter-of-%CE%9A%CE%91%CE%A8-100067518272851/?_rdr" style="color: var(--color-text); font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p class="copyright">© 2024 Alpha Iota Chapter of Kappa Alpha Psi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+<script>
+ 
+
+ document.addEventListener('DOMContentLoaded', function() {
+    // List of video URLs (replace with your actual hosted video URLs)
+    const videoUrls = [
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745631821/videoplayback_2_t9ih7e.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632374/Kappa_Alpha_Psi_Alpha_Iota_Probate_Fall_2011_frflpj.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632360/Morgan_Block_Show_sp_08_o7v0jq.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632559/AI_Nupes_Kommunity_Service_PSA.mov_ofref3.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632572/MSU_Blockshow_2021_-_Kappa_Alpha_Psi_wkmq6j.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633228/Untitled_xk7mhh.mp4", 
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633359/videoplayback_4_ho2jkg.mp4"
+        // Add more video URLs here
+    ];
+    
+    // Global variables
+    let currentVideoIndex = 0;
+    let videoSwitchTimer;
+    let videoElement;
+    
+    // Setup the background video
+    function setupBackgroundVideo() {
+        const heroElement = document.querySelector('.hero-bg');
+        if (!heroElement) return;
+        
+        // Clear existing content
+        heroElement.innerHTML = '';
+        
+        // Create video container
+        const videoContainer = document.createElement('div');
+        videoContainer.className = 'video-container';
+        videoContainer.style.position = 'absolute';
+        videoContainer.style.top = '0';
+        videoContainer.style.left = '0';
+        videoContainer.style.width = '100%';
+        videoContainer.style.height = '100%';
+        videoContainer.style.overflow = 'hidden';
+        videoContainer.style.zIndex = '1';
+        
+        // Create video element
+        videoElement = document.createElement('video');
+        videoElement.id = 'background-video';
+        videoElement.muted = true;
+        videoElement.autoplay = true;
+        videoElement.playsInline = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.objectFit = 'cover';
+        
+        // Add video to container
+        videoContainer.appendChild(videoElement);
+        heroElement.appendChild(videoContainer);
+        
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'hero-overlay';
+        overlay.style.position = 'absolute';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
+        overlay.style.zIndex = '2';
+        
+        // Add overlay
+        heroElement.appendChild(overlay);
+        
+        // Start playing videos
+        shuffleVideos();
+        playCurrentVideo();
+    }
+    
+    // Shuffle the videos array
+    function shuffleVideos() {
+        for (let i = videoUrls.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [videoUrls[i], videoUrls[j]] = [videoUrls[j], videoUrls[i]];
+        }
+    }
+    
+    // Play the current video with random timestamp
+    function playCurrentVideo() {
+        if (!videoElement) return;
+        
+        // Clear any existing timer
+        clearTimeout(videoSwitchTimer);
+        
+        // Create a transition effect
+        const heroOverlay = document.querySelector('.hero-overlay');
+        if (heroOverlay) {
+            heroOverlay.style.background = 'rgba(0, 0, 0, 0.8)';
+        }
+        
+        // Get current video URL
+        const videoUrl = videoUrls[currentVideoIndex];
+        
+        // Set the source
+        videoElement.src = videoUrl;
+        videoElement.load();
+        
+        videoElement.onloadedmetadata = function() {
+            // Get video duration (in seconds)
+            const duration = videoElement.duration;
+            
+            // Calculate random start time (max 75% of video duration)
+            const maxStartTime = Math.max(0, duration * 0.75 - 5);
+            const randomStartTime = Math.floor(Math.random() * maxStartTime);
+            
+            // Set current time and play
+            videoElement.currentTime = randomStartTime;
+            videoElement.play().catch(err => {
+                console.error("Error playing video:", err);
+                // Try next video if current one fails
+                moveToNextVideo();
+            });
+            
+            // Restore overlay after transition
+            setTimeout(() => {
+                if (heroOverlay) {
+                    heroOverlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
+                }
+            }, 1000);
+            
+            // Set timer to switch to next video after 5 seconds
+            videoSwitchTimer = setTimeout(moveToNextVideo, 5000);
+        };
+        
+        // Handle loading errors
+        videoElement.onerror = function() {
+            console.error("Error loading video:", videoUrl);
+            moveToNextVideo();
+        };
+    }
+    
+    // Move to the next video
+    function moveToNextVideo() {
+        // Update video index
+        currentVideoIndex = (currentVideoIndex + 1) % videoUrls.length;
+        
+        // Play the current video
+        playCurrentVideo();
+    }
+    
+    // Initialize
+    setupBackgroundVideo();
+});
+</script>
+
+
+
+</body></html>

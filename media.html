@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter Media | Alpha Iota Chapter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Darker+Grotesque:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-background: #121212;
+            --color-primary: #dc143c;
+            --color-text: #ffffff;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Darker Grotesque', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: transparent;
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .menu-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .menu-link:hover:after {
+            width: 100%;
+        }
+
+        /* Media Section */
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .media-container {
+            padding-top: 120px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .media-item {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            border-left: 4px solid var(--color-primary);
+            padding: 1rem;
+        }
+
+        .media-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 4px 20px rgba(220, 20, 60, 0.1);
+        }
+
+        .social-container {
+            width: 100%;
+            height: 100%;
+            min-height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Instagram embed customization */
+        .instagram-media {
+            background: transparent !important;
+            border: none !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+            max-width: 100% !important;
+            width: 100% !important;
+            min-width: 326px !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .menu {
+                margin-top: 1rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">
+            
+                <span class="chapter-name">ALPHA IOTA</span>
+            </a>
+            <div class="menu">
+                <a href="about.html" class="menu-link">ABOUT</a>
+                <a href="brothers.html" class="menu-link">BROTHERS</a>
+                <a href="media.html" class="menu-link">CHAPTER MEDIA</a>
+                <a href="brothersonly.html" class="menu-link">BROTHERS ONLY</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Media Section -->
+    <section class="media-container">
+        <h1 class="section-title">CHAPTER MEDIA</h1>
+        <div class="media-grid">
+            <!-- Instagram Post 1 -->
+            <div class="media-item">
+                <div class="social-container">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DCmkUVJRHMm/?utm_source=ig_embed&ig_rid=c8d70907-d539-4f81-ac26-3d1116558127"></blockquote>
+                </div>
+            </div>
+
+            <!-- Instagram Post 2 -->
+            <div class="media-item">
+                <div class="social-container">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DC4dy4WJblM/?hl=en"></blockquote>
+                </div>
+            </div>
+
+            <!-- Instagram Post 3 -->
+            <div class="media-item">
+                <div class="social-container">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DCmxs4oBgIe/?hl=en&img_index=1"></blockquote>
+                </div>
+            </div>
+
+            <!-- Instagram Post 4 -->
+            <div class="media-item">
+                <div class="social-container">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DBrziw2O_n1/?hl=en"></blockquote>
+                </div>
+            </div>
+
+            <!-- Instagram Post 5 -->
+            <div class="media-item">
+                <div class="social-container">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DBHeeEVBkPg/?hl=en"></blockquote>
+                </div>
+            </div>
+
+            <!-- Instagram Post 6 -->
+            <div class="media-item">
+                <div class="social-container">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DA3rEKQphOH/?hl=en"></blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Embed Script -->
+    <script async src="//www.instagram.com/embed.js"></script>
+</body>
+</html>
