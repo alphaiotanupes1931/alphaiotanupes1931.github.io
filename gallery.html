@@ -332,19 +332,45 @@
             .nav-inner {
                 flex-direction: column;
                 text-align: center;
+                padding: 0.5rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
             }
 
             .menu {
-                margin-top: 1rem;
+                margin-top: 0.5rem;
                 flex-direction: column;
                 align-items: center;
-                gap: 1rem;
+                gap: 0.8rem;
+            }
+            
+            .menu-link {
+                font-size: 0.8rem;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+                margin: 120px 0 30px;
+            }
+            
+            .gallery-container {
+                padding: 1rem;
             }
             
             .gallery-tabs {
-                flex-direction: column;
+                flex-direction: row;
+                flex-wrap: wrap;
                 align-items: center;
-                gap: 1rem;
+                gap: 0.5rem;
+                justify-content: center;
+            }
+            
+            .gallery-tab {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
             }
             
             .gallery-tab:after {
@@ -352,11 +378,30 @@
             }
             
             .photos-grid, .videos-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 0.8rem;
+            }
+            
+            .photo-item img {
+                height: 180px;
             }
             
             .modal-content {
                 max-width: 95%;
+            }
+            
+            .theme-toggle {
+                width: 35px;
+                height: 35px;
+                margin-top: 0.5rem;
+            }
+            
+            .footer {
+                padding: 2rem 0;
+            }
+            
+            .social-icons {
+                gap: 1.5rem;
             }
         }
 
@@ -405,7 +450,7 @@
             opacity: 0.8;
         }
     </style>
-<script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script></head>
+<script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script></head>
 
 <body data-dark-mode="true">
     <!-- Navigation -->
@@ -491,7 +536,7 @@
                     <img src="https://i.ibb.co/mCbsQ0Dc/IMG-9695.jpg" alt="Youth Mentorship">
                 </div>
             </div>
-        </div>
+        
 <!-- Videos Gallery -->
 <div class="gallery-content" id="videos">
     <div class="videos-grid">
@@ -622,5 +667,6 @@
             }
         });
     </script>
+
 
 </body></html>
