@@ -135,25 +135,30 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #000000;
+            background-color: rgba(0, 0, 0, 0.85);
             z-index: 1000;
-            padding: 1rem 0;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
         }
         
         [data-theme="light"] .nav {
-            background-color: transparent;
+            background-color: rgba(180, 0, 0, 0.8);
             backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(220, 20, 60, 0.3);
         }
   
-        .nav-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            width: 90%;
-            padding: 0.5rem 0;
+            width: 95%;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
         }
   
         .logo {
@@ -168,11 +173,11 @@
             color: #ffffff;
         }
   
-        .menu {
+        .menu-wrapper {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
             justify-content: center;
-            width: 100%;
+            align-items: center;
         }
   
         .menu-link {
@@ -183,31 +188,26 @@
             transition: var(--transition);
             font-size: 0.9rem;
             position: relative;
-            padding-bottom: 4px;
+            padding: 0.6rem 0.8rem;
+            border-radius: 4px;
+        }
+        
+        .menu-link.active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        
+        .menu-link:not(.active):hover {
+            background-color: rgba(220, 20, 60, 0.1);
         }
         
         [data-theme="light"] .menu-link {
             color: #ffffff;
         }
   
-        .menu-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--color-primary);
-            transition: var(--transition);
-        }
-  
-        .menu-link:hover:after {
-            width: 100%;
-        }
-  
         /* Theme Toggle Button */
         .theme-toggle {
-            background: none;
+            background: rgba(0, 0, 0, 0.7);
             border: none;
             color: var(--color-text);
             font-size: 1.2rem;
@@ -215,7 +215,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-left: 1rem;
             padding: 0.5rem;
             border-radius: 50%;
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -223,7 +222,15 @@
             width: 40px;
             height: 40px;
             overflow: hidden;
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+        }
+        
+        /* Corner positioned theme toggle */
+        .theme-toggle-corner {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2000;
         }
         
         .theme-toggle:hover {
@@ -360,9 +367,8 @@
             font-family: 'Syncopate', sans-serif;
             font-size: clamp(3rem, 8vw, 5rem);
             color: var(--color-text);
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
             margin-bottom: 0.5rem;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            transition: color 0.3s ease;
         }
         
         [data-theme="light"] .chapter-title h1 {
@@ -558,8 +564,33 @@
             background: rgba(0, 0, 0, 0.9);
             padding: 1rem;
             text-align: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
             overflow: hidden;
+            max-height: 100px;
+        }
+        
+        .mug-image:hover .brother-info {
+            max-height: 300px;
+            background: rgba(0, 0, 0, 0.95);
+        }
+        
+        .main-achievement {
+            display: block;
+        }
+        
+        .secondary-achievements {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mug-image:hover .secondary-achievements {
+            opacity: 1;
+            max-height: 200px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(220, 20, 60, 0.3);
         }
         
         .line-name {
@@ -711,15 +742,14 @@
             
             .mobile-menu-toggle {
                 display: none; /* Hidden on desktop */
-                position: absolute;
-                right: 1rem;
-                top: 0.5rem;
-                background: none;
+                background: rgba(0, 0, 0, 0.5);
                 border: none;
                 color: var(--color-text);
                 font-size: 1.5rem;
                 cursor: pointer;
                 z-index: 100;
+                padding: 0.5rem;
+                border-radius: 4px;
             }
             
             [data-theme="light"] .mobile-menu-toggle {
@@ -729,6 +759,28 @@
             @media (max-width: 768px) {
                 .mobile-menu-toggle {
                     display: block; /* Show on mobile */
+                }
+                
+                .nav-content {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 0.5rem 0;
+                }
+                
+                .menu-wrapper {
+                    display: none;
+                    width: 100%;
+                    flex-direction: column;
+                    gap: 1rem;
+                    padding: 1rem 0;
+                }
+                
+                .menu-wrapper.active {
+                    display: flex;
+                }
+                
+                .logo {
+                    padding: 1rem 0;
                 }
             }
             
@@ -811,7 +863,7 @@
             color: #333333;
         }
     </style>
-  <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
+  <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/b2858d36/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
             .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, 
             .ytp-youtube-button, .ytp-spinner, .ytp-spinner-container, 
             .ytp-spinner-rotator, .ytp-spinner-left, .ytp-spinner-right, 
@@ -839,7 +891,7 @@
                 height: 100% !important;
                 overflow: hidden !important;
             }
-        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script></head>
+        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script id="simplify-jobs-page-script" src="chrome-extension://pbanhockgagggenencehbnadejlgchfc/js/pageScript.bundle.js"></script></head>
   
   
   
@@ -851,28 +903,36 @@
   
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-inner">
-            <a href="#" class="logo">ALPHA IOTA</a>
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="menu">
-                <a href="#" class="menu-link">HOME</a>
-                <a href="about.html" class="menu-link">ABOUT</a>
-                <a href="brothers.html" class="menu-link">BROTHERS</a>
-                <a href="gallery.html" class="menu-link">GALLERY</a>
-                <a href="brothersonly.html" class="menu-link">PORTAL</a>
+        <div class="nav-container">
+            <div class="nav-content">
+                <a href="#" class="logo">ALPHA IOTA</a>
+                <div class="menu-wrapper">
+                    <a href="#" class="menu-link active">HOME</a>
+                    <a href="about.html" class="menu-link">ABOUT</a>
+                    <a href="brothers.html" class="menu-link">BROTHERS</a>
+                    <a href="gallery.html" class="menu-link">GALLERY</a>
+                    <a href="brothersonly.html" class="menu-link">PORTAL</a>
+                </div>
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
-            </button>
         </div>
     </nav>
+    
+    <!-- Theme Toggle Button (Bottom Right Corner) -->
+    <button id="theme-toggle" class="theme-toggle theme-toggle-corner" aria-label="Toggle dark/light mode">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
   
     <!-- Hero Section -->
     <main class="hero">
-        <div class="hero-bg"><div class="video-container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; z-index: 1;"><video id="background-video" autoplay="" playsinline="" src="https://res.cloudinary.com/dymduzj6q/video/upload/v1745632360/Morgan_Block_Show_sp_08_o7v0jq.mp4" style="width: 100%; height: 100%; object-fit: cover;"></video></div><div class="hero-overlay" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2;"></div></div>
+        <div class="hero-bg">
+            <!-- Simple video element -->
+            <video id="bg-video" autoplay="" loop="" muted="" playsinline="" crossorigin="anonymous" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0px; left: 0px; z-index: 1; transition: opacity 0.5s; opacity: 1;" src="https://media-hosting.imagekit.io/aa33b8efd2af44b2/Untitled.mp4?Expires=1841861148&amp;Key-Pair-Id=K2ZIVPTIP2VGHC&amp;Signature=D-Z7xSE3Q4H1ShIW4BRawJnl05yETvIOtUzHPGO9H9noqQHVDRWMkpDfpZ0Fyryz023rGEEH9yDur2zigYs4qLS0jSF0ix9DpyZsEjBmgWkjimlrWhruWqf7uP9TG8TcPj2kedrxYayIc~rsFOJq~2KAFBVmP~IeQtmONL1rqkPO7oLcEXGF8nc5C1mpcUjuGXDBT9VD8cROZlF4P2lVoIrCSzlVdyRn95U1RXrLPjSIgcutY2e9knTyHirtefFhi-bH8ekFGYHEV2BWCmF2DObG4TWfTPQV5m3KRBeEd7yUG2PZFJOKuIlGKGtdmkuR7is3qli4NrUMNZkPMi7N2g__"></video>
+            <div class="hero-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.7));z-index:2;"></div>
+        </div>
   
         <!-- Hero Content -->
         <div class="hero-content">
@@ -930,13 +990,14 @@
 
                 <div class="mug-card">
                     <div class="mug-image">
-                        <img src="https://i.ibb.co/qLmY1476/IMG-3558.jpg" alt="Fraternity Brother">
+                        <img src="https://terellreed-tech.github.io/DSC03292.jpg" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Terell Reed</span>
-                            <span class="line-year">Current Webmaster for the Alpha Iota Chapter</span>
-                            <span class="line-year">3x Hackathon Winner</span>
-                            <span class="line-year">Featured in Baltimore Times</span>
-        
+                            <span class="line-year main-achievement">Current Webmaster for the Alpha Iota Chapter</span>
+                            <div class="secondary-achievements">
+                                <span class="line-year">3x Hackathon Winner</span>
+                                <span class="line-year">Featured in Baltimore Times</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -963,6 +1024,51 @@
                     </div>
                 </div>
 
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://media.licdn.com/dms/image/v2/C4D03AQEGhvwH1sWMGA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1630581711448?e=1752105600&amp;v=beta&amp;t=XpfxteeqXu7hsgjI4UXDP3ykhffjUxadCU_K6TPixDk" alt="Fraternity Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Tyrel Fuentes</span>
+                            <span class="line-year main-achievement">Event Coordinator at Morgan State University</span>
+                            <div class="secondary-achievements">
+                                <span class="line-year">Vice Polemarch (2011-2012) of the Alpha Iota Chapter</span>
+                                <span class="line-year">Keeper Of Exchequer (2012-2013) of the Alpha Iota Chapter</span>
+                                <span class="line-year">Eastern Province Undergrad Medium Chapter Of The Year (2013)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQHbWoMx9ymuRQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1698862251037?e=1752710400&amp;v=beta&amp;t=wc5YbVJaRXBfclc_rhC-5P7SZp-S36a32x0eFJg_OrM" alt="Fraternity Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Ronald L. Goodman</span>
+                            <span class="line-year main-achievement">Visionary behind The Lead Players &amp; SimplySax</span>
+                            <div class="secondary-achievements">
+                                <span class="line-year">Released Albums: Snow on the Beach (2023), Mr. Machine (2025)</span>
+                                <span class="line-year">Musician &amp; Composer with The Ron G Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mug-card">
+                    <div class="mug-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGAFUI6N-YlSA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705440934190?e=1752105600&amp;v=beta&amp;t=xQsydxt0Sp-A54cv3n6sT16H39etgp-LhvcugV1hOC8" alt="Fraternity Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Michael Ragland Jr.</span>
+                            <span class="line-year main-achievement">Assisant Director of Admissions at Morgan State University</span>
+                            <div class="secondary-achievements">
+                                <span class="line-year">Polemarch (2017-2018) of the Alpha Iota Chapter</span>
+                                <span class="line-year">Vice Polemarch (2016-2017) of the Alpha Iota Chapter</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
   
         
   
@@ -977,19 +1083,11 @@
                     </div>
                 </div>
   
-                <div class="mug-card">
-                  <div class="mug-image">
-                      <img src="" alt=" Brother">
-                      <div class="brother-info">
-                          <span class="line-name">Henry Lewis</span>
-                          <span class="line-year">6th Guy L. Grant Awardee</span>
-                      </div>
-                  </div>
-              </div>
+                <!-- Henry Lewis removed as requested -->
   
               <div class="mug-card">
                 <div class="mug-image">
-                    <img src="https://media.licdn.com/dms/image/v2/C4E03AQE_GetN69Hg4Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1648555691335?e=1751500800&v=beta&t=QHE1LySpzRyRNY-9XjFJOhfSQK9FWkYqWxTiuDpKIi0" alt="Fraternity Brother">
+                    <img src="https://media.licdn.com/dms/image/v2/C4E03AQE_GetN69Hg4Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1648555691335?e=1751500800&amp;v=beta&amp;t=QHE1LySpzRyRNY-9XjFJOhfSQK9FWkYqWxTiuDpKIi0" alt="Fraternity Brother">
                     <div class="brother-info">
                         <span class="line-name">D. Jason DeSousa</span>
                         <span class="line-year">18th Guy L. Grant Awardee</span>
@@ -1010,7 +1108,7 @@
   
                 <div class="mug-card">
                   <div class="mug-image">
-                      <img src="https://media.licdn.com/dms/image/v2/D5603AQFF5JvxJQRHvg/profile-displayphoto-shrink_800_800/B56ZQk.VNgG4Ac-/0/1735787107884?e=1751500800&v=beta&t=V4GXeSMEShex7I9dj_DHHCklkw82a3fZrxywjiVgIYg" alt="Fraternity Brother">
+                      <img src="https://media.licdn.com/dms/image/v2/D5603AQFF5JvxJQRHvg/profile-displayphoto-shrink_800_800/B56ZQk.VNgG4Ac-/0/1735787107884?e=1751500800&amp;v=beta&amp;t=V4GXeSMEShex7I9dj_DHHCklkw82a3fZrxywjiVgIYg" alt="Fraternity Brother">
                       <div class="brother-info">
                           <span class="line-name">Aaron Burt</span>
                           <span class="line-year">40th Guy L. Grant Awardee</span>
@@ -1019,16 +1117,7 @@
               </div>
   
   
-              <div class="mug-card">
-                <div class="mug-image">
-                    <img src="" alt=" Brother">
-                    <div class="brother-info">
-                        <span class="line-name">Charles Sims</span>
-                        <span class="line-year">64th Guy L. Grant Awardee</span>
-                        <span class="line-year">27th Byron K. Armstrong Awardee</span>
-                    </div>
-                </div>
-            </div>
+
 
                <!-- Brother 1 -->
                <div class="mug-card">
@@ -1060,17 +1149,17 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                 <!-- Instagram Embed 1 -->
                 <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
-                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0" src="https://www.instagram.com/p/DIJ8O3XvDru/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="664" data-instgrm-payload-id="instagram-media-payload-0" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0" src="https://www.instagram.com/p/DIJ8O3XvDru/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="612" data-instgrm-payload-id="instagram-media-payload-0" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
                 </div>
                 
                 <!-- Instagram Embed 2 -->
                 <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
-                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-1" src="https://www.instagram.com/p/DIMvqutSS8h/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="666" data-instgrm-payload-id="instagram-media-payload-1" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-1" src="https://www.instagram.com/p/DIMvqutSS8h/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="613" data-instgrm-payload-id="instagram-media-payload-1" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
                 </div>
                 
                 <!-- Instagram Embed 3 -->
                 <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
-                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-2" src="https://www.instagram.com/p/DIg3QWntvuG/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="666" data-instgrm-payload-id="instagram-media-payload-2" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-2" src="https://www.instagram.com/p/DIg3QWntvuG/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="613" data-instgrm-payload-id="instagram-media-payload-2" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
                 </div>
             </div>
             
@@ -1134,6 +1223,119 @@
               <!-- Brothers in order of seniority (oldest to youngest) -->
 
 <!-- Spring 2023 -->
+
+
+<!-- Fall 2024 -->
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://i.ibb.co/LdcFhTs0/TFM59395.jpg" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Kamron Hampton</span>
+            <span class="line-year">"0AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://i.ibb.co/cXZybjbN/TFM59410.jpg" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Jaden Koranteng</span>
+            <span class="line-year">"1AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://i.ibb.co/XfJpPPWh/TFM59421.jpg" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Lesley Ofuso</span>
+            <span class="line-year">"2AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://i.ibb.co/QvB804Mx/TFM59430.jpg" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Mohammed Cole</span>
+            <span class="line-year">"3AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://i.ibb.co/1fpd3CBL/IMG-2464.jpg" alt="Active Brother" style="object-position: center 10%">
+        <div class="brother-info">
+            <span class="line-name">Christian Sampson</span>
+            <span class="line-year">"4AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://i.ibb.co/qFNYc6kd/TFM59447.jpg" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Anthony Noakes</span>
+            <span class="line-year">"5AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://media.licdn.com/dms/image/v2/D4E22AQHN2oQLp1EhOQ/feedshare-shrink_800/feedshare-shrink_800/0/1681577237293?e=1748476800&amp;v=beta&amp;t=r8iYtnIKqLHqV1jMSuVqfyMaMRCAEGDkdEhu8caB63o" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">David Osadiaye</span>
+            <span class="line-year">"6AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://i.ibb.co/Hp96y8Jy/IMG-3609.jpg" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Seydina Salla</span>
+            <span class="line-year">"7AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://terellreed-tech.github.io/DSC03292.jpg" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Terell Reed</span>
+            <span class="line-year">"1931 Alpha Iota Chapter"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://media.licdn.com/dms/image/v2/D4E22AQEZsZrfca0CZQ/feedshare-shrink_1280/B4EZPV4fPeGwAo-/0/1734460178817?e=1748476800&amp;v=beta&amp;t=XfCKX1kLMkzTgWdKjLFxQoSBbDzxTRV1iLkpbRDmP3E" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Marcus McClean</span>
+            <span class="line-year">"9AI24FA"</span>
+        </div>
+    </div>
+</div>
+
+<div class="mug-card">
+    <div class="mug-image">
+        <img src="https://i.ibb.co/1twCtS6b/IMG-3610.jpg" alt="Active Brother">
+        <div class="brother-info">
+            <span class="line-name">Demier Shipley</span>
+            <span class="line-year">"10AI24FA"</span>
+        </div>
+    </div>
+</div>
+
 <div class="mug-card">
     <div class="mug-image">
         <img src="https://i.ibb.co/XfKPKByg/xavier.jpg" alt="Active Brother">
@@ -1204,117 +1406,6 @@
         </div>
     </div>
 </div>
-
-<!-- Fall 2024 -->
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/LdcFhTs0/TFM59395.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Kamron Hampton</span>
-            <span class="line-year">"0AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/cXZybjbN/TFM59410.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Jaden Koranteng</span>
-            <span class="line-year">"1AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/XfJpPPWh/TFM59421.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Lesley Ofuso</span>
-            <span class="line-year">"2AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/QvB804Mx/TFM59430.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Mohammed Cole</span>
-            <span class="line-year">"3AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/1fpd3CBL/IMG-2464.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Christian Sampson</span>
-            <span class="line-year">"4AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/qFNYc6kd/TFM59447.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Anthony Noakes</span>
-            <span class="line-year">"5AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://media.licdn.com/dms/image/v2/D4E22AQHN2oQLp1EhOQ/feedshare-shrink_800/feedshare-shrink_800/0/1681577237293?e=1748476800&amp;v=beta&amp;t=r8iYtnIKqLHqV1jMSuVqfyMaMRCAEGDkdEhu8caB63o" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">David Osadiaye</span>
-            <span class="line-year">"6AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/Hp96y8Jy/IMG-3609.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Seydina Salla</span>
-            <span class="line-year">"7AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/qLmY1476/IMG-3558.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Terell Reed</span>
-            <span class="line-year">"8AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://media.licdn.com/dms/image/v2/D4E22AQEZsZrfca0CZQ/feedshare-shrink_1280/B4EZPV4fPeGwAo-/0/1734460178817?e=1748476800&amp;v=beta&amp;t=XfCKX1kLMkzTgWdKjLFxQoSBbDzxTRV1iLkpbRDmP3E" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Marcus McClean</span>
-            <span class="line-year">"9AI24FA"</span>
-        </div>
-    </div>
-</div>
-
-<div class="mug-card">
-    <div class="mug-image">
-        <img src="https://i.ibb.co/1twCtS6b/IMG-3610.jpg" alt="Active Brother">
-        <div class="brother-info">
-            <span class="line-name">Demier Shipley</span>
-            <span class="line-year">"10AI24FA"</span>
-        </div>
-    </div>
-</div>
   
   
   
@@ -1348,7 +1439,7 @@
                 <a href="https://www.instagram.com/ainupes1931/" style="color: var(--color-text); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/p/The-Alpha-Iota-Chapter-of-%CE%9A%CE%91%CE%A8-100067518272851/?_rdr" style="color: var(--color-text); font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
             </div>
-            <p class="copyright">© 2024 Alpha Iota Chapter of Kappa Alpha Psi. All Rights Reserved.</p>
+            <p class="copyright">© 1931 Alpha Iota Chapter of Kappa Alpha Psi. All Rights Reserved.</p>
         </div>
     </footer>
   
@@ -1359,16 +1450,43 @@
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const menu = document.querySelector('.menu');
+    const menuWrapper = document.querySelector('.menu-wrapper');
     const htmlElement = document.documentElement;
+    
+    // Setup achievement toggles
+    const toggleButtons = document.querySelectorAll('.toggle-more');
+    toggleButtons.forEach(button => {
+        // First ensure hidden areas are hidden by default
+        const id = button.getAttribute('data-id');
+        const moreContent = document.getElementById(id + '-more');
+        if (moreContent) {
+            moreContent.style.display = 'none';
+        }
+        
+        // Then add the click event
+        button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const moreContent = document.getElementById(id + '-more');
+            
+            if (moreContent) {
+                if (moreContent.style.display === 'none') {
+                    moreContent.style.display = 'block';
+                    this.textContent = 'Show less';
+                } else {
+                    moreContent.style.display = 'none';
+                    this.textContent = 'See more achievements';
+                }
+            }
+        });
+    });
     
     // Mobile menu toggle functionality
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function() {
-            menu.classList.toggle('active');
+            menuWrapper.classList.toggle('active');
             // Change icon based on menu state
             const icon = mobileMenuToggle.querySelector('i');
-            if (menu.classList.contains('active')) {
+            if (menuWrapper.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
             } else {
@@ -1383,7 +1501,7 @@
     menuLinks.forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
-                menu.classList.remove('active');
+                menuWrapper.classList.remove('active');
                 const icon = mobileMenuToggle.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
@@ -1429,150 +1547,95 @@
         htmlElement.setAttribute('data-theme', savedTheme);
     }
     
-    // List of video URLs (replace with your actual hosted video URLs)
-    const videoUrls = [
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745631821/videoplayback_2_t9ih7e.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632374/Kappa_Alpha_Psi_Alpha_Iota_Probate_Fall_2011_frflpj.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632360/Morgan_Block_Show_sp_08_o7v0jq.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632559/AI_Nupes_Kommunity_Service_PSA.mov_ofref3.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632572/MSU_Blockshow_2021_-_Kappa_Alpha_Psi_wkmq6j.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633228/Untitled_xk7mhh.mp4", 
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633359/videoplayback_4_ho2jkg.mp4"
-        // Add more video URLs here
-    ];
+    // Fixed video URL - using specific background video
+    const videoUrl = "https://media-hosting.imagekit.io/aef965e7f128484d/AQNuPLbmnSX0OclBZsEteajBz_9qTlPpgNL1W2J60n68DQUSd692GsGcjSfSpnr8WBbZKk5Pqul69yirCc398SM_18031438148124592.mp4?Expires=1841859759&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=PlDCHZ8KXYLqKWEUy1p3FIhI0VWcL7K~87rJsi1vasBLgY2N4Yc-0p1qVrYSzynmICjOYcW0T2lk0EivVYQTMyGFK7UpCIfAj8GUMl6iulTLFlpqpYFSUBfUhzKRxn2TpmH3fHstac3F3XFDTr8MYrQHCaI1-v~8L9097KN3ZXNATY-rAWNUjZZbg4~ML6NarhtexMKHSk2oIFd8hPiIjD3wfsTl9VJs517L4kdNESaeLuOLDcRVaw73xppvKNS1kjAxPwdRA9p4C0yK6IGt~xWg77MgxTkgxKT2OWuzOadi31CJnvu~DfVe7Wud1Cc9RlLiFjphpslBg9xTbgCX2Q__";
     
     // Global variables
     let currentVideoIndex = 0;
     let videoSwitchTimer;
     let videoElement;
     
-    // Setup the background video
+    // Function not needed as we're embedding the video directly in HTML
     function setupBackgroundVideo() {
-        const heroElement = document.querySelector('.hero-bg');
-        if (!heroElement) return;
-        
-        // Clear existing content
-        heroElement.innerHTML = '';
-        
-        // Create video container
-        const videoContainer = document.createElement('div');
-        videoContainer.className = 'video-container';
-        videoContainer.style.position = 'absolute';
-        videoContainer.style.top = '0';
-        videoContainer.style.left = '0';
-        videoContainer.style.width = '100%';
-        videoContainer.style.height = '100%';
-        videoContainer.style.overflow = 'hidden';
-        videoContainer.style.zIndex = '1';
-        
-        // Create video element
-        videoElement = document.createElement('video');
-        videoElement.id = 'background-video';
-        videoElement.muted = true;
-        videoElement.autoplay = true;
-        videoElement.playsInline = true;
-        videoElement.style.width = '100%';
-        videoElement.style.height = '100%';
-        videoElement.style.objectFit = 'cover';
-        
-        // Add video to container
-        videoContainer.appendChild(videoElement);
-        heroElement.appendChild(videoContainer);
-        
-        // Create overlay
-        const overlay = document.createElement('div');
-        overlay.className = 'hero-overlay';
-        overlay.style.position = 'absolute';
-        overlay.style.top = '0';
-        overlay.style.left = '0';
-        overlay.style.width = '100%';
-        overlay.style.height = '100%';
-        overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
-        overlay.style.zIndex = '2';
-        
-        // Add overlay
-        heroElement.appendChild(overlay);
-        
-        // Start playing videos
-        shuffleVideos();
-        playCurrentVideo();
+        // This function is kept empty to avoid errors but is no longer used
     }
     
-    // Shuffle the videos array
+    // These functions are not needed anymore since we're using a single fixed video
+    // Keeping empty functions to prevent errors in case they're called elsewhere
     function shuffleVideos() {
-        for (let i = videoUrls.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [videoUrls[i], videoUrls[j]] = [videoUrls[j], videoUrls[i]];
-        }
+        // Not needed for single video
     }
     
-    // Play the current video with random timestamp
     function playCurrentVideo() {
-        if (!videoElement) return;
-        
-        // Clear any existing timer
-        clearTimeout(videoSwitchTimer);
-        
-        // Create a transition effect
-        const heroOverlay = document.querySelector('.hero-overlay');
-        if (heroOverlay) {
-            heroOverlay.style.background = 'rgba(0, 0, 0, 0.8)';
-        }
-        
-        // Get current video URL
-        const videoUrl = videoUrls[currentVideoIndex];
-        
-        // Set the source
-        videoElement.src = videoUrl;
-        videoElement.load();
-        
-        videoElement.onloadedmetadata = function() {
-            // Get video duration (in seconds)
-            const duration = videoElement.duration;
-            
-            // Calculate random start time (max 75% of video duration)
-            const maxStartTime = Math.max(0, duration * 0.75 - 5);
-            const randomStartTime = Math.floor(Math.random() * maxStartTime);
-            
-            // Set current time and play
-            videoElement.currentTime = randomStartTime;
-            videoElement.play().catch(err => {
-                console.error("Error playing video:", err);
-                // Try next video if current one fails
-                moveToNextVideo();
-            });
-            
-            // Restore overlay after transition
-            setTimeout(() => {
-                if (heroOverlay) {
-                    heroOverlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
-                }
-            }, 1000);
-            
-            // Set timer to switch to next video after 5 seconds
-            videoSwitchTimer = setTimeout(moveToNextVideo, 5000);
-        };
-        
-        // Handle loading errors
-        videoElement.onerror = function() {
-            console.error("Error loading video:", videoUrl);
-            moveToNextVideo();
-        };
+        // Not needed for single video
     }
     
-    // Move to the next video
     function moveToNextVideo() {
-        // Update video index
+        // Not needed for single video
+    }
+    
+    // Add console logging to debug video loading
+    function debugVideo(message) {
+      console.log("Video Debug: " + message);
+    }
+    
+    // Video background function with simpler approach
+    function setupBackgroundVideoCarousel() {
+      // Video URLs
+      const videoUrls = [
+        "https://media-hosting.imagekit.io/aa33b8efd2af44b2/Untitled.mp4?Expires=1841861148&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=D-Z7xSE3Q4H1ShIW4BRawJnl05yETvIOtUzHPGO9H9noqQHVDRWMkpDfpZ0Fyryz023rGEEH9yDur2zigYs4qLS0jSF0ix9DpyZsEjBmgWkjimlrWhruWqf7uP9TG8TcPj2kedrxYayIc~rsFOJq~2KAFBVmP~IeQtmONL1rqkPO7oLcEXGF8nc5C1mpcUjuGXDBT9VD8cROZlF4P2lVoIrCSzlVdyRn95U1RXrLPjSIgcutY2e9knTyHirtefFhi-bH8ekFGYHEV2BWCmF2DObG4TWfTPQV5m3KRBeEd7yUG2PZFJOKuIlGKGtdmkuR7is3qli4NrUMNZkPMi7N2g__",
+        "https://media-hosting.imagekit.io/b46c0d2b52c54143/MSU%20Blockshow%202021%20-%20Kappa%20Alpha%20Psi.mp4?Expires=1841861054&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DjdW5WZaqdTCpQoT1y-kz8oSVdcnjyt~ogmp-Bxwub2bzhu2XQWpVMEzlHNNTvVSpCceNhpCwUrml~Z0Z3wvzrmJMElQQlfc2mpR0Sa027vQuqS9jrJlchj~samp7tWJQkJLUV0XUb-DL4~cv2i5VTFJ2qLTEOiA-D4hp55xTII4~gJAI98Nb6EqCxIKxrVMolPtAqle9ex-LkzS7j-KEyUWJ7XRF-zSuKHFU43ATByToOdLv5jEQfPmbM5ecQf5~Mj6TYGRhyOqp7R2QSwoNBCF7VXeAsBG4Ng6Kpp7VC70Y-TYA1NcXviD9LIZzTyfjTCS2vlzI3M4cbJF2Xpo3w__",
+        "https://media-hosting.imagekit.io/f29dfcb179974032/Kappa%20Alpha%20Psi%20Alpha%20Iota%20Probate%20Fall%202011%20(1).mp4?Expires=1841861013&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=xmnvRxEoW9odgcNfx0YG7Qa~2X45~XNUU~1~lEcDFHh2b06WecIwi0wTlPAfJWUNeNpVGx~fKOQjVrbbmXUzZ3GwEQZ02-pOmovH2SIVRlKtgrpZ2ffA5WX2W7kOGEW41r9mGXIHF3-pJSTA-hIqhjDZBDobY~c5ojc1sBjsAl3-n5T12tgPWPiwOGHyDcmdQUg7lKyC8HRLVYq~~pqSD-uHuL3zTLIaCxIKA8qHyNYldPD1mAmGGWX~IPQn1jxjbvp4XHMnBud-kAzJiQuieroIMO95Ow3XaA20FVaVJNoylLZkn7OwgCCiGPIzlVEuyxYLs-LWzMil0rzzF8c0Ig__"
+      ];
+      
+      let currentVideoIndex = 0;
+      const videoElement = document.getElementById('bg-video');
+      
+      // Set first video
+      videoElement.src = videoUrls[0];
+      videoElement.load();
+      
+      // Function to change video
+      function changeVideo() {
+        // Move to next video
         currentVideoIndex = (currentVideoIndex + 1) % videoUrls.length;
         
-        // Play the current video
-        playCurrentVideo();
+        // Create a fade effect
+        videoElement.style.opacity = 0;
+        
+        // After fade out, change source
+        setTimeout(() => {
+          videoElement.src = videoUrls[currentVideoIndex];
+          videoElement.load();
+          videoElement.play().catch(e => console.error("Error playing video:", e));
+          
+          // Fade back in
+          setTimeout(() => {
+            videoElement.style.opacity = 1;
+          }, 500);
+        }, 500);
+      }
+      
+      // Add transition for smooth fading
+      videoElement.style.transition = "opacity 0.5s ease";
+      
+      // Change video every 30 seconds
+      setInterval(changeVideo, 30000);
+      
+      // Start playing first video
+      videoElement.play().catch(e => console.error("Error playing initial video:", e));
     }
     
-    // Initialize
-    setupBackgroundVideo();
+    // This function is no longer needed since we're using CSS hover effects
+    function toggleAchievements(id, button) {
+      // Function kept empty to prevent errors but no longer used
+    }
+    
+    // Initialize video carousel
+    setupBackgroundVideoCarousel();
   });
   </script>
+  
   
   
   
