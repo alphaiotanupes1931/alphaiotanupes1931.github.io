@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Darker+Grotesque:wght@300;600;800&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
     <style>
+        /* Hide hamburger icon globally */
+        .mobile-menu-toggle {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        
         :root {
             /* Dark Theme (Default) */
             --color-background: #121212;
@@ -135,30 +141,26 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: #000000;
             z-index: 1000;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: background-color 0.3s ease;
         }
         
         [data-theme="light"] .nav {
-            background-color: rgba(180, 0, 0, 0.8);
+            background-color: transparent;
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 15px rgba(220, 20, 60, 0.3);
         }
   
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 95%;
-        }
-        
-        .nav-content {
+        .nav-inner {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            padding: 0.5rem 0;
         }
   
         .logo {
@@ -167,17 +169,17 @@
             font-family: 'Syncopate', sans-serif;
             font-size: 1.5rem;
             font-weight: bold;
+            margin-right: 1rem;
         }
         
         [data-theme="light"] .logo {
             color: #ffffff;
         }
   
-        .menu-wrapper {
+        .menu {
             display: flex;
-            gap: 3rem;
+            gap: 2rem;
             justify-content: center;
-            align-items: center;
         }
   
         .menu-link {
@@ -188,26 +190,31 @@
             transition: var(--transition);
             font-size: 0.9rem;
             position: relative;
-            padding: 0.6rem 0.8rem;
-            border-radius: 4px;
-        }
-        
-        .menu-link.active {
-            background-color: var(--color-primary);
-            color: white;
-        }
-        
-        .menu-link:not(.active):hover {
-            background-color: rgba(220, 20, 60, 0.1);
+            padding-bottom: 4px;
         }
         
         [data-theme="light"] .menu-link {
             color: #ffffff;
         }
   
+        .menu-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-primary);
+            transition: var(--transition);
+        }
+  
+        .menu-link:hover:after {
+            width: 100%;
+        }
+  
         /* Theme Toggle Button */
         .theme-toggle {
-            background: rgba(0, 0, 0, 0.7);
+            background: none;
             border: none;
             color: var(--color-text);
             font-size: 1.2rem;
@@ -215,6 +222,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-left: 1rem;
             padding: 0.5rem;
             border-radius: 50%;
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -222,15 +230,18 @@
             width: 40px;
             height: 40px;
             overflow: hidden;
-            box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            flex-direction: row; /* Ensure no stacked lines */
         }
         
-        /* Corner positioned theme toggle */
-        .theme-toggle-corner {
+        .floating-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 2000;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+            margin: 0;
         }
         
         .theme-toggle:hover {
@@ -367,6 +378,7 @@
             font-family: 'Syncopate', sans-serif;
             font-size: clamp(3rem, 8vw, 5rem);
             color: var(--color-text);
+            text-shadow: none;
             margin-bottom: 0.5rem;
             transition: color 0.3s ease;
         }
@@ -566,31 +578,29 @@
             text-align: center;
             transition: all 0.3s ease;
             overflow: hidden;
-            max-height: 100px;
         }
         
-        .mug-image:hover .brother-info {
-            max-height: 300px;
-            background: rgba(0, 0, 0, 0.95);
-        }
-        
-        .main-achievement {
+        .mug-image:hover .line-year {
             display: block;
+            animation: fadeIn 0.3s ease-in-out;
         }
         
-        .secondary-achievements {
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
+        .line-year {
+            display: none;
         }
         
-        .mug-image:hover .secondary-achievements {
-            opacity: 1;
-            max-height: 200px;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px solid rgba(220, 20, 60, 0.3);
+        .mug-image:hover .line-year {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .expand-btn {
+            display: none; /* Hide the expand button */
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .line-name {
@@ -610,7 +620,7 @@
             font-family: 'Darker Grotesque', sans-serif;
             font-size: 0.9rem;
             color: #FFFFFF;
-            display: block;
+            display: none; /* Hide initially */
             margin-top: 0.5rem;
             transition: color 0.3s ease;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -722,6 +732,14 @@
                 font-size: 1.2rem;
                 margin-bottom: 0.5rem;
             }
+
+            .menu {
+                width: 100%;
+            }
+            
+            .mobile-menu-toggle {
+                display: block; /* Show on mobile */
+            }
   
             .menu {
                 margin-top: 0.5rem;
@@ -741,48 +759,24 @@
             }
             
             .mobile-menu-toggle {
-                display: none; /* Hidden on desktop */
-                background: rgba(0, 0, 0, 0.5);
+                display: none !important; /* Hidden on desktop - with !important */
+                position: absolute;
+                right: 1rem;
+                top: 0.5rem;
+                background: none;
                 border: none;
                 color: var(--color-text);
                 font-size: 1.5rem;
                 cursor: pointer;
                 z-index: 100;
-                padding: 0.5rem;
-                border-radius: 4px;
+                visibility: hidden; /* Additional property to ensure it's hidden */
             }
             
             [data-theme="light"] .mobile-menu-toggle {
                 color: #ffffff;
             }
             
-            @media (max-width: 768px) {
-                .mobile-menu-toggle {
-                    display: block; /* Show on mobile */
-                }
-                
-                .nav-content {
-                    flex-direction: column;
-                    align-items: flex-start;
-                    padding: 0.5rem 0;
-                }
-                
-                .menu-wrapper {
-                    display: none;
-                    width: 100%;
-                    flex-direction: column;
-                    gap: 1rem;
-                    padding: 1rem 0;
-                }
-                
-                .menu-wrapper.active {
-                    display: flex;
-                }
-                
-                .logo {
-                    padding: 1rem 0;
-                }
-            }
+            /* Removed nested media query */
             
             /* Hero Section */
             .hero-content {
@@ -903,36 +897,30 @@
   
     <!-- Navigation -->
     <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-content">
-                <a href="#" class="logo">ALPHA IOTA</a>
-                <div class="menu-wrapper">
-                    <a href="#" class="menu-link active">HOME</a>
-                    <a href="about.html" class="menu-link">ABOUT</a>
-                    <a href="brothers.html" class="menu-link">BROTHERS</a>
-                    <a href="gallery.html" class="menu-link">GALLERY</a>
-                    <a href="brothersonly.html" class="menu-link">PORTAL</a>
-                </div>
-                <button id="mobile-menu-toggle" class="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+        <div class="nav-inner">
+            <a href="#" class="logo">ALPHA IOTA</a>
+            <div class="menu">
+                <a href="#" class="menu-link">HOME</a>
+                <a href="about.html" class="menu-link">ABOUT</a>
+                <a href="brothers.html" class="menu-link">BROTHERS</a>
+                <a href="gallery.html" class="menu-link">GALLERY</a>
+                <a href="brothersonly.html" class="menu-link">PORTAL</a>
             </div>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
     
-    <!-- Theme Toggle Button (Bottom Right Corner) -->
-    <button id="theme-toggle" class="theme-toggle theme-toggle-corner" aria-label="Toggle dark/light mode">
+    <!-- Theme toggle moved to bottom right -->
+    <button id="theme-toggle" class="theme-toggle floating-toggle" aria-label="Toggle dark/light mode">
         <i class="fas fa-sun"></i>
         <i class="fas fa-moon"></i>
     </button>
   
     <!-- Hero Section -->
     <main class="hero">
-        <div class="hero-bg">
-            <!-- Simple video element -->
-            <video id="bg-video" autoplay="" loop="" muted="" playsinline="" crossorigin="anonymous" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0px; left: 0px; z-index: 1; transition: opacity 0.5s; opacity: 1;" src="https://media-hosting.imagekit.io/aa33b8efd2af44b2/Untitled.mp4?Expires=1841861148&amp;Key-Pair-Id=K2ZIVPTIP2VGHC&amp;Signature=D-Z7xSE3Q4H1ShIW4BRawJnl05yETvIOtUzHPGO9H9noqQHVDRWMkpDfpZ0Fyryz023rGEEH9yDur2zigYs4qLS0jSF0ix9DpyZsEjBmgWkjimlrWhruWqf7uP9TG8TcPj2kedrxYayIc~rsFOJq~2KAFBVmP~IeQtmONL1rqkPO7oLcEXGF8nc5C1mpcUjuGXDBT9VD8cROZlF4P2lVoIrCSzlVdyRn95U1RXrLPjSIgcutY2e9knTyHirtefFhi-bH8ekFGYHEV2BWCmF2DObG4TWfTPQV5m3KRBeEd7yUG2PZFJOKuIlGKGtdmkuR7is3qli4NrUMNZkPMi7N2g__"></video>
-            <div class="hero-overlay" style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,rgba(0,0,0,0.4),rgba(0,0,0,0.7));z-index:2;"></div>
-        </div>
+        <div class="hero-bg"><div class="video-container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; z-index: 1;"><video id="background-video" autoplay="" playsinline="" src="https://res.cloudinary.com/dymduzj6q/video/upload/v1745632360/Morgan_Block_Show_sp_08_o7v0jq.mp4" style="width: 100%; height: 100%; object-fit: cover;"></video></div><div class="hero-overlay" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2;"></div></div>
   
         <!-- Hero Content -->
         <div class="hero-content">
@@ -990,14 +978,22 @@
 
                 <div class="mug-card">
                     <div class="mug-image">
+                        <img src="https://i.ibb.co/XfJpPPWh/TFM59421.jpg" alt="Fraternity Brother">
+                        <div class="brother-info">
+                            <span class="line-name">Lesley Ofuso</span>
+                            <span class="line-year">NPHC Vice President of Morgan State University</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mug-card">
+                    <div class="mug-image">
                         <img src="https://terellreed-tech.github.io/DSC03292.jpg" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Terell Reed</span>
-                            <span class="line-year main-achievement">Current Webmaster for the Alpha Iota Chapter</span>
-                            <div class="secondary-achievements">
-                                <span class="line-year">3x Hackathon Winner</span>
-                                <span class="line-year">Featured in Baltimore Times</span>
-                            </div>
+                            <span class="line-year">Current Webmaster for the Alpha Iota Chapter</span>
+                            <span class="line-year">3x Hackathon Winner</span>
+                            <span class="line-year">Featured in Baltimore Times</span>
                         </div>
                     </div>
                 </div>
@@ -1030,26 +1026,11 @@
                         <img src="https://media.licdn.com/dms/image/v2/C4D03AQEGhvwH1sWMGA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1630581711448?e=1752105600&amp;v=beta&amp;t=XpfxteeqXu7hsgjI4UXDP3ykhffjUxadCU_K6TPixDk" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Tyrel Fuentes</span>
-                            <span class="line-year main-achievement">Event Coordinator at Morgan State University</span>
-                            <div class="secondary-achievements">
-                                <span class="line-year">Vice Polemarch (2011-2012) of the Alpha Iota Chapter</span>
-                                <span class="line-year">Keeper Of Exchequer (2012-2013) of the Alpha Iota Chapter</span>
-                                <span class="line-year">Eastern Province Undergrad Medium Chapter Of The Year (2013)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mug-card">
-                    <div class="mug-image">
-                        <img src="https://media.licdn.com/dms/image/v2/D5603AQHbWoMx9ymuRQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1698862251037?e=1752710400&amp;v=beta&amp;t=wc5YbVJaRXBfclc_rhC-5P7SZp-S36a32x0eFJg_OrM" alt="Fraternity Brother">
-                        <div class="brother-info">
-                            <span class="line-name">Ronald L. Goodman</span>
-                            <span class="line-year main-achievement">Visionary behind The Lead Players &amp; SimplySax</span>
-                            <div class="secondary-achievements">
-                                <span class="line-year">Released Albums: Snow on the Beach (2023), Mr. Machine (2025)</span>
-                                <span class="line-year">Musician &amp; Composer with The Ron G Experience</span>
-                            </div>
+                            <span class="line-year show-first">Event Coordinator at Morgan State University</span>
+                            <span class="line-year achievement">Vice Polemarch (2011-2012) of the Alpha Iota Chapter</span>
+                            <span class="line-year achievement">Keeper Of Exchequer (2012-2013) of the Alpha Iota Chapter</span>
+                            <span class="line-year achievement">Eastern Province Undergrad Medium Chapter Of The Year (2013)</span>
+                            <span class="expand-btn">+ More</span>
                         </div>
                     </div>
                 </div>
@@ -1060,11 +1041,9 @@
                         <img src="https://media.licdn.com/dms/image/v2/D4D03AQGAFUI6N-YlSA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705440934190?e=1752105600&amp;v=beta&amp;t=xQsydxt0Sp-A54cv3n6sT16H39etgp-LhvcugV1hOC8" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Michael Ragland Jr.</span>
-                            <span class="line-year main-achievement">Assisant Director of Admissions at Morgan State University</span>
-                            <div class="secondary-achievements">
-                                <span class="line-year">Polemarch (2017-2018) of the Alpha Iota Chapter</span>
-                                <span class="line-year">Vice Polemarch (2016-2017) of the Alpha Iota Chapter</span>
-                            </div>
+                            <span class="line-year">Assisant Director of Admissions at Morgan State University</span>
+                            <span class="line-year">Polemarch (2017-2018) of the Alpha Iota Chapter </span>
+                            <span class="line-year">Vice Polemarch (2016-2017) of the Alpha Iota Chapter </span>
                         </div>
                     </div>
                 </div>
@@ -1083,7 +1062,7 @@
                     </div>
                 </div>
   
-                <!-- Henry Lewis removed as requested -->
+<!-- Henry Lewis removed -->
   
               <div class="mug-card">
                 <div class="mug-image">
@@ -1095,7 +1074,8 @@
                 </div>
             </div>
   
-                <!-- Brother 3 -->
+                <!-- Lesley Ofuso entry moved to first position -->
+                
                 <div class="mug-card">
                     <div class="mug-image">
                         <img src="https://media.licdn.com/dms/image/v2/D4E03AQFTDqBdwlalkw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1675480873091?e=1750896000&amp;v=beta&amp;t=BjW5aKpVLkO-ZwaPIyamQLoTJCE-sxeY8SJ680LMfqo" alt="Fraternity Brother">
@@ -1117,7 +1097,7 @@
               </div>
   
   
-
+<!-- Charles Sims removed -->
 
                <!-- Brother 1 -->
                <div class="mug-card">
@@ -1268,7 +1248,7 @@
 
 <div class="mug-card">
     <div class="mug-image">
-        <img src="https://i.ibb.co/1fpd3CBL/IMG-2464.jpg" alt="Active Brother" style="object-position: center 10%">
+        <img src="https://i.ibb.co/1fpd3CBL/IMG-2464.jpg" alt="Active Brother" style="object-position: center 0%;"><!-- Moved image to show from the top -->
         <div class="brother-info">
             <span class="line-name">Christian Sampson</span>
             <span class="line-year">"4AI24FA"</span>
@@ -1311,7 +1291,7 @@
         <img src="https://terellreed-tech.github.io/DSC03292.jpg" alt="Active Brother">
         <div class="brother-info">
             <span class="line-name">Terell Reed</span>
-            <span class="line-year">"1931 Alpha Iota Chapter"</span>
+            <span class="line-year">"8AI24FA"</span>
         </div>
     </div>
 </div>
@@ -1439,7 +1419,7 @@
                 <a href="https://www.instagram.com/ainupes1931/" style="color: var(--color-text); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/p/The-Alpha-Iota-Chapter-of-%CE%9A%CE%91%CE%A8-100067518272851/?_rdr" style="color: var(--color-text); font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
             </div>
-            <p class="copyright">© 1931 Alpha Iota Chapter of Kappa Alpha Psi. All Rights Reserved.</p>
+            <p class="copyright">© 2024 Alpha Iota Chapter of Kappa Alpha Psi. All Rights Reserved.</p>
         </div>
     </footer>
   
@@ -1450,43 +1430,26 @@
     // Theme toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const menuWrapper = document.querySelector('.menu-wrapper');
+    const menu = document.querySelector('.menu');
     const htmlElement = document.documentElement;
     
-    // Setup achievement toggles
-    const toggleButtons = document.querySelectorAll('.toggle-more');
-    toggleButtons.forEach(button => {
-        // First ensure hidden areas are hidden by default
-        const id = button.getAttribute('data-id');
-        const moreContent = document.getElementById(id + '-more');
-        if (moreContent) {
-            moreContent.style.display = 'none';
-        }
-        
-        // Then add the click event
+    // Brother spotlight expand functionality
+    const expandButtons = document.querySelectorAll('.expand-btn');
+    expandButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const id = this.getAttribute('data-id');
-            const moreContent = document.getElementById(id + '-more');
-            
-            if (moreContent) {
-                if (moreContent.style.display === 'none') {
-                    moreContent.style.display = 'block';
-                    this.textContent = 'Show less';
-                } else {
-                    moreContent.style.display = 'none';
-                    this.textContent = 'See more achievements';
-                }
-            }
+            const brotherInfo = this.parentElement;
+            brotherInfo.classList.toggle('expanded');
+            this.textContent = brotherInfo.classList.contains('expanded') ? '- Less' : '+ More';
         });
     });
     
     // Mobile menu toggle functionality
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function() {
-            menuWrapper.classList.toggle('active');
+            menu.classList.toggle('active');
             // Change icon based on menu state
             const icon = mobileMenuToggle.querySelector('i');
-            if (menuWrapper.classList.contains('active')) {
+            if (menu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
             } else {
@@ -1501,7 +1464,7 @@
     menuLinks.forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
-                menuWrapper.classList.remove('active');
+                menu.classList.remove('active');
                 const icon = mobileMenuToggle.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
@@ -1547,92 +1510,159 @@
         htmlElement.setAttribute('data-theme', savedTheme);
     }
     
-    // Fixed video URL - using specific background video
-    const videoUrl = "https://media-hosting.imagekit.io/aef965e7f128484d/AQNuPLbmnSX0OclBZsEteajBz_9qTlPpgNL1W2J60n68DQUSd692GsGcjSfSpnr8WBbZKk5Pqul69yirCc398SM_18031438148124592.mp4?Expires=1841859759&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=PlDCHZ8KXYLqKWEUy1p3FIhI0VWcL7K~87rJsi1vasBLgY2N4Yc-0p1qVrYSzynmICjOYcW0T2lk0EivVYQTMyGFK7UpCIfAj8GUMl6iulTLFlpqpYFSUBfUhzKRxn2TpmH3fHstac3F3XFDTr8MYrQHCaI1-v~8L9097KN3ZXNATY-rAWNUjZZbg4~ML6NarhtexMKHSk2oIFd8hPiIjD3wfsTl9VJs517L4kdNESaeLuOLDcRVaw73xppvKNS1kjAxPwdRA9p4C0yK6IGt~xWg77MgxTkgxKT2OWuzOadi31CJnvu~DfVe7Wud1Cc9RlLiFjphpslBg9xTbgCX2Q__";
+    // List of video URLs (replace with your actual hosted video URLs)
+    const videoUrls = [
+        "https://ik.imagekit.io/uadtyqa3n/AQNuPLbmnSX0OclBZsEteajBz_9qTlPpgNL1W2J60n68DQUSd692GsGcjSfSpnr8WBbZKk5Pqul69yirCc398SM_18031438148124592.mp4?updatedAt=1747541118717",
+        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20Alpha%20Iota%20Probate%20Fall%202011%20(1).mp4?updatedAt=1747544145515",
+        "https://ik.imagekit.io/uadtyqa3n/Morgan%20Block%20Show%20sp%2008.mp4?updatedAt=1747544256804",
+        "https://ik.imagekit.io/uadtyqa3n/videoplayback%20(4).mp4?updatedAt=1747544398372",
+        "https://ik.imagekit.io/uadtyqa3n/Morgan%20State%20University%20Step%20Show%202013%201st%20Place%20Kappa%20Alpha%20Psi%20Alpha%20Iota%20Chapter%20(TRUMUNDI%20TV)%202.mp4?updatedAt=1747544369077",
+        "https://ik.imagekit.io/uadtyqa3n/Untitled.mp4?updatedAt=1747544363120",
+        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20_%20AI%20Nupes%20_%20Morgan%20State%20Freshman%20Week%20Performance.mp4",
+        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20_%20AI%20Nupes%20_%20Morgan%20State%20Homecoming%20Pep%20Rally%202019%20Performance.mp4",
+        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20_%20Morgan%20State%20AIDS%20Lock-In%202018%20_%20Al%20Nupes%20Performance.mp4",
+        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20Fraternity,%20Inc.%20Alpha%20Iota%20Chapter,%20Morgan%20State%20NPHC%20Blockshow.mp4",
+        "https://ik.imagekit.io/uadtyqa3n/AI%20Nupes,%20Kommunity%20Service%20PSA.mov.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745631821/videoplayback_2_t9ih7e.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632374/Kappa_Alpha_Psi_Alpha_Iota_Probate_Fall_2011_frflpj.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632360/Morgan_Block_Show_sp_08_o7v0jq.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632559/AI_Nupes_Kommunity_Service_PSA.mov_ofref3.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632572/MSU_Blockshow_2021_-_Kappa_Alpha_Psi_wkmq6j.mp4",
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633228/Untitled_xk7mhh.mp4", 
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633359/videoplayback_4_ho2jkg.mp4"
+        // Add more video URLs here
+    ];
     
     // Global variables
     let currentVideoIndex = 0;
     let videoSwitchTimer;
     let videoElement;
     
-    // Function not needed as we're embedding the video directly in HTML
+    // Setup the background video
     function setupBackgroundVideo() {
-        // This function is kept empty to avoid errors but is no longer used
+        const heroElement = document.querySelector('.hero-bg');
+        if (!heroElement) return;
+        
+        // Clear existing content
+        heroElement.innerHTML = '';
+        
+        // Create video container
+        const videoContainer = document.createElement('div');
+        videoContainer.className = 'video-container';
+        videoContainer.style.position = 'absolute';
+        videoContainer.style.top = '0';
+        videoContainer.style.left = '0';
+        videoContainer.style.width = '100%';
+        videoContainer.style.height = '100%';
+        videoContainer.style.overflow = 'hidden';
+        videoContainer.style.zIndex = '1';
+        
+        // Create video element
+        videoElement = document.createElement('video');
+        videoElement.id = 'background-video';
+        videoElement.muted = true;
+        videoElement.autoplay = true;
+        videoElement.playsInline = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.objectFit = 'cover';
+        
+        // Add video to container
+        videoContainer.appendChild(videoElement);
+        heroElement.appendChild(videoContainer);
+        
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'hero-overlay';
+        overlay.style.position = 'absolute';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
+        overlay.style.zIndex = '2';
+        
+        // Add overlay
+        heroElement.appendChild(overlay);
+        
+        // Start playing videos
+        shuffleVideos();
+        playCurrentVideo();
     }
     
-    // These functions are not needed anymore since we're using a single fixed video
-    // Keeping empty functions to prevent errors in case they're called elsewhere
+    // Shuffle the videos array
     function shuffleVideos() {
-        // Not needed for single video
+        for (let i = videoUrls.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [videoUrls[i], videoUrls[j]] = [videoUrls[j], videoUrls[i]];
+        }
     }
     
+    // Play the current video with random timestamp
     function playCurrentVideo() {
-        // Not needed for single video
+        if (!videoElement) return;
+        
+        // Clear any existing timer
+        clearTimeout(videoSwitchTimer);
+        
+        // Create a transition effect
+        const heroOverlay = document.querySelector('.hero-overlay');
+        if (heroOverlay) {
+            heroOverlay.style.background = 'rgba(0, 0, 0, 0.8)';
+        }
+        
+        // Get current video URL
+        const videoUrl = videoUrls[currentVideoIndex];
+        
+        // Set the source
+        videoElement.src = videoUrl;
+        videoElement.load();
+        
+        videoElement.onloadedmetadata = function() {
+            // Get video duration (in seconds)
+            const duration = videoElement.duration;
+            
+            // Calculate random start time (max 75% of video duration)
+            const maxStartTime = Math.max(0, duration * 0.75 - 5);
+            const randomStartTime = Math.floor(Math.random() * maxStartTime);
+            
+            // Set current time and play
+            videoElement.currentTime = randomStartTime;
+            videoElement.play().catch(err => {
+                console.error("Error playing video:", err);
+                // Try next video if current one fails
+                moveToNextVideo();
+            });
+            
+            // Restore overlay after transition
+            setTimeout(() => {
+                if (heroOverlay) {
+                    heroOverlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
+                }
+            }, 1000);
+            
+            // Set timer to switch to next video after 5 seconds
+            videoSwitchTimer = setTimeout(moveToNextVideo, 5000);
+        };
+        
+        // Handle loading errors
+        videoElement.onerror = function() {
+            console.error("Error loading video:", videoUrl);
+            moveToNextVideo();
+        };
     }
     
+    // Move to the next video
     function moveToNextVideo() {
-        // Not needed for single video
-    }
-    
-    // Add console logging to debug video loading
-    function debugVideo(message) {
-      console.log("Video Debug: " + message);
-    }
-    
-    // Video background function with simpler approach
-    function setupBackgroundVideoCarousel() {
-      // Video URLs
-      const videoUrls = [
-        "https://media-hosting.imagekit.io/aa33b8efd2af44b2/Untitled.mp4?Expires=1841861148&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=D-Z7xSE3Q4H1ShIW4BRawJnl05yETvIOtUzHPGO9H9noqQHVDRWMkpDfpZ0Fyryz023rGEEH9yDur2zigYs4qLS0jSF0ix9DpyZsEjBmgWkjimlrWhruWqf7uP9TG8TcPj2kedrxYayIc~rsFOJq~2KAFBVmP~IeQtmONL1rqkPO7oLcEXGF8nc5C1mpcUjuGXDBT9VD8cROZlF4P2lVoIrCSzlVdyRn95U1RXrLPjSIgcutY2e9knTyHirtefFhi-bH8ekFGYHEV2BWCmF2DObG4TWfTPQV5m3KRBeEd7yUG2PZFJOKuIlGKGtdmkuR7is3qli4NrUMNZkPMi7N2g__",
-        "https://media-hosting.imagekit.io/b46c0d2b52c54143/MSU%20Blockshow%202021%20-%20Kappa%20Alpha%20Psi.mp4?Expires=1841861054&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DjdW5WZaqdTCpQoT1y-kz8oSVdcnjyt~ogmp-Bxwub2bzhu2XQWpVMEzlHNNTvVSpCceNhpCwUrml~Z0Z3wvzrmJMElQQlfc2mpR0Sa027vQuqS9jrJlchj~samp7tWJQkJLUV0XUb-DL4~cv2i5VTFJ2qLTEOiA-D4hp55xTII4~gJAI98Nb6EqCxIKxrVMolPtAqle9ex-LkzS7j-KEyUWJ7XRF-zSuKHFU43ATByToOdLv5jEQfPmbM5ecQf5~Mj6TYGRhyOqp7R2QSwoNBCF7VXeAsBG4Ng6Kpp7VC70Y-TYA1NcXviD9LIZzTyfjTCS2vlzI3M4cbJF2Xpo3w__",
-        "https://media-hosting.imagekit.io/f29dfcb179974032/Kappa%20Alpha%20Psi%20Alpha%20Iota%20Probate%20Fall%202011%20(1).mp4?Expires=1841861013&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=xmnvRxEoW9odgcNfx0YG7Qa~2X45~XNUU~1~lEcDFHh2b06WecIwi0wTlPAfJWUNeNpVGx~fKOQjVrbbmXUzZ3GwEQZ02-pOmovH2SIVRlKtgrpZ2ffA5WX2W7kOGEW41r9mGXIHF3-pJSTA-hIqhjDZBDobY~c5ojc1sBjsAl3-n5T12tgPWPiwOGHyDcmdQUg7lKyC8HRLVYq~~pqSD-uHuL3zTLIaCxIKA8qHyNYldPD1mAmGGWX~IPQn1jxjbvp4XHMnBud-kAzJiQuieroIMO95Ow3XaA20FVaVJNoylLZkn7OwgCCiGPIzlVEuyxYLs-LWzMil0rzzF8c0Ig__"
-      ];
-      
-      let currentVideoIndex = 0;
-      const videoElement = document.getElementById('bg-video');
-      
-      // Set first video
-      videoElement.src = videoUrls[0];
-      videoElement.load();
-      
-      // Function to change video
-      function changeVideo() {
-        // Move to next video
+        // Update video index
         currentVideoIndex = (currentVideoIndex + 1) % videoUrls.length;
         
-        // Create a fade effect
-        videoElement.style.opacity = 0;
-        
-        // After fade out, change source
-        setTimeout(() => {
-          videoElement.src = videoUrls[currentVideoIndex];
-          videoElement.load();
-          videoElement.play().catch(e => console.error("Error playing video:", e));
-          
-          // Fade back in
-          setTimeout(() => {
-            videoElement.style.opacity = 1;
-          }, 500);
-        }, 500);
-      }
-      
-      // Add transition for smooth fading
-      videoElement.style.transition = "opacity 0.5s ease";
-      
-      // Change video every 30 seconds
-      setInterval(changeVideo, 30000);
-      
-      // Start playing first video
-      videoElement.play().catch(e => console.error("Error playing initial video:", e));
+        // Play the current video
+        playCurrentVideo();
     }
     
-    // This function is no longer needed since we're using CSS hover effects
-    function toggleAchievements(id, button) {
-      // Function kept empty to prevent errors but no longer used
-    }
-    
-    // Initialize video carousel
-    setupBackgroundVideoCarousel();
+    // Initialize
+    setupBackgroundVideo();
   });
   </script>
   
@@ -1641,4 +1671,3 @@
   
   
   </body></html>
-  
