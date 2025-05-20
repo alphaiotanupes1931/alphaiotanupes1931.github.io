@@ -1,4 +1,4 @@
- <html lang="en" data-theme="dark"><head>
+<html lang="en" data-theme="dark"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Iota Chapter | Kappa Alpha Psi® Fraternity, Inc.</title>
@@ -39,10 +39,20 @@
             --color-secondary-bg: #ffffff;
             --color-primary: #dc143c;  /* Keep crimson accent */
             --color-text: #000000;     /* Dark text color for light theme */
-            --color-text-secondary: #fafafa;
+            --color-text-secondary: #333333;
             --color-card-bg: #f2f2e6;
             --color-overlay: rgba(255, 255, 255, 0.5);
-            /* For text on light backgrounds we'll use specific overrides */
+        }
+        
+        /* Apply theme to body as well for better cascade */
+        body[data-theme="light"] {
+            background-color: #F5F5DC !important;
+            color: #000000 !important;
+        }
+        
+        body[data-theme="dark"] {
+            background-color: #121212 !important;
+            color: #ffffff !important;
         }
   
         * {
@@ -508,6 +518,7 @@
             transition: color 0.3s ease;
             text-align: left;
             position: relative;
+            font-family: 'Darker Grotesque', sans-serif;
         }
         
         .polemarch-text:first-of-type::before {
@@ -523,6 +534,7 @@
         
         .card-content {
             position: relative;
+            font-family: 'Darker Grotesque', sans-serif;
         }
         
         .polemarch-signature {
@@ -658,6 +670,12 @@
         .mug-card {
             flex: 0 0 300px;
             scroll-snap-align: start;
+            min-width: 300px;
+        }
+        
+        /* Hide scrollbars but keep scrolling functionality */
+        .container::-webkit-scrollbar {
+            display: none;
         }
         
         .mug-image {
@@ -1148,11 +1166,7 @@
         </div>
     </nav>
     
-    <!-- Theme toggle moved to bottom right -->
-    <button id="theme-toggle" class="theme-toggle floating-toggle" aria-label="Toggle dark/light mode">
-        <i class="fas fa-sun"></i>
-        <i class="fas fa-moon"></i>
-    </button>
+    <!-- Theme toggle removed as requested -->
   
     <!-- Hero Section -->
     <main class="hero">
@@ -1204,7 +1218,7 @@
             <div class="direct-youtube-container">
                 <div class="youtube-bg" id="youtube-container">
                     <!-- YouTube iframe will be dynamically inserted and rotated by JavaScript -->
-                <iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/YuSMc9T7XfU?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/F8w__846mOQ?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Xwy7H-ZvdLo?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/yLAAsZTZVtc?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Qr_Rzk9ezfE?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/YuSMc9T7XfU?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/F8w__846mOQ?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Xwy7H-ZvdLo?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/yLAAsZTZVtc?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe></div>
+                <iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Qr_Rzk9ezfE?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe></div>
             </div>
             
             <!-- Overlay for both mobile and desktop -->
@@ -1264,9 +1278,9 @@
   
     <!-- Brother Spotlight Section -->
     <section class="mean-mugging">
-        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto;">
+        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto; scrollbar-width: none; -ms-overflow-style: none;">
             <h2 class="section-title">BROTHER SPOTLIGHT</h2>
-            <div class="mean-mug-grid" style="display: inline-flex; flex-wrap: nowrap; min-width: max-content; gap: 2rem; padding: 1rem;">
+            <div class="mean-mug-grid" style="display: flex; flex-wrap: nowrap; gap: 2rem; padding: 1rem; scroll-snap-type: x mandatory; width: fit-content;">
 
                 <div class="mug-card">
                     <div class="mug-image">
@@ -1447,9 +1461,9 @@
   
     <!-- Recent Lines Section -->
     <section class="mean-mugging">
-        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto;">
+        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto; scrollbar-width: none; -ms-overflow-style: none;">
             <h2 class="section-title">RECENT LINES</h2>
-            <div class="mean-mug-grid" style="display: inline-flex; flex-wrap: nowrap; min-width: max-content; gap: 2rem; padding: 1rem;">
+            <div class="mean-mug-grid" style="display: flex; flex-wrap: nowrap; gap: 2rem; padding: 1rem; scroll-snap-type: x mandatory; width: fit-content;">
                 <!-- Line 1 -->
                 <div class="mug-card">
                     <div class="mug-image">
@@ -1488,9 +1502,9 @@
   
     <!-- Active Brothers Section -->
     <section class="mean-mugging">
-        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto;">
+        <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto; scrollbar-width: none; -ms-overflow-style: none;">
             <h2 class="section-title">ACTIVE BROTHERS <span style="color: var(--color-primary); font-weight: bold; margin-left: 10px;">18</span></h2>
-            <div class="mean-mug-grid" style="display: inline-flex; flex-wrap: nowrap; min-width: max-content; gap: 2rem; padding: 1rem;">
+            <div class="mean-mug-grid" style="display: flex; flex-wrap: nowrap; gap: 2rem; padding: 1rem; scroll-snap-type: x mandatory; width: fit-content;">
                 <!-- Active Brother 1 -->
               <!-- Brothers in order of seniority (oldest to youngest) -->
 
@@ -1778,13 +1792,9 @@
   document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM Content Loaded - setting up page...");
     
-    // Try to setup the video directly
+    // This function is no longer used - video setup is handled differently now
     setTimeout(function() {
-      if(typeof setupBackgroundVideo === 'function') {
-        setupBackgroundVideo();
-      } else {
-        console.log("setupBackgroundVideo function not available yet");
-      }
+      console.log("Video setup handled by new implementation");
     }, 1000);
     // Theme toggle functionality - ensure elements exist
     const themeToggle = document.getElementById('theme-toggle');
@@ -1848,45 +1858,46 @@
         
         console.log("Theme toggle clicked!");
         
-        // Add transition class to body for smooth transitions
-        document.body.classList.add('theme-transition');
-        
-        // Direct DOM modification - simplest approach
+        // Get current theme state
         const html = document.documentElement;
         const currentTheme = html.getAttribute('data-theme') || 'dark';
-        
-        // Toggle between themes
         const newTheme = (currentTheme === 'light') ? 'dark' : 'light';
+        
         console.log(`Switching from ${currentTheme} to ${newTheme}`);
         
-        // Apply theme attribute directly to HTML element
+        // First set styles to make transition visible
+        document.body.classList.add('theme-transition');
+        
+        // Force a reflow before changing the theme to ensure transitions work
+        void document.body.offsetHeight;
+        
+        // Apply the theme change
         html.setAttribute('data-theme', newTheme);
+        document.body.setAttribute('data-theme', newTheme);
         
-        // Force refresh styles
-        document.body.style.display = 'none';
-        document.body.offsetHeight; // Force reflow
-        document.body.style.display = '';
-        
-        // Store preference
+        // Store in local storage
         localStorage.setItem('theme', newTheme);
         
-        // Log the change
-        console.log(`Theme is now: ${newTheme}`);
-        
-        // Add ripple animation effect
+        // Create and add ripple effect
         const ripple = document.createElement('div');
         ripple.className = 'theme-ripple';
         document.body.appendChild(ripple);
         
-        // Remove transition class after a delay
+        // Apply transition and cleanup
         setTimeout(() => {
+            // Remove transition class
             document.body.classList.remove('theme-transition');
             
-            // Remove ripple after animation
+            // Remove ripple after animation completes
             setTimeout(() => {
-                ripple.remove();
-            }, 1200);
+                if (ripple && ripple.parentNode) {
+                    ripple.parentNode.removeChild(ripple);
+                }
+            }, 1000);
         }, 500);
+        
+        // Debug message
+        console.log(`Theme is now: ${newTheme}`);
     }
     
     // Add click event to theme toggle button
@@ -1897,42 +1908,9 @@
         console.error("Theme toggle button not found");
     }
     
-    // YouTube video IDs (extracted from the original URLs)
-    const youtubeVideoIds = [
-        "yLAAsZTZVtc", // https://youtu.be/yLAAsZTZVtc - GUARANTEED WORKING
-        "Qr_Rzk9ezfE", // https://youtu.be/Qr_Rzk9ezfE - GUARANTEED WORKING
-        "YuSMc9T7XfU", // https://youtu.be/YuSMc9T7XfU - GUARANTEED WORKING
-        "F8w__846mOQ", // https://youtu.be/F8w__846mOQ - GUARANTEED WORKING
-        "Xwy7H-ZvdLo", // https://youtu.be/Xwy7H-ZvdLo - GUARANTEED WORKING
-        "ILd30dbg_9w", // https://youtu.be/ILd30dbg_9w
-        "ffhj4JR84SA", // https://youtu.be/ffhj4JR84SA
-        "7bHtaqTnQsg", // https://youtu.be/7bHtaqTnQsg
-        "mBGMfRaThu8", // https://youtu.be/mBGMfRaThu8
-        "8x3zYTSNFEc", // https://youtu.be/8x3zYTSNFEc
-        "sPUlSrbrMk0", // https://youtu.be/sPUlSrbrMk0
-        "6tQ_itC77Bs", // https://youtu.be/6tQ_itC77Bs
-        "gfoIZMIBQx0", // https://youtu.be/gfoIZMIBQx0
-        "4-c6FzQvi7c", // https://youtu.be/4-c6FzQvi7c
-        "ggGZNPzrNds", // https://youtu.be/ggGZNPzrNds
-        "3PODR4RURZw"  // https://youtu.be/3PODR4RURZw
-    ];
+    /* These video IDs are already declared in the script above - removing to avoid conflicts */
     
-    // Direct video URLs for mobile fallback
-    const directVideoUrls = [
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745631821/videoplayback_2_t9ih7e.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632374/Kappa_Alpha_Psi_Alpha_Iota_Probate_Fall_2011_frflpj.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632360/Morgan_Block_Show_sp_08_o7v0jq.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632559/AI_Nupes_Kommunity_Service_PSA.mov_ofref3.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632572/MSU_Blockshow_2021_-_Kappa_Alpha_Psi_wkmq6j.mp4",
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633228/Untitled_xk7mhh.mp4", 
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633359/videoplayback_4_ho2jkg.mp4",
-        "https://ik.imagekit.io/uadtyqa3n/AQNuPLbmnSX0OclBZsEteajBz_9qTlPpgNL1W2J60n68DQUSd692GsGcjSfSpnr8WBbZKk5Pqul69yirCc398SM_18031438148124592.mp4?updatedAt=1747541118717",
-        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20Alpha%20Iota%20Probate%20Fall%202011%20(1).mp4?updatedAt=1747544145515",
-        "https://ik.imagekit.io/uadtyqa3n/Morgan%20Block%20Show%20sp%2008.mp4?updatedAt=1747544256804",
-        "https://ik.imagekit.io/uadtyqa3n/videoplayback%20(4).mp4?updatedAt=1747544398372",
-        "https://ik.imagekit.io/uadtyqa3n/Morgan%20State%20University%20Step%20Show%202013%201st%20Place%20Kappa%20Alpha%20Psi%20Alpha%20Iota%20Chapter%20(TRUMUNDI%20TV)%202.mp4?updatedAt=1747544369077",
-        "https://ik.imagekit.io/uadtyqa3n/Untitled.mp4?updatedAt=1747544363120"
-    ];
+    /* These video URLs are not needed any longer since we're using YouTube embeds */
     
     // Check if mobile device
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
