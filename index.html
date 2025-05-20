@@ -1,4 +1,4 @@
-<html lang="en" data-theme="dark"><head>
+ <html lang="en" data-theme="dark"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Iota Chapter | Kappa Alpha Psi® Fraternity, Inc.</title>
@@ -295,6 +295,10 @@
             left: 0;
             width: 100%;
             height: 100%;
+            background-color: #121212; /* Fallback color */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
   
         .video-container {
@@ -308,12 +312,13 @@
         }
   
         #background-player {
-            position: absolute;
-            top: -60px;  /* Hide YouTube controls at the bottom */
-            left: -60px; /* Extend beyond boundaries to hide logo */
-            width: calc(100% + 120px); /* Compensate for the negative positioning */
-            height: calc(100% + 120px);
-            pointer-events: none;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            pointer-events: none !important;
+            z-index: 1 !important;
         }
         
         /* Hide YouTube loading spinner */
@@ -410,48 +415,147 @@
             color: #ffffff;
         }
   
+        /* Modern Polemarch Welcome Section */
         .polemarch-welcome {
             padding: 8rem 2rem;
-            background-color: var(--color-card-bg);
+            background-color: var(--color-background);
             position: relative;
             overflow: hidden;
-            transition: background-color 0.3s ease;
         }
-  
-        .polemarch-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        
+        .polemarch-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .polemarch-header .section-title {
+            text-align: left;
+            margin-bottom: 0;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+        }
+        
+        .header-line {
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--color-primary), transparent);
+            margin-left: 2rem;
+        }
+        
+        .polemarch-modern-layout {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
-            gap: 6rem;
-            align-items: center;
-        }
-  
-        .polemarch-image-wrapper {
+            gap: 3rem;
             position: relative;
-            border: 1px solid rgba(220, 20, 60, 0.3);
-            transition: all 0.3s ease;
         }
-  
-        .polemarch-image {
-            width: 100%;
-            aspect-ratio: 1;
-            position: relative;
+        
+        .polemarch-card {
+            border-radius: 12px;
             overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-  
-        .polemarch-image img {
+        
+        .polemarch-image-card {
+            position: relative;
+            height: 450px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+        
+        .polemarch-image-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(20%) contrast(110%);
-            transition: all 0.6s ease;
+            transition: transform 0.6s ease;
         }
-  
-        .polemarch-content {
+        
+        .polemarch-image-card:hover img {
+            transform: scale(1.03);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+            z-index: 1;
+        }
+        
+        .polemarch-content-card {
+            background-color: var(--color-secondary-bg);
+            padding: 3rem;
             display: flex;
             flex-direction: column;
-            gap: .0 rem;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(15px);
+            z-index: 2;
+        }
+        
+        [data-theme="light"] .polemarch-content-card {
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .polemarch-text {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            transition: color 0.3s ease;
+            text-align: left;
+            position: relative;
+        }
+        
+        .polemarch-text:first-of-type::before {
+            content: '"';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.2rem;
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--color-primary);
+            opacity: 0.4;
+        }
+        
+        .card-content {
+            position: relative;
+        }
+        
+        .polemarch-signature {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            padding-top: 1.5rem;
+        }
+        
+        .polemarch-signature:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-primary);
+        }
+        
+        .polemarch-signature span {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.2rem;
+            color: var(--color-primary);
+            letter-spacing: 1px;
+        }
+        
+        .polemarch-signature .title {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.9rem;
+            color: var(--color-text);
+            margin-top: 0.3rem;
         }
   
         .section-header {
@@ -714,69 +818,175 @@
             }
         }
   
-        /* Responsive Styles */
+        /* Desktop/Mobile Navigation Styles */
+        .desktop-nav {
+            display: block; /* Show on desktop */
+        }
+        
+        .mobile-nav {
+            display: none; /* Hide on desktop */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+            background-color: #000000;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+        
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            padding: 1rem 0;
+            background: rgba(0,0,0,0.9);
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mobile-menu-link {
+            color: var(--color-text);
+            text-decoration: none;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: background-color 0.3s ease;
+        }
+        
+        .mobile-menu-link:hover {
+            background-color: rgba(220, 20, 60, 0.2);
+        }
+        
+        /* Mobile Toggle Button */
+        .mobile-menu-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            display: inline-block !important; /* Force display */
+            visibility: visible !important; /* Force visibility */
+        }
+        
+        [data-theme="light"] .mobile-nav {
+            background-color: rgba(245, 245, 220, 0.9);
+        }
+        
+        [data-theme="light"] .mobile-menu {
+            background: rgba(245, 245, 220, 0.95);
+        }
+        
+        [data-theme="light"] .mobile-menu-link {
+            color: #000000;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive Adjustments - Force display for mobile */
         @media (max-width: 768px) {
-            /* Navigation */
-            .nav {
-                padding: 0.5rem 0;
+            .desktop-nav {
+                display: none !important; /* Hide on mobile */
             }
             
-            .nav-inner {
-                flex-direction: column;
-                text-align: center;
-                position: relative;
-                padding: 0.5rem 0;
+            .mobile-nav {
+                display: block !important; /* Force show on mobile */
             }
             
-            .logo {
-                font-size: 1.2rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .menu {
-                width: 100%;
+            /* Make sure mobile nav is visible */
+            .mobile-nav, .mobile-nav-header, .mobile-menu-toggle {
+                opacity: 1 !important;
+                visibility: visible !important;
+                z-index: 1001 !important;
             }
             
-            .mobile-menu-toggle {
-                display: block; /* Show on mobile */
-            }
-  
-            .menu {
-                margin-top: 0.5rem;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.8rem;
-                display: none; /* Hide by default */
+            /* Adjust Polemarch section for mobile */
+            .polemarch-modern-layout {
+                grid-template-columns: 1fr !important; /* Stack items vertically */
+                gap: 2rem !important;
             }
             
-            .menu.active {
-                display: flex; /* Show when active */
+            .polemarch-image-card {
+                height: 350px;
+                margin-bottom: 1rem;
             }
             
-            .menu-link {
-                font-size: 0.8rem;
-                padding: 0.3rem 0;
+            .polemarch-content-card {
+                transform: translateY(0);
             }
             
-            .mobile-menu-toggle {
-                display: none !important; /* Hidden on desktop - with !important */
-                position: absolute;
-                right: 1rem;
-                top: 0.5rem;
-                background: none;
-                border: none;
-                color: var(--color-text);
-                font-size: 1.5rem;
-                cursor: pointer;
-                z-index: 100;
-                visibility: hidden; /* Additional property to ensure it's hidden */
+            .polemarch-header {
+                margin-bottom: 2rem;
             }
             
-            [data-theme="light"] .mobile-menu-toggle {
-                color: #ffffff;
+            .polemarch-welcome {
+                padding: 4rem 1.5rem !important;
             }
             
-            /* Removed nested media query */
+            .section-title {
+                font-size: 2rem !important;
+            }
+        }
+        }
+            
+            /* Video background adjustments for mobile */
+            .video-container {
+                height: 100% !important;
+                overflow: hidden !important;
+            }
+            
+            /* Portrait mode - completely different approach for mobile */
+            @media screen and (orientation: portrait) {
+                .hero-bg {
+                    background: black !important; /* Solid background as fallback */
+                }
+                
+                .video-container {
+                    position: fixed !important; /* Make it fixed to viewport */
+                    top: -50% !important;
+                    left: -50% !important;
+                    width: 200% !important; /* Wider than viewport */
+                    height: 200% !important; /* Taller than viewport */
+                    z-index: 0 !important;
+                    overflow: visible !important;
+                }
+                
+                #background-player {
+                    position: absolute !important;
+                    width: 300% !important;
+                    height: 5000% !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    transform: scale(3.5) !important; /* Much larger scale */
+                    transform-origin: center top !important; /* Scale from center top */
+                    object-fit: cover !important;
+                    object-position: center 30% !important; /* Position higher in the video */
+                }
+            }
+            
+            /* Landscape mode */
+            @media screen and (orientation: landscape) {
+                #background-player {
+                    width: 300% !important;
+                    height: 400% !important;
+                    transform: translate(-50%, -50%) scale(1.8) !important;
+                }
+            }
             
             /* Hero Section */
             .hero-content {
@@ -799,14 +1009,26 @@
                 font-size: clamp(1rem, 3vw, 1.5rem);
             }
             
+            /* Hero overlay - enhance contrast on mobile */
+            .hero-overlay {
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)) !important;
+            }
+            
+            /* Floating toggle adjustments */
+            .floating-toggle {
+                bottom: 15px;
+                right: 15px;
+                transform: scale(0.9);
+            }
+            
             /* Polemarch Section */
             .polemarch-welcome {
                 padding: 4rem 1rem;
             }
             
-            .polemarch-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .polemarch-container-minimal {
+                padding: 1.5rem;
+                max-width: 90%;
             }
             
             .section-title {
@@ -857,7 +1079,7 @@
             color: #333333;
         }
     </style>
-  <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/b2858d36/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
+  <script src="https://www.youtube.com/iframe_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/1b376dba/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
             .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, 
             .ytp-youtube-button, .ytp-spinner, .ytp-spinner-container, 
             .ytp-spinner-rotator, .ytp-spinner-left, .ytp-spinner-right, 
@@ -885,7 +1107,7 @@
                 height: 100% !important;
                 overflow: hidden !important;
             }
-        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script id="simplify-jobs-page-script" src="chrome-extension://pbanhockgagggenencehbnadejlgchfc/js/pageScript.bundle.js"></script></head>
+        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
   
   
   
@@ -895,8 +1117,8 @@
         <div class="loader-progress"></div>
     </div>
   
-    <!-- Navigation -->
-    <nav class="nav">
+    <!-- Desktop Navigation -->
+    <nav class="nav desktop-nav">
         <div class="nav-inner">
             <a href="#" class="logo">ALPHA IOTA</a>
             <div class="menu">
@@ -906,9 +1128,23 @@
                 <a href="gallery.html" class="menu-link">GALLERY</a>
                 <a href="brothersonly.html" class="menu-link">PORTAL</a>
             </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <div class="mobile-nav-header">
+            <a href="#" class="logo">ALPHA IOTA</a>
             <button id="mobile-menu-toggle" class="mobile-menu-toggle">
                 <i class="fas fa-bars"></i>
             </button>
+        </div>
+        <div class="mobile-menu">
+            <a href="#" class="mobile-menu-link">HOME</a>
+            <a href="about.html" class="mobile-menu-link">ABOUT</a>
+            <a href="brothers.html" class="mobile-menu-link">BROTHERS</a>
+            <a href="gallery.html" class="mobile-menu-link">GALLERY</a>
+            <a href="brothersonly.html" class="mobile-menu-link">PORTAL</a>
         </div>
     </nav>
     
@@ -920,7 +1156,60 @@
   
     <!-- Hero Section -->
     <main class="hero">
-        <div class="hero-bg"><div class="video-container" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; z-index: 1;"><video id="background-video" autoplay="" playsinline="" src="https://res.cloudinary.com/dymduzj6q/video/upload/v1745632360/Morgan_Block_Show_sp_08_o7v0jq.mp4" style="width: 100%; height: 100%; object-fit: cover;"></video></div><div class="hero-overlay" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2;"></div></div>
+        <div class="hero-bg">
+            <!-- Direct YouTube Embed with Inline Styles - Mobile Detection -->
+            <style>
+                @media (max-width: 768px) {
+                    .hero-bg {
+                        background-image: url('https://i.ibb.co/F4zHWLwj/Snap-Insta-to-467577666-1540956813197135-9137276249125661392-n.jpg') !important;
+                        background-size: cover !important;
+                        background-position: center !important;
+                    }
+                    .direct-youtube-container {
+                        display: none !important;
+                    }
+                }
+                
+                @media (min-width: 769px) {
+                    .direct-youtube-container {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
+                        pointer-events: none;
+                        z-index: 0;
+                    }
+                    .youtube-bg {
+                        position: absolute;
+                        top: -50%;
+                        left: -50%;
+                        width: 200%;
+                        height: 200%;
+                    }
+                    .youtube-bg iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        pointer-events: none;
+                        transform: scale(1.5);
+                    }
+                }
+            </style>
+            
+            <!-- Desktop Only: Direct YouTube Embed -->
+            <div class="direct-youtube-container">
+                <div class="youtube-bg" id="youtube-container">
+                    <!-- YouTube iframe will be dynamically inserted and rotated by JavaScript -->
+                <iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/YuSMc9T7XfU?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/F8w__846mOQ?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Xwy7H-ZvdLo?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/yLAAsZTZVtc?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Qr_Rzk9ezfE?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/YuSMc9T7XfU?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/F8w__846mOQ?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/Xwy7H-ZvdLo?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe><iframe width="100%" height="100%" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/yLAAsZTZVtc?autoplay=1&amp;mute=1&amp;controls=0&amp;showinfo=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;playsinline=1&amp;start=0"></iframe></div>
+            </div>
+            
+            <!-- Overlay for both mobile and desktop -->
+            <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); z-index: 1;"></div>
+        </div>
   
         <!-- Hero Content -->
         <div class="hero-content">
@@ -941,30 +1230,33 @@
                 <p>Chartered May 29, 1931</p>
             </div>
         </div>
-        
-  
     </main>
   
     <!-- Polemarch's Welcome Section -->
     <section class="polemarch-welcome">
-        <div class="polemarch-container">
-            <div class="">
-                <div class="polemarch-image">
-                    <img src="https://i.ibb.co/gbMVPdbC/IMG-7817.jpg" alt="Polemarch">
-                </div>
+        <div class="container">
+            <div class="polemarch-header">
+                <h2 class="section-title">Polemarch's Welcome</h2>
+                <div class="header-line"></div>
             </div>
-            <div class="polemarch-content">
-                <div class="section-header">
-                    <h2 class="section-title">Polemarch's Welcome</h2>
+            <div class="polemarch-modern-layout">
+                <div class="polemarch-card polemarch-image-card">
+                    <div class="image-overlay"></div>
+                    <img src="https://i.ibb.co/gbMVPdbC/IMG-7817.jpg" alt="Polemarch Godley Pierre">
                 </div>
-                <div>
-                    <p class="polemarch-text">
-                        Greetings to all who have come to learn more about "THE NOTORIOUS" Alpha Iota Chapter of Kappa Alpha Psi Fraternity, Inc. As the current Polemarch, I am honored to welcome you to our beloved chapter.
-                    </p>
-                    <br>
-                    <p class="polemarch-text">
-                        Our brothers are trailblazers, innovators, and visionaries who have made indelible marks in their respective fields. From Grand Chapter Officers to Province Leaders, the Alpha Iota Chapter continues to embody the ideals of Kappa Alpha Psi and inspire the next generation of change-makers.
-                    </p>
+                <div class="polemarch-card polemarch-content-card">
+                    <div class="card-content">
+                        <p class="polemarch-text">
+                            Greetings to all who have come to learn more about "THE NOTORIOUS" Alpha Iota Chapter of Kappa Alpha Psi Fraternity, Inc. As the current Polemarch, I am honored to welcome you to our beloved chapter.
+                        </p>
+                        <p class="polemarch-text">
+                            Our brothers are trailblazers, innovators, and visionaries who have made indelible marks in their respective fields. From Grand Chapter Officers to Province Leaders, the Alpha Iota Chapter continues to embody the ideals of Kappa Alpha Psi and inspire the next generation of change-makers.
+                        </p>
+                        <div class="polemarch-signature">
+                            <span>Godley Pierre</span>
+                            <span class="title">Polemarch, Alpha Iota Chapter</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1425,13 +1717,87 @@
   
   
   <script>
+    // Load YouTube IFrame API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    // Set up YouTube videos config
+    const youtubeVideoIds = [
+      "yLAAsZTZVtc", // GUARANTEED WORKING
+      "Qr_Rzk9ezfE", // GUARANTEED WORKING
+      "YuSMc9T7XfU", // GUARANTEED WORKING
+      "F8w__846mOQ", // GUARANTEED WORKING
+      "Xwy7H-ZvdLo"  // GUARANTEED WORKING
+    ];
+    
+    let currentVideoIndex = 0;
+    let player;
+    let videoRotationInterval;
+    
+    // This will be called once the API is ready
+    function onYouTubeIframeAPIReady() {
+      console.log("YouTube API is ready");
+      createYouTubePlayer();
+    }
+    
+    // Create the initial YouTube player with the first video
+    function createYouTubePlayer() {
+      const container = document.getElementById('youtube-container');
+      
+      // Create iframe element
+      const iframe = document.createElement('iframe');
+      iframe.width = "100%";
+      iframe.height = "100%";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.frameBorder = "0";
+      
+      // Set initial video
+      updateIframeSrc(iframe, youtubeVideoIds[0]);
+      
+      // Add to container
+      container.appendChild(iframe);
+      
+      // Set up rotation interval - change video every 5 seconds
+      videoRotationInterval = setInterval(() => {
+        currentVideoIndex = (currentVideoIndex + 1) % youtubeVideoIds.length;
+        updateIframeSrc(iframe, youtubeVideoIds[currentVideoIndex]);
+        console.log(`Switched to video: ${youtubeVideoIds[currentVideoIndex]}`);
+      }, 5000);
+    }
+    
+    // Update iframe source with new video ID
+    function updateIframeSrc(iframe, videoId) {
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&playsinline=1&start=0`;
+    }
+  </script>
+  <script>
   
   document.addEventListener('DOMContentLoaded', function() {
-    // Theme toggle functionality
+    console.log("DOM Content Loaded - setting up page...");
+    
+    // Try to setup the video directly
+    setTimeout(function() {
+      if(typeof setupBackgroundVideo === 'function') {
+        setupBackgroundVideo();
+      } else {
+        console.log("setupBackgroundVideo function not available yet");
+      }
+    }, 1000);
+    // Theme toggle functionality - ensure elements exist
     const themeToggle = document.getElementById('theme-toggle');
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const menu = document.querySelector('.menu');
     const htmlElement = document.documentElement;
+    
+    // Apply theme from localStorage if available
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        htmlElement.setAttribute('data-theme', savedTheme);
+        console.log("Applied saved theme:", savedTheme);
+    }
     
     // Brother spotlight expand functionality
     const expandButtons = document.querySelectorAll('.expand-btn');
@@ -1443,13 +1809,18 @@
         });
     });
     
+    // Old menu toggle functionality (removed to prevent conflicts)
+    
     // Mobile menu toggle functionality
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function() {
-            menu.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
             // Change icon based on menu state
             const icon = mobileMenuToggle.querySelector('i');
-            if (menu.classList.contains('active')) {
+            if (mobileMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
             } else {
@@ -1460,209 +1831,542 @@
     }
     
     // Close mobile menu when a menu item is clicked
-    const menuLinks = document.querySelectorAll('.menu-link');
-    menuLinks.forEach(link => {
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+    mobileMenuLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                menu.classList.remove('active');
-                const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+            mobileMenu.classList.remove('active');
+            const icon = mobileMenuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         });
     });
     
-    // Function to toggle theme
-    function toggleTheme() {
-        // Check current theme
-        const currentTheme = htmlElement.getAttribute('data-theme');
+    // Function to toggle theme with improved handling
+    function toggleTheme(e) {
+        // Prevent default behavior if it's a button click
+        if (e) e.preventDefault();
         
-        // Toggle theme
-        if (currentTheme === 'light') {
-            htmlElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            htmlElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
+        console.log("Theme toggle clicked!");
+        
+        // Add transition class to body for smooth transitions
+        document.body.classList.add('theme-transition');
+        
+        // Direct DOM modification - simplest approach
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme') || 'dark';
+        
+        // Toggle between themes
+        const newTheme = (currentTheme === 'light') ? 'dark' : 'light';
+        console.log(`Switching from ${currentTheme} to ${newTheme}`);
+        
+        // Apply theme attribute directly to HTML element
+        html.setAttribute('data-theme', newTheme);
+        
+        // Force refresh styles
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Force reflow
+        document.body.style.display = '';
+        
+        // Store preference
+        localStorage.setItem('theme', newTheme);
+        
+        // Log the change
+        console.log(`Theme is now: ${newTheme}`);
         
         // Add ripple animation effect
         const ripple = document.createElement('div');
         ripple.className = 'theme-ripple';
         document.body.appendChild(ripple);
         
-        // Add transition class to body
-        document.body.classList.add('theme-transition');
-        
-        // Remove ripple and transition class after animation completes
+        // Remove transition class after a delay
         setTimeout(() => {
-            ripple.remove();
             document.body.classList.remove('theme-transition');
-        }, 1200);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 1200);
+        }, 500);
     }
     
     // Add click event to theme toggle button
-    themeToggle.addEventListener('click', toggleTheme);
-    
-    // Check for saved theme preference in localStorage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        htmlElement.setAttribute('data-theme', savedTheme);
+    if (themeToggle) {
+        console.log("Adding click event to theme toggle");
+        themeToggle.addEventListener('click', toggleTheme);
+    } else {
+        console.error("Theme toggle button not found");
     }
     
-    // List of video URLs (replace with your actual hosted video URLs)
-    const videoUrls = [
-        "https://ik.imagekit.io/uadtyqa3n/AQNuPLbmnSX0OclBZsEteajBz_9qTlPpgNL1W2J60n68DQUSd692GsGcjSfSpnr8WBbZKk5Pqul69yirCc398SM_18031438148124592.mp4?updatedAt=1747541118717",
-        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20Alpha%20Iota%20Probate%20Fall%202011%20(1).mp4?updatedAt=1747544145515",
-        "https://ik.imagekit.io/uadtyqa3n/Morgan%20Block%20Show%20sp%2008.mp4?updatedAt=1747544256804",
-        "https://ik.imagekit.io/uadtyqa3n/videoplayback%20(4).mp4?updatedAt=1747544398372",
-        "https://ik.imagekit.io/uadtyqa3n/Morgan%20State%20University%20Step%20Show%202013%201st%20Place%20Kappa%20Alpha%20Psi%20Alpha%20Iota%20Chapter%20(TRUMUNDI%20TV)%202.mp4?updatedAt=1747544369077",
-        "https://ik.imagekit.io/uadtyqa3n/Untitled.mp4?updatedAt=1747544363120",
-        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20_%20AI%20Nupes%20_%20Morgan%20State%20Freshman%20Week%20Performance.mp4",
-        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20_%20AI%20Nupes%20_%20Morgan%20State%20Homecoming%20Pep%20Rally%202019%20Performance.mp4",
-        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20_%20Morgan%20State%20AIDS%20Lock-In%202018%20_%20Al%20Nupes%20Performance.mp4",
-        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20Fraternity,%20Inc.%20Alpha%20Iota%20Chapter,%20Morgan%20State%20NPHC%20Blockshow.mp4",
-        "https://ik.imagekit.io/uadtyqa3n/AI%20Nupes,%20Kommunity%20Service%20PSA.mov.mp4",
+    // YouTube video IDs (extracted from the original URLs)
+    const youtubeVideoIds = [
+        "yLAAsZTZVtc", // https://youtu.be/yLAAsZTZVtc - GUARANTEED WORKING
+        "Qr_Rzk9ezfE", // https://youtu.be/Qr_Rzk9ezfE - GUARANTEED WORKING
+        "YuSMc9T7XfU", // https://youtu.be/YuSMc9T7XfU - GUARANTEED WORKING
+        "F8w__846mOQ", // https://youtu.be/F8w__846mOQ - GUARANTEED WORKING
+        "Xwy7H-ZvdLo", // https://youtu.be/Xwy7H-ZvdLo - GUARANTEED WORKING
+        "ILd30dbg_9w", // https://youtu.be/ILd30dbg_9w
+        "ffhj4JR84SA", // https://youtu.be/ffhj4JR84SA
+        "7bHtaqTnQsg", // https://youtu.be/7bHtaqTnQsg
+        "mBGMfRaThu8", // https://youtu.be/mBGMfRaThu8
+        "8x3zYTSNFEc", // https://youtu.be/8x3zYTSNFEc
+        "sPUlSrbrMk0", // https://youtu.be/sPUlSrbrMk0
+        "6tQ_itC77Bs", // https://youtu.be/6tQ_itC77Bs
+        "gfoIZMIBQx0", // https://youtu.be/gfoIZMIBQx0
+        "4-c6FzQvi7c", // https://youtu.be/4-c6FzQvi7c
+        "ggGZNPzrNds", // https://youtu.be/ggGZNPzrNds
+        "3PODR4RURZw"  // https://youtu.be/3PODR4RURZw
+    ];
+    
+    // Direct video URLs for mobile fallback
+    const directVideoUrls = [
         "https://res.cloudinary.com/dymduzj6q/video/upload/v1745631821/videoplayback_2_t9ih7e.mp4",
         "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632374/Kappa_Alpha_Psi_Alpha_Iota_Probate_Fall_2011_frflpj.mp4",
         "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632360/Morgan_Block_Show_sp_08_o7v0jq.mp4",
         "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632559/AI_Nupes_Kommunity_Service_PSA.mov_ofref3.mp4",
         "https://res.cloudinary.com/dymduzj6q/video/upload/v1745632572/MSU_Blockshow_2021_-_Kappa_Alpha_Psi_wkmq6j.mp4",
         "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633228/Untitled_xk7mhh.mp4", 
-        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633359/videoplayback_4_ho2jkg.mp4"
-        // Add more video URLs here
+        "https://res.cloudinary.com/dymduzj6q/video/upload/v1745633359/videoplayback_4_ho2jkg.mp4",
+        "https://ik.imagekit.io/uadtyqa3n/AQNuPLbmnSX0OclBZsEteajBz_9qTlPpgNL1W2J60n68DQUSd692GsGcjSfSpnr8WBbZKk5Pqul69yirCc398SM_18031438148124592.mp4?updatedAt=1747541118717",
+        "https://ik.imagekit.io/uadtyqa3n/Kappa%20Alpha%20Psi%20Alpha%20Iota%20Probate%20Fall%202011%20(1).mp4?updatedAt=1747544145515",
+        "https://ik.imagekit.io/uadtyqa3n/Morgan%20Block%20Show%20sp%2008.mp4?updatedAt=1747544256804",
+        "https://ik.imagekit.io/uadtyqa3n/videoplayback%20(4).mp4?updatedAt=1747544398372",
+        "https://ik.imagekit.io/uadtyqa3n/Morgan%20State%20University%20Step%20Show%202013%201st%20Place%20Kappa%20Alpha%20Psi%20Alpha%20Iota%20Chapter%20(TRUMUNDI%20TV)%202.mp4?updatedAt=1747544369077",
+        "https://ik.imagekit.io/uadtyqa3n/Untitled.mp4?updatedAt=1747544363120"
     ];
     
+    // Check if mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    
     // Global variables
+    let player;
     let currentVideoIndex = 0;
     let videoSwitchTimer;
-    let videoElement;
+    let ytReady = false;
+    let playedVideos = []; // Track already played videos
     
-    // Setup the background video
+    // Log to see what's happening
+    console.log("Total YouTube videos available:", youtubeVideoIds.length);
+    
+    // Shuffle array helper function
+    function shuffleArray(array) {
+        const newArray = [...array];
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    }
+    
+    // Shuffle the video arrays
+    const shuffledYoutubeIds = shuffleArray(youtubeVideoIds);
+    console.log("Shuffled video order:", shuffledYoutubeIds);
+    
+    // Setup YouTube player
+    window.onYouTubeIframeAPIReady = function() {
+        console.log("YouTube API Ready");
+        ytReady = true;
+        setupBackgroundVideo();
+    };
+    
+    // This function is no longer needed - direct embed in HTML
     function setupBackgroundVideo() {
-        const heroElement = document.querySelector('.hero-bg');
-        if (!heroElement) return;
+        console.log("Using direct YouTube embed in HTML instead of JavaScript");
+        // Direct embed is now handled in the HTML with inline styles
+    }
+    }
+    
+    // Set up mobile video with HTML5 video element
+    function setupMobileVideo(container, overlay) {
+        console.log("MOBILE VIDEO SETUP STARTED...");
+        // Ensure container is properly styled
+        container.style.position = 'absolute';
+        container.style.top = '0';
+        container.style.left = '0';
+        container.style.width = '100%';
+        container.style.height = '100%';
+        container.style.overflow = 'hidden';
+        container.style.zIndex = '1';
+        
+        // Shuffle and select video URLs (using more direct video URLs that are likely to work)
+        const shuffledVideos = shuffleArray([...directVideoUrls]);
+        console.log("Mobile videos ready:", shuffledVideos.length);
+        console.log("First video URL:", shuffledVideos[0]);
+        
+        // Create a wrapper for the video to help with positioning
+        const videoWrapper = document.createElement('div');
+        videoWrapper.style.position = 'absolute';
+        videoWrapper.style.top = '0';
+        videoWrapper.style.left = '0';
+        videoWrapper.style.width = '100%';
+        videoWrapper.style.height = '100%';
+        videoWrapper.style.overflow = 'hidden';
+        videoWrapper.style.zIndex = '1';
+        container.appendChild(videoWrapper);
+        
+        // Create HTML5 video element with extreme sizing
+        const videoElement = document.createElement('video');
+        videoElement.id = 'background-video';
+        videoElement.autoplay = true;
+        videoElement.loop = true;
+        videoElement.muted = true;
+        videoElement.playsInline = true;
+        videoElement.setAttribute('playsinline', '');
+        videoElement.setAttribute('webkit-playsinline', '');
+        videoElement.controls = false; // Ensure no controls are shown
+        
+        // Style the video to be much larger than needed
+        videoElement.style.position = 'absolute';
+        videoElement.style.top = '-50%';
+        videoElement.style.left = '-50%';
+        videoElement.style.width = '200%'; // Much wider than viewport
+        videoElement.style.height = '200%'; // Much taller than viewport
+        videoElement.style.objectFit = 'cover';
+        videoElement.style.objectPosition = 'center center';
+        videoElement.style.zIndex = '1';
+        
+        // Add multiple sources for better compatibility
+        for (let i = 0; i < Math.min(3, shuffledVideos.length); i++) {
+            const source = document.createElement('source');
+            source.src = shuffledVideos[i];
+            source.type = 'video/mp4';
+            videoElement.appendChild(source);
+        }
+        
+        // Add video to the page
+        videoWrapper.appendChild(videoElement);
+        
+        // Add a poster image as fallback
+        videoElement.poster = 'https://i.ibb.co/gbMVPdbC/IMG-7817.jpg';
+        
+        // Log video state changes to debug
+        videoElement.addEventListener('playing', () => {
+            console.log("VIDEO IS NOW PLAYING!");
+            // Make video more visible when playing
+            videoElement.style.opacity = '1';
+        });
+        
+        videoElement.addEventListener('error', (e) => {
+            console.error("Video error:", e);
+        });
+        
+        // Force video play with timeout
+        setTimeout(() => {
+            console.log("Forcing video play...");
+            videoElement.play().catch(error => {
+                console.error("Error playing mobile video:", error);
+                
+                // Try another video if first fails
+                if (shuffledVideos.length > 1) {
+                    console.log("Trying fallback video...");
+                    videoElement.src = shuffledVideos[1];
+                    videoElement.load();
+                    videoElement.play().catch(e => console.error("Fallback video error:", e));
+                }
+            });
+        }, 1000);
+        
+        // Set up video rotation
+        let currentVideoIndex = 0;
+        setInterval(() => {
+            currentVideoIndex = (currentVideoIndex + 1) % shuffledVideos.length;
+            console.log("Switching mobile video to:", shuffledVideos[currentVideoIndex]);
+            
+            // Create transition effect
+            overlay.style.background = 'rgba(0, 0, 0, 0.8)';
+            setTimeout(() => {
+                if (overlay) {
+                    overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6))';
+                }
+            }, 800);
+            
+            // Change video source
+            videoElement.src = shuffledVideos[currentVideoIndex];
+            videoElement.load();
+            videoElement.play().catch(e => console.error("Video rotation error:", e));
+        }, 10000); // Switch every 10 seconds
+    }
+    
+    // Set up desktop video with YouTube iframe API
+    function setupDesktopVideo(container, overlay) {
+        // Reset tracking
+        currentVideoIndex = 0;
+        playedVideos = [];
+        
+        // Create div for YouTube iframe
+        const playerDiv = document.createElement('div');
+        playerDiv.id = 'background-player';
+        container.appendChild(playerDiv);
+        
+        // Force specific working video IDs
+        const workingVideoIds = [
+            "yLAAsZTZVtc", // Known working video
+            "Qr_Rzk9ezfE",
+            "YuSMc9T7XfU",
+            "F8w__846mOQ", 
+            "Xwy7H-ZvdLo"
+        ];
+        
+        // Get first video from our guaranteed working IDs
+        const firstVideo = workingVideoIds[0]; 
+        playedVideos.push(firstVideo);
+        console.log("Starting with GUARANTEED video:", firstVideo);
+        
+        // Initialize YouTube player
+        player = new YT.Player('background-player', {
+            videoId: firstVideo,
+            playerVars: {
+                'autoplay': 1,
+                'controls': 0,
+                'showinfo': 0,
+                'rel': 0,
+                'enablejsapi': 1,
+                'modestbranding': 1,
+                'iv_load_policy': 3,
+                'mute': 1,
+                'playsinline': 1,
+                'html5': 1,
+                'fs': 0,
+                'color': 'red'
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange,
+                'onError': onPlayerError
+            }
+        });
+        
+        // Style the YouTube iframe for fullscreen background - more aggressive styling
+        setTimeout(function() {
+            console.log("Styling YouTube iframe...");
+            const iframe = document.querySelector('#background-player');
+            if (iframe) {
+                iframe.style.position = 'absolute';
+                iframe.style.top = '50%';
+                iframe.style.left = '50%'; 
+                iframe.style.width = '800%';  // Even larger
+                iframe.style.height = '800%'; // Even larger
+                iframe.style.transform = 'translate(-50%, -50%) scale(3)'; // More zoom
+                iframe.style.pointerEvents = 'none';
+                iframe.style.zIndex = '1';
+            }
+        }, 1000);
+    }
+    
+    // YouTube player event handlers
+    function onPlayerReady(event) {
+        console.log("YouTube player ready");
+        event.target.mute(); // Ensure video is muted
+        event.target.playVideo();
+        
+        // Set a timer to switch videos periodically
+        videoSwitchTimer = setTimeout(function() {
+            moveToNextVideo();
+        }, 12000); // Switch every 12 seconds
+    }
+    
+    function onPlayerStateChange(event) {
+        // When video ends or is paused, play next
+        if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {
+            moveToNextVideo();
+        }
+        
+        // Hide YouTube branding when playing starts
+        if (event.data === YT.PlayerState.PLAYING) {
+            console.log("Video is now playing");
+            const iframe = document.querySelector('#background-player');
+            if (iframe) {
+                if (window.innerWidth <= 768) { // Mobile devices
+                    // For portrait orientation
+                    if (window.innerHeight > window.innerWidth) {
+                        // Completely different approach for mobile
+                        iframe.style.position = 'absolute';
+                        iframe.style.width = '300%';
+                        iframe.style.height = '5000%';
+                        iframe.style.top = '0';
+                        iframe.style.left = '0';
+                        iframe.style.transform = 'scale(3.5)';
+                        iframe.style.transformOrigin = 'center top';
+                    } else { // For landscape orientation
+                        iframe.style.width = '300%';
+                        iframe.style.height = '400%';
+                        iframe.style.transform = 'translate(-50%, -50%) scale(1.8)';
+                    }
+                } else { // Desktop
+                    iframe.style.transform = 'translate(-50%, -50%) scale(2.5)';
+                }
+            }
+        }
+    }
+    
+    function onPlayerError(event) {
+        console.error("YouTube player error:", event.data, "for video ID:", shuffledYoutubeIds[currentVideoIndex]);
+        moveToNextVideo();
+    }
+    
+    // Move to next video
+    function moveToNextVideo() {
+        clearTimeout(videoSwitchTimer);
+        
+        // Get the next index, ensuring we don't repeat until we've gone through all videos
+        let nextVideoIndex;
+        let nextVideoId;
+        
+        // Check if we've played all videos
+        if (playedVideos.length >= shuffledYoutubeIds.length) {
+            console.log("All videos played, reshuffling...");
+            playedVideos = []; // Reset played videos
+            
+            // Reshuffle to get a fresh order
+            shuffleArray(shuffledYoutubeIds);
+            nextVideoIndex = 0;
+        } else {
+            // Find a video we haven't played yet
+            do {
+                nextVideoIndex = (currentVideoIndex + 1) % shuffledYoutubeIds.length;
+                nextVideoId = shuffledYoutubeIds[nextVideoIndex];
+                currentVideoIndex = nextVideoIndex;
+            } while (playedVideos.includes(nextVideoId) && playedVideos.length < shuffledYoutubeIds.length);
+        }
+        
+        nextVideoId = shuffledYoutubeIds[nextVideoIndex];
+        playedVideos.push(nextVideoId);
+        console.log("Moving to next video:", nextVideoId, "- Video #", playedVideos.length, "of", shuffledYoutubeIds.length);
+        
+        if (player && player.loadVideoById) {
+            try {
+                // Create a transition effect
+                const heroOverlay = document.querySelector('.hero-overlay');
+                if (heroOverlay) {
+                    heroOverlay.style.background = 'rgba(0, 0, 0, 0.8)';
+                    setTimeout(() => {
+                        heroOverlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
+                    }, 800);
+                }
+                
+                // Load the next video
+                player.loadVideoById({
+                    videoId: nextVideoId,
+                    startSeconds: 0,
+                    suggestedQuality: 'large'
+                });
+                
+                // Set a timer for the next video
+                videoSwitchTimer = setTimeout(function() {
+                    moveToNextVideo();
+                }, 12000); // Switch every 12 seconds
+            } catch (error) {
+                console.error("Error switching videos:", error);
+                fallbackToDirectVideo();
+            }
+        } else {
+            console.error("Player not initialized properly");
+            fallbackToDirectVideo();
+        }
+    }
+    
+    // Fallback to direct video if YouTube doesn't work
+    function fallbackToDirectVideo() {
+        console.log("Falling back to direct video");
+        const heroSection = document.querySelector('.hero-bg');
+        if (!heroSection) return;
         
         // Clear existing content
-        heroElement.innerHTML = '';
+        heroSection.innerHTML = '';
         
         // Create video container
         const videoContainer = document.createElement('div');
         videoContainer.className = 'video-container';
-        videoContainer.style.position = 'absolute';
-        videoContainer.style.top = '0';
-        videoContainer.style.left = '0';
-        videoContainer.style.width = '100%';
-        videoContainer.style.height = '100%';
-        videoContainer.style.overflow = 'hidden';
-        videoContainer.style.zIndex = '1';
         
         // Create video element
-        videoElement = document.createElement('video');
+        const videoElement = document.createElement('video');
         videoElement.id = 'background-video';
-        videoElement.muted = true;
         videoElement.autoplay = true;
+        videoElement.loop = true;
+        videoElement.muted = true;
         videoElement.playsInline = true;
         videoElement.style.width = '100%';
         videoElement.style.height = '100%';
         videoElement.style.objectFit = 'cover';
         
-        // Add video to container
-        videoContainer.appendChild(videoElement);
-        heroElement.appendChild(videoContainer);
+        // Set source
+        const source = document.createElement('source');
+        source.src = directVideoUrls[0];
+        source.type = 'video/mp4';
+        videoElement.appendChild(source);
         
-        // Create overlay
-        const overlay = document.createElement('div');
-        overlay.className = 'hero-overlay';
-        overlay.style.position = 'absolute';
-        overlay.style.top = '0';
-        overlay.style.left = '0';
-        overlay.style.width = '100%';
-        overlay.style.height = '100%';
-        overlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
-        overlay.style.zIndex = '2';
+        // Append to container
+        videoContainer.appendChild(videoElement);
+        heroSection.appendChild(videoContainer);
         
         // Add overlay
-        heroElement.appendChild(overlay);
+        const overlay = document.createElement('div');
+        overlay.className = 'hero-overlay';
+        heroSection.appendChild(overlay);
         
-        // Start playing videos
-        shuffleVideos();
-        playCurrentVideo();
-    }
-    
-    // Shuffle the videos array
-    function shuffleVideos() {
-        for (let i = videoUrls.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [videoUrls[i], videoUrls[j]] = [videoUrls[j], videoUrls[i]];
-        }
-    }
-    
-    // Play the current video with random timestamp
-    function playCurrentVideo() {
-        if (!videoElement) return;
-        
-        // Clear any existing timer
-        clearTimeout(videoSwitchTimer);
-        
-        // Create a transition effect
-        const heroOverlay = document.querySelector('.hero-overlay');
-        if (heroOverlay) {
-            heroOverlay.style.background = 'rgba(0, 0, 0, 0.8)';
-        }
-        
-        // Get current video URL
-        const videoUrl = videoUrls[currentVideoIndex];
-        
-        // Set the source
-        videoElement.src = videoUrl;
+        // Play video
         videoElement.load();
-        
-        videoElement.onloadedmetadata = function() {
-            // Get video duration (in seconds)
-            const duration = videoElement.duration;
-            
-            // Calculate random start time (max 75% of video duration)
-            const maxStartTime = Math.max(0, duration * 0.75 - 5);
-            const randomStartTime = Math.floor(Math.random() * maxStartTime);
-            
-            // Set current time and play
-            videoElement.currentTime = randomStartTime;
-            videoElement.play().catch(err => {
-                console.error("Error playing video:", err);
-                // Try next video if current one fails
-                moveToNextVideo();
-            });
-            
-            // Restore overlay after transition
-            setTimeout(() => {
-                if (heroOverlay) {
-                    heroOverlay.style.background = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))';
-                }
-            }, 1000);
-            
-            // Set timer to switch to next video after 5 seconds
-            videoSwitchTimer = setTimeout(moveToNextVideo, 5000);
-        };
-        
-        // Handle loading errors
-        videoElement.onerror = function() {
-            console.error("Error loading video:", videoUrl);
-            moveToNextVideo();
-        };
+        videoElement.play().catch(e => console.error("Video playback error:", e));
     }
     
-    // Move to the next video
-    function moveToNextVideo() {
-        // Update video index
-        currentVideoIndex = (currentVideoIndex + 1) % videoUrls.length;
+    // Use direct function reference - no timeout to avoid delays
+    function createYouTubePlayer() {
+        console.log("Creating YouTube player directly");
         
-        // Play the current video
-        playCurrentVideo();
+        // Known working YouTube ID
+        const videoId = "yLAAsZTZVtc"; // Alpha Iota video
+        
+        try {
+            // Create YouTube player with simpler configuration
+            if (typeof YT !== 'undefined' && YT.Player) {
+                player = new YT.Player('youtube-background', {
+                    videoId: videoId,
+                    playerVars: {
+                        'autoplay': 1,
+                        'controls': 0,
+                        'showinfo': 0,
+                        'rel': 0,
+                        'modestbranding': 1,
+                        'iv_load_policy': 3,
+                        'mute': 1,
+                        'loop': 1,
+                        'playlist': videoId, // Required for looping
+                        'playsinline': 1
+                    },
+                    events: {
+                        'onReady': function(event) {
+                            console.log("YouTube player ready!");
+                            event.target.mute();
+                            event.target.playVideo();
+                            
+                            // Style the iframe now that it's ready
+                            const iframe = document.querySelector('#youtube-background');
+                            if (iframe) {
+                                console.log("Styling YouTube iframe");
+                                iframe.style.position = 'absolute';
+                                iframe.style.top = '50%';
+                                iframe.style.left = '50%';
+                                iframe.style.width = '300%';
+                                iframe.style.height = '300%';
+                                iframe.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                                iframe.style.pointerEvents = 'none';
+                                iframe.style.zIndex = '1';
+                            } else {
+                                console.error("Could not find YouTube iframe to style");
+                            }
+                        },
+                        'onError': function(event) {
+                            console.error("YouTube error:", event.data);
+                        }
+                    }
+                });
+                console.log("YouTube player created");
+            } else {
+                console.error("YouTube API not available");
+            }
+        } catch (e) {
+            console.error("Error creating YouTube player:", e);
+        }
     }
-    
-    // Initialize
-    setupBackgroundVideo();
   });
   </script>
   
