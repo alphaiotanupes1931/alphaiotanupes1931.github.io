@@ -1,71 +1,46 @@
-<html lang="en"><head>
+<html lang="en" data-theme="dark"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brothers - Alpha Iota Chapter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;700&amp;family=Syncopate:wght@400;700&amp;family=Montserrat:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <title>Gallery | Alpha Iota Chapter | Kappa Alpha Psi® Fraternity, Inc.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Darker+Grotesque:wght@300;600;800&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
     <style>
         :root {
-            --blood: #8B0000;
-            --crimson: #CD1041;
-            --crimson-light: rgba(205, 16, 65, 0.2);
-            --crimson-hover: rgba(205, 16, 65, 0.8);
-            --void: #080808;
-            --dark: #111111;
-            --dark-accent: #1a1a1a;
-            --gray: #333333;
-            --light-gray: #777777;
-            --off-white: #f1f1f1;
-            --white: #ffffff;
-            --cream: #F5F5DC;
-            --black: #000000;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            --font-primary: 'Montserrat', sans-serif;
-            --font-secondary: 'Syncopate', sans-serif;
-            --font-tertiary: 'Darker Grotesque', sans-serif;
+            /* Default Theme */
+            --color-background: #F5F5DC; /* Cream background */
+            --color-secondary-bg: #EAE8D2; /* Slightly darker cream */
+            --color-primary: #B01030; /* Crimson accent color */
+            --color-text: #B01030; /* Crimson text */
+            --color-text-secondary: #8B0000; /* Darker crimson */
+            --color-card-bg: #B01030; /* Crimson */
+            --color-overlay: rgba(176, 16, 48, 0.6);
+            --transition: all 0.3s ease-in-out;
         }
         
-        .hero-banner {
-            width: 100%;
-            height: 300px;
-            background-image: url('https://i.ibb.co/5h9t4v8n/IMG-3587.jpg');
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            position: relative;
-            margin-top: 80px;
-            margin-bottom: 30px;
+        /* Light Theme Variables */
+        [data-theme="light"] {
+            --color-background: #F5F5DC; /* Cream background */
+            --color-secondary-bg: #EAE8D2; /* Slightly darker cream */
+            --color-primary: #B01030;  /* Crimson accent */
+            --color-text: #B01030;     /* Crimson text */
+            --color-text-secondary: #8B0000; /* Darker crimson */
+            --color-card-bg: #F5F5DC; /* Cream */
+            --color-overlay: rgba(245, 245, 220, 0.7);
         }
-        
-        .hero-banner::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            background: var(--cream);
-            color: var(--black);
-            font-family: var(--font-primary);
-            line-height: 1.5;
+            font-family: 'Darker Grotesque', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
         /* Navigation Styles */
@@ -74,11 +49,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #000000;
+            background-color: #000000; /* Black navbar */
             z-index: 1000;
             padding: 1rem 0;
             transition: background-color 0.3s ease;
-            border-bottom: 2px solid var(--crimson);
+            border-bottom: 2px solid var(--color-primary);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -122,7 +97,7 @@
         }
         
         .menu-link:hover {
-            color: var(--crimson);
+            color: var(--color-primary);
         }
 
         .menu-link:after {
@@ -132,7 +107,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: var(--crimson);
+            background-color: var(--color-primary);
             transition: width 0.3s ease;
         }
 
@@ -140,7 +115,7 @@
             width: 100%;
         }
 
-        /* Mobile Navigation Styles */
+        /* Mobile Navigation Styles - CSS-only approach with checkbox hack */
         .desktop-nav {
             display: block;
         }
@@ -152,7 +127,7 @@
             left: 0;
             width: 100%;
             z-index: 1001;
-            background-color: #000000;
+            background-color: #000000; /* Black for mobile navbar */
             padding: 0.5rem 1rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
@@ -164,14 +139,26 @@
             padding: 0.5rem 0;
         }
         
+        /* Hide the checkbox */
+        #mobile-menu-checkbox {
+            display: none;
+        }
+        
+        /* Style the menu */
         .mobile-menu {
             display: none;
             flex-direction: column;
             padding: 1rem 0;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 1002;
         }
         
-        .mobile-menu.active {
+        /* When checkbox is checked, show the menu */
+        #mobile-menu-checkbox:checked ~ .mobile-menu {
             display: flex;
             animation: slideDown 0.3s ease-out;
         }
@@ -195,7 +182,7 @@
             background-color: rgba(220, 20, 60, 0.2);
         }
 
-        /* Mobile Toggle Button */
+        /* Mobile Toggle Button Styled as Label */
         .mobile-menu-toggle {
             background: none;
             border: none;
@@ -205,10 +192,240 @@
             padding: 0.3rem;
             display: inline-block;
             visibility: visible;
-            z-index: 100;
+            z-index: 1003;
+            position: relative;
+        }
+        
+        /* Style for the label when checkbox is checked */
+        #mobile-menu-checkbox:checked ~ .mobile-nav-header .mobile-menu-toggle .fa-bars {
+            display: none;
+        }
+        
+        #mobile-menu-checkbox:checked ~ .mobile-nav-header .mobile-menu-toggle .fa-times {
+            display: inline-block;
+        }
+        
+        .mobile-menu-toggle .fa-times {
+            display: none;
         }
 
-        /* Responsive Design */
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            position: relative;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .theme-toggle:active {
+            transform: scale(0.9);
+        }
+        
+        .theme-toggle .fa-sun {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(-180deg) scale(0.5);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        .theme-toggle .fa-moon {
+            position: relative;
+            opacity: 1;
+            transform: rotate(0) scale(1);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        [data-theme="light"] .theme-toggle {
+            box-shadow: 0 0 10px 2px rgba(220, 20, 60, 0.3);
+            color: #000000;
+        }
+        
+        [data-theme="light"] .theme-toggle .fa-sun {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+        }
+        
+        [data-theme="light"] .theme-toggle .fa-moon {
+            opacity: 0;
+            transform: rotate(180deg) scale(0.5);
+        }
+        
+        .page-title {
+            text-align: center;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.5rem;
+            margin: 180px 0 40px;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+        
+        .gallery-tab {
+            background: none;
+            border: 2px solid transparent;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            padding: 0.8rem 1.5rem;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            border-radius: 4px;
+        }
+        
+        .gallery-tab:hover {
+            border-color: var(--color-primary);
+        }
+        
+        .gallery-tab:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--color-primary);
+            transition: var(--transition);
+        }
+        
+        .gallery-tab.active {
+            color: var(--color-primary);
+        }
+        
+        .gallery-tab.active:after {
+            width: 80%;
+        }
+        
+        .gallery-content {
+            display: none;
+        }
+        
+        .gallery-content.active {
+            display: block;
+        }
+        
+        .photos-grid, .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .photo-item, .video-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 3px solid var(--color-primary);
+            background-color: var(--color-card-bg);
+        }
+        
+        .photo-item:hover, .video-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .video-item {
+            aspect-ratio: 16/9;
+        }
+        
+        .video-item iframe, .video-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            max-width: 80%;
+            max-height: 80vh;
+        }
+        
+        .modal-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
         @media (max-width: 768px) {
             .desktop-nav {
                 display: none !important;
@@ -229,2441 +446,284 @@
             body {
                 padding-top: 70px;
             }
+            
+            .gallery-tabs {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .gallery-tab:after {
+                bottom: -0.5rem;
+            }
+            
+            .photos-grid, .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .modal-content {
+                max-width: 95%;
+            }
         }
 
-        /* Brothers Section */
-        .brothers-container {
-            padding: 2rem 0 6rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            width: 95%;
+        /* Footer Styles */
+        .footer {
+            background: var(--color-secondary-bg);
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(220, 20, 60, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        [data-theme="light"] .footer {
+            color: #333333;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-
-        .section-title {
-            font-family: var(--font-secondary);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            color: var(--black);
-        }
-
-        .section-subtitle {
-            color: var(--crimson);
-            font-family: var(--font-tertiary);
-            font-size: 1.2rem;
-        }
-
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--crimson);
-        }
-
-        .search-container {
-            margin: 0 auto 3rem;
-            max-width: 600px;
-            padding: 0 1.5rem;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background-color: var(--white);
-            border: 1px solid var(--crimson);
-            color: var(--black);
-            font-family: var(--font-primary);
-            font-size: 1rem;
-            border-radius: 0;
-            transition: var(--transition);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--crimson);
-            box-shadow: 0 0 0 2px rgba(205, 16, 65, 0.3);
-        }
-
-        .search-input::placeholder {
-            color: var(--light-gray);
-        }
-
-        .years-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 2rem;
-            padding: 1.5rem;
-            width: 100%;
-        }
-
-        .year-diamond {
-            position: relative;
-            width: 230px;
-            height: 230px;
-            margin: 0 auto;
-            cursor: pointer;
-            transition: var(--transition);
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .year-diamond.hidden {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .diamond-shape {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transform: rotate(45deg);
-            background: var(--white);
-            border: 2px solid var(--crimson);
-            overflow: hidden;
-            transition: var(--transition);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .year-content {
-            position: absolute;
-            inset: 0;
+        .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            transform: rotate(-45deg);
-            padding: 1rem;
-            transition: var(--transition);
+            text-align: center;
+            gap: 1.2rem;
         }
 
-        .year-text {
-            font-family: var(--font-secondary);
-            font-size: 2.2rem;
-            color: var(--black);
-            margin-bottom: 0.5rem;
-            transition: var(--transition);
-        }
-
-        .semester-text {
-            font-size: 1rem;
-            color: var(--crimson);
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .year-diamond:hover .diamond-shape {
-            background: var(--crimson-light);
-            transform: rotate(45deg) scale(1.05);
-            border-color: var(--crimson);
-        }
-
-        .year-diamond:hover .year-text {
-            transform: scale(1.1);
-            color: var(--black);
-        }
-
-        .year-diamond:hover .semester-text {
-            color: var(--black);
-        }
-
-        /* Modal */
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(245, 245, 220, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: flex-start;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            overflow-y: auto;
-            padding: 1rem;
-        }
-
-        .modal-content {
-            background: var(--white);
-            max-width: 900px;
-            width: 90%;
-            padding: 3rem 4rem;
-            position: relative;
-            border-left: 4px solid var(--crimson);
-            margin: 3rem auto;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .modal.active .modal-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .modal-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .modal-content::-webkit-scrollbar-track {
-            background: var(--cream);
-        }
-
-        .modal-content::-webkit-scrollbar-thumb {
-            background: var(--crimson);
-            border-radius: 4px;
-        }
-
-        .modal-year {
-            font-family: var(--font-secondary);
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--black);
-        }
-
-        .line-title {
-            font-family: var(--font-primary);
-            font-size: 1.8rem;
-            color: var(--crimson);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .line-subtitle {
-            color: var(--crimson);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            font-style: italic;
-        }
-
-        /* Add these to your existing CSS in the <style> section */
-
-/* Add these to your existing CSS in the <style> section */
-
-
-
-/* Light Mode Styles */
-body.light-mode {
-    background: #F5F5DC; /* Cream/beige background */
-    color: var(--dark);
-}
-
-body.light-mode .nav {
-    background-color: rgba(0, 0, 0, 0.3); /* Keep transparent navbar, just like original */
-    backdrop-filter: blur(10px);
-    /* No box-shadow to maintain original look */
-}
-
-body.light-mode .chapter-name {
-    color: var(--white); /* Keep white text for better contrast on transparent navbar */
-}
-
-body.light-mode .menu-link {
-    color: var(--white); /* Keep white text for better contrast on transparent navbar */
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add text shadow for better readability */
-}
-
-body.light-mode .menu-link:hover {
-    color: var(--white);
-}
-
-body.light-mode .theme-toggle {
-    color: var(--white); /* Keep icon white for better contrast */
-}
-
-body.light-mode .diamond-shape {
-    background: #F5F5DC; /* Cream background for diamond shapes */
-    border-color: var(--crimson);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .year-text {
-    color: var(--dark);
-}
-
-body.light-mode .brother-item {
-    background: #eaeac9; /* Slightly darker cream for brother items */
-}
-
-body.light-mode .modal-content {
-    background: #F5F5DC; /* Cream background for modal */
-    color: var(--dark);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-body.light-mode .close-modal {
-    color: var(--dark);
-}
-
-body.light-mode .search-input {
-    background-color: #FFFFFF; /* White input on cream background for contrast */
-    border: 1px solid var(--light-gray);
-    color: var(--dark);
-}
-
-body.light-mode .modal {
-    background: rgba(245, 245, 220, 0.9); /* Semi-transparent cream for modal backdrop */
-}
-
-body.light-mode .line-subtitle {
-    color: var(--crimson);
-}
-
-body.light-mode .modal-year {
-    color: var(--dark);
-}
-        .line-leadership {
-            margin-bottom: 2.5rem;
-            padding: 1.5rem;
-            background: rgba(205, 16, 65, 0.1);
-            border-left: 3px solid var(--crimson);
-        }
-
-        .line-leadership p {
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-            color: var(--black);
-        }
-
-        .brothers-list {
-            display: grid;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .brother-item {
-            padding: 1.2rem 1.5rem;
-            background: var(--white);
-            transition: var(--transition);
+        .social-icons {
             display: flex;
-            align-items: center;
-            border-left: 3px solid transparent;
-            color: var(--black);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            color: var(--color-text);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            color: var(--color-primary);
+            transform: translateY(-3px);
         }
 
-        .brother-item:hover {
-            background: rgba(205, 16, 65, 0.1);
-            border-left-color: var(--crimson);
-            transform: translateX(5px);
-        }
-
-        .brother-number {
-            min-width: 40px;
-            font-weight: bold;
-            color: var(--crimson);
-            margin-right: 10px;
-        }
-
-        .brother-name {
-            font-weight: 500;
-        }
-
-        .brother-alias {
+        .copyright {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.8rem;
+            margin-top: 1rem;
             opacity: 0.8;
-            font-style: italic;
-            margin-left: 8px;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.8rem;
-            color: var(--black);
-            cursor: pointer;
-            transition: var(--transition);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            background-color: rgba(205, 16, 65, 0.1);
-            z-index: 10;
-        }
-
-        .close-modal:hover {
-            color: var(--crimson);
-            background-color: rgba(205, 16, 65, 0.2);
-            transform: rotate(90deg);
-        }
-
-        /* Media Queries */
-        /* Tablet and medium sized screens */
-        @media (max-width: 768px) {
-            .years-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-                gap: 1.5rem;
-                padding: 1rem;
-            }
-
-            .year-diamond {
-                width: 160px;
-                height: 160px;
-            }
-
-            .year-text {
-                font-size: 1.8rem;
-            }
-
-            .modal-content {
-                padding: 1.5rem;
-                width: 90%;
-            }
-
-            .modal-year {
-                font-size: 2rem;
-            }
-
-            .line-title {
-                font-size: 1.5rem;
-            }
-            
-            .search-container {
-                width: 90%;
-            }
-        }
-
-        /* Small mobile screens */
-        @media (max-width: 480px) {
-            /* Mobile styles for nav are handled by the new responsive navbar */
-            
-            .hero-banner {
-                height: 150px;
-                margin-top: 70px;
-            }
-
-            .years-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-                padding: 0.5rem;
-            }
-
-            .year-diamond {
-                width: 130px;
-                height: 130px;
-            }
-
-            .year-text {
-                font-size: 1.4rem;
-            }
-
-            .semester-text {
-                font-size: 0.8rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            .section-header {
-                margin-bottom: 2.5rem;
-            }
-            
-            .search-input {
-                padding: 0.8rem 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .search-container {
-                margin-bottom: 2rem;
-                padding: 0 1rem;
-            }
-            
-            .modal-content {
-                padding: 1rem;
-                width: 95%;
-                max-height: 80vh;
-            }
-            
-            .modal-year {
-                font-size: 1.6rem;
-            }
-            
-            .line-title {
-                font-size: 1.3rem;
-            }
-            
-            .line-subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .brother-item {
-                padding: 0.8rem;
-                flex-wrap: wrap;
-            }
-            
-            .brother-name {
-                font-size: 0.9rem;
-            }
-            
-            .brother-alias {
-                font-size: 0.8rem;
-                margin-left: 4px;
-            }
-            
-            .brother-number {
-                min-width: 30px;
-                margin-right: 5px;
-            }
         }
     </style>
-<script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
-<body data-aos-easing="ease" data-aos-duration="800" data-aos-delay="0">
+<script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
+
+<body data-dark-mode="true">
     <!-- Desktop Navigation -->
     <nav class="nav desktop-nav">
         <div class="nav-inner">
-            <a href="#" class="logo">ALPHA IOTA</a>
+            <a href="index.html" class="logo">ALPHA IOTA</a>
             <div class="menu">
                 <a href="index.html" class="menu-link">HOME</a>
                 <a href="about.html" class="menu-link">ABOUT</a>
                 <a href="brothers.html" class="menu-link">BROTHERS</a>
                 <a href="gallery.html" class="menu-link">GALLERY</a>
-            
+                <a href="brothersonly.html" class="menu-link">PORTAL</a>
             </div>
         </div>
     </nav>
     
-    <!-- Mobile Navigation -->
+    <!-- Mobile Navigation with CSS-only approach -->
     <nav class="mobile-nav">
+        <!-- Hidden checkbox that controls the menu state -->
+        <input type="checkbox" id="mobile-menu-checkbox">
+        
         <div class="mobile-nav-header">
-            <a href="#" class="logo">ALPHA IOTA</a>
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+            <a href="index.html" class="logo">ALPHA IOTA</a>
+            <label for="mobile-menu-checkbox" class="mobile-menu-toggle">
                 <i class="fas fa-bars"></i>
-            </button>
+                <i class="fas fa-times"></i>
+            </label>
         </div>
+        
         <div class="mobile-menu">
-            <a href="#" class="mobile-menu-link">HOME</a>
+            <a href="index.html" class="mobile-menu-link">HOME</a>
             <a href="about.html" class="mobile-menu-link">ABOUT</a>
             <a href="brothers.html" class="mobile-menu-link">BROTHERS</a>
             <a href="gallery.html" class="mobile-menu-link">GALLERY</a>
-          
+            <a href="brothersonly.html" class="mobile-menu-link">PORTAL</a>
         </div>
     </nav>
 
-    <!-- Hero Banner -->
-    <div class="hero-banner"></div>
-    
-    <!-- Brothers Section -->
-    <section id="brothers" class="brothers-container">
-      
-           
-           
-        
-        
-        <div class="search-container aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <input type="text" id="brotherSearch" class="search-input" placeholder="Search by name, year, or line...">
-        </div>
-        
-        <div class="years-grid"><div class="year-diamond aos-init aos-animate" data-year-key="2024FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="0">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2024</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2023FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2023</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2023SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2023</span>
-                        <span class="semester-text">SP</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2021FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2021</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2018FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2018</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2016FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="500">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2016</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2013FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2013</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2011FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="700">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2011</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2009FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="800">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2009</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2008FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="900">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2008</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2007FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1000">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2007</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init aos-animate" data-year-key="2006FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1100">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2006</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="2005SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1200">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2005</span>
-                        <span class="semester-text">SP</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="2005FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1300">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2005</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="2003FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1400">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2003</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="2000FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1500">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">2000</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1999SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1600">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1999</span>
-                        <span class="semester-text">SP</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1998SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1700">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1998</span>
-                        <span class="semester-text">SP</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1996SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1800">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1996</span>
-                        <span class="semester-text">SP</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1993FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="1900">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1993</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1992SP" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2000">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1992</span>
-                        <span class="semester-text">SP</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1992FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2100">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1992</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1990FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2200">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1990</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1989FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2300">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1989</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1988FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2400">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1988</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1987FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2500">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1987</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1985FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2600">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1985</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1984FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2700">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1984</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1983FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2800">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1983</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1982FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="2900">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1982</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1981FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3000">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1981</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1980FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3100">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1980</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1979FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3200">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1979</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1978FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3300">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1978</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1977FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3400">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1977</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1976FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3500">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1976</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1975FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3600">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1975</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1974FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3700">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1974</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1973FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3800">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1973</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1972FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="3900">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1972</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1971FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4000">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1971</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1970FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4100">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1970</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1969FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4200">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1969</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1968FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4300">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1968</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1967FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4400">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1967</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1966FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4500">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1966</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1965FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4600">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1965</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1964FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4700">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1964</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1963FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4800">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1963</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1962FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="4900">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1962</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1961FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5000">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1961</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1960FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5100">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1960</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1959FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5200">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1959</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1958FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5300">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1958</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1957FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5400">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1957</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1956FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5500">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1956</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1955FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5600">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1955</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1954FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5700">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1954</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1953FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5800">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1953</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1952FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="5900">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1952</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1951FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="6000">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1951</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div><div class="year-diamond aos-init" data-year-key="1931FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="6100">
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">1931</span>
-                        <span class="semester-text">FA</span>
-                    </div>
-                </div>
-            </div></div>
-    </section>
+    <h1 class="page-title">Gallery</h1>
 
-    <!-- Modal Template -->
-    <div class="modal" style="display: none;">
-        <div class="modal-content">
-                        <h2 class="modal-year">2024 FALL</h2>
-                        <h3 class="line-title">The 5 Kombatants of Katastrophe</h3>
-                        <p class="line-subtitle">Rising through adversity to achieve greatness</p>
-                        <!-- Line leadership section removed -->
-                        <div class="brothers-list">
-                            
-                                <div class="brother-item">
-                                    <span class="brother-number">141</span>
-                                    <span class="brother-name">Michael Johnson</span>
-                                    <span class="brother-alias">"Warrior"</span>
-                                </div>
-                            
-                                <div class="brother-item">
-                                    <span class="brother-number">142</span>
-                                    <span class="brother-name">David Williams</span>
-                                    <span class="brother-alias">"Phoenix"</span>
-                                </div>
-                            
-                                <div class="brother-item">
-                                    <span class="brother-number">143</span>
-                                    <span class="brother-name">Robert Brown</span>
-                                    <span class="brother-alias">"Titan"</span>
-                                </div>
-                            
-                                <div class="brother-item">
-                                    <span class="brother-number">144</span>
-                                    <span class="brother-name">James Smith</span>
-                                    <span class="brother-alias">"Thunder"</span>
-                                </div>
-                            
-                                <div class="brother-item">
-                                    <span class="brother-number">145</span>
-                                    <span class="brother-name">Christopher Davis</span>
-                                    <span class="brother-alias">"Vortex"</span>
-                                </div>
-                            
-                        </div>
-                        <span class="close-modal">×</span>
-                    </div>
+    <div class="gallery-container">
+        <div class="gallery-tabs">
+            <button class="gallery-tab active" data-tab="photos">Photos</button>
+            <button class="gallery-tab" data-tab="videos">Videos</button>
+        </div>
+
+        <!-- Photos Gallery -->
+        <div class="gallery-content active" id="photos">
+            <div class="photos-grid">
+                <!-- Photo Items -->
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/whzKkyyt/IMG-3584.jpg" alt="Brotherhood Event">
+                </div>
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/Kj0qw6qs/IMG-3585.jpg" alt="Sports Event">
+                </div>
+                <div class="photo-item">
+                    <img src=" https://i.ibb.co/0j4HX3Cj/IMG-3317.jpg" alt="Chapter Performance">
+                </div>
+
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/5xMxYvtY/52005.jpg" alt="Chapter Performance">
+                </div>
+                
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/5h9t4v8n/IMG-3587.jpg" alt="Community Event">
+                </div>
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/678s4LQv/IMG-3588.jpg" alt="Fraternity Performance">
+                </div>
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/qMPgQD6Z/IMG-3589.jpg" alt="Awards Ceremony">
+                </div>
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/9HWmyQdC/IMG-3590.jpg" alt="Community Service">
+                </div>
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/KvWcdBW/IMG7205757927348355459-177842687808405.jpg" alt="Youth Mentorship">
+                </div>
+                <div class="photo-item">
+                    <img src="https://i.ibb.co/mC7mtv7K/IMG-3586.jpg" alt="Youth Mentorship">
+                </div>
+              
+            </div>
+        </div>
+        <!-- Videos Gallery -->
+        <div class="gallery-content" id="videos">
+            <div class="videos-grid">
+                <!-- Video Items -->
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/mBGMfRaThu8?autoplay=0&amp;controls=1" allowfullscreen=""></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/sPUlSrbrMk0?autoplay=0&amp;controls=1" allowfullscreen=""></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/ffhj4JR84SA?autoplay=0&amp;controls=1" allowfullscreen=""></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/yVYeJJhEJ6c?autoplay=0&amp;controls=1" allowfullscreen=""></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/lnuLYA0LsOU?autoplay=0&amp;controls=1" allowfullscreen=""></iframe>
+                </div>
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/K9X42Xc9524?autoplay=0&amp;controls=1" allowfullscreen=""></iframe>
+                </div>
+
+                <div class="video-item">
+                    <iframe src="https://www.youtube.com/embed/oE2LvdpcasA?autoplay=0&amp;controls=1" allowfullscreen=""></iframe>
+                </div>
+                
+            </div>
+        </div>
+    
+        <!-- Photo Modal -->
+        <div class="modal" id="photo-modal">
+            <button class="modal-close">×</button>
+            <div class="modal-content">
+                <img src="" alt="Enlarged photo">
+            </div>
+        </div>
     </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle functionality
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('active');
-                    // Change icon based on menu state
-                    const icon = mobileMenuToggle.querySelector('i');
-                    if (mobileMenu.classList.contains('active')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.gallery-tab');
+        const contents = document.querySelectorAll('.gallery-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update active content
+                contents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === target) {
+                        content.classList.add('active');
                     }
                 });
-            }
-            
-            // Close mobile menu when a menu item is clicked
-            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.remove('active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                });
             });
         });
         
-        // Sample line data (you would replace this with your actual data)
-      // Line data from your document
-   const lineData = {
-       '2024FA': {
-           title: "11 Survivors of DestruKtion",
-           subtitle: "Kontesting the Kurses of Korruption , While Struggling to Attain the True Value of the Diamond",
-           d: "0AI13FA Harold Lamour",
-           a: "0AI18FA Steven Hunte III",
-           brothers: [
-               { number: "0AI24FA", name: "Kamron Hampton" },
-               { number: "1AI24FA", name: "Jaden Koranteng" },
-               { number: "2AI24FA", name: "Lesley Ofusu" },
-               { number: "3AI24FA", name: "Mohammed Cole" },
-               { number: "4AI24FA", name: "Christian Sampson" },
-               { number: "5AI24FA", name: "Anthony Noakes" },
-               { number: "6AI24FA", name: "David Osadiaye" },
-               { number: "7AI24FA", name: "Seydina Salla" },
-               { number: "8AI24FA", name: "Terell Reed" },
-               { number: "9AI24FA", name: "Marcus McClean" },
-               { number: "10AI24FA", name: "Demeir Shipley" }
-  
-              
-              
-           ]
-       },
-       '2023FA': {
-           title: "The 5 Kombatants of Katastrophe",
-           subtitle: "Striving to Survive the Fury of the Diamond",
-           d: "4AI08FA Lori Hasani Adams",
-           a: "3AI13FA Saquon Frazier",
-           brothers: [
-               { number: "0AI23FA", name: "Corey Green", alias: "Kardiak" },
-               { number: "1AI23FA", name: "Godley Pierre", alias: "PainKiller" },
-               { number: "2AI23FA", name: "Chaz Crocket", alias: "SurgiKal" },
-               { number: "3AI23FA", name: "Nicholas Porter", alias: "Karnage" },
-               { number: "4AI23FA", name: "Amir White", alias: "IndestruKtible" }
-           ]
-       },
-       '2023SP': {
-   title: "The 5 Adversaries of Anarchy",
-   subtitle: "Kombating the Kalamity of Tradition, while Konserving the Resilience of the Diamond",
-   d: "10AI18FA Julius Harvey",
-   a: "12AI18FA Justyn Alexander",
-   brothers: [
-       { number: "0AI23SP", name: "Xavier Johnson", alias: "SaZuKe" },
-       { number: "1AI23SP", name: "Mohammed Nafiu", alias: "KnucKles" },
-       { number: "2AI23SP", name: "Miles Hooper", alias: "Deku" },
-       { number: "3AI23SP", name: "Tyrus Pincham", alias: "EnKore" },
-       { number: "4AI23SP", name: "Kottrell Davis", alias: "The 4th HoKage" }
-   ]
-},
-'2021FA': {
-   title: "The 8 Krusaders of the Kavalry",
-   subtitle: "Reestablishing the Resolve of Tradition, to Preserve the Perfection of the Diamond",
-   d: "10AI16FA Daniel Olumese",
-   a: "9AI16FA Michael Ragland Jr.",
-   brothers: [
-       { number: "0AI21FA", name: "Zack Burke", alias: "Shaka Zulu" },
-       { number: "1AI21FA", name: "Zachary Simmons", alias: "Floki" },
-       { number: "2AI21FA", name: "Chandler Hines", alias: "Doktor Strange" },
-       { number: "3AI21FA", name: "Toryron Brown", alias: "Samson the Konqueror" },
-       { number: "4AI21FA", name: "Cleveland Horton III", alias: "Ackilles" },
-       { number: "5AI21FA", name: "Rashashim Gafney", alias: "Lord Stark" },
-       { number: "6AI21FA", name: "Keith Parker", alias: "Mr. Fantastik" },
-       { number: "7AI21FA", name: "Anthony Dow", alias: "The Kraken" }
-   ]
-},
-'2018FA': {
-   title: "The 14 Revenants of Parnassus",
-   subtitle: "ReKonstruKting the Metamorphosis Of Traditions, While Konsoling the Konvulsion of the Diamond",
-   d: "8AI13FA Wesley Redfearn Jr.",
-   a: "10AI11FA Rasheem Williams",
-   brothers: [
-       { number: "0AI18FA", name: "Stephen Hunte III" },
-       { number: "1AI18FA", name: "Joshua Wilks" },
-       { number: "2AI18FA", name: "Reginald Clemons II" },
-       { number: "3AI18FA", name: "Justin Spencer" },
-       { number: "4AI18FA", name: "Jiair Jackson" },
-       { number: "5AI18FA", name: "Buford Stennis III" },
-       { number: "6AI18FA", name: "Simphiwe Denalane" },
-       { number: "7AI18FA", name: "Brandon Holmes" },
-       { number: "8AI18FA", name: "Cherif Haidara" },
-       { number: "9AI18FA", name: "Michal Bowry" },
-       { number: "10AI18FA", name: "Julius Harvey" },
-       { number: "11AI18FA", name: "Kishore Comrie" },
-       { number: "12AI18FA", name: "Justyn Alexander" },
-       { number: "13AI18FA", name: "Javan Stewart" }
-   ]
-},
-'2016FA': {
-   title: "14 Regents of reformation",
-   subtitle: "rising through the khaos while reassuring the revitalizing of the diamond",
-   d: "10AI16FA Daniel Olumese",
-   a: "9AI16FA Michael Ragland Jr.",
-   brothers: [
-       { number: "0AI16FA", name: "Marquis Irving" },
-       { number: "1AI16FA", name: "Sean Osborne" },
-       { number: "2AI16FA", name: "Jonathan Mckinney" },
-       { number: "3AI16FA", name: "Emmanuel Shedu" },
-       { number: "4AI16FA", name: "Thadeuss Mitchell" },
-       { number: "5AI16FA", name: "Habib Durodola" },
-       { number: "6AI16FA", name: "Jarron Williams" },
-       { number: "7AI16FA", name: "Shawn Elliot" },
-       { number: "8AI16FA", name: "Justin Moore" },
-       { number: "9AI16FA", name: "Michael Ragland Jr." },
-       { number: "10AI16FA", name: "Daniel Olumese" },
-       { number: "11AI16FA", name: "Frantz Sabbat" },
-       { number: "12AI16FA", name: "Oluwatomisine Enitan" },
-       { number: "13AI16FA", name: "Diara Woodard" }
-   ]
-},
-'2013FA': {
-   title: "9 ExeKUTioners of Egality",
-   subtitle: "Preserving the Pressure of Perfektion While Mastering the Magnifikation of the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI13FA", name: "Harold Lamour" },
-       { number: "1AI13FA", name: "Johnathan Williams" },
-       { number: "2AI13FA", name: "Joshua N Tutman" },
-       { number: "3AI13FA", name: "Saquon T Frazier" },
-       { number: "4AI13FA", name: "Marcus W Clinton" },
-       { number: "5AI13FA", name: "Michael C James" },
-       { number: "6AI13FA", name: "Harold O Ogunbo" },
-       { number: "7AI13FA", name: "Wayne A Mitchell Jr." },
-       { number: "8AI13FA", name: "Wesley Redfearn Jr." }
-   ]
-},
-'2011FA': {
-   title: "19 Guardians of the Gate",
-   subtitle: "Discerning the Duality of Tradition while Defining the Dimension of the Diamond",
-   d: "2AI05FA Godlove Ntam",
-   a: "0AI05FA Emmaus Ferdinand",
-   brothers: [
-       { number: "0AI11FA", name: "Alvin L Hill" },
-       { number: "1AI11FA", name: "Troy B Griffin Jr." },
-       { number: "2AI11FA", name: "Darrel A Walker" },
-       { number: "3AI11FA", name: "Justin Vasquez" },
-       { number: "4AI11FA", name: "Ryan J Cobb" },
-       { number: "5AI11FA", name: "Marques J Smith" },
-       { number: "6AI11FA", name: "Michael D Brown" },
-       { number: "7AI11FA", name: "Isaiah O Aina" },
-       { number: "8AI11FA", name: "Tyrel C Fuentes" },
-       { number: "9AI11FA", name: "Shawn W Goins Jr." },
-       { number: "10AI11FA", name: "Rasheem N Williams" },
-       { number: "11AI11FA", name: "Steven R Jackson" },
-       { number: "12AI11FA", name: "Shane Mitchell" },
-       { number: "13AI11FA", name: "Kaddeem M Myrie" },
-       { number: "14AI11FA", name: "Donte S Peters" },
-       { number: "15AI11FA", name: "Timothy C Pitts" },
-       { number: "16AI11FA", name: "James M Dillard" },
-       { number: "17AI11FA", name: "Christoper T Hylton" },
-       { number: "18AI11FA", name: "Cherrod W Roberts Jr" }
-   ]
-},
-'2009FA': {
-   title: "4 Monarchs of Madness",
-   subtitle: "Mobolizing the Masses agaiunst Mobacracy While Mastering the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI09FA", name: "Orion W Robinson" },
-       { number: "1AI09FA", name: "Kevon M Carter" },
-       { number: "2AI09FA", name: "Richard S Mitchell Jr." },
-       { number: "3AI09FA", name: "Terrell M Johnson" }
-   ]
-},
-'2008FA': {
-   title: "5 Radicals of Resilience",
-   subtitle: "Kombating Kontention Striving to Surivive the Wrath of the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI08FA", name: "Kemoy S Martin" },
-       { number: "1AI08FA", name: "Anthony R Showell" },
-       { number: "2AI08FA", name: "Toney N Dixon" },
-       { number: "3AI08FA", name: "Troy D Leftwich" },
-       { number: "4AI08FA", name: "Lori Hasani Adams" }
-   ]
-},
-'2007FA': {
-   title: "The 6 Mercenaries of Mayhem",
-   subtitle: "Transcending the Miskonceptions that mask the true perfektion of the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI07FA", name: "Carl H Michel" },
-       { number: "1AI07FA", name: "Marvin D Carr" },
-       { number: "2AI07FA", name: "Marcus A Neal-Watts" },
-       { number: "3AI07FA", name: "Edward S Dunn II" },
-       { number: "4AI07FA", name: "Trumane M Lawrence" },
-       { number: "5AI07FA", name: "Calvin R Woody" }
-   ]
-},
-'2006FA': {
-   title: "12 Prodigies of Peril",
-   subtitle: "Persevering to Restore Perfection to the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI06FA", name: "Andre J Daley" },
-       { number: "1AI06FA", name: "Curtis A Russell" },
-       { number: "2AI06FA", name: "Roland Ampadu" },
-       { number: "3AI06FA", name: "Zakee A Roberts" },
-       { number: "4AI06FA", name: "Akeem O Croft" },
-       { number: "5AI06FA", name: "Cenell D Harrell" },
-       { number: "6AI06FA", name: "Antoine S Jean-Pierre" },
-       { number: "7AI06FA", name: "Ronald L Goodman" },
-       { number: "8AI06FA", name: "Anthony D Prescott" },
-       { number: "9AI06FA", name: "Charles E Sims" },
-       { number: "10AI06FA", name: "Taylor E Graham" },
-       { number: "11AI06FA", name: "Alvin L Rudolph IV" }
-   ]
-},
-'2005SP': {
-   title: "4 Konquerors of Konstance",
-   subtitle: "Konsfusion struggling to survive while maitinng the tradition of the diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI05SP", name: "Henian J Newsome" },
-       { number: "1AI05SP", name: "Kian D Gumbs" },
-       { number: "2AI05SP", name: "Rory E Brooks" },
-       { number: "3AI05SP", name: "Aaron J Wiggins" }
-   ]
-},
-'2005FA': {
-   title: "The 4 Emperors Of Endeavor",
-   subtitle: "Lost In The Lore Of The Legaky Resurrekting The Tradition Of The Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI05FA", name: "Emmaus S Ferdinand" },
-       { number: "1AI05FA", name: "Rommell D Sapp" },
-       { number: "2AI05FA", name: "Godlove K Ntam" },
-       { number: "3AI05FA", name: "Nathaniel B McDonald" }
-   ]
-},
-'2003FA': {
-   title: "10 Legends of Longevity",
-   subtitle: "Konquering the Konfusion and Kontroversy Sacrificing for the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI03FA", name: "Robert L Green" },
-       { number: "1AI03FA", name: "Cornelius J Hairston IV" },
-       { number: "2AI03FA", name: "Steven A Cook" },
-       { number: "3AI03FA", name: "Duane M Cheers" },
-       { number: "4AI03FA", name: "(none)" },
-       { number: "5AI03FA", name: "Justin A Nicholson" },
-       { number: "6AI03FA", name: "(none)" },
-       { number: "7AI03FA", name: "Ian A Grayson" },
-       { number: "8AI03FA", name: "Mickael A Taliaferro" },
-       { number: "9AI03FA", name: "Ajamu Parry" },
-       { number: "10AI03FA", name: "Jo'rell H Whitfield" },
-       { number: "11AI03FA", name: "Larry M Richardson" }
-   ]
-},
-'2000FA': {
-   title: "7 Titans of Tradgedy",
-   subtitle: "Rising Above the Time and Torment of the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-   { number: "0AI00FA", name: "Enyinna O Anthony" },
-{ number: "1AI00FA", name: "Randolph L Jones Jr." },
-{ number: "2AI00FA", name: "Brandon M Wylie" },
-{ number: "3AI00FA", name: "Ifeanyi Nwoko" },
-{ number: "4AI00FA", name: "Christopher J Holt" },
-{ number: "5AI00FA", name: "Floyd E Taliaferro IV" },
-{ number: "6AI00FA", name: "J. Jerhome Petway" }
-   ]
-},
-'1999SP': {
-   title: "4 Kreators of Konsistency",
-   subtitle: "Kontinuning to Shine in the Darkness of the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI99SP", name: "Israel Y Miller" },
-       { number: "1AI99SP", name: "Cory M Whitman" },
-       { number: "2AI99SP", name: "Theodore E Smith" },
-       { number: "3AI99SP", name: "Andre A Alston" }
-   ]
-},
-'1998SP': {
-   title: "5 Kings of Konsciousness",
-   subtitle: "Struggling to Survive in a Krowd of Khaos and Konfusion",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI98SP", name: "Aaron J Burt" },
-       { number: "1AI98SP", name: "Ahmed K Collins" },
-       { number: "2AI98SP", name: "Gonzales Cannon II" },
-       { number: "3AI98SP", name: "Kenneth Newborn" },
-       { number: "4AI98SP", name: "Michael L Manning" }
-   ]
-},
-'1996SP': {
-   title: "11 Tyrants of Time and Pain",
-   subtitle: "Kreeping Through the Kracks and Krevices, Surviving the Diamond's Reign",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI96SP", name: "Jason A Hines" },
-       { number: "1AI96SP", name: "Eric S Coit" },
-       { number: "2AI96SP", name: "Rodney T Dixon" },
-       { number: "3AI96SP", name: "James T Burns" },
-       { number: "4AI96SP", name: "Derrick S Evans" },
-       { number: "5AI96SP", name: "Richard E Anderson" },
-       { number: "6AI96SP", name: "Tendayi S Kumbula" },
-       { number: "7AI96SP", name: "(none)" },
-       { number: "8AI96SP", name: "Kevin F Parker" },
-       { number: "9AI96SP", name: "Walter M Jones" },
-       { number: "10AI96SP", name: "Antoine Q Glasgow" },
-       { number: "11AI96SP", name: "Antonio Church" }
-   ]
-},
-'1993FA': {
-   title: "7 Gladiators of Grandeur",
-   subtitle: "Surmounting the Gravity of Circumstance",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI93FA", name: "Marcus G Bazemore" },
-       { number: "1AI93FA", name: "Byron B Greene" },
-       { number: "2AI93FA", name: "Kevin M McGhaw" },
-       { number: "3AI93FA", name: "James M Chavis" },
-       { number: "4AI93FA", name: "Mark A Ensley" },
-       { number: "5AI93FA", name: "Airrion K Keenheel" },
-       { number: "6AI93FA", name: "Ron J Stevenson" }
-   ]
-},
-'1992SP': {
-   title: "8 Apostles of the Apocalypse",
-   subtitle: "Traversing Through the Trails and Tribulations of Tradition",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI92SP", name: "Dwayne Godwin" },
-       { number: "1AI92SP", name: "Darrel W Morris" },
-       { number: "2AI92SP", name: "Charlie C Morgan II" },
-       { number: "3AI92SP", name: "Kenyatta Bolton" },
-       { number: "4AI92SP", name: "Charles E Birdsong III" },
-       { number: "5AI92SP", name: "Eric L Brown" },
-       { number: "6AI92SP", name: "Ser Greene" },
-       { number: "7AI92SP", name: "David A Thompson" }
-   ]
-},
-'1992FA': {
-   title: "12 Warriors of Wisdom and Desire",
-   subtitle: "Withstanding the Fire, in Search of the Diamond",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI92FA", name: "Jason M Clinkscale" },
-       { number: "1AI92FA", name: "Kwenji S Jackson" },
-       { number: "2AI92FA", name: "Melvin L Jackson II" },
-       { number: "3AI92FA", name: "Kendrick I Davis" },
-       { number: "4AI92FA", name: "Renaud J Logan" },
-       { number: "5AI92FA", name: "Michael C Pratt" },
-       { number: "6AI92FA", name: "David J Whittington" },
-       { number: "7AI92FA", name: "Michael A Price Jr." },
-       { number: "8AI92FA", name: "Sherwood C Lennon" },
-       { number: "9AI92FA", name: "Shawn J Maxwell" },
-       { number: "10AI92FA", name: "Michael J Austin" },
-       { number: "11AI92FA", name: "Tyrone W Rogers" }
-   ]
-},
-'1990FA': {
-   title: "10 Lord of Longevity",
-   subtitle: "Determined to Endure the Test of Time",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI90FA", name: "Charles Neverdon" },
-       { number: "1AI90FA", name: "John M Hamilton III" },
-       { number: "2AI90FA", name: "Marc Kornegay" },
-       { number: "3AI90FA", name: "Terrance Banko" },
-       { number: "4AI90FA", name: "Sean A Hendricks" },
-       { number: "5AI90FA", name: "Daryll Griffin" },
-       { number: "6AI90FA", name: "Chevell L Thomas" },
-       { number: "7AI90FA", name: "Craig Harcum" },
-       { number: "8AI90FA", name: "Kenneth C Thomas" },
-       { number: "9AI90FA", name: "James W Falson" }
-   ]
-},
-'1989FA': {
-   title: "13 Disciples of Distinctiveness",
-   subtitle: "Uniquely Expressing Oneness",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI89FA", name: "Roland R Selby Jr." },
-       { number: "1AI89FA", name: "Che Marshall Brown" },
-       { number: "2AI89FA", name: "Shawn D Mendoza" },
-       { number: "3AI89FA", name: "Jerry Blanding" },
-       { number: "4AI89FA", name: "Hugh D Watts" },
-       { number: "5AI89FA", name: "Tyrone J Crabb" },
-       { number: "6AI89FA", name: "Terence M Brooks Sr." },
-       { number: "7AI89FA", name: "Joseph A Clair" },
-       { number: "8AI89FA", name: "Victor Bibbins Jr." },
-       { number: "9AI89FA", name: "Charles S Jones" },
-       { number: "10AI89FA", name: "Carlos T Goodall" },
-       { number: "11AI89FA", name: "Derrick Stanford" },
-       { number: "12AI89FA", name: "Darren L Clinkscale" }
-   ]
-},
-'1988FA': {
-   title: "16 Prophets of Persistence",
-   subtitle: "On The Road To Transformations In A Error Of Terror",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI88FA", name: "Russell Neverdon" },
-       { number: "1AI88FA", name: "James L Green" },
-       { number: "2AI88FA", name: "Elmer David Brooks Jr." },
-       { number: "3AI88FA", name: "Daryl A Graham" },
-       { number: "4AI88FA", name: "Rodney Quick" },
-       { number: "5AI88FA", name: "Marvin E Mingo" },
-       { number: "6AI88FA", name: "Wesley C Blount Jr." },
-       { number: "7AI88FA", name: "(none)" },
-       { number: "8AI88FA", name: "Derrick Taliaferro" },
-       { number: "9AI88FA", name: "Stephen L Brown Jr." },
-       { number: "10AI88FA", name: "Tewodross M Melchishua" },
-       { number: "11AI88FA", name: "Jon W Gordon" },
-       { number: "12AI88FA", name: "Anthony B Clark" },
-       { number: "13AI88FA", name: "George S Allen III" },
-       { number: "14AI88FA", name: "Edward A Grant" },
-       { number: "15AI88FA", name: "Gregory L Alexander" }
-   ]
-},
-'1987FA': {
-   title: "The 14 Rebels of Righteousness",
-   subtitle: "in An Era of Terror A Transition and Change",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI87FA", name: "Rafael Williams" },
-       { number: "1AI87FA", name: "Duane A. Donaldson" },
-       { number: "2AI87FA", name: "Kevin M. Douglas" },
-       { number: "3AI87FA", name: "Spencer T. Allen" },
-       { number: "4AI87FA", name: "D. Craig Talley, Jr." },
-       { number: "5AI87FA", name: "Herman Grace" },
-       { number: "6AI87FA", name: "Ronald L. Morris" },
-       { number: "7AI87FA", name: "Anthony R. Murphy" },
-       { number: "8AI87FA", name: "Gary H. Smith" },
-       { number: "9AI87FA", name: "Andrae C. Martin" },
-       { number: "10AI87FA", name: "Kevin E. Peck" },
-       { number: "11AI87FA", name: "Jeffrey M. Wheaton" },
-       { number: "12AI87FA", name: "Brent Carter" },
-       { number: "13AI87FA", name: "Blair C. Smith" }
-   ]
-},
-'1985FA': {
-   title: "11 Knights of Terror",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI85FA", name: "Floyd D Majette" },
-       { number: "1AI85FA", name: "Arnold L Harvey" },
-       { number: "2AI85FA", name: "Edgar L Chinn" },
-       { number: "3AI85FA", name: "William E Hudson Jr." },
-       { number: "4AI85FA", name: "Sean L Osborne" },
-       { number: "5AI85FA", name: "Lonnie H Moore" },
-       { number: "6AI85FA", name: "Michael E Henderson" },
-       { number: "7AI85FA", name: "Ronald L Watson Jr." },
-       { number: "8AI85FA", name: "Rodney D Witherspoon" },
-       { number: "9AI85FA", name: "Dwayne A Judson" },
-       { number: "10AI85FA", name: "Virgil O Martin Jr." }
-   ]
-},
-'1984FA': {
-   title: "The 9 Agents of Arrogance",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI84FA", name: "Mark E Busbee" },
-       { number: "1AI84FA", name: "Kody Wood" },
-       { number: "2AI84FA", name: "Phillip David" },
-       { number: "3AI84FA", name: "Andre Johnson" },
-       { number: "4AI84FA", name: "Dennis Reddick" },
-       { number: "5AI84FA", name: "Vander McBride" },
-       { number: "6AI84FA", name: "Austin W Henderson Jr." },
-       { number: "7AI84FA", name: "Marsden S Coates" },
-       { number: "8AI84FA", name: "Shaun C Alfred" }
-   ]
-},
-'1983FA': {
-   title: "15 Nomads of Kaos",
-   subtitle: "Comming Into Perspective",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI83FA", name: "Paul Johnson" },
-       { number: "1AI83FA", name: "Vernon L Taylor" },
-       { number: "2AI83FA", name: "Ronald L Fletcher" },
-       { number: "3AI83FA", name: "Robert G Ammons III" },
-       { number: "4AI83FA", name: "David N Jackson" },
-       { number: "5AI83FA", name: "Tracy Bowers" },
-       { number: "6AI83FA", name: "Douglas J Owens" },
-       { number: "7AI83FA", name: "Anthony C Thomas" },
-       { number: "8AI83FA", name: "Walter W Johnson" },
-       { number: "9AI83FA", name: "Craig Bunns" },
-       { number: "10AI83FA", name: "Danilo De Sousa" },
-       { number: "11AI83FA", name: "Michael A Johnson" },
-       { number: "12AI83FA", name: "Jonathan Preston" },
-       { number: "13AI83FA", name: "Al Baker" },
-       { number: "14AI83FA", name: "Willie J Myers" }
-   ]
-},
-'1982FA': {
-   title: "7 Pieces of A Dream",
-   subtitle: "Tradition in Transition",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI82FA", name: "Todd Scott" },
-       { number: "1AI82FA", name: "Kenneth A Conney" },
-       { number: "2AI82FA", name: "Kirk D Ralls" },
-       { number: "3AI82FA", name: "James K Turner" },
-       { number: "4AI82FA", name: "Harold T Fisher" },
-       { number: "5AI82FA", name: "Martin J McCrae" },
-       { number: "6AI82FA", name: "John L Nichols" }
-   ]
-},
-'1981FA': {
-   title: "The Precedence Twelve",
-   subtitle: "Elements Of Success",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "(none)", name: "(none)" },
-       { number: "AI81FA", name: "Richard Bryant" },
-       { number: "AI81FA", name: "Kevin W Moore" },
-       { number: "AI81FA", name: "James B Abram III" },
-       { number: "AI81FA", name: "Rodney Adkins" },
-       { number: "AI81FA", name: "Harry Stewart" },
-       { number: "AI81FA", name: "Michael B James" },
-       { number: "AI81FA", name: "Walter Swindell" },
-       { number: "AI81FA", name: "James K Battle" },
-       { number: "AI81FA", name: "Kevin M Richardson" },
-       { number: "AI81FA", name: "Mark Jones" }
-   ]
-},
-'1980FA': {
-   title: "15 Disciples of Disaster",
-   subtitle: "Era of The Past",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Prince E Banks" },
-       { name: "Bernard Baskerville" },
-       { name: "Lloyd L Celistan" },
-       { name: "Randolo B Cuttino" },
-       { name: "Aaron J hall" },
-       { name: "Darren Jones" },
-       { name: "Shawn A Pindell" },
-       { name: "Michael A Sharp" },
-       { name: "David M Standford" },
-       { name: "Lawrence E Strange" },
-       { name: "Mark C Williams" }
-   ]
-},
-'1979FA': {
-   title: "15 Disciples of Disaster",
-   subtitle: "Era of The Past",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI79FA", name: "Michael C James" },
-       { number: "1AI79FA", name: "Mark J Leach" },
-       { number: "2AI79FA", name: "Maurice Franklin" },
-       { number: "3AI79FA", name: "Robert L German" },
-       { number: "4AI79FA", name: "Terrence Battle" },
-       { number: "5AI79FA", name: "George D Wheeler" },
-       { number: "6AI79FA", name: "Kelvin Brockington" },
-       { number: "7AI79FA", name: "David H Childs" },
-       { number: "8AI79FA", name: "Jonathan W Grant" },
-       { number: "9AI79FA", name: "Joseph Holmes" },
-       { number: "10AI79FA", name: "Duane R Flowers" },
-       { number: "11AI79FA", name: "Howard L Tutman III" },
-       { number: "12AI79FA", name: "Donald T Davenport" },
-       { number: "13AI79FA", name: "Michael Henderson" },
-       { number: "14AI79FA", name: "Richard A Vernon Sr." }
-   ]
-},
-'1978FA': {
-   title: "GENESIS X (TEN)",
-   subtitle: "THE NEW ERA",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI78FA", name: "James E Paige" },
-       { number: "1AI78FA", name: "Alvin D Thornton" },
-       { number: "2AI78FA", name: "Ronald J Bethea" },
-       { number: "3AI78FA", name: "Lawrence Frazier" },
-       { number: "4AI78FA", name: "Damon Childs" },
-       { number: "5AI78FA", name: "Fred L Godette" },
-       { number: "6AI78FA", name: "Roscoe C Webb II" },
-       { number: "7AI78FA", name: "Audley A Walters" },
-       { number: "8AI78FA", name: "Hosa B Showell" },
-       { number: "9AI78FA", name: "Michael S West" }
-   ]
-},
-'1977FA': {
-   title: "The Treacherous Twenty",
-   subtitle: "Coming From All Ends",
-   d: "",
-   a: "",
-   brothers: [
-       { number: "0AI77FA", name: "John B Sample III" },
-       { number: "1AI77FA", name: "Johnny Irofuala" },
-       { number: "2AI77FA", name: "Warren C Johnson Jr." },
-       { number: "3AI77FA", name: "Donald B Marshall" },
-       { number: "4AI77FA", name: "Anthony Williams" },
-       { number: "5AI77FA", name: "Nelson B Bascome" },
-       { number: "6AI77FA", name: "Darryl Felder" },
-       { number: "7AI77FA", name: "Adam Jackson" },
-       { number: "8AI77FA", name: "Michael R Moore" },
-       { number: "9AI77FA", name: "Rowland Ugwuezumba" },
-       { number: "10AI77FA", name: "Jeffrey Robinson" },
-       { number: "11AI77FA", name: "David C Walker" },
-       { number: "12AI77FA", name: "Reginald A Landers" },
-       { number: "13AI77FA", name: "Robert J Elliotte Jr." },
-       { number: "14AI77FA", name: "Kevin B Powell" },
-       { number: "15AI77FA", name: "Parker B Roach" },
-       { number: "16AI77FA", name: "Anthony Carr" },
-       { number: "17AI77FA", name: "Gary L Wade" },
-       { number: "18AI77FA", name: "Douglas E Washington" },
-       { number: "19AI77FA", name: "Cleophus A Wade" }
-   ]
-},
-'1976FA': {
-   title: "The 12 Lords of K.A.O.S",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Robert T Pugh" },
-       { name: "Claude M Ligon Jr." },
-       { name: "Don K Jenkins" },
-       { name: "Robert A Hearne" },
-       { name: "Arthur E Burrell III" },
-       { name: "Richard P Giles" },
-       { name: "Bernard D Jones" },
-       { name: "Robert L Williams Jr." },
-       { name: "Michael A Greene" },
-       { name: "Nathan L Fletcher" },
-       { name: "Bernie L Davis" },
-       { name: "Melville W Pugh Jr." }
-   ]
-},
-'1975FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Marion G Batey" },
-       { name: "Derrick E Brown" },
-       { name: "Arvonette M Burrell" },
-       { name: "Jerry E Gantt" },
-       { name: "John C Harris" },
-       { name: "Gill R Marsh" },
-       { name: "Stanley L Mitchell" },
-       { name: "Jerry E Morrison" },
-       { name: "Shelby M Paige" },
-       { name: "Dennis Randall" },
-       { name: "Larry D Turner" },
-       { name: "McClinton E Williams" },
-       { name: "David C Winfield" }
-   ]
-},
-'1974FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Marcel J Baynes" },
-       { name: "Randolph Hemphill" },
-       { name: "Rick Huntley" },
-       { name: "Claudius F Jorif Sr." },
-       { name: "Gary C Lee" },
-       { name: "Henry D Lewis" },
-       { name: "Dwight E Mathis" },
-       { name: "Reginald M Quick" },
-       { name: "Arthur W Sims" }
-   ]
-},
-'1973FA': {
-   title: "THE ELITE 8",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Theodore R Garrett Jr." },
-       { name: "Melvin C Porter" },
-       { name: "Willie H Pulliam" },
-       { name: "Floyd E Taliaferro III" },
-       { name: "Leslie A Williiams" },
-       { name: "Michelle A Willis" }
-   ]
-},
-'1972FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Samuel T Daniels" },
-       { name: "Albert T Jacobs" },
-       { name: "Charles H Rogers" }
-   ]
-},
-'1971FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "William R Asbury" },
-       { name: "Lucian E Brown" },
-       { name: "Tony E Fulton" },
-       { name: "Martin A Goins III" },
-       { name: "Thomas E Hampton" },
-       { name: "Frederick Harrod" },
-       { name: "Kenneth R Jones" },
-       { name: "Ronald G Knight" },
-       { name: "Samuel A Labeach III" },
-       { name: "Rodger M Matthews" },
-       { name: "James A Polk Jr." },
-       { name: "James E Roberts" },
-       { name: "Gary K Shaw" },
-       { name: "Marshall B Simmons" },
-       { name: "Charles H Spriggs" },
-       { name: "Roland H Wilson" },
-       { name: "Michael L Wright" }
-   ]
-},
-'1970FA': {
-   title: "The Untouchable 10",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "John W Brooks" },
-       { name: "Walter A Brown" },
-       { name: "Ronald H Carroll" },
-       { name: "Edward L Davis" },
-       { name: "Edward W David" },
-       { name: "Vallen L Emery" },
-       { name: "Keith S Haynes" },
-       { name: "Anthony C Hudgins" },
-       { name: "Preston T Hurtt Jr." },
-       { name: "James E Johnson" },
-       { name: "Uthman Ray III" },
-       { name: "Leon Richardson" },
-       { name: "Donald W Thomas" },
-       { name: "Arron L Toland" }
-   ]
-},
-'1969FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Solomon Davis" },
-       { name: "Darrick T Estes" },
-       { name: "Allan U Forte" },
-       { name: "Arthur D Gray" },
-       { name: "Randall K Greene" },
-       { name: "Peyton Herbert" },
-       { name: "Robert Holmes" },
-       { name: "Dale Martin" },
-       { name: "Lawrence W Monroe" },
-       { name: "Franklin T O'Neal" },
-       { name: "Robert L Quarles Jr." },
-       { name: "George F Stokes" },
-       { name: "Clyde M Tatum" }
-   ]
-},
-'1968FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Wilbur C Giles Jr." },
-       { name: "Miles G Harrison M.D." },
-       { name: "Arthur A Holland" },
-       { name: "Roy R Jeffers" },
-       { name: "Frederick M Jones" },
-       { name: "Paul L Leath" },
-       { name: "Thomas W McPherson III" },
-       { name: "Kenneth L Owens" },
-       { name: "Claude R Parran" },
-       { name: "Alfredy Pinder" },
-       { name: "William T Powell" },
-       { name: "Warren A Turner" },
-       { name: "James E Wood" }
-   ]
-},
-'1967FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Kenny A Hooper D.D.S." },
-       { name: "Sidney O Johnson" },
-       { name: "George Langford" },
-       { name: "Charles C Pergerson" },
-       { name: "Walter T Pickett" },
-       { name: "Theodore A Powell" },
-       { name: "Joseph N Yearwood" }
-   ]
-},
-'1966FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Leslie J Boyd" },
-       { name: "Richard J Diehl" },
-       { name: "Walter S Lewis Jr." },
-       { name: "James L Pollett III" },
-       { name: "Turhan E Robinson" },
-       { name: "Kenneth Royster" },
-       { name: "Richard A Scott" },
-       { name: "Andre' D Summers" },
-       { name: "Irving L Taylor" },
-       { name: "Earnest Thompson Jr." },
-       { name: "Carl W Turnipseed" },
-       { name: "Howard L Tutman Jr." },
-       { name: "Robert H White" },
-       { name: "Robert B Young" }
-   ]
-},
-'1965FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Arthur I Brown" },
-       { name: "Thomas E Dunlap" },
-       { name: "Ralph Ford" },
-       { name: "James H Gilliam Jr." },
-       { name: "Carl E Horton" },
-       { name: "Thomas D Lambert" },
-       { name: "Rodney A McCloud" },
-       { name: "Robert Pratt" },
-       { name: "Kenneth Royster" },
-       { name: "George M Saunders" },
-       { name: "Harry M Valentine" }
-   ]
-},
-'1964FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "James M Clark" },
-       { name: "James E Coleman Sr." },
-       { name: "Leroy S Comegys" },
-       { name: "Wilbur L Dorsey" },
-       { name: "Vananzo H Eaton" },
-       { name: "Clarence Scott" },
-       { name: "James R Tabron" },
-       { name: "Charles E Thompson Jr." }
-   ]
-},
-'1963FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Wayne Anderson" },
-       { name: "Race C Jones" },
-       { name: "Arnold H Sampson" },
-       { name: "William Smith Jr." }
-   ]
-},
-'1962FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Thomas M Bryant" },
-       { name: "Clarence B Canson M.D." },
-       { name: "James A Carter Sr." },
-       { name: "John R Cooper" },
-       { name: "Myles Goodson" },
-       { name: "Joseph A Hunter" },
-       { name: "George Mitchell Jr." },
-       { name: "William S Tinkler" },
-       { name: "Lewis E Williams" },
-       { name: "Stephen R Young" }
-   ]
-},
-'1961FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Earl F Adkins" },
-       { name: "Robert D Bagley" },
-       { name: "George W Black" },
-       { name: "Edward C Davis" },
-       { name: "Manuel Deese" },
-       { name: "Robert Jones" },
-       { name: "Ralph D McCloud" },
-       { name: "Clarence L McDonald" },
-       { name: "Frank A Sartor Jr." },
-       { name: "Leon Smalls" },
-       { name: "Robert Smith" },
-       { name: "Allen M Ward" }
-   ]
-},
-'1960FA': {
-   title: "The Untouchable 10",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Henry Johnson Jr." },
-       { name: "Vernon Johnson Jr." },
-       { name: "Robert Limerick Jr." },
-       { name: "Reese Marshall" },
-       { name: "Joel E McLeod Jr." },
-       { name: "Benjamin F Page" },
-       { name: "Oran C Page Esq." },
-       { name: "James Robinson" },
-       { name: "John W Ruffin Jr." },
-       { name: "Bernard Q Wilkes" }
-   ]
-},
-'1959FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "James D Ashford" },
-       { name: "Earl T Bowen" },
-       { name: "Samuel Brown" },
-       { name: "Melvin L Carroll" },
-       { name: "Theodore H Daniels" },
-       { name: "James Franklin" },
-       { name: "Vernard Harden" },
-       { name: "Thomas E Henderson" },
-       { name: "Carroll H Hynson" },
-       { name: "Larry R Jackson" },
-       { name: "Frederick W Johnson" },
-       { name: "Samuel L Martin" },
-       { name: "Clement Milbourne" },
-       { name: "Clarence M Mitchell III" },
-       { name: "Lawrence M Parker" },
-       { name: "Charles A Rice Jr." },
-       { name: "Horace Smith" },
-       { name: "Carl E Smith" },
-       { name: "Robert A Utley" }
-   ]
-},
-'1958FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Charles D Bowie Jr." },
-       { name: "Guy Bragg D.D.S." },
-       { name: "Whaleland S Cross" },
-       { name: "Brian K Estrada" },
-       { name: "David Evans" },
-       { name: "Walter A Hairston" },
-       { name: "Raymond E Kitz" },
-       { name: "John W Patterson" },
-       { name: "Robert Ridley III" },
-       { name: "Welford C Robinson Ph.D." },
-       { name: "Rufus Scarborough" },
-       { name: "George Williams" },
-       { name: "Robert L Young" }
-   ]
-},
-'1957FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Calvin Belton" },
-       { name: "Heyward Burrell Jr." },
-       { name: "Herman L Cannon" },
-       { name: "Preston T Johnson" },
-       { name: "Eugene Merriday" },
-       { name: "Ronald B Merriweather" },
-       { name: "Donald Richardson" },
-       { name: "Jackson E Rozier Jr." },
-       { name: "Robert Sheppard" },
-       { name: "John E Simms" },
-       { name: "Edgar H Sorrells" },
-       { name: "Ivan C Walker" }
-   ]
-},
-'1956FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Wendell M Baker" },
-       { name: "Ammon G Barksdale" },
-       { name: "Boyce W Barton Jr." },
-       { name: "Garfield M Bennett" },
-       { name: "Joseph Brooks" },
-       { name: "Daniel L Comegys" },
-       { name: "Ronald Garner" },
-       { name: "Thomas Gathers Jr." },
-       { name: "Arnold J Hayes" },
-       { name: "Daniel N Howard Jr." },
-       { name: "William Irvin" },
-       { name: "Fred T Jones" },
-       { name: "Earl K Koger Jr." },
-       { name: "Lawrence Raymond" },
-       { name: "Robert J Reed Jr." },
-       { name: "Vernon L Robinson Jr." },
-       { name: "John T Sewell III" },
-       { name: "J. R Sullivan" },
-       { name: "Kersley M Vauls" },
-       { name: "Lewis L Williams" },
-       { name: "John S Wood Esq." },
-       { name: "Robert A Yorke" }
-   ]
-},
-'1955FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Edward L Clapp Jr." },
-       { name: "Leon J Cruise" },
-       { name: "Walter E Fowlkes" },
-       { name: "Jay A Hendricks" },
-       { name: "Patrick W Pannell" },
-       { name: "Raymond B Webster" }
-   ]
-},
-'1954FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Curtis A Brooks" },
-       { name: "Ernest J Colvin D.D.S." },
-       { name: "Gerald Davis" },
-       { name: "James I Deshields" },
-       { name: "James A Dorsey" },
-       { name: "Maceo R Dumas Jr." },
-       { name: "Robert G Jacobs" },
-       { name: "William C Lawrence" },
-       { name: "Robert M Lewis" },
-       { name: "Earl S Mello" },
-       { name: "Nathaniel R Roache" },
-       { name: "Richard L White" },
-       { name: "John J Williams" },
-       { name: "Lawrence L Wilson" }
-   ]
-},
-'1953FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Joseph B Berry" },
-       { name: "Robert M Bradshaw" },
-       { name: "Nesbitt Brown" },
-       { name: "Herman L Carter Jr." },
-       { name: "William L Davis" },
-       { name: "Rene Etienne" },
-       { name: "Nathaniel Jackson Jr." },
-       { name: "Cornelius Johnson III" },
-       { name: "L. M Lawrence Jr." },
-       { name: "Donald E Rigby" },
-       { name: "Arthur L Scott" },
-       { name: "J. T Tildon Ph.D." },
-       { name: "Frank W Washington M.D." },
-       { name: "James S White" },
-       { name: "George Williams" }
-   ]
-},
-'1952FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "James L Green" }
-   ]
-},
-'1951FA': {
-   title: "",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "Oswald Chisholm" },
-       { name: "Herbert L Craig" },
-       { name: "John Davis" },
-       { name: "Clarence C Jackson III" },
-       { name: "Louis W Kane" },
-       { name: "Byron T LaBeach" },
-       { name: "Russell B Lyles Jr." },
-       { name: "Samuel Moore" },
-       { name: "Norman B Poe" },
-       { name: "Maurice Rouselle III" },
-       { name: "Thomas H Savage" },
-       { name: "Eugene D Thomas" },
-       { name: "Ralph R Watkins" }
-   ]
-},
-'1931FA': {  // FL stands for First Line
-   title: "First Line",
-   subtitle: "",
-   d: "",
-   a: "",
-   brothers: [
-       { name: "John W. Patterson", alias: "Pat" },
-       { name: "Herbert Jones" },
-       { name: "Melvin Roy" },
-       { name: "Babe Jones" },
-       { name: "Alphues Edwards" }
-   ]
-}
-};
-
-
-        // Initialize AOS
-        document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                once: true,
-                offset: 100,
-                duration: 800
-            });
-        });
-
-        // Create year diamonds dynamically
-        const yearsGrid = document.querySelector('.years-grid');
-        yearsGrid.innerHTML = ''; // Clear existing content
-
-        // Create diamonds for each year in the data
-        Object.keys(lineData).forEach((yearKey, index) => {
-            const year = yearKey.substring(0, 4);
-            const semester = yearKey.substring(4);
-            
-            const diamond = document.createElement('div');
-            diamond.className = 'year-diamond';
-            diamond.dataset.yearKey = yearKey;
-            diamond.setAttribute('data-aos', 'zoom-in');
-            diamond.setAttribute('data-aos-duration', '800');
-            diamond.setAttribute('data-aos-delay', (index * 100) + '');
-            
-            diamond.innerHTML = `
-                <div class="diamond-shape">
-                    <div class="year-content">
-                        <span class="year-text">${year}</span>
-                        <span class="semester-text">${semester}</span>
-                    </div>
-                </div>
-            `;
-            
-            yearsGrid.appendChild(diamond);
-        });
-
-        // Modal functionality
-        const modal = document.querySelector('.modal');
+        // Photo modal functionality
+        const photoItems = document.querySelectorAll('.photo-item');
+        const modal = document.getElementById('photo-modal');
+        const modalImg = modal.querySelector('img');
+        const modalClose = modal.querySelector('.modal-close');
         
-        // Add click events to all diamonds
-        document.querySelectorAll('.year-diamond').forEach(diamond => {
-            diamond.addEventListener('click', () => {
-                const yearKey = diamond.dataset.yearKey;
-                const data = lineData[yearKey];
-                
-                if (data) {
-                    const modalContent = document.querySelector('.modal-content');
-                    modalContent.innerHTML = `
-                        <h2 class="modal-year">${yearKey.substring(0, 4)} ${yearKey.substring(4)}</h2>
-                        <h3 class="line-title">${data.title}</h3>
-                        <p class="line-subtitle">${data.subtitle}</p>
-                        <!-- Line leadership section removed -->
-                        <div class="brothers-list">
-                            ${data.brothers.map(brother => `
-                                <div class="brother-item">
-                                    <span class="brother-number">${brother.number}</span>
-                                    <span class="brother-name">${brother.name}</span>
-                                    ${brother.alias ? `<span class="brother-alias">"${brother.alias}"</span>` : ''}
-                                </div>
-                            `).join('')}
-                        </div>
-                        <span class="close-modal">&times;</span>
-                    `;
-                    
-                    modal.style.display = 'flex';
-                    setTimeout(() => {
-                        modal.classList.add('active');
-                    }, 10);
-                    
-                    // Reattach close button event listener
-                    modal.querySelector('.close-modal').addEventListener('click', () => {
-                        closeModal();
-                    });
-                }
+        photoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                modalImg.src = img.src;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
         });
-
-        function closeModal() {
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 400);
-        }
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
+        
+        modalClose.addEventListener('click', () => {
+            closeModal();
+        });
+        
+        modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal();
             }
         });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                closeModal();
+        
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Enable dark mode for content beneath hero if needed
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-dark-mode', 'true');
+            } else {
+                document.body.removeAttribute('data-dark-mode');
             }
         });
-
-        // Add search functionality
-        const searchInput = document.getElementById('brotherSearch');
-        const yearDiamonds = document.querySelectorAll('.year-diamond');
         
-        // No mobile menu toggle needed for the vertical menu
-
-        searchInput.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            
-            if (searchTerm === '') {
-                // Show all diamonds if search is empty
-                yearDiamonds.forEach(diamond => {
-                    diamond.style.display = '';
-                    diamond.classList.remove('hidden');
-                });
-                return;
-            }
-
-            yearDiamonds.forEach(diamond => {
-                const yearKey = diamond.dataset.yearKey;
-                const lineData = window.lineData[yearKey];
+        // Theme toggle with localStorage saving
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                const htmlEl = document.documentElement;
+                const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
                 
-                // Search through brothers in this line
-                const matchFound = lineData.brothers.some(brother => {
-                    const searchString = [
-                        brother.number,
-                        brother.name,
-                        brother.alias,
-                        lineData.title,
-                        lineData.subtitle,
-                        yearKey
-                    ].filter(Boolean).join(' ').toLowerCase();
-                    
-                    return searchString.includes(searchTerm);
-                });
-
-                // Add this to your existing JavaScript code at the bottom of the page
-
-// Theme toggle functionality
-const themeToggle = document.querySelector('.theme-toggle');
-const body = document.body;
-const moonIcon = document.querySelector('.theme-toggle i');
-
-// Check for saved theme preference
-const savedTheme = localStorage.getItem('theme');
-
-// Apply saved theme if it exists
-if (savedTheme === 'light') {
-    body.classList.add('light-mode');
-    moonIcon.classList.remove('fa-moon');
-    moonIcon.classList.add('fa-sun');
-}
-
-// Toggle theme when button is clicked
-themeToggle.addEventListener('click', () => {
-    // Toggle body class
-    body.classList.toggle('light-mode');
-    
-    // Toggle icon
-    if (body.classList.contains('light-mode')) {
-        moonIcon.classList.remove('fa-moon');
-        moonIcon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'light');
-    } else {
-        moonIcon.classList.remove('fa-sun');
-        moonIcon.classList.add('fa-moon');
-        localStorage.setItem('theme', 'dark');
-    }
-});
+                // Update theme
+                htmlEl.setAttribute('data-theme', newTheme);
                 
-                // Show/hide the diamond based on match
-                if (matchFound) {
-                    diamond.style.display = '';
-                    diamond.classList.remove('hidden');
+                // Save theme preference
+                localStorage.setItem('theme', newTheme);
+                
+                // Toggle dark mode status for sections if needed
+                if (newTheme === 'light') {
+                    document.body.removeAttribute('data-dark-mode');
                 } else {
-                    diamond.classList.add('hidden');
-                    setTimeout(() => {
-                        if (diamond.classList.contains('hidden')) {
-                            diamond.style.display = 'none';
-                        }
-                    }, 300);
+                    document.body.setAttribute('data-dark-mode', 'true');
                 }
             });
-        });
-
-        // Create sample data for the lineData object if it doesn't exist in window scope
-        if (typeof window.lineData === 'undefined') {
-            window.lineData = lineData;
         }
-
-        // Add this to the bottom of your existing JavaScript in brothers.html
-
-// Theme toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    const body = document.body;
-    const icon = themeToggle.querySelector('i');
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    
-    // Apply saved theme if it exists
-    if (savedTheme === 'light') {
-        body.classList.add('light-mode');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    }
-    
-    // Toggle theme when button is clicked
-    themeToggle.addEventListener('click', function() {
-        // Toggle body class
-        body.classList.toggle('light-mode');
-        
-        // Toggle icon
-        if (body.classList.contains('light-mode')) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-            localStorage.setItem('theme', 'light');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-            localStorage.setItem('theme', 'dark');
-        }
-
-        
-    });
-});
     </script>
-
-    
 
 </body></html>
