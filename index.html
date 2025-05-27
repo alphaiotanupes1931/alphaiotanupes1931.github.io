@@ -886,16 +886,28 @@
             padding: 0.5rem 0;
         }
         
+        /* Style the menu */
         .mobile-menu {
             display: none;
             flex-direction: column;
             padding: 1rem 0;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 1002;
         }
         
-        .mobile-menu.active {
+        /* When checkbox is checked, show the menu */
+        #mobile-menu-checkbox:checked ~ .mobile-menu {
             display: flex;
             animation: slideDown 0.3s ease-out;
+        }
+        
+        /* Hide the checkbox */
+        #mobile-menu-checkbox {
+            display: none;
         }
         
         @keyframes slideDown {
@@ -904,7 +916,7 @@
         }
         
         .mobile-menu-link {
-            color: var(--color-text);
+            color: #FFFFFF;
             text-decoration: none;
             font-family: 'Syncopate', sans-serif;
             text-transform: uppercase;
@@ -917,7 +929,7 @@
             background-color: rgba(220, 20, 60, 0.2);
         }
         
-        /* Mobile Toggle Button */
+        /* Mobile Toggle Button Styled as Label */
         .mobile-menu-toggle {
             background: none;
             border: none;
@@ -928,6 +940,20 @@
             display: inline-block !important; /* Force display */
             visibility: visible !important; /* Force visibility */
             z-index: 100;
+            position: relative;
+        }
+        
+        /* Style for the label when checkbox is checked */
+        #mobile-menu-checkbox:checked ~ .mobile-nav-header .mobile-menu-toggle .fa-bars {
+            display: none;
+        }
+        
+        #mobile-menu-checkbox:checked ~ .mobile-nav-header .mobile-menu-toggle .fa-times {
+            display: inline-block;
+        }
+        
+        .mobile-menu-toggle .fa-times {
+            display: none;
         }
         
         [data-theme="light"] .mobile-nav {
@@ -1195,19 +1221,25 @@
         </div>
     </nav>
     
-    <!-- Mobile Navigation -->
+    <!-- Mobile Navigation with CSS-only approach -->
     <nav class="mobile-nav">
+        <!-- Hidden checkbox that controls the menu state -->
+        <input type="checkbox" id="mobile-menu-checkbox">
+        
         <div class="mobile-nav-header">
-            <a href="#" class="logo">ALPHA IOTA</a>
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+            <a href="index.html" class="logo">ALPHA IOTA</a>
+            <label for="mobile-menu-checkbox" class="mobile-menu-toggle">
                 <i class="fas fa-bars"></i>
-            </button>
+                <i class="fas fa-times"></i>
+            </label>
         </div>
-        <div class="mobile-menu" id="mobile-menu">
-            <a href="#" class="mobile-menu-link">HOME</a>
+        
+        <div class="mobile-menu">
+            <a href="index.html" class="mobile-menu-link">HOME</a>
             <a href="about.html" class="mobile-menu-link">ABOUT</a>
             <a href="brothers.html" class="mobile-menu-link">BROTHERS</a>
             <a href="gallery.html" class="mobile-menu-link">GALLERY</a>
+            <a href="brothersonly.html" class="mobile-menu-link">PORTAL</a>
         </div>
     </nav>
     
