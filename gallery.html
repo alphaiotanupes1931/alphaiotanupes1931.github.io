@@ -115,7 +115,7 @@
             width: 100%;
         }
 
-        /* Mobile Navigation Styles */
+        /* Mobile Navigation Styles - CSS-only approach with checkbox hack */
         .desktop-nav {
             display: block;
         }
@@ -139,14 +139,26 @@
             padding: 0.5rem 0;
         }
         
+        /* Hide the checkbox */
+        #mobile-menu-checkbox {
+            display: none;
+        }
+        
+        /* Style the menu */
         .mobile-menu {
             display: none;
             flex-direction: column;
             padding: 1rem 0;
             background: rgba(0,0,0,0.95);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            z-index: 1002;
         }
         
-        .mobile-menu.active {
+        /* When checkbox is checked, show the menu */
+        #mobile-menu-checkbox:checked ~ .mobile-menu {
             display: flex;
             animation: slideDown 0.3s ease-out;
         }
@@ -170,7 +182,7 @@
             background-color: rgba(220, 20, 60, 0.2);
         }
 
-        /* Mobile Toggle Button */
+        /* Mobile Toggle Button Styled as Label */
         .mobile-menu-toggle {
             background: none;
             border: none;
@@ -180,7 +192,21 @@
             padding: 0.3rem;
             display: inline-block;
             visibility: visible;
-            z-index: 100;
+            z-index: 1003;
+            position: relative;
+        }
+        
+        /* Style for the label when checkbox is checked */
+        #mobile-menu-checkbox:checked ~ .mobile-nav-header .mobile-menu-toggle .fa-bars {
+            display: none;
+        }
+        
+        #mobile-menu-checkbox:checked ~ .mobile-nav-header .mobile-menu-toggle .fa-times {
+            display: inline-block;
+        }
+        
+        .mobile-menu-toggle .fa-times {
+            display: none;
         }
 
         /* Theme Toggle Button */
@@ -497,25 +523,30 @@
                 <a href="about.html" class="menu-link">ABOUT</a>
                 <a href="brothers.html" class="menu-link">BROTHERS</a>
                 <a href="gallery.html" class="menu-link">GALLERY</a>
-                
+                <a href="brothersonly.html" class="menu-link">PORTAL</a>
             </div>
         </div>
     </nav>
     
-    <!-- Mobile Navigation -->
+    <!-- Mobile Navigation with CSS-only approach -->
     <nav class="mobile-nav">
+        <!-- Hidden checkbox that controls the menu state -->
+        <input type="checkbox" id="mobile-menu-checkbox">
+        
         <div class="mobile-nav-header">
             <a href="index.html" class="logo">ALPHA IOTA</a>
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+            <label for="mobile-menu-checkbox" class="mobile-menu-toggle">
                 <i class="fas fa-bars"></i>
-            </button>
+                <i class="fas fa-times"></i>
+            </label>
         </div>
+        
         <div class="mobile-menu">
             <a href="index.html" class="mobile-menu-link">HOME</a>
             <a href="about.html" class="mobile-menu-link">ABOUT</a>
             <a href="brothers.html" class="mobile-menu-link">BROTHERS</a>
             <a href="gallery.html" class="mobile-menu-link">GALLERY</a>
-           
+            <a href="brothersonly.html" class="mobile-menu-link">PORTAL</a>
         </div>
     </nav>
 
@@ -524,7 +555,7 @@
     <div class="gallery-container">
         <div class="gallery-tabs">
             <button class="gallery-tab active" data-tab="photos">Photos</button>
-         
+            <button class="gallery-tab" data-tab="videos">Videos</button>
         </div>
 
         <!-- Photos Gallery -->
@@ -674,36 +705,11 @@
                 document.body.removeAttribute('data-dark-mode');
             }
             
-            // Mobile menu toggle functionality
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            
-            if (mobileMenuToggle) {
-                mobileMenuToggle.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('active');
-                    // Change icon based on menu state
-                    const icon = mobileMenuToggle.querySelector('i');
-                    if (mobileMenu.classList.contains('active')) {
-                        icon.classList.remove('fa-bars');
-                        icon.classList.add('fa-times');
-                    } else {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
-                });
-            }
-            
-            // Close mobile menu when a menu item is clicked
-            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.remove('active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                });
-            });
+            // Remove event listeners for clean slate
+            // The toggle will now work directly with the onclick attribute
         });
+        
+        // No JavaScript function needed for mobile menu - using CSS checkbox hack
         
         // Theme toggle with localStorage saving
         const themeToggle = document.getElementById('theme-toggle');
