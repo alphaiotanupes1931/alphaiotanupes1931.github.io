@@ -1,0 +1,1426 @@
+<html lang="en" data-theme="light"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brothers Portal | Alpha Iota Chapter | Kappa Alpha Psi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Darker+Grotesque:wght@300;600;800&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Dark Theme (Default) */
+            --color-background: #121212;
+            --color-secondary-bg: #000000;
+            --color-primary: #dc143c;
+            --color-text: #ffffff;
+            --color-text-secondary: #ffffff;
+            --color-card-bg: #000000;
+            --color-overlay: rgba(0, 0, 0, 0.6);
+            --transition: all 0.3s ease-in-out;
+        }
+        
+        /* Light Theme Variables */
+        [data-theme="light"] {
+            --color-background: #F5F5DC; /* Cream/beige */
+            --color-secondary-bg: #ffffff;
+            --color-primary: #dc143c;  /* Keep crimson accent */
+            --color-text: #000000;     /* Dark text color for light theme */
+            --color-text-secondary: #fafafa;
+            --color-card-bg: #f2f2e6;
+            --color-overlay: rgba(255, 255, 255, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Darker Grotesque', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: background-color 0.3s ease;
+        }
+        
+        [data-theme="light"] .nav {
+            background-color: transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            padding: 0.5rem 0;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        [data-theme="light"] .logo {
+            color: #000000;
+        }
+
+        .menu {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: var(--color-text);
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        
+        [data-theme="light"] .menu-link {
+            color: #000000;
+        }
+
+        .menu-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .menu-link:hover:after {
+            width: 100%;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 1rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            position: relative;
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+        
+        .theme-toggle:active {
+            transform: scale(0.9);
+        }
+        
+        .theme-toggle .fa-sun {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(-180deg) scale(0.5);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        .theme-toggle .fa-moon {
+            position: relative;
+            opacity: 1;
+            transform: rotate(0) scale(1);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        [data-theme="light"] .theme-toggle {
+            box-shadow: 0 0 10px 2px rgba(220, 20, 60, 0.3);
+            color: #ffffff;
+        }
+        
+        [data-theme="light"] .theme-toggle .fa-sun {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+        }
+        
+        [data-theme="light"] .theme-toggle .fa-moon {
+            opacity: 0;
+            transform: rotate(180deg) scale(0.5);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .portal-section {
+            padding-top: 160px;
+            padding-bottom: 4rem;
+            min-height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), url('https://images.pexels.com/photos/955648/pexels-photo-955648.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        [data-theme="light"] .portal-section {
+            background-image: linear-gradient(rgba(245, 245, 220, 0.85), rgba(245, 245, 220, 0.95)), url('https://images.pexels.com/photos/955648/pexels-photo-955648.jpeg');
+        }
+
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--color-primary);
+            margin: 1rem auto;
+        }
+
+        /* Login Form */
+        .login-form {
+            max-width: 500px;
+            margin: 0 auto 4rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(220, 20, 60, 0.2);
+            border: 1px solid rgba(220, 20, 60, 0.3);
+            padding: 3rem;
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        [data-theme="light"] .login-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(220, 20, 60, 0.2);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        .login-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-title:after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--color-primary);
+            margin: 1rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            color: var(--color-text);
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] .form-label {
+            color: #333;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.3), inset 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        [data-theme="light"] .form-input {
+            background-color: rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background-color: var(--color-primary);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 6px 15px rgba(220, 20, 60, 0.3);
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--color-primary), #ff3366);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(220, 20, 60, 0.4);
+        }
+
+        .btn:hover:before {
+            opacity: 1;
+        }
+
+        .btn:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 2px 10px rgba(220, 20, 60, 0.3);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        /* Portal Content (initially hidden) */
+        .portal-content {
+            display: none;
+        }
+
+        .portal-content.active {
+            display: block;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Portal Dashboard */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .dashboard-card {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(220, 20, 60, 0.2);
+            transform: translateY(0);
+        }
+
+        [data-theme="light"] .dashboard-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: var(--color-primary);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--color-primary), #ff3366);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg) translate(20px, -80px);
+            transition: var(--transition);
+        }
+
+        .dashboard-card:hover .card-header:before {
+            transform: rotate(45deg) translate(40px, -60px);
+        }
+
+        .card-title {
+            color: #fff;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .card-text {
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .card-text:before {
+            content: '\f192';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+        }
+
+        .event-list, .birthday-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .event-item, .birthday-item {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] .event-item, 
+        [data-theme="light"] .birthday-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .event-item:hover, 
+        .birthday-item:hover {
+            transform: translateX(5px);
+            background-color: rgba(220, 20, 60, 0.05);
+            padding-left: 10px;
+            border-radius: 4px;
+        }
+
+        .event-item:last-child, 
+        .birthday-item:last-child {
+            border-bottom: none;
+        }
+
+        .event-date, .birthday-date {
+            font-weight: 800;
+            color: var(--color-primary);
+            flex-shrink: 0;
+            background-color: rgba(220, 20, 60, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            min-width: 70px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .event-title, .birthday-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .event-description {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Updates Section */
+        .updates-section {
+            margin-bottom: 4rem;
+        }
+
+        .update-item {
+            padding: 2.5rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 6px solid var(--color-primary);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+        }
+
+        [data-theme="light"] .update-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .update-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .update-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        [data-theme="light"] .update-meta {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .update-meta span {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .update-meta span:first-child:before {
+            content: '\f007';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+        }
+
+        .update-meta span:last-child:before {
+            content: '\f133';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+        }
+
+        .update-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .update-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .update-content p {
+            margin-bottom: 1rem;
+        }
+
+        /* Meeting Notes List */
+        .meetings-section {
+            margin-bottom: 4rem;
+        }
+
+        .meeting-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .meeting-item {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(220, 20, 60, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="light"] .meeting-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .meeting-item:after {
+            content: '\f274';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: -15px;
+            bottom: -15px;
+            font-size: 6rem;
+            color: rgba(220, 20, 60, 0.05);
+            z-index: 0;
+            transform: rotate(-15deg);
+            transition: var(--transition);
+        }
+
+        .meeting-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: var(--color-primary);
+        }
+
+        .meeting-item:hover:after {
+            transform: rotate(0);
+            right: -5px;
+            bottom: -5px;
+            color: rgba(220, 20, 60, 0.1);
+        }
+
+        .meeting-date {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 3px 10px rgba(220, 20, 60, 0.3);
+        }
+
+        .meeting-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .view-notes-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            position: relative;
+            padding-right: 1.5rem;
+            z-index: 2;
+        }
+
+        .view-notes-btn:after {
+            content: '\f061';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: var(--transition);
+        }
+
+        .view-notes-btn:hover {
+            color: #ff3366;
+            padding-right: 2rem;
+        }
+
+        .view-notes-btn:hover:after {
+            right: -5px;
+        }
+
+        /* Resources Section */
+        .resources-section {
+            margin-bottom: 5rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-item {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(220, 20, 60, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .resource-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: var(--color-primary);
+        }
+
+        .resource-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            font-size: 3.5rem;
+            color: white;
+            background: linear-gradient(45deg, var(--color-primary), #ff3366);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .resource-icon:before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg) translate(-80%, -80%);
+            transition: all 0.6s ease;
+        }
+
+        .resource-item:hover .resource-icon:before {
+            transform: rotate(45deg) translate(-30%, -30%);
+        }
+
+        .resource-details {
+            padding: 2rem;
+        }
+
+        .resource-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--color-primary);
+        }
+
+        .resource-description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: var(--color-primary);
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .resource-link:after {
+            content: '\f0a9';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: var(--transition);
+        }
+
+        .resource-link:hover {
+            color: #ff3366;
+            padding-right: 2rem;
+        }
+
+        .resource-link:hover:after {
+            right: -5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(to top, #000000, #111111);
+            padding: 4rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(220, 20, 60, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="light"] .footer {
+            background: linear-gradient(to top, #f2f2e6, #ffffff);
+            color: #333333;
+        }
+
+        .footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(220, 20, 60, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .diamond-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            transform-style: preserve-3d;
+            animation: rotate 12s linear infinite;
+        }
+
+        .diamond {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: linear-gradient(45deg, var(--color-primary), #ff3366);
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 0 15px rgba(220, 20, 60, 0.7));
+        }
+
+        .diamond::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .diamond::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3));
+        }
+
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--color-primary);
+            filter: blur(25px);
+            opacity: 0.5;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateY(0deg) rotateX(20deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(20deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.2);
+            }
+        }
+
+        .footer-motto {
+            color: var(--color-primary);
+            font-weight: bold;
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-family: 'Syncopate', sans-serif;
+            text-shadow: 0 2px 10px rgba(220, 20, 60, 0.5);
+        }
+
+        .footer-credits {
+            font-style: italic;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            color: var(--color-text);
+        }
+
+        .footer-credits span {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            color: var(--color-text);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            transform: scale(1);
+        }
+
+        .social-link:hover {
+            color: var(--color-primary);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0.6;
+            transition: color 0.3s ease;
+        }
+
+        /* Animation for login form field focus */
+        .form-input:focus + .input-highlight {
+            width: 100%;
+        }
+
+        .input-highlight {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .menu {
+                margin-top: 1rem;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .dashboard-grid,
+            .meeting-list,
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portal-section {
+                padding-top: 100px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .login-form {
+                padding: 2rem;
+            }
+
+            .update-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--color-primary);
+            border-radius: 10px;
+        }
+
+        [data-theme="light"]::-webkit-scrollbar {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Status indicator for logged-in user */
+        .user-status {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.8rem;
+            z-index: 2000;
+            border-bottom-left-radius: 8px;
+        }
+
+        .user-status.active {
+            display: block;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+<script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            </style></head>
+
+<body>
+    <!-- Navigation -->
+    
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="logo">ALPHA IOTA</a>
+            <div class="menu">
+                <a href="index.html" class="menu-link">HOME</a>
+                <a href="about.html" class="menu-link">ABOUT</a>
+                <a href="brothers.html" class="menu-link">BROTHERS</a>
+                <a href="gallery.html" class="menu-link">GALLERY</a>
+                <a href="brothersonly.html" class="menu-link">PORTAL</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- User Status Indicator -->
+    <div class="user-status" id="userStatus">
+        <i class="fas fa-user-check"></i> AUTHENTICATED BROTHER
+    </div>
+
+    <main class="portal-section">
+        <div class="container">
+            <h1 class="section-title">Brothers Portal</h1>
+
+            <!-- Login Form (initially visible) -->
+            <div class="login-form" id="loginForm">
+                <h2 class="login-title">BROTHERS ONLY ACCESS</h2>
+                <div class="form-group">
+                    <label for="memberTag" class="form-label">Member Tag (e.g., 3AI24FA)</label>
+                    <input type="text" id="memberTag" class="form-input" placeholder="Enter your member tag">
+                    <span class="input-highlight"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Enter password">
+                    <span class="input-highlight"></span>
+                </div>
+                <button type="button" id="loginButton" class="btn btn-block">
+                    <i class="fas fa-lock-open"></i> ACCESS PORTAL
+                </button>
+            </div>
+
+            <!-- Portal Content (initially hidden) -->
+            <div class="portal-content" id="portalContent">
+                <!-- Dashboard Section with Quick Links -->
+                <div class="dashboard-grid">
+                    <!-- Events Card -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Upcoming Events</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="event-list">
+                                <li class="event-item">
+                                    <div class="event-date">JUN 12</div>
+                                    <div>
+                                        <div class="event-title">Chapter Meeting</div>
+                                        <div class="event-description">7:00 PM, Student Union Room 302</div>
+                                    </div>
+                                </li>
+                                <li class="event-item">
+                                    <div class="event-date">JUN 18</div>
+                                    <div>
+                                        <div class="event-title">Fundraiser Planning</div>
+                                        <div class="event-description">6:30 PM, Zoom Meeting</div>
+                                    </div>
+                                </li>
+                                <li class="event-item">
+                                    <div class="event-date">JUN 25</div>
+                                    <div>
+                                        <div class="event-title">Community Service</div>
+                                        <div class="event-description">10:00 AM, Baltimore Food Bank</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Birthdays Card -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-birthday-cake"></i> Brother Birthdays</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="birthday-list">
+                                <li class="birthday-item">
+                                    <div class="birthday-date">JUN 10</div>
+                                    <div class="birthday-name">Xavier Johnson (0AI23SP)</div>
+                                </li>
+                                <li class="birthday-item">
+                                    <div class="birthday-date">JUN 22</div>
+                                    <div class="birthday-name">Terell Reed (8AI23FA)</div>
+                                </li>
+                                <li class="birthday-item">
+                                    <div class="birthday-date">JUL 05</div>
+                                    <div class="birthday-name">Godley Pierre (1AI23FA)</div>
+                                </li>
+                                <li class="birthday-item">
+                                    <div class="birthday-date">JUL 18</div>
+                                    <div class="birthday-name">Jaden Koranteng (1AI24FA)</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Important Reminders Card -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fas fa-exclamation-circle"></i> Important Reminders</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text"><strong>Dues Payment:</strong> Summer dues ($150) due by June 30th.</p>
+                            <p class="card-text"><strong>Service Hours:</strong> All members need to complete 15 service hours by July 15th.</p>
+                            <p class="card-text"><strong>Annual Convention:</strong> Register by June 25th for early bird discount.</p>
+                            <p class="card-text"><strong>Social Media:</strong> Send content for our Instagram takeover to the social chair.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chapter Updates Section -->
+                <div class="updates-section">
+                    <h2 class="section-title">Chapter Updates</h2>
+                    <div class="update-item">
+                        <div class="update-meta">
+                            <span>Posted by: Godley Pierre, Polemarch</span>
+                            <span>June 5, 2024</span>
+                        </div>
+                        <h3 class="update-title">Summer Programming Plans</h3>
+                        <div class="update-content">
+                            <p>Brothers, I hope this message finds you well as we enter the summer season. We have several important initiatives planned for the coming months:</p>
+                            <p>1. The Summer Leadership Retreat is confirmed for July 22-24 at the Morgan State Alumni House. Please mark your calendars and plan to attend.</p>
+                            <p>2. Our community service program with Baltimore Youth Connect will continue throughout the summer. We need at least 5 brothers per session, so please sign up on the volunteer spreadsheet.</p>
+                            <p>3. Congratulations to our newly initiated brothers! Your energy and enthusiasm have already made a positive impact on our chapter.</p>
+                        </div>
+                    </div>
+
+                    <div class="update-item">
+                        <div class="update-meta">
+                            <span>Posted by: Xavier Johnson, Vice Polemarch</span>
+                            <span>June 1, 2024</span>
+                        </div>
+                        <h3 class="update-title">Province Meeting Report</h3>
+                        <div class="update-content">
+                            <p>Brothers, I'm pleased to report that our chapter had an excellent showing at the recent Province Meeting. We received recognition for our academic achievement and community service programs.</p>
+                            <p>Special congratulations to Brothers Terell Reed and Marcus McClean for their awards in leadership excellence. The Province Polemarch specifically mentioned our chapter's mentorship program as a model for other chapters to follow.</p>
+                            <p>The full meeting minutes and presentation slides have been uploaded to our shared drive. Please review them before our next chapter meeting.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meeting Notes Section -->
+                <div class="meetings-section">
+                    <h2 class="section-title">Meeting Notes</h2>
+                    <div class="meeting-list">
+                        <div class="meeting-item">
+                            <div class="meeting-date">June 1, 2024</div>
+                            <h3 class="meeting-title">Chapter Meeting - Budget Approval</h3>
+                            <p>Key points: Summer budget approval, upcoming events planning, committee assignments</p>
+                            <a href="#" class="view-notes-btn">View Complete Notes</a>
+                        </div>
+                        <div class="meeting-item">
+                            <div class="meeting-date">May 15, 2024</div>
+                            <h3 class="meeting-title">Executive Board Meeting</h3>
+                            <p>Key points: Officer transitions, summer goals setting, recruitment strategy</p>
+                            <a href="#" class="view-notes-btn">View Complete Notes</a>
+                        </div>
+                        <div class="meeting-item">
+                            <div class="meeting-date">May 1, 2024</div>
+                            <h3 class="meeting-title">Chapter Meeting - Elections</h3>
+                            <p>Key points: Officer elections results, committee reports, end of semester review</p>
+                            <a href="#" class="view-notes-btn">View Complete Notes</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources Section -->
+                <div class="resources-section">
+                    <h2 class="section-title">Chapter Resources</h2>
+                    <div class="resources-grid">
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="resource-details">
+                                <h3 class="resource-title">Chapter Bylaws</h3>
+                                <p class="resource-description">Updated May 2024 with latest amendments</p>
+                                <a href="#" class="resource-link">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="resource-details">
+                                <h3 class="resource-title">Calendar Sync</h3>
+                                <p class="resource-description">Add all chapter events to your personal calendar</p>
+                                <a href="#" class="resource-link">Sync Calendar</a>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-folder-open"></i>
+                            </div>
+                            <div class="resource-details">
+                                <h3 class="resource-title">Document Library</h3>
+                                <p class="resource-description">Forms, templates, and chapter documents</p>
+                                <a href="#" class="resource-link">Access Library</a>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="resource-details">
+                                <h3 class="resource-title">Brother Directory</h3>
+                                <p class="resource-description">Contact information for all active brothers</p>
+                                <a href="#" class="resource-link">View Directory</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+
+
+    <script>
+        // Theme Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                // Check for saved theme preference
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                
+                themeToggle.addEventListener('click', function() {
+                    const htmlEl = document.documentElement;
+                    const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    htmlEl.setAttribute('data-theme', newTheme);
+                    
+                    // Save theme preference
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+
+            // Enhanced Login Functionality with animation
+            const loginButton = document.getElementById('loginButton');
+            const loginForm = document.getElementById('loginForm');
+            const portalContent = document.getElementById('portalContent');
+            const memberTagInput = document.getElementById('memberTag');
+            const passwordInput = document.getElementById('password');
+            const userStatus = document.getElementById('userStatus');
+
+            // Add event listener for pressing Enter key
+            passwordInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    loginButton.click();
+                }
+            });
+
+            if (loginButton) {
+                loginButton.addEventListener('click', function() {
+                    // Show button loading state
+                    loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AUTHENTICATING...';
+                    loginButton.disabled = true;
+                    
+                    // Simulate network delay
+                    setTimeout(function() {
+                        // Simple validation with the provided password
+                        const memberTag = memberTagInput.value.trim();
+                        const password = passwordInput.value.trim();
+                        
+                        // Check if member tag follows pattern and password is correct
+                        const tagPattern = /^\d+AI\d+[A-Z]{2}$/;
+                        
+                        if (tagPattern.test(memberTag) && password === "InDevelopment123") {
+                            // Success animation
+                            loginButton.innerHTML = '<i class="fas fa-check"></i> AUTHENTICATED!';
+                            loginButton.style.backgroundColor = '#28a745';
+                            
+                            // Save login state
+                            localStorage.setItem('aiChapterLoggedIn', 'true');
+                            localStorage.setItem('aiMemberTag', memberTag);
+                            
+                            // Delay before showing content
+                            setTimeout(function() {
+                                // Hide login form and show portal content
+                                loginForm.style.opacity = '0';
+                                loginForm.style.transform = 'translateY(-20px)';
+                                loginForm.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                                
+                                setTimeout(function() {
+                                    loginForm.style.display = 'none';
+                                    portalContent.classList.add('active');
+                                    
+                                    // Show user status
+                                    userStatus.textContent = `${memberTag} AUTHENTICATED`;
+                                    userStatus.classList.add('active');
+                                }, 500);
+                            }, 1000);
+                        } else {
+                            // Failed animation
+                            loginButton.innerHTML = '<i class="fas fa-times"></i> AUTHENTICATION FAILED';
+                            loginButton.style.backgroundColor = '#dc3545';
+                            
+                            // Shake animation for inputs
+                            memberTagInput.style.animation = 'shake 0.5s ease';
+                            passwordInput.style.animation = 'shake 0.5s ease';
+                            
+                            setTimeout(function() {
+                                // Reset button
+                                loginButton.innerHTML = '<i class="fas fa-lock-open"></i> ACCESS PORTAL';
+                                loginButton.disabled = false;
+                                loginButton.style.backgroundColor = '';
+                                
+                                // Reset animations
+                                memberTagInput.style.animation = '';
+                                passwordInput.style.animation = '';
+                            }, 1500);
+                        }
+                    }, 1500);
+                });
+            }
+            
+            // Add shake animation
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Check for existing login
+            if (localStorage.getItem('aiChapterLoggedIn') === 'true') {
+                const savedMemberTag = localStorage.getItem('aiMemberTag') || 'BROTHER';
+                
+                // Hide login form and show portal content
+                loginForm.style.display = 'none';
+                portalContent.classList.add('active');
+                
+                // Show user status
+                userStatus.textContent = `${savedMemberTag} AUTHENTICATED`;
+                userStatus.classList.add('active');
+            }
+        });
+    </script>
+
+</body></html>
