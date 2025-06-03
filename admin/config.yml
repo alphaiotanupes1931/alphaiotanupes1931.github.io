@@ -1,9 +1,12 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: alphaiotanupes1931/alphaiotanupes1931.github.io
   branch: main
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
+
+local_backend: true
 
 collections:
   - name: "pages"
