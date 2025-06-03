@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: alphaiotanupes1931/alphaiotanupes1931.github.io
   branch: main
+  auth_endpoint: https://decap-cms-oauth-provider.netlify.app/auth
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
