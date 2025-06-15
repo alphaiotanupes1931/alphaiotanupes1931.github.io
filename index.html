@@ -196,11 +196,48 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #000000;
+            background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             z-index: 1000;
             padding: 0.8rem 0;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(176, 16, 48, 0.1);
+        }
+        
+        .nav-black {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            z-index: 999; /* Lower than transparent nav */
+            padding: 0.8rem 0;
             border-bottom: 1px solid var(--color-crimson);
+        }
+        
+        /* Show black navbar when scrolling */
+        @media (min-height: 1px) {
+            .nav {
+                background-color: transparent;
+                visibility: visible;
+            }
+            
+            .nav-black {
+                visibility: hidden;
+            }
+        }
+        
+        /* Hide transparent navbar when scrolled */
+        @media (min-height: 1px) {
+            body.scrolled .nav {
+                visibility: hidden;
+            }
+            
+            body.scrolled .nav-black {
+                visibility: visible;
+                z-index: 1001; /* Higher than transparent nav when visible */
+            }
         }
   
         .nav-inner {
@@ -239,7 +276,8 @@
             position: relative;
             padding-bottom: 4px;
             transition: color 0.3s ease;
-            font-weight: bold;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
         
         .menu-link:hover {
@@ -374,7 +412,7 @@
             height: 100%;
             background-color: #121212; /* Fallback color */
             background-size: cover;
-            background-position: center;
+            background-position: center 10%; /* Move images down 3 inches */
             background-repeat: no-repeat;
         }
   
@@ -779,6 +817,13 @@
             white-space: normal;
             overflow-wrap: break-word;
             word-wrap: break-word;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .line-name:hover {
+            transform: scale(1.05);
+            color: var(--color-crimson);
         }
         
         .line-year {
@@ -787,11 +832,42 @@
             color: #FFFFFF;
             display: none; /* Hide initially */
             margin-top: 0.5rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             white-space: normal;
             overflow-wrap: break-word;
             word-wrap: break-word;
+        }
+        
+        .line-year.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .line-year.position {
+            font-weight: bold;
+            color: var(--color-crimson);
+        }
+        
+        .section-header {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.8rem;
+            color: var(--color-crimson);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.8rem;
+            margin-bottom: 0.3rem;
+            display: none;
+        }
+        
+        .section-header.show {
+            display: block;
+        }
+        
+        .line-year.achievement {
+            color: #F5F5DC;
+            font-style: italic;
         }
   
         /* Footer Styles */
@@ -903,9 +979,33 @@
             left: 0;
             width: 100%;
             z-index: 1001;
+            background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 0.5rem 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-nav-black {
+            display: none; /* Hide on desktop */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
             background-color: #000000;
             padding: 0.5rem 1rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        /* Show black mobile navbar when scrolling */
+        body.scrolled .mobile-nav {
+            visibility: hidden;
+        }
+        
+        body.scrolled .mobile-nav-black {
+            visibility: visible;
+            z-index: 1002;
         }
         
         .mobile-nav-header {
@@ -920,7 +1020,7 @@
             display: none;
             flex-direction: column;
             padding: 1rem 0;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.9);
             position: absolute;
             top: 100%;
             left: 0;
@@ -951,6 +1051,8 @@
             text-transform: uppercase;
             padding: 0.8rem 1rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
             transition: background-color 0.3s ease;
         }
         
@@ -986,11 +1088,17 @@
         }
         
         [data-theme="light"] .mobile-nav {
+            background-color: rgba(245, 245, 220, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        [data-theme="light"] .mobile-nav.scrolled {
             background-color: rgba(245, 245, 220, 0.9);
         }
         
         [data-theme="light"] .mobile-menu {
-            background: rgba(245, 245, 220, 0.95);
+            background: rgba(245, 245, 220, 0.9);
         }
         
         [data-theme="light"] .mobile-menu-link {
@@ -1198,7 +1306,7 @@
             100% { transform: rotate(360deg); }
         }
     </style>
-  <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
+  <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
             .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, 
             .ytp-youtube-button, .ytp-spinner, .ytp-spinner-container, 
             .ytp-spinner-rotator, .ytp-spinner-left, .ytp-spinner-right, 
@@ -1226,7 +1334,7 @@
                 height: 100% !important;
                 overflow: hidden !important;
             }
-        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
+        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
   
   
   
@@ -1236,8 +1344,22 @@
         <div class="loader-progress"></div>
     </div>
   
-    <!-- Desktop Navigation -->
+    <!-- Desktop Navigation - Transparent (shown at top) -->
     <nav class="nav desktop-nav">
+        <div class="nav-inner">
+            <a href="#" class="logo">ALPHA IOTA</a>
+            <div class="menu">
+                <a href="#" class="menu-link">HOME</a>
+                <a href="about.html" class="menu-link">ABOUT</a>
+                <a href="brothers.html" class="menu-link">CHAPTER LINEAGE</a>
+                <a href="gallery.html" class="menu-link">GALLERY</a>
+                <a href="https://cash.app/$MorganNupes" target="_blank" class="menu-link donate-button">DONATE</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Desktop Navigation - Black (shown when scrolling) -->
+    <nav class="nav-black desktop-nav">
         <div class="nav-inner">
             <a href="#" class="logo">ALPHA IOTA</a>
             <div class="menu">
@@ -1283,7 +1405,7 @@
                     .hero-bg {
                         background-image: url('https://i.ibb.co/mC7mtv7K/IMG-3586.jpg') !important;
                         background-size: cover !important;
-                        background-position: center !important;
+                        background-position: center 10% !important; /* Move images down 3 inches */
                     }
                     .direct-youtube-container {
                         display: none !important;
@@ -1362,7 +1484,7 @@
             
             <!-- Desktop Only: Photo Slideshow -->
             <div class="direct-youtube-container">
-                <div class="slideshow-container" id="youtube-container"><img id="slideshow-image" src="https://i.ibb.co/5h9t4v8n/IMG-3587.jpg" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 1s ease-in-out; opacity: 1;"></div>
+                <div class="slideshow-container" id="youtube-container"><img id="slideshow-image" src="https://i.ibb.co/x8RMbBdg/4H7A4587.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: center 10%; transition: opacity 1s ease-in-out; opacity: 1;"></div>
             </div>
             
             <!-- Overlay for both mobile and desktop -->
@@ -1431,7 +1553,12 @@
                         <img src="https://i.ibb.co/p8Qs3Ky/IMG-4778.jpg" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Lesley Ofosu</span>
-                            <span class="line-year">NPHC Vice President of Morgan State University</span>
+                            <span class="section-header">Current Positions:</span>
+                            <span class="line-year position">Strategus of the Alpha Iota Chapter</span>
+                            <span class="line-year position">NPHC Vice President of Morgan State University</span>
+
+                            <span class="section-header">Achievements:</span>
+                            <span class="line-year achievement">NPHC Vice President of Morgan State University</span>
                         </div>
                     </div>
                 </div>
@@ -1441,11 +1568,13 @@
                         <img src="https://terellreed-tech.github.io/DSC03292.jpg" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Terell Reed</span>
-                            <span class="line-year">Current Webmaster for the Alpha Iota Chapter</span>
-                            <span class="line-year">3x Hackathon Winner</span>
-                            <span class="line-year">Featured in Baltimore Times</span>
-                                <span class="line-year">Featured in MITRE Insights</span>
-                          
+                            <span class="section-header">Current Positions:</span>
+                            <span class="line-year position">Current Webmaster for the Alpha Iota Chapter</span>
+
+                            <span class="section-header">Achievements:</span>
+                            <span class="line-year achievement">3x Hackathon Winner</span>
+                            <span class="line-year achievement">Featured in Baltimore Times</span>
+                            <span class="line-year achievement">Featured in MITRE Insights</span>
                         </div>
                     </div>
                 </div>
@@ -1455,8 +1584,11 @@
                         <img src="https://i.ibb.co/gbMVPdbC/IMG-7817.jpg" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Godley Pierre</span>
-                            <span class="line-year">Current Polemarch of the Alpha Iota Chapter </span>
-                            <span class="line-year">Charter Member of the Phi Rho Chapter of Alpha Kappa Psi Business Fraternity Inc. </span>
+                            <span class="section-header">Current Positions:</span>
+                            <span class="line-year position">Current Polemarch of the Alpha Iota Chapter</span>
+
+                            <span class="section-header">Achievements:</span>
+                            <span class="line-year achievement">Charter Member of the Phi Rho Chapter of Alpha Kappa Psi Business Fraternity Inc.</span>
                         </div>
                     </div>
                 </div>
@@ -1466,11 +1598,14 @@
                         <img src="https://i.ibb.co/XfKPKByg/xavier.jpg" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Xavier Johnson</span>
-                            <span class="line-year">Past Junior Province Vice Polemarch (E)</span>
-                            <span class="line-year">37th Mister Morgan State University</span>
+                            <span class="section-header">Past Positions:</span>
+                            <span class="line-year position">Past Junior Province Vice Polemarch (E)</span>
+                            <span class="section-header">Achievements:</span>
+                            <span class="line-year achievement">37th Mister Morgan State University</span>
                         </div>
                     </div>
                 </div>
+
 
           
 
@@ -1479,23 +1614,29 @@
                         <img src="https://media.licdn.com/dms/image/v2/D4D03AQGAFUI6N-YlSA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705440934190?e=1752105600&amp;v=beta&amp;t=xQsydxt0Sp-A54cv3n6sT16H39etgp-LhvcugV1hOC8" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Michael Ragland Jr.</span>
-                            <span class="line-year">Assisant Director of Admissions at Morgan State University</span>
-                            <span class="line-year">Polemarch (2017-2018) of the Alpha Iota Chapter </span>
-                            <span class="line-year">Vice Polemarch (2016-2017) of the Alpha Iota Chapter </span>
+                            <span class="section-header">Current Positions:</span>
+                            <span class="line-year position">Assistant Director of Admissions at Morgan State University</span>
+                            <span class="section-header">Past Positions:</span>
+                            <span class="line-year position">Polemarch (2017-2018) of the Alpha Iota Chapter</span>
+                            <span class="line-year position">Vice Polemarch (2016-2017) of the Alpha Iota Chapter</span>
+                            <span class="section-header">Achievements:</span>
+                            <span class="line-year achievement">Assistant Director of Admissions at Morgan State University</span>
                         </div>
                     </div>
                 </div>
 
                       <div class="mug-card">
                     <div class="mug-image">
-                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEXtXCaVDVHoA/profile-displayphoto-shrink_400_400/B4DZcXi1d4G8Ag-/0/1748446698645?e=1754524800&v=beta&t=EzDgzzsxQOb1iE10df5xV5R1Ik4_v3Z88YdeYrP0lxU" alt="Fraternity Brother">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQEXtXCaVDVHoA/profile-displayphoto-shrink_400_400/B4DZcXi1d4G8Ag-/0/1748446698645?e=1754524800&amp;v=beta&amp;t=EzDgzzsxQOb1iE10df5xV5R1Ik4_v3Z88YdeYrP0lxU" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Tyrel Fuentes</span>
-                            <span class="line-year show-first">Event Coordinator at Morgan State University</span>
-                            <span class="line-year achievement">Vice Polemarch (2011-2012) of the Alpha Iota Chapter</span>
-                            <span class="line-year achievement">Keeper Of Exchequer (2012-2013) of the Alpha Iota Chapter</span>
+                            <span class="section-header">Current Positions:</span>
+                            <span class="line-year position">Event Coordinator at Morgan State University</span>
+                            <span class="section-header">Past Positions:</span>
+                            <span class="line-year position">Vice Polemarch (2011-2012) of the Alpha Iota Chapter</span>
+                            <span class="line-year position">Keeper Of Exchequer (2012-2013) of the Alpha Iota Chapter</span>
+                            <span class="section-header">Achievements:</span>
                             <span class="line-year achievement">Eastern Province Undergrad Medium Chapter Of The Year (2013)</span>
-                            <span class="expand-btn">+ More</span>
                         </div>
                     </div>
                 </div>
@@ -1503,10 +1644,12 @@
 
                             <div class="mug-card">
                     <div class="mug-image">
-                        <img src="https://cof.org/sites/default/files/styles/person_node/public/2023-11/marvin-carr.jpg?h=6c83441f&itok=0eaMpg62" alt="Fraternity Brother">
+                        <img src="https://cof.org/sites/default/files/styles/person_node/public/2023-11/marvin-carr.jpg?h=6c83441f&amp;itok=0eaMpg62" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Dr. Marvin Carr</span>
-                            <span class="line-year">68th Guy L. Grant Awardee</span>
+                            <span class="section-header">Achievements:</span>
+                            <span class="line-year achievement">68th Guy L. Grant Awardee</span>
+
                         </div>
                     </div>
                 </div>
@@ -1548,17 +1691,6 @@
                             <span class="line-year">CEO of Wylie Funeral Homes</span>
                             <span class="line-year">Awarded by Living Legacy Foundation For Organ Donation Advocacy</span>
                             <span class="line-year">Featured in Baltimore Business Journal's prestigious 40 Under 40 class</span>
-                    
-                        </div>
-                    </div>
-                </div>
-
-                                              <div class="mug-card">
-                    <div class="mug-image">
-                        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ_dkg2OnyyALxtHuUzuUcPK64Em_IKyWkvyUjzLveCACnvl7luZX-H7iB_7-QJMfrbFjvnIXpffW59s_V55r17HTtgp7AlxDce3pUXgQ" alt="Fraternity Brother">
-                        <div class="brother-info">
-                            <span class="line-name">Robert Green</span>
-                           
                         </div>
                     </div>
                 </div>
@@ -1648,17 +1780,17 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                 <!-- Instagram Embed 1 -->
                 <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
-                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0" src="https://www.instagram.com/p/DIJ8O3XvDru/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="671" data-instgrm-payload-id="instagram-media-payload-0" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0" src="https://www.instagram.com/p/DIJ8O3XvDru/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="612" data-instgrm-payload-id="instagram-media-payload-0" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
                 </div>
                 
                 <!-- Instagram Embed 2 -->
                 <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
-                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-1" src="https://www.instagram.com/p/DIMvqutSS8h/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="672" data-instgrm-payload-id="instagram-media-payload-1" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-1" src="https://www.instagram.com/p/DIMvqutSS8h/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="613" data-instgrm-payload-id="instagram-media-payload-1" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
                 </div>
                 
                 <!-- Instagram Embed 3 -->
                 <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
-                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-2" src="https://www.instagram.com/p/DIg3QWntvuG/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="672" data-instgrm-payload-id="instagram-media-payload-2" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-2" src="https://www.instagram.com/p/DIg3QWntvuG/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="613" data-instgrm-payload-id="instagram-media-payload-2" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
                 </div>
             </div>
             
@@ -1682,9 +1814,9 @@
                     <div class="mug-image">
                         <img src="https://i.ibb.co/8nFy558h/Snap-Insta-to-470158479-798341805755466-3265987469173316153-n.jpg" alt="Graduate">
                         <div class="brother-info">
-                            <span class="line-name">Rashashim Gafney
-                            </span>
+                            <span class="line-name">Rashashim Gafney</span>
                             <span class="line-year">B.S. Information Systems</span>
+
                         </div>
                     </div>
                 </div>
@@ -1696,6 +1828,7 @@
                         <div class="brother-info">
                             <span class="line-name">Terell Reed</span>
                             <span class="line-year">B.S Computer Science</span>
+                            <span class="line-year position">Current Webmaster for the Alpha Iota Chapter</span>
                         </div>
                     </div>
                 </div>
@@ -1707,6 +1840,7 @@
                         <div class="brother-info">
                             <span class="line-name">Tyrus Pincham</span>
                             <span class="line-year">B.S Biology</span>
+
                         </div>
                     </div>
                 </div>
@@ -1718,6 +1852,7 @@
                         <div class="brother-info">
                             <span class="line-name">Seydina Salla</span>
                             <span class="line-year">B.S Accounting</span>
+
                         </div>
                     </div>
                 </div>
@@ -1728,7 +1863,7 @@
     <!-- Active Brothers Section -->
     <section class="mean-mugging">
         <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto; scrollbar-width: none; -ms-overflow-style: none;">
-            <h2 class="section-title">ACTIVE BROTHERS <span style="color: var(--color-primary); font-weight: bold; margin-left: 10px; animation: numberPulse 2s infinite;">14</span></h2>
+            <h2 class="section-title">ACTIVE BROTHERS <span style="color: var(--color-crimson); font-weight: bold; margin-left: 10px; animation: numberPulse 2s infinite;">14</span></h2>
             <div class="mean-mug-grid" style="display: flex; flex-wrap: nowrap; gap: 2rem; padding: 1rem; scroll-snap-type: x mandatory; width: fit-content;">
                 <!-- Active Brother 1 -->
               <!-- Brothers in order of seniority (oldest to youngest) -->
@@ -1743,6 +1878,7 @@
         <div class="brother-info">
             <span class="line-name">Kamron Hampton</span>
             <span class="line-year">"0AI24FA"</span>
+
         </div>
     </div>
 </div>
@@ -1753,6 +1889,7 @@
         <div class="brother-info">
             <span class="line-name">Jaden Koranteng</span>
             <span class="line-year">"1AI24FA"</span>
+
         </div>
     </div>
 </div>
@@ -1763,6 +1900,8 @@
         <div class="brother-info">
             <span class="line-name">Lesley Ofosu</span>
             <span class="line-year">"2AI24FA"</span>
+            <span class="line-year position">Strategus of the Alpha Iota Chapter</span>
+            <span class="line-year position">NPHC Vice President of Morgan State University</span>
         </div>
     </div>
 </div>
@@ -1783,6 +1922,7 @@
         <div class="brother-info">
             <span class="line-name">Christian Sampson</span>
             <span class="line-year">"4AI24FA"</span>
+            <span class="line-year position">Lt. Strategus of the Alpha Iota Chapter</span>
         </div>
     </div>
 </div>
@@ -1793,16 +1933,18 @@
         <div class="brother-info">
             <span class="line-name">Anthony Noakes</span>
             <span class="line-year">"5AI24FA"</span>
+            <span class="line-year position">Exchequer of the Alpha Iota Chapter</span>
         </div>
     </div>
 </div>
 
 <div class="mug-card">
     <div class="mug-image">
-        <img src="https://media.licdn.com/dms/image/v2/C4E03AQHJuTGRadKaew/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1663556202919?e=1755129600&v=beta&t=Yw6ewtU89vab9iVfLPf6YIL6C2-WeILBCf7h-a1DIAM" alt="Active Brother">
+        <img src="https://media.licdn.com/dms/image/v2/C4E03AQHJuTGRadKaew/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1663556202919?e=1755129600&amp;v=beta&amp;t=Yw6ewtU89vab9iVfLPf6YIL6C2-WeILBCf7h-a1DIAM" alt="Active Brother">
         <div class="brother-info">
             <span class="line-name">David Osadiaye</span>
             <span class="line-year">"6AI24FA"</span>
+            <span class="line-year position">Keeper of Records of the Alpha Iota Chapter</span>
         </div>
     </div>
 </div>
@@ -1814,6 +1956,7 @@
         <div class="brother-info">
             <span class="line-name">Marcus McClean</span>
             <span class="line-year">"9AI24FA"</span>
+            <span class="line-year position">Vice Polemarch of the Alpha Iota Chapter</span>
         </div>
     </div>
 </div>
@@ -1845,6 +1988,7 @@
         <div class="brother-info">
             <span class="line-name">Godley Pierre</span>
             <span class="line-year">"1AI23FA"</span>
+            <span class="line-year position">Current Polemarch of the Alpha Iota Chapter</span>
         </div>
     </div>
 </div>
@@ -1871,20 +2015,22 @@
 
 <div class="mug-card">
     <div class="mug-image">
-        <img src="https://i.ibb.co/XfKPKByg/xavier.jpg" alt="Active Brother">
+        <img src="https://i.ibb.co/Z6TNp0n4/4H7A9985.png" alt="Active Brother">
         <div class="brother-info">
-            <span class="line-name">Xavier Johnson</span>
-            <span class="line-year">"0AI23SP"</span>
+            <span class="line-name">Miles Hooper</span>
+            <span class="line-year">"2AI23SP"</span>
         </div>
     </div>
 </div>
 
 <div class="mug-card">
     <div class="mug-image">
-        <img src="https://i.ibb.co/Z6TNp0n4/4H7A9985.png" alt="Active Brother">
+        <img src="https://i.ibb.co/XfKPKByg/xavier.jpg" alt="Active Brother">
         <div class="brother-info">
-            <span class="line-name">Miles Hooper</span>
-            <span class="line-year">"2AI23SP"</span>
+            <span class="line-name">Xavier Johnson</span>
+            <span class="line-year">"0AI23SP"</span>
+            <span class="line-year position">Past Junior Province Vice Polemarch (E)</span>
+            <span class="line-year">37th Mister Morgan State University</span>
         </div>
     </div>
 </div>
@@ -1929,6 +2075,21 @@
   
   
   <script>
+    // Toggle visibility of brother details when clicking on name
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add click event listeners to all brother names
+        const brotherNames = document.querySelectorAll('.line-name');
+        brotherNames.forEach(name => {
+            name.addEventListener('click', function() {
+                // Find all sibling elements with class line-year and section-header
+                const siblings = this.parentNode.querySelectorAll('.line-year, .section-header');
+                siblings.forEach(sibling => {
+                    sibling.classList.toggle('show');
+                });
+            });
+        });
+    });
+    
     // Photo slideshow implementation
     const heroImages = [
       "https://i.ibb.co/whzKkyyt/IMG-3584.jpg",
@@ -1938,7 +2099,33 @@
       "https://i.ibb.co/qMPgQD6Z/IMG-3589.jpg",
       "https://i.ibb.co/9HWmyQdC/IMG-3590.jpg",
       "https://i.ibb.co/KvWcdBW/IMG7205757927348355459-177842687808405.jpg",
-      "https://i.ibb.co/mC7mtv7K/IMG-3586.jpg"
+      "https://i.ibb.co/mC7mtv7K/IMG-3586.jpg",
+      "https://i.ibb.co/x8RMbBdg/4H7A4587.jpg",
+      "https://i.ibb.co/gZctkLXJ/4H7A4764.jpg",
+      "https://i.ibb.co/GQ72Cz83/26489-A8-F-8998-4-A31-A40-F-C0465-D32-AE55.jpg",
+      "https://i.ibb.co/tMV6sGXx/BE46-B7-F4-CC53-40-F3-8121-06-C2-ABB618-C4.jpg",
+      "https://i.ibb.co/tpHhgxQV/DSC06830.jpg",
+
+      "https://i.ibb.co/7wpDBX9/IMG-0062.jpg",
+      "https://i.ibb.co/VWWwTS9m/IMG-0235.jpg",
+      "https://i.ibb.co/DHWBRNmx/IMG-0236.jpg",
+      "https://i.ibb.co/bgpxnPwv/IMG-0237.jpg",
+      "https://i.ibb.co/zHWtYjSn/IMG-0238.jpg",
+      "https://i.ibb.co/bSwKrBB/IMG-0511.jpg",
+      "https://i.ibb.co/F498H7Fg/IMG-0560.jpg",
+      "https://i.ibb.co/KxYHZqy9/IMG-1073.jpg",
+      "https://i.ibb.co/w9HrzMV/IMG-1106.jpg",
+      "https://i.ibb.co/JFzkNH6F/IMG-1223.jpg",
+      "https://i.ibb.co/1fg7x1Hq/IMG-1752.jpg",
+      "https://i.ibb.co/433ddSD/IMG-2730.jpg",
+      "https://i.ibb.co/cS2W2ftm/IMG-3166.jpg",
+
+      "https://i.ibb.co/pr42dvWt/IMG-4792.jpg",
+      "https://i.ibb.co/Xxh8hJLn/IMG-4793.jpg",
+      "https://i.ibb.co/vvz6ZMyG/IMG-4794.jpg",
+      "https://i.ibb.co/8nqbs6gb/IMG-8228.jpg",
+      "https://i.ibb.co/wN85M56q/IMG-8860.jpg",
+      "https://i.ibb.co/sd65V3Z0/IMG-9945.jpg"
     ];
 
     let currentImageIndex = 0;
@@ -1964,6 +2151,7 @@
       heroImg.style.width = '100%';
       heroImg.style.height = '100%';
       heroImg.style.objectFit = 'cover';
+      heroImg.style.objectPosition = 'center 10%'; // Move images down 3 inches
       heroImg.style.transition = 'opacity 1s ease-in-out';
       heroImg.src = heroImages[0];
       
@@ -2558,11 +2746,15 @@
             console.error("Error creating YouTube player:", e);
         }
     }
+    
+    // New simple scroll effect that toggles body class
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 10) {
+          document.body.classList.add('scrolled');
+      } else {
+          document.body.classList.remove('scrolled');
+      }
+    });
   });
   </script>
-  
-  
-  
-  
-  
   </body></html>
