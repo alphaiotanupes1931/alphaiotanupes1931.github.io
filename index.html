@@ -29,14 +29,62 @@
             --transition: all 0.3s ease-in-out;
         }
         
-        /* Hide YouTube elements and loading indicators */
+        /* AGGRESSIVELY Hide ALL YouTube elements and loading indicators */
         .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, .ytp-youtube-button,
         .ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-spinner-left, 
         .ytp-spinner-right, .ytp-spinner-circle, .ytp-large-play-button, 
-        .ytp-large-play-button-bg {
+        .ytp-large-play-button-bg, .ytp-title-text, .ytp-show-cards-title,
+        .ytp-pause-overlay, .ytp-cued-thumbnail-overlay, .ytp-progress-bar-container, 
+        .ytp-time-display, .ytp-volume-panel, .ytp-replay-button, .ytp-buffer-container,
+        .ytp-gradient-top, .ytp-gradient-bottom, .ytp-scrubber-container, 
+        .ytp-thumbnail-overlay, .ytp-ce-element, .ytp-iv-player-content,
+        .ytp-loading-spinner, .ytp-spinner-container, .ytp-spinner-rotator,
+        .ytp-bezel, .ytp-bezel-text, .ytp-cards-teaser, .ytp-endscreen-element,
+        .ytp-impression-link, .ytp-videowall-still, .ytp-paid-content-overlay,
+        .ytp-storyboard-framepreview, .ytp-autonav-endscreen-upnext-container,
+        .ytp-pause-overlay, .ytp-scroll-min, .ytp-contextmenu, .ytp-popup,
+        .ytp-ce-video, .ytp-ce-element-show, .ytp-ce-covering-overlay,
+        .ytp-ce-expanding-overlay, .ytp-ce-element-shadow, .ytp-ce-covering-image {
             display: none !important;
             opacity: 0 !important;
             visibility: hidden !important;
+            pointer-events: none !important;
+            position: absolute !important;
+            left: -9999px !important;
+            top: -9999px !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        
+        /* Catch-all for any YouTube UI elements */
+        iframe[src*="youtube"] div[class*="ytp"],
+        iframe[src*="youtube"] div[class*="spinner"],
+        iframe[src*="youtube"] div[class*="loading"],
+        iframe[src*="youtube"] div[class*="buffer"],
+        iframe[src*="youtube"] div[class*="overlay"],
+        iframe[src*="youtube"] .html5-video-player div {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        
+        /* Anti-buffering overlay */
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000000;
+            z-index: 10;
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
+            pointer-events: none;
+        }
+        
+        .video-container.loaded::before {
+            opacity: 0;
         }
         
         /* Apply theme to body as well for better cascade */
@@ -428,12 +476,25 @@
   
         #background-player {
             position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            width: 177.77777778vh !important; /* 16:9 Aspect Ratio */
+            height: 56.25vw !important; /* 16:9 Aspect Ratio */
+            min-height: 100% !important;
+            min-width: 100% !important;
+            transform: translate(-50%, -50%) !important;
+            pointer-events: none !important;
+            z-index: 1 !important;
+        }
+        
+        #background-player iframe {
+            position: absolute !important;
             top: 0 !important;
             left: 0 !important;
             width: 100% !important;
             height: 100% !important;
+            border: none !important;
             pointer-events: none !important;
-            z-index: 1 !important;
         }
         
         /* Hide YouTube loading spinner */
@@ -1306,7 +1367,7 @@
             100% { transform: rotate(360deg); }
         }
     </style>
-  <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
+  <script src="https://www.youtube.com/iframe_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/9fe2e06e/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
             .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, 
             .ytp-youtube-button, .ytp-spinner, .ytp-spinner-container, 
             .ytp-spinner-rotator, .ytp-spinner-left, .ytp-spinner-right, 
@@ -1334,11 +1395,265 @@
                 height: 100% !important;
                 overflow: hidden !important;
             }
-        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
+        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
   
   
   
   <body class="">
+    <script>
+        // YouTube Player API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var videoDuration = 0;
+        var videoId = 'mBGMfRaThu8'; // Extract video ID from URL
+        
+        // Workaround options - you can try these alternatives:
+        var workarounds = {
+            // Option 1: Use nocookie domain (sometimes better quality)
+            useNoCookie: true,
+            
+            // Option 2: Direct video URL (if you have permission to download/host)
+            // directVideoUrl: 'path/to/your/4k-video.mp4',
+            
+            // Option 3: Alternative embed parameters
+            useAlternativeParams: true
+        };
+
+        function createDirectVideoPlayer() {
+            // Workaround: Use direct video hosting for guaranteed 4K
+            var videoContainer = document.getElementById('background-player');
+            videoContainer.innerHTML = `
+                <video 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                >
+                    <source src="${workarounds.directVideoUrl}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+            
+            var video = videoContainer.querySelector('video');
+            video.addEventListener('loadedmetadata', function() {
+                // Random start functionality for direct video
+                videoDuration = video.duration;
+                setInterval(function() {
+                    var randomTime = Math.random() * (videoDuration - 30);
+                    video.currentTime = randomTime;
+                }, 30000);
+            });
+        }
+        
+        function onYouTubeIframeAPIReady() {
+            // Check if using direct video workaround
+            if (workarounds.directVideoUrl) {
+                createDirectVideoPlayer();
+                return;
+            }
+            
+            var playerVars = {
+                'autoplay': 1,
+                'controls': 0,
+                'disablekb': 1,
+                'fs': 0,
+                'iv_load_policy': 3,
+                'modestbranding': 1,
+                'playsinline': 1,
+                'rel': 0,
+                'showinfo': 0,
+                'mute': 1,
+                'loop': 1,
+                'playlist': videoId,
+                'cc_load_policy': 0,
+                'enablejsapi': 1,
+                'origin': window.location.origin,
+                'widget_referrer': window.location.href,
+                'hd': 1,
+                'start': Math.floor(Math.random() * 300)
+            };
+            
+            // Alternative parameters workaround
+            if (workarounds.useAlternativeParams) {
+                playerVars = Object.assign(playerVars, {
+                    'html5': 1,
+                    'wmode': 'transparent',
+                    'vq': 'highres',
+                    'fmt': '22' // Force high quality format
+                });
+            }
+            
+            var playerConfig = {
+                height: '100%',
+                width: '100%',
+                videoId: videoId,
+                playerVars: playerVars,
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            };
+            
+            // NoCooke domain workaround
+            if (workarounds.useNoCookie) {
+                playerConfig.host = 'https://www.youtube-nocookie.com';
+            }
+            
+            player = new YT.Player('background-player', playerConfig);
+        }
+
+        function setHighestQuality() {
+            if (!player) return;
+            
+            var qualityLevels = player.getAvailableQualityLevels();
+            console.log('Available qualities:', qualityLevels);
+            
+            if (qualityLevels.length > 0) {
+                // Force highest quality available
+                var highestQuality = qualityLevels[0]; // YouTube returns qualities in descending order
+                player.setPlaybackQuality(highestQuality);
+                console.log('Set quality to:', highestQuality);
+                
+                // Also try setting specific 4K quality
+                setTimeout(function() {
+                    if (qualityLevels.includes('hd2160')) {
+                        player.setPlaybackQuality('hd2160');
+                        console.log('Forced 4K quality');
+                    } else if (qualityLevels.includes('hd1440')) {
+                        player.setPlaybackQuality('hd1440');
+                        console.log('Forced 1440p quality');
+                    } else if (qualityLevels.includes('hd1080')) {
+                        player.setPlaybackQuality('hd1080');
+                        console.log('Forced 1080p quality');
+                    }
+                }, 1000);
+            }
+        }
+
+        function hideAllBufferingElements() {
+            // Aggressively remove any buffering/loading elements
+            var iframe = document.querySelector('#background-player iframe');
+            if (iframe) {
+                try {
+                    var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    if (iframeDoc) {
+                        // Inject comprehensive CSS to hide everything
+                        var style = iframeDoc.createElement('style');
+                        style.textContent = `
+                            * [class*="spinner"], * [class*="loading"], * [class*="buffer"],
+                            * [class*="ytp-"], .html5-video-player > div:not(.html5-video-container) {
+                                display: none !important;
+                                opacity: 0 !important;
+                                visibility: hidden !important;
+                                position: absolute !important;
+                                left: -9999px !important;
+                            }
+                        `;
+                        iframeDoc.head.appendChild(style);
+                        
+                        // Remove elements by query
+                        var elementsToHide = iframeDoc.querySelectorAll('[class*="ytp-"], [class*="spinner"], [class*="loading"], [class*="buffer"]');
+                        elementsToHide.forEach(function(el) {
+                            el.style.display = 'none';
+                            el.style.opacity = '0';
+                            el.style.visibility = 'hidden';
+                            el.remove();
+                        });
+                    }
+                } catch(e) {
+                    // Cross-origin restrictions, that's okay
+                }
+            }
+        }
+
+        function onPlayerReady(event) {
+            videoDuration = player.getDuration();
+            
+            // Immediately hide any buffering
+            hideAllBufferingElements();
+            
+            // Remove loading overlay after player is ready
+            setTimeout(function() {
+                var videoContainer = document.querySelector('.video-container');
+                if (videoContainer) {
+                    videoContainer.classList.add('loaded');
+                }
+            }, 1000);
+            
+            event.target.playVideo();
+            
+            // Set highest quality multiple times to ensure it sticks
+            setTimeout(setHighestQuality, 500);
+            setTimeout(setHighestQuality, 2000);
+            setTimeout(setHighestQuality, 5000);
+            
+            // Continuously hide buffering elements
+            setInterval(hideAllBufferingElements, 100);
+            
+            // Monitor and maintain quality every 10 seconds
+            setInterval(function() {
+                if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+                    var currentQuality = player.getPlaybackQuality();
+                    var availableQualities = player.getAvailableQualityLevels();
+                    
+                    // If not at highest quality, force it again
+                    if (availableQualities.length > 0 && currentQuality !== availableQualities[0]) {
+                        setHighestQuality();
+                    }
+                }
+            }, 10000);
+            
+            // Set random start time every 30 seconds
+            setInterval(function() {
+                if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+                    var randomTime = Math.floor(Math.random() * (videoDuration - 30));
+                    player.seekTo(randomTime, true);
+                    // Ensure quality is maintained after seeking
+                    setTimeout(setHighestQuality, 1000);
+                    // Hide any buffering that appears during seeking
+                    setTimeout(hideAllBufferingElements, 100);
+                    setTimeout(hideAllBufferingElements, 500);
+                }
+            }, 30000); // Change every 30 seconds
+        }
+
+        function onPlayerStateChange(event) {
+            // Always hide buffering on any state change
+            hideAllBufferingElements();
+            
+            if (event.data == YT.PlayerState.ENDED) {
+                // When video ends, start from a random position
+                var randomTime = Math.floor(Math.random() * (videoDuration - 30));
+                player.seekTo(randomTime, true);
+                player.playVideo();
+                // Ensure quality is maintained after restart
+                setTimeout(setHighestQuality, 1000);
+                // Hide buffering after restart
+                setTimeout(hideAllBufferingElements, 100);
+                setTimeout(hideAllBufferingElements, 500);
+                setTimeout(hideAllBufferingElements, 1000);
+            } else if (event.data == YT.PlayerState.PLAYING) {
+                // Ensure highest quality when playing starts
+                setTimeout(setHighestQuality, 500);
+                // Remove loading overlay
+                var videoContainer = document.querySelector('.video-container');
+                if (videoContainer) {
+                    videoContainer.classList.add('loaded');
+                }
+            } else if (event.data == YT.PlayerState.BUFFERING) {
+                // Immediately hide any buffering indicators
+                hideAllBufferingElements();
+                setTimeout(hideAllBufferingElements, 50);
+                setTimeout(hideAllBufferingElements, 100);
+                setTimeout(hideAllBufferingElements, 200);
+            }
+        }
+    </script>
     <!-- Loading Screen -->  
     <div class="loader" style="opacity: 0; display: none;">
         <div class="loader-progress"></div>
@@ -1422,22 +1737,28 @@
                         overflow: hidden;
                         pointer-events: none;
                         z-index: 0;
+                        background: #000; /* Fallback while loading */
                     }
-                    .youtube-bg {
-                        position: absolute;
-                        top: -50%;
-                        left: -50%;
-                        width: 200%;
-                        height: 200%;
-                    }
-                    .youtube-bg iframe {
+                    
+                    .video-container {
                         position: absolute;
                         top: 0;
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        pointer-events: none;
-                        transform: scale(1.5);
+                        overflow: hidden;
+                    }
+                    
+                    #background-player {
+                        position: absolute !important;
+                        top: 50% !important;
+                        left: 50% !important;
+                        width: 177.77777778vh !important; /* 16:9 Aspect Ratio */
+                        height: 56.25vw !important; /* 16:9 Aspect Ratio */
+                        min-height: 100% !important;
+                        min-width: 100% !important;
+                        transform: translate(-50%, -50%) !important;
+                        pointer-events: none !important;
                     }
                 }
                 
@@ -1482,9 +1803,20 @@
                 }
             </style>
             
-            <!-- Desktop Only: Photo Slideshow -->
+            <!-- Desktop Only: YouTube Video Background -->
             <div class="direct-youtube-container">
-                <div class="slideshow-container" id="youtube-container"><img id="slideshow-image" src="https://i.ibb.co/qMPgQD6Z/IMG-3589.jpg" style="width: 100%; height: 100%; object-fit: cover; object-position: center 10%; transition: opacity 1s ease-in-out; opacity: 1;"></div>
+                <div class="video-container loaded">
+                    <iframe id="background-player" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Alpha Iota Chapter of Kappa Alpha Psi Spring 2023 Probate | Morgan State University Nupes" width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/mBGMfRaThu8?autoplay=1&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;rel=0&amp;showinfo=0&amp;mute=1&amp;loop=1&amp;playlist=mBGMfRaThu8&amp;cc_load_policy=0&amp;enablejsapi=1&amp;origin=https%3A%2F%2F5958f730-f528-49a8-af15-4aa3399b116b--1750626000--ff64eae2.preview.yourware.so&amp;widget_referrer=https%3A%2F%2Fwww.youware.com%2F&amp;hd=1&amp;start=25&amp;html5=1&amp;wmode=transparent&amp;vq=highres&amp;fmt=22&amp;widgetid=1&amp;forigin=https%3A%2F%2F5958f730-f528-49a8-af15-4aa3399b116b--1750626000--ff64eae2.preview.yourware.so%2F&amp;aoriginsup=1&amp;aorigins=https%3A%2F%2Fwww.youware.com&amp;gporigin=https%3A%2F%2Fwww.youware.com%2F&amp;vf=1"></iframe>
+                </div>
+                
+                <!-- Alternative: Direct video hosting instructions -->
+                <!-- 
+                To use direct 4K video (guaranteed quality):
+                1. Download the video in 4K from the source
+                2. Upload to your server or CDN
+                3. Uncomment and set: workarounds.directVideoUrl = 'path/to/video.mp4'
+                4. Comment out the YouTube player code
+                -->
             </div>
             
             <!-- Overlay for both mobile and desktop -->
@@ -1787,7 +2119,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                 <!-- Instagram Embed 1 -->
                 <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
-                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0" src="https://www.instagram.com/p/DIJ8O3XvDru/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="672" data-instgrm-payload-id="instagram-media-payload-0" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-0" src="https://www.instagram.com/p/DIJ8O3XvDru/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="612" data-instgrm-payload-id="instagram-media-payload-0" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
                 </div>
                 
                 <!-- Instagram Embed 2 -->
@@ -1797,7 +2129,7 @@
                 
                 <!-- Instagram Embed 3 -->
                 <div class="instagram-embed-container" style="background-color: var(--color-secondary-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: transform 0.3s ease;">
-                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-2" src="https://www.instagram.com/p/DIg3QWntvuG/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="673" data-instgrm-payload-id="instagram-media-payload-2" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
+                    <iframe class="instagram-media instagram-media-rendered" id="instagram-embed-2" src="https://www.instagram.com/p/DIg3QWntvuG/embed/?cr=1&amp;v=14&amp;wp=736&amp;rd=https%3A%2F%2F255638c1-a5fb-46f7-bc74-74d3d48db3be.preview.yourware.so&amp;rp=%2F" allowtransparency="true" allowfullscreen="true" frameborder="0" height="613" data-instgrm-payload-id="instagram-media-payload-2" scrolling="no" style="background: white; max-width: 540px; width: 99.375%; border-radius: 3px; border: 1px solid rgb(219, 219, 219); box-shadow: none; display: block; margin: 0px 0px 12px; min-width: 326px; padding: 0px;"></iframe>
                 </div>
             </div>
             
@@ -2761,4 +3093,5 @@
     });
   });
   </script>
-  </body></html>
+  
+</body></html>
