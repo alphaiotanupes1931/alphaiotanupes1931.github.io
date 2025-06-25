@@ -16,6 +16,8 @@
             --color-overlay: rgba(0, 0, 0, 0.6);
             --transition: all 0.3s ease-in-out;
             --color-crimson: #B01030;
+            --animation-speed: 0.5s; /* Animation speed control - slow motion */
+            --animation-delay: 0.5s; /* Time between each objective appearing */
         }
         
         /* Light Theme Variables */
@@ -420,7 +422,34 @@
             background-color: rgba(255, 255, 255, 0.03);
             border-radius: 10px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation-duration: var(--animation-speed); /* Animation speed from variable */
+            animation-fill-mode: forwards;
+            animation-timing-function: ease-out;
         }
+        
+        .objective-item.animate {
+            animation-name: slideInObjective;
+        }
+        
+        @keyframes slideInObjective {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Add specific delays for each objective for more control */
+        #objective-1.animate { animation-delay: 0s; }
+        #objective-2.animate { animation-delay: calc(var(--animation-delay) * 1); }
+        #objective-3.animate { animation-delay: calc(var(--animation-delay) * 2); }
+        #objective-4.animate { animation-delay: calc(var(--animation-delay) * 3); }
+        #objective-5.animate { animation-delay: calc(var(--animation-delay) * 4); }
         
         .objective-item:hover {
             transform: translateY(-5px);
@@ -773,7 +802,7 @@
         }
     </style>
     <script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script>
-<script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
+<script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
 
 <body>
     <!-- Desktop Navigation -->
@@ -872,7 +901,7 @@
         <div class="container">
             <h2 class="section-title">OBJECTIVES</h2>
             
-            <div class="objective-item">
+            <div class="objective-item animate" id="objective-1" style="opacity: 0;">
                 <div class="objective-number">01</div>
                 <div class="objective-text">
                     <h3>To unite college men of culture, patriotism and honor in a bond of fraternity</h3>
@@ -880,7 +909,7 @@
                 </div>
             </div>
             
-            <div class="objective-item">
+            <div class="objective-item animate" id="objective-2" style="opacity: 0;">
                 <div class="objective-number">02</div>
                 <div class="objective-text">
                     <h3>To encourage honorable achievement in every field of human endeavor</h3>
@@ -888,7 +917,7 @@
                 </div>
             </div>
             
-            <div class="objective-item">
+            <div class="objective-item animate" id="objective-3" style="opacity: 0;">
                 <div class="objective-number">03</div>
                 <div class="objective-text">
                     <h3>To promote the spiritual, social, intellectual, and moral welfare of its members</h3>
@@ -896,7 +925,7 @@
                 </div>
             </div>
             
-            <div class="objective-item">
+            <div class="objective-item animate" id="objective-4" style="opacity: 0;">
                 <div class="objective-number">04</div>
                 <div class="objective-text">
                     <h3>To aid the aims and purposes of colleges and universities</h3>
@@ -904,7 +933,7 @@
                 </div>
             </div>
             
-            <div class="objective-item">
+            <div class="objective-item animate" id="objective-5" style="opacity: 0;">
                 <div class="objective-number">05</div>
                 <div class="objective-text">
                     <h3>To inspire service in the public interest</h3>
@@ -1134,6 +1163,59 @@
                     icon.classList.add('fa-bars');
                 });
             });
+            
+            // Objective items animation
+            function animateObjectives() {
+                const objectiveItems = document.querySelectorAll('.objective-item');
+                const objectivesSection = document.querySelector('.objectives');
+                let animationStarted = false;
+                
+                // Function to check if an element is in viewport
+                function isInViewport(element) {
+                    const rect = element.getBoundingClientRect();
+                    // Consider element in viewport when it's at least 25% visible
+                    return (
+                        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
+                        rect.bottom >= 0
+                    );
+                }
+                
+                // Animate objectives when they come into view
+                function checkObjectives() {
+                    if (!animationStarted && isInViewport(objectivesSection)) {
+                        animationStarted = true;
+                        // Apply the animate class to all objectives at once
+                        // The CSS will handle the individual delays
+                        objectiveItems.forEach((item) => {
+                            // Reset any existing classes or styles
+                            item.style.opacity = "0";
+                            item.classList.remove('animate');
+                        });
+                        
+                        // Add a small delay before starting animations
+                        setTimeout(() => {
+                            objectiveItems.forEach((item) => {
+                                item.classList.add('animate');
+                            });
+                        }, 100);
+                        
+                        // Keep the event listener to restart animation if needed
+                        // but don't trigger again until all animations complete
+                        setTimeout(() => {
+                            animationStarted = false;
+                        }, 5 * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--animation-delay')) * 1000 + 2000);
+                    }
+                }
+                
+                // Check on initial load
+                checkObjectives();
+                
+                // Add scroll event listener
+                window.addEventListener('scroll', checkObjectives);
+            }
+            
+            // Initialize objectives animation
+            animateObjectives();
         });
     </script>
 
