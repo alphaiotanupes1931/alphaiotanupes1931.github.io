@@ -1,0 +1,2801 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Iota Chapter - Brothers Directory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Darker+Grotesque:wght@300;600;800&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --color-background: #F5F5DC;
+            --color-crimson: #B01030;
+            --color-black: #0a0a0a;
+            --color-text: #222222;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Darker Grotesque', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            padding: 0.8rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(176, 16, 48, 0.1);
+        }
+        
+        .nav-black {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            z-index: 999;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--color-crimson);
+            visibility: hidden;
+        }
+        
+        body.scrolled .nav {
+            visibility: hidden;
+        }
+        
+        body.scrolled .nav-black {
+            visibility: visible;
+            z-index: 1001;
+        }
+        
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            padding: 0.5rem 0;
+        }
+        
+        .logo {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .menu-link {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            transition: color 0.3s ease;
+        }
+        
+        .menu-link:hover {
+            color: var(--color-crimson);
+        }
+        
+        .donate-button {
+            background-color: var(--color-crimson);
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .donate-button:hover {
+            background-color: #9a0f2e !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mobile-menu-toggle {
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: none;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 1rem 0;
+            z-index: 999;
+            flex-direction: column;
+            border-top: 1px solid var(--color-crimson);
+        }
+        
+        .mobile-menu-link {
+            display: block;
+            padding: 0.8rem 2rem;
+            color: white;
+            text-decoration: none;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-link:hover {
+            background-color: rgba(176, 16, 48, 0.2);
+        }
+        
+        .donate-button-mobile {
+            background-color: var(--color-crimson);
+            color: white !important;
+            margin: 1rem 2rem;
+            padding: 0.75rem;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        /* Main Content */
+        .directory-container {
+            max-width: 1200px;
+            margin: 120px auto 50px;
+            padding: 0 2rem;
+        }
+        
+        .page-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--color-crimson);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Instructional Video Section */
+        .instruction-video-container {
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid var(--color-crimson);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instruction-video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .instruction-video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        /* Auth Container */
+        .auth-container {
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid var(--color-crimson);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .auth-container h2 {
+            font-family: 'Syncopate', sans-serif;
+            color: white;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            word-break: break-word;
+            hyphens: auto;
+            text-transform: uppercase;
+        }
+        
+        @media screen and (max-width: 480px) {
+            .auth-container h2 {
+                font-size: 1.2rem;
+                letter-spacing: -0.5px;
+            }
+        }
+        
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1.5rem;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .auth-tab.active {
+            color: var(--color-crimson);
+            border-bottom: 3px solid var(--color-crimson);
+        }
+        
+        .auth-tab:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .auth-input {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-input:focus {
+            outline: none;
+            border-color: var(--color-crimson);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .auth-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .auth-button {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--color-crimson);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .auth-button:hover {
+            background-color: #8B0000;
+        }
+        
+        .form-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.1rem;
+            color: var(--color-crimson);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .error-message, .success-message {
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            background-color: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .success-message {
+            color: #4caf50;
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .password-help {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .remove-image-button {
+            background-color: rgba(176, 16, 48, 0.8);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .remove-image-button:hover {
+            background-color: rgb(176, 16, 48);
+        }
+        
+        /* Logged In Status */
+        .logged-in-status {
+            display: none;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--color-crimson);
+            border-radius: 5px;
+            padding: 0.8rem 1.5rem;
+            margin-bottom: 2rem;
+            color: white;
+            font-family: 'Darker Grotesque', sans-serif;
+        }
+        
+        .logged-in-status i {
+            color: var(--color-crimson);
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+        
+        .logout-button {
+            background-color: var(--color-crimson);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border: none;
+            border-radius: 3px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: auto;
+            text-transform: uppercase;
+        }
+        
+        .logout-button:hover {
+            background-color: #8B0000;
+        }
+        
+        /* Brothers Grid */
+        .brothers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
+        
+        .brother-card {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--color-crimson);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .brother-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .brother-header {
+            padding: 1.5rem;
+            background: linear-gradient(to right, rgba(176, 16, 48, 0.3), rgba(0, 0, 0, 0.7));
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .brother-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--color-crimson);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .brother-title {
+            margin-left: 1rem;
+            flex: 1;
+        }
+        
+        .brother-name {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 0.25rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+        }
+        
+        .brother-profession {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .brother-role {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 0.85rem;
+            margin: 5px 0 0;
+            color: var(--color-crimson);
+            font-weight: 600;
+            background-color: rgba(176, 16, 48, 0.1);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .brother-details {
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        @media screen and (max-width: 480px) {
+            .brother-details {
+                padding: 1rem 0.75rem;
+            }
+        }
+        
+        .brother-info {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            border-left: 3px solid var(--color-crimson);
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .brother-info:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .brother-info-text {
+            width: 100%;
+        }
+        
+        @media screen and (max-width: 480px) {
+            .brother-info {
+                padding: 0.6rem;
+                margin-bottom: 0.8rem;
+            }
+        }
+        
+        .brother-info-label {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .brother-info-value {
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.05rem;
+            color: white;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        @media screen and (max-width: 480px) {
+            .brother-info-label {
+                font-size: 0.7rem;
+                letter-spacing: 0;
+            }
+            
+            .brother-info-value {
+                font-size: 0.95rem;
+            }
+        }
+        
+        .brother-footer {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(176, 16, 48, 0.2));
+            border-top: 1px solid rgba(176, 16, 48, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 10px 10px;
+        }
+        
+        .edit-button {
+            background-color: var(--color-crimson);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .edit-button:hover {
+            background-color: #8B0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        .chapter-password-prompt {
+            text-align: center;
+            padding: 2rem;
+            background-color: white;
+            border: 2px solid var(--color-crimson);
+            border-radius: 15px;
+            margin: 0 auto;
+            max-width: 400px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .chapter-icon {
+            margin-bottom: 1rem;
+        }
+        
+        .chapter-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        
+        .chapter-password-prompt h3 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.2rem;
+            color: #000;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+        
+        .chapter-password-prompt p {
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .chapter-form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .chapter-form .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .chapter-form .auth-button {
+            width: 100%;
+        }
+        
+        .chapter-form .auth-input {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+        
+        .chapter-form .auth-input::placeholder {
+            color: #666;
+        }
+        
+        .chapter-form .input-icon {
+            color: #666;
+        }
+        
+        /* Chapter Access Overlay */
+        .chapter-access-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .chapter-access-overlay.hidden {
+            display: none;
+        }
+        
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--color-crimson);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Profile Edit Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+        
+        .modal {
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--color-crimson);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .modal-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            color: var(--color-crimson);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        /* Search and Filter Section */
+        .search-filter-section {
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid var(--color-crimson);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .search-filter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--color-crimson), transparent);
+        }
+        
+        .search-bar {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-crimson);
+            font-size: 1.1rem;
+            z-index: 1;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background-color: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-crimson);
+            background-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(176, 16, 48, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-select {
+            padding: 0.8rem 1rem;
+            background-color: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23B01030' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+            padding-right: 2.5rem;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--color-crimson);
+            background-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(176, 16, 48, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-select option {
+            background-color: #333;
+            color: white;
+        }
+        
+        .clear-filters-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .clear-filters-btn:hover {
+            background-color: var(--color-crimson);
+            border-color: var(--color-crimson);
+        }
+        
+        .results-info {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Darker Grotesque', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .mobile-menu.active {
+                display: flex;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .brothers-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .brother-card {
+                margin: 0 auto;
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .auth-container {
+                padding: 1.5rem;
+                margin: 1rem;
+                width: calc(100% - 2rem);
+            }
+            
+            .search-filter-section {
+                padding: 1rem;
+                margin: 1rem;
+                width: calc(100% - 2rem);
+            }
+            
+            .filters {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .filter-select {
+                min-width: 100%;
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+            
+            .clear-filters-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+            
+            .search-input {
+                padding: 0.8rem 0.8rem 0.8rem 3rem;
+                font-size: 1rem;
+            }
+            
+            .search-icon {
+                font-size: 1.2rem;
+            }
+            
+            /* Modal improvements for mobile */
+            .modal-overlay {
+                padding: 1rem;
+                align-items: flex-start;
+                padding-top: 2rem;
+            }
+            
+            .modal {
+                width: 100%;
+                max-width: 100%;
+                max-height: 90vh;
+                overflow-y: auto;
+                margin: 0;
+            }
+            
+            .modal-close {
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .auth-input {
+                padding: 0.8rem;
+                font-size: 1rem;
+                min-height: 44px; /* Touch target size */
+            }
+            
+            .auth-button {
+                padding: 0.8rem;
+                font-size: 1rem;
+                min-height: 44px;
+            }
+            
+            .input-icon {
+                font-size: 1.1rem;
+                left: 0.8rem;
+            }
+            
+            .remove-image-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+                min-height: 40px;
+            }
+            
+            /* Brother card mobile optimization */
+            .brother-image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .brother-header {
+                padding: 1rem;
+            }
+            
+            .brother-info {
+                padding: 0.6rem 0;
+            }
+            
+            .brother-info-text {
+                margin-left: 0.8rem;
+            }
+            
+            .edit-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                min-height: 40px;
+            }
+            
+            /* Tab styles for mobile */
+            .auth-tabs {
+                gap: 0.5rem;
+            }
+            
+            .auth-tab {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+                min-height: 40px;
+            }
+            
+            /* Form section mobile optimization */
+            .form-section {
+                margin-bottom: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .input-group {
+                margin-bottom: 1rem;
+            }
+            
+            /* Profile image preview mobile */
+            .profile-image-preview img {
+                max-width: 80px;
+                max-height: 80px;
+            }
+        }
+        
+        /* Small mobile devices */
+        @media screen and (max-width: 480px) {
+            .auth-container {
+                margin: 0.5rem;
+                padding: 1rem;
+                width: calc(100% - 1rem);
+            }
+            
+            .search-filter-section {
+                margin: 0.5rem;
+                padding: 0.8rem;
+                width: calc(100% - 1rem);
+            }
+            
+            .brothers-grid {
+                padding: 0 0.5rem;
+                gap: 0.8rem;
+            }
+            
+            .modal {
+                margin: 0;
+                border-radius: 0;
+                height: 100vh;
+                max-height: 100vh;
+            }
+            
+            .modal-overlay {
+                padding: 0;
+                padding-top: 0;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            .brother-name {
+                font-size: 1.1rem;
+            }
+            
+            .brother-profession {
+                font-size: 0.85rem;
+            }
+            
+            .brother-info-label {
+                font-size: 0.75rem;
+            }
+            
+            .brother-info-value {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Touch-friendly improvements for all mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .brother-card {
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            
+            .brother-card:active {
+                transform: scale(0.98);
+            }
+            
+            .edit-button:active {
+                transform: scale(0.95);
+            }
+            
+            .auth-button:active {
+                transform: scale(0.95);
+            }
+            
+            .filter-select:focus {
+                outline: 2px solid var(--color-crimson);
+                outline-offset: 2px;
+            }
+            
+            .search-input:focus {
+                outline: 2px solid var(--color-crimson);
+                outline-offset: 2px;
+            }
+            
+            /* Improve tap targets */
+            .mobile-menu-toggle {
+                padding: 10px;
+                min-width: 44px;
+                min-height: 44px;
+            }
+            
+            .modal-close {
+                min-width: 44px;
+                min-height: 44px;
+            }
+        }
+    </style>
+<script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
+<body class="">
+    <!-- Navigation - Transparent -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">ALPHA IOTA</a>
+            <div class="menu">
+                <a href="index.html" class="menu-link">HOME</a>
+                <a href="#" class="menu-link">ABOUT</a>
+                <a href="#" class="menu-link">CHAPTER LINEAGE</a>
+                <a href="brothers.html" class="menu-link">DIRECTORY</a>
+                <a href="#" class="menu-link">GALLERY</a>
+                <a href="https://cash.app/$MorganNupes" target="_blank" class="menu-link donate-button">DONATE</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Navigation - Black -->
+    <nav class="nav-black">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">ALPHA IOTA</a>
+            <div class="menu">
+                <a href="index.html" class="menu-link">HOME</a>
+                <a href="about.html" class="menu-link">ABOUT</a>
+                <a href="brothers.html" class="menu-link">CHAPTER LINEAGE</a>
+                <a href="directory.html" class="menu-link">DIRECTORY</a>
+                <a href="gallery.html" class="menu-link">GALLERY</a>
+                <a href="https://cash.app/$MorganNupes" target="_blank" class="menu-link donate-button">DONATE</a>
+            </div>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" class="mobile-menu-link">HOME</a>
+        <a href="#" class="mobile-menu-link">ABOUT</a>
+        <a href="#" class="mobile-menu-link">CHAPTER LINEAGE</a>
+        <a href="brothers.html" class="mobile-menu-link">DIRECTORY</a>
+        <a href="#" class="mobile-menu-link">GALLERY</a>
+        <a href="https://cash.app/$MorganNupes" target="_blank" class="mobile-menu-link donate-button-mobile">DONATE</a>
+    </div>
+    
+    <!-- Chapter Access Overlay -->
+    <div class="chapter-access-overlay hidden" id="chapter-access-overlay">
+        <div class="chapter-password-prompt">
+            <div class="chapter-icon">
+                <img src="https://public.youware.com/users-website-assets/prod/d55dc7bf-bb95-4414-b556-deeb9651a78b/db42fc4aad4f4d1bb20372f3914d7cad.png" alt="Alpha Iota Logo" class="chapter-logo">
+            </div>
+            <h3>Chapter Access Required</h3>
+            <p>Enter the chapter password to access The Alpha Iota Chapter's Brothers Directory.</p>
+            <form id="chapter-password-form" class="chapter-form">
+                <div class="input-group">
+                    <input type="password" class="auth-input" id="chapter-password" placeholder="Chapter Password" required="">
+                </div>
+                <button type="submit" class="auth-button">Access Directory</button>
+                <div id="chapter-error" class="error-message" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    
+    <!-- Profile Edit Modal -->
+    <div class="modal-overlay" id="edit-profile-modal">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">Edit Your Profile</h2>
+            <form id="edit-profile-form">
+                <div class="form-section">
+                    <h3 class="section-title">Profile Picture</h3>
+                    <div class="input-group">
+                        <input type="file" class="auth-input" id="edit-profile-image" accept="image/*" onchange="previewProfileImage(this)">
+                        <div class="password-help">Update your profile picture (optional)</div>
+                    </div>
+                    <div id="current-profile-image" class="profile-image-preview">
+                        <img src="" alt="Current profile picture" style="max-width: 100px; max-height: 100px; border-radius: 50%; margin-top: 10px; display: block;">
+                        <button type="button" class="remove-image-button" id="remove-profile-image" onclick="removeProfileImage()">Remove Profile Picture</button>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title">Personal Information</h3>
+                    <div class="input-group">
+                        <input type="text" class="auth-input" id="edit-name" placeholder="Full Name" required="">
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" class="auth-input" id="edit-phone" placeholder="Phone Number">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title">Professional Information</h3>
+                    <div class="input-group">
+                        <select class="auth-input" id="edit-education-status" required="">
+                            <option value="" disabled="">Select Education Status</option>
+                            <option value="undergraduate">Undergraduate</option>
+                            <option value="graduate">Graduate School</option>
+                            <option value="graduated">Graduated</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <select class="auth-input" id="edit-profession"><option value="" disabled="">Select Profession</option><option value="Accountant">Accountant</option><option value="Actor">Actor</option><option value="Aerospace Engineer">Aerospace Engineer</option><option value="Architect">Architect</option><option value="Artist">Artist</option><option value="Athlete">Athlete</option><option value="Biomedical Engineer">Biomedical Engineer</option><option value="Business Analyst">Business Analyst</option><option value="Chef">Chef</option><option value="Chemical Engineer">Chemical Engineer</option><option value="Civil Engineer">Civil Engineer</option><option value="Coach">Coach</option><option value="Construction Manager">Construction Manager</option><option value="Counselor">Counselor</option><option value="Data Scientist">Data Scientist</option><option value="Dentist">Dentist</option><option value="Doctor">Doctor</option><option value="Electrical Engineer">Electrical Engineer</option><option value="Entrepreneur">Entrepreneur</option><option value="Environmental Engineer">Environmental Engineer</option><option value="Financial Analyst">Financial Analyst</option><option value="Firefighter">Firefighter</option><option value="Government Official">Government Official</option><option value="Graphic Designer">Graphic Designer</option><option value="Human Resources Manager">Human Resources Manager</option><option value="Industrial Engineer">Industrial Engineer</option><option value="Insurance Agent">Insurance Agent</option><option value="Investment Banker">Investment Banker</option><option value="Journalist">Journalist</option><option value="Lawyer">Lawyer</option><option value="Marketing Manager">Marketing Manager</option><option value="Mechanical Engineer">Mechanical Engineer</option><option value="Military Officer">Military Officer</option><option value="Musician">Musician</option><option value="Nurse">Nurse</option><option value="Other">Other</option><option value="Petroleum Engineer">Petroleum Engineer</option><option value="Pharmacist">Pharmacist</option><option value="Physical Therapist">Physical Therapist</option><option value="Pilot">Pilot</option><option value="Police Officer">Police Officer</option><option value="Professor">Professor</option><option value="Project Manager">Project Manager</option><option value="Psychologist">Psychologist</option><option value="Real Estate Agent">Real Estate Agent</option><option value="Researcher">Researcher</option><option value="Sales Manager">Sales Manager</option><option value="Scientist">Scientist</option><option value="Social Worker">Social Worker</option><option value="Software Engineer">Software Engineer</option><option value="Student">Student</option><option value="Teacher">Teacher</option><option value="UX Designer">UX Designer</option><option value="Veterinarian">Veterinarian</option></select>
+                    </div>
+                    <div class="input-group">
+                        <select class="auth-input" id="edit-field" required=""><option value="" disabled="">Select Field of Interest</option><option value="Agriculture">Agriculture</option><option value="Architecture">Architecture</option><option value="Arts">Arts</option><option value="Biology">Biology</option><option value="Business">Business</option><option value="Chemistry">Chemistry</option><option value="Computer Science">Computer Science</option><option value="Construction">Construction</option><option value="Education">Education</option><option value="Engineering">Engineering</option><option value="Entrepreneurship">Entrepreneurship</option><option value="Environment">Environment</option><option value="Finance">Finance</option><option value="Food Service">Food Service</option><option value="Healthcare">Healthcare</option><option value="Hospitality">Hospitality</option><option value="Law">Law</option><option value="Manufacturing">Manufacturing</option><option value="Mathematics">Mathematics</option><option value="Media">Media</option><option value="Military">Military</option><option value="Non-Profit">Non-Profit</option><option value="Physics">Physics</option><option value="Political Science">Political Science</option><option value="Public Service">Public Service</option><option value="Retail">Retail</option><option value="Social Sciences">Social Sciences</option><option value="Sports">Sports</option><option value="Technology">Technology</option><option value="Transportation">Transportation</option></select>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="auth-input" id="edit-role" placeholder="Role (Optional, e.g., Chapter President)">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title">Social Media</h3>
+                    <div class="input-group">
+                        <input type="text" class="auth-input" id="edit-linkedin" placeholder="LinkedIn URL">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="auth-input" id="edit-instagram" placeholder="Instagram Username">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="auth-input" id="edit-twitter" placeholder="Twitter Username">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3 class="section-title">Additional Information</h3>
+                    <div class="input-group">
+                        <textarea class="auth-input" id="edit-bio" placeholder="Short Bio" style="height: 100px; padding-top: 15px;"></textarea>
+                    </div>
+                </div>
+                
+                <div id="edit-error" class="error-message" style="display: none;"></div>
+                <div id="edit-success" class="success-message" style="display: none;"></div>
+                <button type="submit" class="auth-button">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Brothers Directory Container -->
+    <main class="directory-container">
+        <h1 class="page-title">Alpha Iota Chapter Brothers Directory</h1>
+
+        <!-- Instructional Video Section -->
+        <div class="instruction-video-container">
+            <div class="instruction-video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/dkCZDcLBnew?autoplay=1&amp;controls=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1" title="Brothers Directory Instructions" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+            </div>
+        </div>
+
+        <!-- Logged In Status (shows when logged in) -->
+        <div class="logged-in-status" id="logged-in-status" style="display: none;">
+            <i class="fas fa-user-check"></i>
+            <span>Logged in as <span id="user-name"></span></span>
+            <button class="logout-button" id="logout-button">Logout</button>
+        </div>
+
+        <!-- Authentication Container (shows when not logged in) -->
+        <div class="auth-container" id="auth-container" style="display: block;">
+            <h2>Brothers Authentication</h2>
+            
+            <!-- Auth Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab" id="login-tab">Login</button>
+                <button class="auth-tab active" id="signup-tab">Sign Up</button>
+            </div>
+            
+            <!-- Login Tab Content -->
+            <div class="tab-content" id="login-content">
+                <form id="login-form">
+                    <div class="input-group">
+                        <input type="email" class="auth-input" id="login-email" placeholder="Email Address" required="">
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="password" class="auth-input" id="login-password" placeholder="Password" required="">
+                    </div>
+
+                    <div id="login-error" class="error-message" style="display: none;"></div>
+                    <div id="login-success" class="success-message" style="display: none;"></div>
+                    <button type="submit" class="auth-button">Login</button>
+                </form>
+            </div>
+            
+            <!-- Sign Up Tab Content -->
+            <div class="tab-content active" id="signup-content">
+                <form id="signup-form">
+                    <div class="form-section">
+                        <div style="background-color: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3); color: #4caf50; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 0.9rem;">
+                            <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+                            <strong>No Email Confirmation Required!</strong><br>
+                            Create your account and immediately log in. No email verification needed.
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="section-title">Personal Information</h3>
+                        <div class="input-group">
+                            <input type="text" class="auth-input" id="signup-name" placeholder="Full Name" required="">
+                        </div>
+                        <div class="input-group">
+                            <input type="email" class="auth-input" id="signup-email" placeholder="Email Address" required="">
+                        </div>
+                        <div class="input-group">
+                            <input type="tel" class="auth-input" id="signup-phone" placeholder="Phone Number">
+                        </div>
+
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="section-title">Brother Information</h3>
+                        <div class="input-group">
+                            <select class="auth-input" id="signup-education-status" required="">
+                                <option value="" disabled="" selected="">Select Education Status</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="graduate">Graduate School</option>
+                                <option value="graduated">Graduated</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <select class="auth-input" id="signup-profession" onchange="toggleCustomProfession()"><option value="" disabled="" selected="">Select Profession</option><option value="Accountant">Accountant</option><option value="Actor">Actor</option><option value="Aerospace Engineer">Aerospace Engineer</option><option value="Architect">Architect</option><option value="Artist">Artist</option><option value="Athlete">Athlete</option><option value="Biomedical Engineer">Biomedical Engineer</option><option value="Business Analyst">Business Analyst</option><option value="Chef">Chef</option><option value="Chemical Engineer">Chemical Engineer</option><option value="Civil Engineer">Civil Engineer</option><option value="Coach">Coach</option><option value="Construction Manager">Construction Manager</option><option value="Counselor">Counselor</option><option value="Data Scientist">Data Scientist</option><option value="Dentist">Dentist</option><option value="Doctor">Doctor</option><option value="Electrical Engineer">Electrical Engineer</option><option value="Entrepreneur">Entrepreneur</option><option value="Environmental Engineer">Environmental Engineer</option><option value="Financial Analyst">Financial Analyst</option><option value="Firefighter">Firefighter</option><option value="Government Official">Government Official</option><option value="Graphic Designer">Graphic Designer</option><option value="Human Resources Manager">Human Resources Manager</option><option value="Industrial Engineer">Industrial Engineer</option><option value="Insurance Agent">Insurance Agent</option><option value="Investment Banker">Investment Banker</option><option value="Journalist">Journalist</option><option value="Lawyer">Lawyer</option><option value="Marketing Manager">Marketing Manager</option><option value="Mechanical Engineer">Mechanical Engineer</option><option value="Military Officer">Military Officer</option><option value="Musician">Musician</option><option value="Nurse">Nurse</option><option value="Other">Other</option><option value="Petroleum Engineer">Petroleum Engineer</option><option value="Pharmacist">Pharmacist</option><option value="Physical Therapist">Physical Therapist</option><option value="Pilot">Pilot</option><option value="Police Officer">Police Officer</option><option value="Professor">Professor</option><option value="Project Manager">Project Manager</option><option value="Psychologist">Psychologist</option><option value="Real Estate Agent">Real Estate Agent</option><option value="Researcher">Researcher</option><option value="Sales Manager">Sales Manager</option><option value="Scientist">Scientist</option><option value="Social Worker">Social Worker</option><option value="Software Engineer">Software Engineer</option><option value="Student">Student</option><option value="Teacher">Teacher</option><option value="UX Designer">UX Designer</option><option value="Veterinarian">Veterinarian</option><option value="Other">Other</option></select>
+                        </div>
+                        <div class="input-group" id="custom-profession-group" style="display: none;">
+                            <input type="text" class="auth-input" id="custom-profession" placeholder="Enter your profession">
+                        </div>
+                        <div class="input-group">
+                            <select class="auth-input" id="signup-field" required="" onchange="toggleCustomField()"><option value="" disabled="" selected="">Select Field of Interest</option><option value="Agriculture">Agriculture</option><option value="Architecture">Architecture</option><option value="Arts">Arts</option><option value="Biology">Biology</option><option value="Business">Business</option><option value="Chemistry">Chemistry</option><option value="Computer Science">Computer Science</option><option value="Construction">Construction</option><option value="Education">Education</option><option value="Engineering">Engineering</option><option value="Entrepreneurship">Entrepreneurship</option><option value="Environment">Environment</option><option value="Finance">Finance</option><option value="Food Service">Food Service</option><option value="Healthcare">Healthcare</option><option value="Hospitality">Hospitality</option><option value="Law">Law</option><option value="Manufacturing">Manufacturing</option><option value="Mathematics">Mathematics</option><option value="Media">Media</option><option value="Military">Military</option><option value="Non-Profit">Non-Profit</option><option value="Physics">Physics</option><option value="Political Science">Political Science</option><option value="Public Service">Public Service</option><option value="Retail">Retail</option><option value="Social Sciences">Social Sciences</option><option value="Sports">Sports</option><option value="Technology">Technology</option><option value="Transportation">Transportation</option><option value="Other">Other</option></select>
+                        </div>
+                        <div class="input-group" id="custom-field-group" style="display: none;">
+                            <input type="text" class="auth-input" id="custom-field" placeholder="Enter your field of interest">
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="auth-input" id="signup-role" placeholder="Job Title/Role (e.g., Software Engineer, Doctor, Teacher)">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="section-title">Profile Picture</h3>
+                        <div class="input-group">
+                            <input type="file" class="auth-input" id="signup-profile-image" accept="image/*" onchange="previewSignupImage(this)">
+                            <div class="password-help">Upload a profile picture (optional)</div>
+                        </div>
+                        <div id="signup-profile-preview" class="profile-image-preview" style="display: none;">
+                            <img src="" alt="Profile picture preview" style="max-width: 100px; max-height: 100px; border-radius: 50%; margin-top: 10px;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="section-title">Account Security</h3>
+                        <div class="input-group">
+                            <input type="password" class="auth-input" id="signup-password" placeholder="Create Password" required="">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" class="auth-input" id="signup-password-confirm" placeholder="Confirm Password" required="">
+                        </div>
+                    </div>
+                    
+                    <div id="signup-error" class="error-message" style="display: none;"></div>
+                    <div id="signup-success" class="success-message" style="display: none;"></div>
+                    <button type="submit" class="auth-button">Complete Sign Up</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section" id="search-filter-section" style="display: none;">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-input" placeholder="Search by name, role, profession or field of interest..." class="search-input">
+            </div>
+            <div class="filters">
+                <select id="education-filter" class="filter-select">
+                    <option value="">All Education Status</option>
+                    <option value="undergraduate">Undergraduate</option>
+                    <option value="graduate">Graduate School</option>
+                    <option value="graduated">Graduated</option>
+                </select>
+                <select id="field-filter" class="filter-select"><option value="">All Fields of Interest</option><option value="Agriculture">Agriculture</option><option value="Architecture">Architecture</option><option value="Arts">Arts</option><option value="Biology">Biology</option><option value="Business">Business</option><option value="Chemistry">Chemistry</option><option value="Computer Science">Computer Science</option><option value="Construction">Construction</option><option value="Education">Education</option><option value="Engineering">Engineering</option><option value="Entrepreneurship">Entrepreneurship</option><option value="Environment">Environment</option><option value="Finance">Finance</option><option value="Food Service">Food Service</option><option value="Healthcare">Healthcare</option><option value="Hospitality">Hospitality</option><option value="Law">Law</option><option value="Manufacturing">Manufacturing</option><option value="Mathematics">Mathematics</option><option value="Media">Media</option><option value="Military">Military</option><option value="Non-Profit">Non-Profit</option><option value="Physics">Physics</option><option value="Political Science">Political Science</option><option value="Public Service">Public Service</option><option value="Retail">Retail</option><option value="Social Sciences">Social Sciences</option><option value="Sports">Sports</option><option value="Technology">Technology</option><option value="Transportation">Transportation</option></select>
+                <button id="clear-filters" class="clear-filters-btn">
+                    <i class="fas fa-times"></i>
+                    Clear Filters
+                </button>
+            </div>
+            <div class="results-info">
+                <span id="results-count">0 brothers found</span>
+            </div>
+        </div>
+
+        <!-- Brothers Grid Container -->
+        <div class="brothers-grid" id="brothers-grid">
+            <!-- Brother cards will be dynamically added here -->
+        </div>
+    </main>
+    
+    <script>
+        console.log('=== BROTHERS DIRECTORY STARTING ===');
+        
+        // Initialize Supabase client
+        const supabaseUrl = 'https://oaoddjfsxgwuknbznnbo.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hb2RkamZzeGd3dWtuYnpubmJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEyNTI5MzMsImV4cCI6MjA2NjgyODkzM30.Kr3frdXTggWLxTafaE91_Rn5aumcOoln9eAo2oZ9e3M';
+        
+        let supabaseClient;
+        let currentUser = null;
+        let allBrothers = [];
+        
+        // Initialize Supabase
+        try {
+            const { createClient } = supabase;
+            supabaseClient = createClient(supabaseUrl, supabaseKey);
+            console.log('✓ Supabase client initialized successfully');
+        } catch (error) {
+            console.error('✗ Error initializing Supabase:', error);
+        }
+        
+        // Utility functions
+        function showLoading() {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'flex';
+        }
+        
+        function hideLoading() {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'none';
+        }
+        
+        function clearMessages() {
+            const messages = document.querySelectorAll('.error-message, .success-message');
+            messages.forEach(msg => {
+                msg.style.display = 'none';
+                msg.textContent = '';
+            });
+        }
+        
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.style.display = 'block';
+            }
+        }
+        
+        function showSuccess(elementId, message) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.style.display = 'block';
+            }
+        }
+        
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✓ DOM loaded, initializing...');
+            
+            // Mobile menu functionality
+            const mobileMenuToggles = document.querySelectorAll('.mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                });
+            });
+            
+            // Get all elements
+            const loginTab = document.getElementById('login-tab');
+            const signupTab = document.getElementById('signup-tab');
+            const loginContent = document.getElementById('login-content');
+            const signupContent = document.getElementById('signup-content');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const logoutButton = document.getElementById('logout-button');
+            const editProfileModal = document.getElementById('edit-profile-modal');
+            const modalClose = document.getElementById('modal-close');
+            const editProfileForm = document.getElementById('edit-profile-form');
+            
+            console.log('Elements found:', {
+                loginTab: !!loginTab,
+                signupTab: !!signupTab,
+                loginContent: !!loginContent,
+                signupContent: !!signupContent,
+                loginForm: !!loginForm,
+                signupForm: !!signupForm,
+                logoutButton: !!logoutButton,
+                editProfileModal: !!editProfileModal,
+                modalClose: !!modalClose,
+                editProfileForm: !!editProfileForm
+            });
+            
+            // Handle scroll for navbar
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    document.body.classList.add('scrolled');
+                } else {
+                    document.body.classList.remove('scrolled');
+                }
+            });
+            
+            // Auth tab switching
+            if (loginTab && signupTab && loginContent && signupContent) {
+                console.log('✓ Setting up auth tabs');
+                
+                loginTab.addEventListener('click', function(e) {
+                    console.log('Login tab clicked');
+                    e.preventDefault();
+                    
+                    // Update tabs
+                    loginTab.classList.add('active');
+                    signupTab.classList.remove('active');
+                    
+                    // Update content
+                    loginContent.classList.add('active');
+                    signupContent.classList.remove('active');
+                    
+                    clearMessages();
+                });
+                
+                signupTab.addEventListener('click', function(e) {
+                    console.log('Signup tab clicked');
+                    e.preventDefault();
+                    
+                    // Update tabs
+                    signupTab.classList.add('active');
+                    loginTab.classList.remove('active');
+                    
+                    // Update content
+                    signupContent.classList.add('active');
+                    loginContent.classList.remove('active');
+                    
+                    clearMessages();
+                });
+            } else {
+                console.error('✗ Auth tab elements not found');
+            }
+            
+            // Login form
+            if (loginForm) {
+                loginForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    console.log('Login form submitted');
+                    
+                    clearMessages();
+                    showLoading();
+                    
+                    const emailField = document.getElementById('login-email');
+                    const passwordField = document.getElementById('login-password');
+                    
+                    console.log('Login email field exists:', !!emailField);
+                    console.log('Login password field exists:', !!passwordField);
+                    
+                    const email = emailField ? emailField.value : '';
+                    const password = passwordField ? passwordField.value : '';
+                    
+                    console.log('Using email:', email);
+                    console.log('Password field found:', !!passwordField);
+                    
+                    // Validate that both email and password are provided
+                    if (!email) {
+                        showError('login-error', 'Please enter your email address.');
+                        hideLoading();
+                        return;
+                    }
+                    
+                    if (!password) {
+                        showError('login-error', 'Please enter your password.');
+                        hideLoading();
+                        return;
+                    }
+                    
+                    try {
+                        console.log('Attempting login with email and password');
+                        const { data, error } = await supabaseClient.auth.signInWithPassword({
+                            email: email,
+                            password: password
+                        });
+                        
+                        if (error) {
+                            console.error('Login error:', error);
+                            showError('login-error', 'Login failed: ' + error.message);
+                            hideLoading();
+                            return;
+                        }
+                        
+                        console.log('✓ Login successful', data);
+                        currentUser = data.user;
+                        showSuccess('login-success', 'Login successful!');
+                        
+                        setTimeout(() => {
+                            showLoggedInState();
+                            hideLoading();
+                        }, 1000);
+                        
+                    } catch (err) {
+                        console.error('Login error:', err);
+                        showError('login-error', 'Unexpected error: ' + err.message);
+                        hideLoading();
+                    }
+                });
+            }
+            
+            // Signup form
+            if (signupForm) {
+                signupForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    console.log('Signup form submitted');
+                    
+                    clearMessages();
+                    showLoading();
+                    
+                    // Fraternity password already verified at chapter level - skip this check
+                    
+                    // Get form values
+                    const name = capitalizeName(document.getElementById('signup-name').value.trim());
+                    const email = document.getElementById('signup-email').value.trim();
+                    const phone = document.getElementById('signup-phone').value.trim();
+                    
+                    // Get user's chosen password
+                    const password = document.getElementById('signup-password').value;
+                    const confirmPassword = document.getElementById('signup-password-confirm').value;
+                    
+                    // Validate passwords match
+                    if (password !== confirmPassword) {
+                        showError('signup-error', 'Passwords do not match. Please try again.');
+                        hideLoading();
+                        return;
+                    }
+                    
+                    // Validate password strength
+                    if (password.length < 6) {
+                        showError('signup-error', 'Password must be at least 6 characters long.');
+                        hideLoading();
+                        return;
+                    }
+                    const educationStatus = document.getElementById('signup-education-status').value;
+                    
+                    // Get profession - use custom input if "Other" is selected
+                    let profession = document.getElementById('signup-profession').value;
+                    if (profession === 'Other') {
+                        profession = document.getElementById('custom-profession').value.trim();
+                        if (!profession) {
+                            showError('signup-error', 'Please enter your profession.');
+                            hideLoading();
+                            return;
+                        }
+                    }
+                    
+                    // Get field - use custom input if "Other" is selected
+                    let field = document.getElementById('signup-field').value;
+                    if (field === 'Other') {
+                        field = document.getElementById('custom-field').value.trim();
+                        if (!field) {
+                            showError('signup-error', 'Please enter your field of interest.');
+                            hideLoading();
+                            return;
+                        }
+                    }
+                    const role = document.getElementById('signup-role').value.trim();
+                    
+                    try {
+                        // First check if user already exists
+                        const { data: existingUser } = await supabaseClient
+                            .from('brothers')
+                            .select('email')
+                            .eq('email', email)
+                            .single();
+                        
+                        if (existingUser) {
+                            showError('signup-error', 'An account with this email already exists. Please use the login form.');
+                            hideLoading();
+                            return;
+                        }
+                        
+                        // Upload profile image if provided
+                        const profileImageInput = document.getElementById('signup-profile-image');
+                        let profileImageUrl = null;
+                        
+                        if (profileImageInput && profileImageInput.files.length > 0) {
+                            console.log('Uploading profile image...');
+                            profileImageUrl = await uploadProfileImage(profileImageInput.files[0]);
+                        }
+                        
+                        // Sign up with Supabase Auth - email is auto-confirmed by database trigger
+                        const { data: authData, error: authError } = await supabaseClient.auth.signUp({
+                            email: email,
+                            password: password
+                        });
+                        
+                        if (authError) {
+                            console.error('Auth signup error:', authError);
+                            showError('signup-error', 'Signup failed: ' + authError.message);
+                            hideLoading();
+                            return;
+                        }
+                        
+                        console.log('✓ Auth user created with auto-confirmed email:', authData.user?.id);
+                        
+                        // User is automatically confirmed by database trigger
+                        let finalUser = authData.user;
+                        
+                        // Insert brother data
+                        const { data: brotherData, error: brotherError } = await supabaseClient
+                            .from('brothers')
+                            .insert({
+                                name: name,
+                                email: email,
+                                phone: phone,
+                                profession: profession,
+                                education_status: educationStatus,
+                                field_of_interest: field,
+                                role: role,
+                                social_media: {},
+                                profile_image_url: profileImageUrl
+                            })
+                            .select('id');
+                        
+                        if (brotherError) {
+                            console.error('Brother insert error:', brotherError);
+                            showError('signup-error', 'Error creating profile: ' + brotherError.message);
+                            hideLoading();
+                            return;
+                        }
+                        
+                        console.log('✓ Brother profile created');
+                        
+                        // Link profile
+                        const { error: profileError } = await supabaseClient
+                            .from('profiles')
+                            .insert({
+                                id: finalUser.id,
+                                brother_id: brotherData[0].id
+                            });
+                        
+                        if (profileError) {
+                            console.error('Profile link error:', profileError);
+                            showError('signup-error', 'Error linking profile: ' + profileError.message);
+                            hideLoading();
+                            return;
+                        }
+                        
+                        console.log('✓ Profile linked successfully');
+                        
+                        // Show success message and ask user to login
+                        showSuccess('signup-success', 'Account created successfully! No email confirmation needed. Please click the LOGIN tab and sign in with your credentials.');
+                        
+                        // Reset form and switch to login tab
+                        signupForm.reset();
+                        setTimeout(() => {
+                            // Switch to login tab
+                            const loginTab = document.getElementById('login-tab');
+                            const signupTab = document.getElementById('signup-tab');
+                            const loginContent = document.getElementById('login-content');
+                            const signupContent = document.getElementById('signup-content');
+                            
+                            if (loginTab && signupTab && loginContent && signupContent) {
+                                loginTab.classList.add('active');
+                                signupTab.classList.remove('active');
+                                loginContent.classList.add('active');
+                                signupContent.classList.remove('active');
+                            }
+                            
+                            hideLoading();
+                        }, 2000);
+                        
+                    } catch (err) {
+                        console.error('Signup error:', err);
+                        showError('signup-error', 'Unexpected error: ' + err.message);
+                        hideLoading();
+                    }
+                });
+            }
+            
+            // Logout button
+            if (logoutButton) {
+                logoutButton.addEventListener('click', async function() {
+                    console.log('Logout clicked');
+                    showLoading();
+                    
+                    try {
+                        const { error } = await supabaseClient.auth.signOut();
+                        if (error) {
+                            console.error('Logout error:', error);
+                        } else {
+                            console.log('✓ Logout successful');
+                        }
+                        
+                        currentUser = null;
+                        showLoggedOutState();
+                    } catch (err) {
+                        console.error('Logout error:', err);
+                    }
+                    
+                    hideLoading();
+                });
+            }
+            
+            // Modal close button
+            if (modalClose) {
+                modalClose.addEventListener('click', function() {
+                    editProfileModal.style.display = 'none';
+                });
+            }
+            
+            // Close modal when clicking outside
+            if (editProfileModal) {
+                editProfileModal.addEventListener('click', function(e) {
+                    if (e.target === editProfileModal) {
+                        editProfileModal.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Search and Filter Event Listeners
+            const searchInput = document.getElementById('search-input');
+            const educationFilter = document.getElementById('education-filter');
+            const fieldFilter = document.getElementById('field-filter');
+            const clearFiltersBtn = document.getElementById('clear-filters');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    console.log('Search input changed:', this.value);
+                    filterBrothers();
+                });
+            }
+            
+            if (educationFilter) {
+                educationFilter.addEventListener('change', function() {
+                    console.log('Education filter changed:', this.value);
+                    filterBrothers();
+                });
+            }
+            
+            if (fieldFilter) {
+                fieldFilter.addEventListener('change', function() {
+                    console.log('Field filter changed:', this.value);
+                    filterBrothers();
+                });
+            }
+            
+            if (clearFiltersBtn) {
+                clearFiltersBtn.addEventListener('click', function() {
+                    console.log('Clear filters clicked');
+                    clearAllFilters();
+                });
+            }
+            
+            // Handle profile edit form submission
+            if (editProfileForm) {
+                editProfileForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    console.log('Edit profile form submitted');
+                    
+                    const editError = document.getElementById('edit-error');
+                    const editSuccess = document.getElementById('edit-success');
+                    
+                    if (editError) editError.style.display = 'none';
+                    if (editSuccess) editSuccess.style.display = 'none';
+                    showLoading();
+                    
+                    try {
+                        // Get current user's brother profile ID
+                        const { data: profileData, error: profileError } = await supabaseClient
+                            .from('profiles')
+                            .select('brother_id')
+                            .eq('id', currentUser.id)
+                            .single();
+                        
+                        if (profileError) {
+                            console.error('Profile retrieval error:', profileError);
+                            if (editError) {
+                                editError.textContent = 'Error retrieving profile: ' + profileError.message;
+                                editError.style.display = 'block';
+                            }
+                            hideLoading();
+                            return;
+                        }
+                        
+                        // Get form values
+                        const name = capitalizeName(document.getElementById('edit-name').value.trim());
+                        const phone = document.getElementById('edit-phone').value.trim();
+                        const educationStatus = document.getElementById('edit-education-status').value;
+                        const profession = document.getElementById('edit-profession').value;
+                        const field = document.getElementById('edit-field').value;
+                        const role = document.getElementById('edit-role').value.trim();
+                        const bio = document.getElementById('edit-bio').value.trim();
+                        const linkedin = document.getElementById('edit-linkedin').value.trim();
+                        const instagram = document.getElementById('edit-instagram').value.trim();
+                        const twitter = document.getElementById('edit-twitter').value.trim();
+                        
+                        // Check if user wants to remove the profile image
+                        const removeImageFlag = document.getElementById('remove-profile-image-flag');
+                        let profileImageUrl = null;
+                        let shouldRemoveImage = false;
+                        
+                        if (removeImageFlag && removeImageFlag.value === 'true') {
+                            console.log('Profile image removal requested');
+                            shouldRemoveImage = true;
+                        } else {
+                            // Handle normal profile image upload if not removing
+                            const profileImageInput = document.getElementById('edit-profile-image');
+                            
+                            if (profileImageInput && profileImageInput.files && profileImageInput.files.length > 0) {
+                                console.log('Profile image file detected, starting upload...');
+                                profileImageUrl = await uploadProfileImage(profileImageInput.files[0]);
+                                
+                                if (profileImageUrl) {
+                                    console.log('✅ Image upload completed, URL:', profileImageUrl);
+                                } else {
+                                    console.log('❌ Image upload failed');
+                                }
+                            } else {
+                                console.log('No new profile image selected');
+                            }
+                        }
+                        
+                        // Prepare update data
+                        const updateObj = {
+                            name: name,
+                            phone: phone,
+                            profession: profession,
+                            education_status: educationStatus,
+                            field_of_interest: field,
+                            role: role,
+                            bio: bio,
+                            social_media: {
+                                linkedin: linkedin || null,
+                                instagram: instagram || null,
+                                twitter: twitter || null
+                            },
+                            updated_at: new Date()
+                        };
+                        
+                        // Add profile image if uploaded or explicitly set to null if removal requested
+                        if (profileImageUrl) {
+                            updateObj.profile_image_url = profileImageUrl;
+                        } else if (shouldRemoveImage) {
+                            updateObj.profile_image_url = null;
+                            console.log('Setting profile_image_url to null');
+                        }
+                        
+                        // Update brother data
+                        const { error: updateError } = await supabaseClient
+                            .from('brothers')
+                            .update(updateObj)
+                            .eq('id', profileData.brother_id);
+                        
+                        if (updateError) {
+                            console.error('Update error:', updateError);
+                            if (editError) {
+                                editError.textContent = 'Error updating profile: ' + updateError.message;
+                                editError.style.display = 'block';
+                            }
+                            hideLoading();
+                            return;
+                        }
+                        
+                        console.log('✓ Profile updated successfully');
+                        if (editSuccess) {
+                            editSuccess.textContent = 'Profile updated successfully!';
+                            editSuccess.style.display = 'block';
+                        }
+                        
+                        // If a new image was uploaded or removed, immediately update the brother's image in the directory
+                        if ((profileImageUrl || shouldRemoveImage) && currentUser) {
+                            // If removing image, pass null to show placeholder, otherwise pass the new URL
+                            const imageToShow = shouldRemoveImage ? null : profileImageUrl;
+                            updateBrotherImageInDirectory(currentUser.email, imageToShow);
+                        }
+                        
+                        // Reload brothers to show all updated data
+                        loadBrothers();
+                        
+                        // Hide modal after delay
+                        setTimeout(() => {
+                            editProfileModal.style.display = 'none';
+                        }, 1500);
+                        
+                    } catch (err) {
+                        console.error('Edit profile error:', err);
+                        if (editError) {
+                            editError.textContent = 'Unexpected error: ' + err.message;
+                            editError.style.display = 'block';
+                        }
+                    }
+                    
+                    hideLoading();
+                });
+            }
+            
+            // Add chapter password form event listener
+            const chapterForm = document.getElementById('chapter-password-form');
+            if (chapterForm) {
+                chapterForm.addEventListener('submit', handleChapterPassword);
+            }
+            
+            // Check for existing session
+            checkSession();
+        });
+        
+        // Check for existing session
+        async function checkSession() {
+            console.log('Checking session...');
+            showLoading();
+            
+            // First check chapter authentication
+            if (!checkChapterAuthentication()) {
+                console.log('Chapter not authenticated, showing password prompt');
+                hideLoading();
+                showChapterAccessOverlay();
+                return;
+            } else {
+                // Hide the chapter access overlay if already authenticated
+                const overlay = document.getElementById('chapter-access-overlay');
+                if (overlay) overlay.classList.add('hidden');
+            }
+            
+            try {
+                // Load dropdown options for the forms with timeout
+                console.log('Loading dropdown options...');
+                const timeoutPromise = new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('Dropdown loading timeout')), 10000)
+                );
+                
+                await Promise.race([loadDropdownOptions(), timeoutPromise]);
+                console.log('✓ Dropdown options loaded successfully');
+                
+                // Check Supabase session
+                console.log('Checking Supabase session...');
+                const { data, error } = await supabaseClient.auth.getSession();
+                
+                if (error) {
+                    console.error('Session check error:', error);
+                    showLoggedOutState();
+                } else if (data.session) {
+                    console.log('✓ Existing session found');
+                    currentUser = data.session.user;
+                    showLoggedInState();
+                } else {
+                    console.log('No existing session');
+                    showLoggedOutState();
+                }
+            } catch (err) {
+                console.error('Error during session check:', err);
+                // Always show logged out state and hide loading on any error
+                showLoggedOutState();
+            } finally {
+                // Always ensure loading is hidden
+                hideLoading();
+                console.log('✓ Session check completed');
+            }
+        }
+        
+        // Show logged in state
+        async function showLoggedInState() {
+            console.log('Showing logged in state');
+            
+            const authContainer = document.getElementById('auth-container');
+            const loggedInStatus = document.getElementById('logged-in-status');
+            const userNameElement = document.getElementById('user-name');
+            
+            if (authContainer) authContainer.style.display = 'none';
+            if (loggedInStatus) loggedInStatus.style.display = 'flex';
+            
+            // Get the brother's name from the database
+            if (userNameElement && currentUser) {
+                try {
+                    const { data: profileData, error: profileError } = await supabaseClient
+                        .from('profiles')
+                        .select('brother_id')
+                        .eq('id', currentUser.id)
+                        .single();
+                    
+                    if (profileData && !profileError) {
+                        const { data: brotherData, error: brotherError } = await supabaseClient
+                            .from('brothers')
+                            .select('name')
+                            .eq('id', profileData.brother_id)
+                            .single();
+                        
+                        if (brotherData && !brotherError) {
+                            userNameElement.textContent = brotherData.name;
+                        } else {
+                            userNameElement.textContent = currentUser.email;
+                        }
+                    } else {
+                        userNameElement.textContent = currentUser.email;
+                    }
+                } catch (err) {
+                    console.error('Error getting brother name:', err);
+                    userNameElement.textContent = currentUser.email;
+                }
+            }
+            
+            // Show search and filter section
+            const searchFilterSection = document.getElementById('search-filter-section');
+            if (searchFilterSection) {
+                searchFilterSection.style.display = 'block';
+            }
+            
+            loadBrothers();
+        }
+        
+        // Show logged out state
+        function showLoggedOutState() {
+            console.log('Showing logged out state');
+            
+            const authContainer = document.getElementById('auth-container');
+            const loggedInStatus = document.getElementById('logged-in-status');
+            const searchFilterSection = document.getElementById('search-filter-section');
+            
+            if (authContainer) authContainer.style.display = 'block';
+            if (loggedInStatus) loggedInStatus.style.display = 'none';
+            if (searchFilterSection) searchFilterSection.style.display = 'none';
+            
+            showPleaseSignIn();
+        }
+        
+        // Handle chapter password verification
+        async function handleChapterPassword(e) {
+            e.preventDefault();
+            
+            const chapterPassword = document.getElementById('chapter-password').value;
+            const errorElement = document.getElementById('chapter-error');
+            
+            console.log('Chapter password entered:', chapterPassword);
+            
+            if (chapterPassword === "Phi05Nu29Pi1931") {
+                console.log('✓ Chapter password correct!');
+                isChapterAuthenticated = true;
+                localStorage.setItem('chapterAuthenticated', 'true');
+                errorElement.textContent = '';
+                
+                // Hide the chapter access overlay
+                const overlay = document.getElementById('chapter-access-overlay');
+                if (overlay) {
+                    overlay.classList.add('hidden');
+                    console.log('✓ Chapter overlay hidden');
+                }
+                
+                // Check if user is already logged in
+                console.log('Starting session check...');
+                checkSession();
+            } else {
+                console.log('✗ Incorrect chapter password');
+                errorElement.textContent = 'Incorrect chapter password. Please try again.';
+                document.getElementById('chapter-password').value = '';
+            }
+        }
+        
+        // Check if chapter is already authenticated
+        function checkChapterAuthentication() {
+            const stored = localStorage.getItem('chapterAuthenticated');
+            if (stored === 'true') {
+                isChapterAuthenticated = true;
+                return true;
+            }
+            return false;
+        }
+        
+        // Show chapter access overlay
+        function showChapterAccessOverlay() {
+            const overlay = document.getElementById('chapter-access-overlay');
+            if (overlay) {
+                overlay.classList.remove('hidden');
+            }
+        }
+        
+        // Show chapter password prompt
+        function showChapterPasswordPrompt() {
+            showChapterAccessOverlay();
+        }
+        
+        // Load dropdown options from database
+        async function loadDropdownOptions() {
+            console.log('Loading dropdown options...');
+            
+            try {
+                // Load fields of interest
+                console.log('Loading fields of interest...');
+                const { data: fieldsData, error: fieldsError } = await supabaseClient
+                    .from('fields_of_interest')
+                    .select('*')
+                    .order('name');
+                
+                if (fieldsError) {
+                    console.error('Error loading fields of interest:', fieldsError);
+                    // Continue even if this fails
+                } else {
+                    console.log('✓ Fields of interest loaded:', fieldsData.length);
+                    populateFieldsDropdowns(fieldsData);
+                }
+                
+                // Load professions
+                console.log('Loading professions...');
+                const { data: professionsData, error: professionsError } = await supabaseClient
+                    .from('professions')
+                    .select('*')
+                    .order('name');
+                
+                if (professionsError) {
+                    console.error('Error loading professions:', professionsError);
+                    // Continue even if this fails
+                } else {
+                    console.log('✓ Professions loaded:', professionsData.length);
+                    populateProfessionsDropdowns(professionsData);
+                }
+                
+                console.log('✓ All dropdown options processed');
+            } catch (err) {
+                console.error('Error loading dropdown options:', err);
+                // Don't throw the error, just log it and continue
+            }
+        }
+        
+        // Populate fields of interest dropdowns
+        function populateFieldsDropdowns(fields) {
+            const signupField = document.getElementById('signup-field');
+            const editField = document.getElementById('edit-field');
+            const fieldFilter = document.getElementById('field-filter');
+            
+            const fieldOptions = fields.map(field => {
+                return `<option value="${field.name}">${field.name}</option>`;
+            }).join('');
+            
+            // Add "Other" option
+            const otherOption = '<option value="Other">Other</option>';
+            
+            if (signupField) {
+                // Keep the first default option and add the rest
+                const currentDefault = signupField.options[0].outerHTML;
+                signupField.innerHTML = currentDefault + fieldOptions + otherOption;
+            }
+            
+            if (editField) {
+                // Keep the first default option and add the rest
+                const currentDefault = editField.options[0].outerHTML;
+                editField.innerHTML = currentDefault + fieldOptions;
+            }
+            
+            if (fieldFilter) {
+                // Keep the first default option and add the rest
+                const currentDefault = fieldFilter.options[0].outerHTML;
+                fieldFilter.innerHTML = currentDefault + fieldOptions;
+            }
+        }
+        
+        // Populate professions dropdowns
+        function populateProfessionsDropdowns(professions) {
+            const signupProfession = document.getElementById('signup-profession');
+            const editProfession = document.getElementById('edit-profession');
+            
+            const professionOptions = professions.map(profession => {
+                return `<option value="${profession.name}">${profession.name}</option>`;
+            }).join('');
+            
+            // Add "Other" option
+            const otherOption = '<option value="Other">Other</option>';
+            
+            if (signupProfession) {
+                // Keep the first default option and add the rest
+                const currentDefault = signupProfession.options[0].outerHTML;
+                signupProfession.innerHTML = currentDefault + professionOptions + otherOption;
+            }
+            
+            if (editProfession) {
+                // Keep the first default option and add the rest
+                const currentDefault = editProfession.options[0].outerHTML;
+                editProfession.innerHTML = currentDefault + professionOptions;
+            }
+        }
+        
+        // Load brothers from database
+        async function loadBrothers() {
+            if (!isChapterAuthenticated) {
+                showChapterPasswordPrompt();
+                return;
+            }
+            
+            if (!currentUser) {
+                showLoggedOutState();
+                return;
+            }
+            
+            console.log('Loading brothers...');
+            showLoading();
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('brothers')
+                    .select('*');
+                
+                if (error) {
+                    console.error('Error loading brothers:', error);
+                } else {
+                    console.log('✓ Brothers loaded:', data?.length || 0);
+                    allBrothers = data || [];
+                    displayBrothers(allBrothers);
+                    updateResultsCount(allBrothers.length);
+                }
+            } catch (err) {
+                console.error('Error loading brothers:', err);
+            }
+            
+            hideLoading();
+        }
+        
+        // Display brothers
+        function displayBrothers(brothers) {
+            const grid = document.getElementById('brothers-grid');
+            if (!grid) return;
+            
+            if (brothers.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; color: white; padding: 2rem;">No brothers found in the directory.</p>';
+                return;
+            }
+            
+            grid.innerHTML = '';
+            
+            brothers.forEach(brother => {
+                const card = document.createElement('div');
+                card.className = 'brother-card';
+                
+                // Use the brother's profile image if available, otherwise use profession-based placeholder
+                const imageUrl = brother.profile_image_url || getImageByProfession(brother.profession);
+                
+                // Check if this is the current user's profile
+                const isCurrentUser = currentUser && currentUser.email === brother.email;
+                
+                // Social media links
+                let socialLinks = '';
+                if (brother.social_media) {
+                    const social = brother.social_media;
+                    if (social.linkedin) {
+                        socialLinks += `<a href="${social.linkedin}" target="_blank" style="color: white; font-size: 1.2rem; margin-left: 0.8rem; transition: color 0.3s ease;"><i class="fab fa-linkedin"></i></a>`;
+                    }
+                    if (social.instagram) {
+                        socialLinks += `<a href="https://instagram.com/${social.instagram}" target="_blank" style="color: white; font-size: 1.2rem; margin-left: 0.8rem; transition: color 0.3s ease;"><i class="fab fa-instagram"></i></a>`;
+                    }
+                    if (social.twitter) {
+                        socialLinks += `<a href="https://twitter.com/${social.twitter}" target="_blank" style="color: white; font-size: 1.2rem; margin-left: 0.8rem; transition: color 0.3s ease;"><i class="fab fa-twitter"></i></a>`;
+                    }
+                }
+                
+                card.innerHTML = `
+                    <div class="brother-header">
+                        <img src="${imageUrl}" alt="${brother.name}" class="brother-image">
+                        <div class="brother-title">
+                            <h3 class="brother-name">${brother.name}</h3>
+                            <p class="brother-profession">${brother.profession || 'Kappa Alpha Psi Brother'}</p>
+                            ${brother.role ? `<p class="brother-role">${brother.role}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="brother-details">
+                        <div class="brother-info">
+                            <div class="brother-info-text">
+                                <p class="brother-info-label">Email</p>
+                                <p class="brother-info-value" style="word-break: break-word;">${brother.email || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <div class="brother-info">
+                            <div class="brother-info-text">
+                                <p class="brother-info-label">Phone</p>
+                                <p class="brother-info-value" style="word-break: break-word;">${brother.phone || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <div class="brother-info">
+                            <div class="brother-info-text">
+                                <p class="brother-info-label">Education</p>
+                                <p class="brother-info-value" style="word-break: break-word;">${formatEducationStatus(brother.education_status) || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <div class="brother-info">
+                            <div class="brother-info-text">
+                                <p class="brother-info-label">Field of Interest</p>
+                                <p class="brother-info-value" style="word-break: break-word;">${brother.field_of_interest || 'N/A'}</p>
+                            </div>
+                        </div>
+                        ${brother.bio ? `
+                        <div class="brother-info">
+                            <div class="brother-info-text">
+                                <p class="brother-info-label">Bio</p>
+                                <p class="brother-info-value" style="word-break: break-word;">${brother.bio}</p>
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                    <div class="brother-footer">
+                        <div style="display: flex; align-items: center;">
+                            ${socialLinks}
+                        </div>
+                        ${isCurrentUser ? `<button class="edit-button" onclick="editProfile('${brother.id}')">Edit Profile</button>` : ''}
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // Get default placeholder image for brothers
+        function getImageByProfession(profession) {
+            // Use the custom Alpha Iota logo as placeholder
+            return 'https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png';
+        }
+        
+        // Format education status
+        function formatEducationStatus(status) {
+            if (!status) return null;
+            
+            const statusMap = {
+                'undergraduate': 'Undergraduate',
+                'graduate': 'Graduate School',
+                'graduated': 'Graduated'
+            };
+            
+            return statusMap[status.toLowerCase()] || status;
+        }
+        
+        // This function is replaced by the database-driven dropdown population
+        // Fields are now loaded directly from the fields_of_interest table
+        
+        function updateResultsCount(count) {
+            const resultsCount = document.getElementById('results-count');
+            if (resultsCount) {
+                resultsCount.textContent = `${count} brother${count !== 1 ? 's' : ''} found`;
+            }
+        }
+        
+        function filterBrothers() {
+            const searchTerm = document.getElementById('search-input')?.value.toLowerCase().trim() || '';
+            const educationFilter = document.getElementById('education-filter')?.value || '';
+            const fieldFilter = document.getElementById('field-filter')?.value || '';
+            
+            const filtered = allBrothers.filter(brother => {
+                // Search filter (name, role, profession, and field of interest)
+                const matchesSearch = !searchTerm || 
+                    brother.name?.toLowerCase().includes(searchTerm) ||
+                    brother.role?.toLowerCase().includes(searchTerm) ||
+                    brother.profession?.toLowerCase().includes(searchTerm) ||
+                    brother.field_of_interest?.toLowerCase().includes(searchTerm);
+                
+                // Education filter
+                const matchesEducation = !educationFilter || 
+                    brother.education_status?.toLowerCase() === educationFilter.toLowerCase();
+                
+                // Field of interest filter
+                const matchesField = !fieldFilter || 
+                    brother.field_of_interest === fieldFilter;
+                
+                return matchesSearch && matchesEducation && matchesField;
+            });
+            
+            displayBrothers(filtered);
+            updateResultsCount(filtered.length);
+        }
+        
+        function clearAllFilters() {
+            const searchInput = document.getElementById('search-input');
+            const educationFilter = document.getElementById('education-filter');
+            const fieldFilter = document.getElementById('field-filter');
+            
+            if (searchInput) searchInput.value = '';
+            if (educationFilter) educationFilter.value = '';
+            if (fieldFilter) fieldFilter.value = '';
+            
+            displayBrothers(allBrothers);
+            updateResultsCount(allBrothers.length);
+        }
+        
+        // Edit profile function
+        async function editProfile(brotherId) {
+            console.log('Edit profile clicked for brother:', brotherId);
+            showLoading();
+            
+            try {
+                // Get brother details
+                const { data, error } = await supabaseClient
+                    .from('brothers')
+                    .select('*')
+                    .eq('id', brotherId)
+                    .single();
+                
+                if (error) {
+                    console.error('Error fetching brother details:', error);
+                    hideLoading();
+                    return;
+                }
+                
+                console.log('✓ Brother data loaded for editing');
+                
+                // Populate form with current data
+                document.getElementById('edit-name').value = data.name || '';
+                document.getElementById('edit-phone').value = data.phone || '';
+                document.getElementById('edit-education-status').value = data.education_status || '';
+                document.getElementById('edit-profession').value = data.profession || '';
+                document.getElementById('edit-field').value = data.field_of_interest || '';
+                document.getElementById('edit-role').value = data.role || '';
+                document.getElementById('edit-bio').value = data.bio || '';
+                
+                // Show current profile image if available
+                const currentProfileImage = document.getElementById('current-profile-image');
+                if (currentProfileImage) {
+                    const img = currentProfileImage.querySelector('img');
+                    if (img) {
+                        img.src = data.profile_image_url || getImageByProfession(data.profession);
+                    }
+                }
+                
+                // Social media
+                if (data.social_media) {
+                    document.getElementById('edit-linkedin').value = data.social_media.linkedin || '';
+                    document.getElementById('edit-instagram').value = data.social_media.instagram || '';
+                    document.getElementById('edit-twitter').value = data.social_media.twitter || '';
+                } else {
+                    document.getElementById('edit-linkedin').value = '';
+                    document.getElementById('edit-instagram').value = '';
+                    document.getElementById('edit-twitter').value = '';
+                }
+                
+                // Show modal
+                const modal = document.getElementById('edit-profile-modal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                }
+                
+            } catch (err) {
+                console.error('Error during profile edit:', err);
+            }
+            
+            hideLoading();
+        }
+        
+        // Helper function to capitalize names properly
+        function capitalizeName(name) {
+            if (!name) return '';
+            
+            return name
+                .split(' ')
+                .map(word => {
+                    if (word.length === 0) return word;
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                })
+                .join(' ');
+        }
+        
+        let isChapterAuthenticated = false;
+        
+        // Upload profile image to Supabase Storage
+        async function uploadProfileImage(file) {
+            if (!file) {
+                console.log('No file provided for upload');
+                return null;
+            }
+            
+            console.log('Starting image upload for file:', file.name);
+            
+            try {
+                const fileExt = file.name.split('.').pop();
+                const fileName = `${Date.now()}.${fileExt}`;
+                const filePath = `profile-images/${fileName}`;
+                
+                console.log('Uploading to path:', filePath);
+                
+                // Upload the file to Supabase Storage
+                const { data, error } = await supabaseClient
+                    .storage
+                    .from('profile-pictures')
+                    .upload(filePath, file);
+                
+                if (error) {
+                    console.error('Supabase storage upload error:', error);
+                    alert('Failed to upload image: ' + error.message);
+                    return null;
+                }
+                
+                console.log('Upload successful, getting public URL...');
+                
+                // Get the public URL
+                const { data: urlData } = supabaseClient
+                    .storage
+                    .from('profile-pictures')
+                    .getPublicUrl(filePath);
+                
+                console.log('✅ Image uploaded successfully:', urlData.publicUrl);
+                return urlData.publicUrl;
+            } catch (err) {
+                console.error('Unexpected error uploading image:', err);
+                alert('Unexpected error uploading image: ' + err.message);
+                return null;
+            }
+        }
+        
+        // Preview profile image when user selects a file (edit form)
+        function previewProfileImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const currentProfileImage = document.getElementById('current-profile-image');
+                    if (currentProfileImage) {
+                        const img = currentProfileImage.querySelector('img');
+                        if (img) {
+                            img.src = e.target.result;
+                            img.style.display = 'block';
+                        }
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        // Preview profile image when user selects a file (signup form)
+        function previewSignupImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const signupPreview = document.getElementById('signup-profile-preview');
+                    if (signupPreview) {
+                        const img = signupPreview.querySelector('img');
+                        if (img) {
+                            img.src = e.target.result;
+                            signupPreview.style.display = 'block';
+                        }
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        // Remove profile picture
+        function removeProfileImage() {
+            console.log('Removing profile picture');
+            
+            // Set hidden field to indicate profile image should be removed
+            let removeImageField = document.getElementById('remove-profile-image-flag');
+            if (!removeImageField) {
+                removeImageField = document.createElement('input');
+                removeImageField.type = 'hidden';
+                removeImageField.id = 'remove-profile-image-flag';
+                removeImageField.name = 'remove-profile-image';
+                removeImageField.value = 'true';
+                document.getElementById('edit-profile-form').appendChild(removeImageField);
+            }
+            
+            // Update preview to show placeholder
+            const currentProfileImage = document.getElementById('current-profile-image');
+            if (currentProfileImage) {
+                const img = currentProfileImage.querySelector('img');
+                if (img) {
+                    img.src = getImageByProfession('');
+                }
+            }
+            
+            // Clear file input
+            const profileImageInput = document.getElementById('edit-profile-image');
+            if (profileImageInput) {
+                profileImageInput.value = '';
+            }
+            
+            alert('Profile picture will be removed when you save changes');
+        }
+        
+        // Update brother's image in the directory immediately (for instant feedback)
+        function updateBrotherImageInDirectory(email, newImageUrl) {
+            const brotherCards = document.querySelectorAll('.brother-card');
+            brotherCards.forEach(card => {
+                // Look for the email in the brother-info-value elements
+                const emailElements = card.querySelectorAll('.brother-info-value');
+                let foundEmail = false;
+                emailElements.forEach(element => {
+                    if (element.textContent.trim() === email) {
+                        foundEmail = true;
+                    }
+                });
+                
+                if (foundEmail) {
+                    const imageElement = card.querySelector('.brother-image');
+                    if (imageElement) {
+                        // If newImageUrl is null, use placeholder
+                        if (newImageUrl === null) {
+                            // Get profession from card to use appropriate placeholder
+                            const professionElement = card.querySelector('.brother-profession');
+                            const profession = professionElement ? professionElement.textContent : '';
+                            imageElement.src = getImageByProfession(profession);
+                            console.log('Reset brother image to placeholder for:', email);
+                        } else {
+                            imageElement.src = newImageUrl;
+                            console.log('Updated brother image in directory for:', email);
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Toggle custom profession input
+        function toggleCustomProfession() {
+            const professionSelect = document.getElementById('signup-profession');
+            const customProfessionGroup = document.getElementById('custom-profession-group');
+            const customProfessionInput = document.getElementById('custom-profession');
+            
+            if (professionSelect.value === 'Other') {
+                customProfessionGroup.style.display = 'block';
+                customProfessionInput.required = true;
+            } else {
+                customProfessionGroup.style.display = 'none';
+                customProfessionInput.required = false;
+                customProfessionInput.value = '';
+            }
+        }
+        
+        // Toggle custom field input
+        function toggleCustomField() {
+            const fieldSelect = document.getElementById('signup-field');
+            const customFieldGroup = document.getElementById('custom-field-group');
+            const customFieldInput = document.getElementById('custom-field');
+            
+            if (fieldSelect.value === 'Other') {
+                customFieldGroup.style.display = 'block';
+                customFieldInput.required = true;
+            } else {
+                customFieldGroup.style.display = 'none';
+                customFieldInput.required = false;
+                customFieldInput.value = '';
+            }
+        }
+        
+        console.log('=== SCRIPT LOADED ===');
+    </script>
+
+</body></html>
