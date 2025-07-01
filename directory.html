@@ -889,6 +889,37 @@
             border-color: var(--color-crimson);
         }
         
+        /* Export Button */
+        .export-btn {
+            background-color: var(--color-crimson);
+            border: 1px solid var(--color-crimson);
+            color: white;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .export-btn:hover {
+            background-color: #9a0f2e;
+            border-color: #9a0f2e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
         .results-info {
             text-align: center;
             color: rgba(255, 255, 255, 0.8);
@@ -901,6 +932,19 @@
         @media screen and (max-width: 768px) {
             .menu {
                 display: none;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.8rem;
+            }
+            
+            .export-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.8rem;
+                font-size: 0.9rem;
             }
             
             .mobile-menu-toggle {
@@ -1175,7 +1219,7 @@
         }
     </style>
 <script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
-<body class="scrolled">
+<body>
     <!-- Navigation - Transparent -->
     <nav class="nav">
         <div class="nav-inner">
@@ -1616,6 +1660,12 @@
                     <option value="Technology">Technology</option>
                     <option value="Transportation">Transportation</option>
                 </select>
+            </div>
+            <div class="filter-buttons">
+                <button id="export-contacts" class="export-btn">
+                    <i class="fas fa-file-export"></i>
+                    Export Contacts
+                </button>
                 <button id="clear-filters" class="clear-filters-btn">
                     <i class="fas fa-times"></i>
                     Clear Filters
@@ -2099,6 +2149,15 @@
                 clearFiltersBtn.addEventListener('click', function() {
                     console.log('Clear filters clicked');
                     clearAllFilters();
+                });
+            }
+            
+            // Export contacts functionality
+            const exportContactsBtn = document.getElementById('export-contacts');
+            if (exportContactsBtn) {
+                exportContactsBtn.addEventListener('click', function() {
+                    console.log('Export contacts clicked');
+                    exportBrothersAsCSV();
                 });
             }
             
@@ -2668,6 +2727,73 @@
             
             // Reload all brothers
             displayBrothers(allBrothers);
+        }
+        
+        // Export brothers contacts as CSV
+        function exportBrothersAsCSV() {
+            console.log('Exporting brothers contacts');
+            
+            if (!allBrothers || allBrothers.length === 0) {
+                console.error('No brothers data to export');
+                return;
+            }
+            
+            // Define CSV headers
+            const headers = [
+                'Name',
+                'Email',
+                'Phone',
+                'Profession',
+                'Education Status',
+                'Field of Interest',
+                'Role',
+                'LinkedIn',
+                'Instagram',
+                'Twitter'
+            ];
+            
+            // Create CSV content
+            let csvContent = headers.join(',') + '\\n';
+            
+            allBrothers.forEach(brother => {
+                // Extract social media links if available
+                const socialMedia = brother.social_media || {};
+                const linkedin = socialMedia.linkedin || '';
+                const instagram = socialMedia.instagram || '';
+                const twitter = socialMedia.twitter || '';
+                
+                // Format each row of data
+                const row = [
+                    '"' + (brother.name || '').replace(/"/g, '""') + '"',
+                    '"' + (brother.email || '').replace(/"/g, '""') + '"',
+                    '"' + (brother.phone || '').replace(/"/g, '""') + '"',
+                    '"' + (brother.profession || '').replace(/"/g, '""') + '"',
+                    '"' + (brother.education_status || '').replace(/"/g, '""') + '"',
+                    '"' + (brother.field_of_interest || '').replace(/"/g, '""') + '"',
+                    '"' + (brother.role || '').replace(/"/g, '""') + '"',
+                    '"' + linkedin.replace(/"/g, '""') + '"',
+                    '"' + instagram.replace(/"/g, '""') + '"',
+                    '"' + twitter.replace(/"/g, '""') + '"'
+                ];
+                
+                csvContent += row.join(',') + '\\n';
+            });
+            
+            // Create a download link
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            
+            // Set file name and attributes
+            const date = new Date().toISOString().split('T')[0];
+            link.setAttribute('href', url);
+            link.setAttribute('download', `Alpha_Iota_Brothers_Directory_${date}.csv`);
+            link.style.visibility = 'hidden';
+            
+            // Append to document, trigger download, and clean up
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
         
         // Open the edit profile modal
