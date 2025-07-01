@@ -34,7 +34,7 @@
             width: 100%;
             background-color: rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(5px);
-            z-index: 1000;
+            z-index: 1010;
             padding: 0.8rem 0;
             transition: all 0.3s ease;
             border-bottom: 1px solid rgba(176, 16, 48, 0.1);
@@ -46,7 +46,7 @@
             left: 0;
             width: 100%;
             background-color: #000000;
-            z-index: 999;
+            z-index: 1009;
             padding: 0.8rem 0;
             border-bottom: 1px solid var(--color-crimson);
             visibility: hidden;
@@ -58,7 +58,7 @@
         
         body.scrolled .nav-black {
             visibility: visible;
-            z-index: 1001;
+            z-index: 1011;
         }
         
         .nav-inner {
@@ -133,7 +133,7 @@
             width: 100%;
             background-color: rgba(0, 0, 0, 0.95);
             padding: 1rem 0;
-            z-index: 999;
+            z-index: 1005;
             flex-direction: column;
             border-top: 1px solid var(--color-crimson);
         }
@@ -908,6 +908,16 @@
             
             .mobile-menu.active {
                 display: flex;
+                position: fixed;
+                top: 60px;
+            }
+            
+            .nav, .nav-black {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1010;
             }
             
             .page-title {
@@ -1170,12 +1180,11 @@
         <div class="nav-inner">
             <a href="index.html" class="logo">ALPHA IOTA</a>
             <div class="menu">
-   <a href="index.html" class="menu-link">HOME</a>
+                <a href="index.html" class="menu-link">HOME</a>
                 <a href="about.html" class="menu-link">ABOUT</a>
                 <a href="brothers.html" class="menu-link">LINEAGE</a>
                 <a href="directory.html" class="menu-link">DIRECTORY</a>
                 <a href="gallery.html" class="menu-link">GALLERY</a>
-             
             </div>
             <button class="mobile-menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -1188,12 +1197,11 @@
         <div class="nav-inner">
             <a href="index.html" class="logo">ALPHA IOTA</a>
             <div class="menu">
-   <a href="index.html" class="menu-link">HOME</a>
+                <a href="index.html" class="menu-link">HOME</a>
                 <a href="about.html" class="menu-link">ABOUT</a>
                 <a href="brothers.html" class="menu-link">LINEAGE</a>
                 <a href="directory.html" class="menu-link">DIRECTORY</a>
                 <a href="gallery.html" class="menu-link">GALLERY</a>
-               
             </div>
             <button class="mobile-menu-toggle">
                 <i class="fas fa-bars"></i>
@@ -1202,20 +1210,19 @@
     </nav>
     
     <!-- Mobile Menu -->
-    <div class="mobile-menu active" id="mobile-menu">
-          <a href="index.html" class="menu-link">HOME</a>
-                <a href="about.html" class="menu-link">ABOUT</a>
-                <a href="brothers.html" class="menu-link">LINEAGE</a>
-                <a href="directory.html" class="menu-link">DIRECTORY</a>
-                <a href="gallery.html" class="menu-link">GALLERY</a>
-     
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="index.html" class="mobile-menu-link">HOME</a>
+        <a href="about.html" class="mobile-menu-link">ABOUT</a>
+        <a href="brothers.html" class="mobile-menu-link">LINEAGE</a>
+        <a href="directory.html" class="mobile-menu-link">DIRECTORY</a>
+        <a href="gallery.html" class="mobile-menu-link">GALLERY</a>
     </div>
     
     <!-- Chapter Access Overlay -->
     <div class="chapter-access-overlay hidden" id="chapter-access-overlay">
         <div class="chapter-password-prompt">
             <div class="chapter-icon">
-                <img src="https://public.youware.com/users-website-assets/prod/d55dc7bf-bb95-4414-b556-deeb9651a78b/db42fc4aad4f4d1bb20372f3914d7cad.png" alt="Alpha Iota Logo" class="chapter-logo">
+                <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Alpha Iota Logo" class="chapter-logo">
             </div>
             <h3>Chapter Access Required</h3>
             <p>Enter the chapter password to access The Alpha Iota Chapter's Brothers Directory.</p>
@@ -1242,16 +1249,9 @@
             </button>
             <h2 class="modal-title">Edit Your Profile</h2>
             <form id="edit-profile-form">
-                <div class="form-section">
-                    <h3 class="section-title">Profile Picture</h3>
-                    <div class="input-group">
-                        <input type="file" class="auth-input" id="edit-profile-image" accept="image/*" onchange="previewProfileImage(this)">
-                        <div class="password-help">Update your profile picture (optional)</div>
-                    </div>
-                    <div id="current-profile-image" class="profile-image-preview">
-                        <img src="" alt="Current profile picture" style="max-width: 100px; max-height: 100px; border-radius: 50%; margin-top: 10px; display: block;">
-                        <button type="button" class="remove-image-button" id="remove-profile-image" onclick="removeProfileImage()">Remove Profile Picture</button>
-                    </div>
+                <!-- Profile pictures are managed by the system -->
+                <div id="current-profile-image" class="profile-image-preview" style="display: none;">
+                    <img src="" alt="Profile picture" style="display: none;">
                 </div>
                 
                 <div class="form-section">
@@ -1275,10 +1275,80 @@
                         </select>
                     </div>
                     <div class="input-group">
-                        <select class="auth-input" id="edit-profession"><option value="" disabled="">Select Profession</option><option value="Accountant">Accountant</option><option value="Actor">Actor</option><option value="Aerospace Engineer">Aerospace Engineer</option><option value="Architect">Architect</option><option value="Artist">Artist</option><option value="Athlete">Athlete</option><option value="Biomedical Engineer">Biomedical Engineer</option><option value="Business Analyst">Business Analyst</option><option value="Chef">Chef</option><option value="Chemical Engineer">Chemical Engineer</option><option value="Civil Engineer">Civil Engineer</option><option value="Coach">Coach</option><option value="Construction Manager">Construction Manager</option><option value="Counselor">Counselor</option><option value="Data Scientist">Data Scientist</option><option value="Dentist">Dentist</option><option value="Doctor">Doctor</option><option value="Electrical Engineer">Electrical Engineer</option><option value="Entrepreneur">Entrepreneur</option><option value="Environmental Engineer">Environmental Engineer</option><option value="Financial Analyst">Financial Analyst</option><option value="Firefighter">Firefighter</option><option value="Government Official">Government Official</option><option value="Graphic Designer">Graphic Designer</option><option value="Human Resources Manager">Human Resources Manager</option><option value="Industrial Engineer">Industrial Engineer</option><option value="Insurance Agent">Insurance Agent</option><option value="Investment Banker">Investment Banker</option><option value="Journalist">Journalist</option><option value="Lawyer">Lawyer</option><option value="Marketing Manager">Marketing Manager</option><option value="Mechanical Engineer">Mechanical Engineer</option><option value="Military Officer">Military Officer</option><option value="Musician">Musician</option><option value="Nurse">Nurse</option><option value="Other">Other</option><option value="Petroleum Engineer">Petroleum Engineer</option><option value="Pharmacist">Pharmacist</option><option value="Physical Therapist">Physical Therapist</option><option value="Pilot">Pilot</option><option value="Police Officer">Police Officer</option><option value="Professor">Professor</option><option value="Project Manager">Project Manager</option><option value="Psychologist">Psychologist</option><option value="Real Estate Agent">Real Estate Agent</option><option value="Researcher">Researcher</option><option value="Sales Manager">Sales Manager</option><option value="Scientist">Scientist</option><option value="Social Worker">Social Worker</option><option value="Software Engineer">Software Engineer</option><option value="Student">Student</option><option value="Teacher">Teacher</option><option value="UX Designer">UX Designer</option><option value="Veterinarian">Veterinarian</option></select>
+                        <select class="auth-input" id="edit-profession">
+                            <option value="" disabled="">Select Profession</option>
+                            <option value="Accountant">Accountant</option>
+                            <option value="Actor">Actor</option>
+                            <option value="Aerospace Engineer">Aerospace Engineer</option>
+                            <option value="Architect">Architect</option>
+                            <option value="Artist">Artist</option>
+                            <option value="Athlete">Athlete</option>
+                            <option value="Biomedical Engineer">Biomedical Engineer</option>
+                            <option value="Business Analyst">Business Analyst</option>
+                            <option value="Chef">Chef</option>
+                            <option value="Chemical Engineer">Chemical Engineer</option>
+                            <option value="Civil Engineer">Civil Engineer</option>
+                            <option value="Coach">Coach</option>
+                            <option value="Construction Manager">Construction Manager</option>
+                            <option value="Counselor">Counselor</option>
+                            <option value="Data Scientist">Data Scientist</option>
+                            <option value="Dentist">Dentist</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Electrical Engineer">Electrical Engineer</option>
+                            <option value="Entrepreneur">Entrepreneur</option>
+                            <option value="Environmental Engineer">Environmental Engineer</option>
+                            <option value="Financial Analyst">Financial Analyst</option>
+                            <option value="Firefighter">Firefighter</option>
+                            <option value="Government Official">Government Official</option>
+                            <option value="Graphic Designer">Graphic Designer</option>
+                            <option value="Human Resources Manager">Human Resources Manager</option>
+                            <option value="Industrial Engineer">Industrial Engineer</option>
+                            <option value="Insurance Agent">Insurance Agent</option>
+                            <option value="Investment Banker">Investment Banker</option>
+                            <option value="Journalist">Journalist</option>
+                            <option value="Lawyer">Lawyer</option>
+                            <option value="Marketing Manager">Marketing Manager</option>
+                            <option value="Mechanical Engineer">Mechanical Engineer</option>
+                            <option value="Military Officer">Military Officer</option>
+                            <option value="Musician">Musician</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <div class="input-group">
-                        <select class="auth-input" id="edit-field" required=""><option value="" disabled="">Select Field of Interest</option><option value="Agriculture">Agriculture</option><option value="Architecture">Architecture</option><option value="Arts">Arts</option><option value="Biology">Biology</option><option value="Business">Business</option><option value="Chemistry">Chemistry</option><option value="Computer Science">Computer Science</option><option value="Construction">Construction</option><option value="Education">Education</option><option value="Engineering">Engineering</option><option value="Entrepreneurship">Entrepreneurship</option><option value="Environment">Environment</option><option value="Finance">Finance</option><option value="Food Service">Food Service</option><option value="Healthcare">Healthcare</option><option value="Hospitality">Hospitality</option><option value="Law">Law</option><option value="Manufacturing">Manufacturing</option><option value="Mathematics">Mathematics</option><option value="Media">Media</option><option value="Military">Military</option><option value="Non-Profit">Non-Profit</option><option value="Physics">Physics</option><option value="Political Science">Political Science</option><option value="Public Service">Public Service</option><option value="Retail">Retail</option><option value="Social Sciences">Social Sciences</option><option value="Sports">Sports</option><option value="Technology">Technology</option><option value="Transportation">Transportation</option></select>
+                        <select class="auth-input" id="edit-field" required="">
+                            <option value="" disabled="">Select Field of Interest</option>
+                            <option value="Agriculture">Agriculture</option>
+                            <option value="Architecture">Architecture</option>
+                            <option value="Arts">Arts</option>
+                            <option value="Biology">Biology</option>
+                            <option value="Business">Business</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Construction">Construction</option>
+                            <option value="Education">Education</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Entrepreneurship">Entrepreneurship</option>
+                            <option value="Environment">Environment</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Food Service">Food Service</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Hospitality">Hospitality</option>
+                            <option value="Law">Law</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Media">Media</option>
+                            <option value="Military">Military</option>
+                            <option value="Non-Profit">Non-Profit</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Political Science">Political Science</option>
+                            <option value="Public Service">Public Service</option>
+                            <option value="Retail">Retail</option>
+                            <option value="Social Sciences">Social Sciences</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Transportation">Transportation</option>
+                        </select>
                     </div>
                     <div class="input-group">
                         <input type="text" class="auth-input" id="edit-role" placeholder="Role (Optional, e.g., Chapter President)">
@@ -1393,13 +1463,84 @@
                             </select>
                         </div>
                         <div class="input-group">
-                            <select class="auth-input" id="signup-profession" onchange="toggleCustomProfession()"><option value="" disabled="" selected="">Select Profession</option><option value="Accountant">Accountant</option><option value="Actor">Actor</option><option value="Aerospace Engineer">Aerospace Engineer</option><option value="Architect">Architect</option><option value="Artist">Artist</option><option value="Athlete">Athlete</option><option value="Biomedical Engineer">Biomedical Engineer</option><option value="Business Analyst">Business Analyst</option><option value="Chef">Chef</option><option value="Chemical Engineer">Chemical Engineer</option><option value="Civil Engineer">Civil Engineer</option><option value="Coach">Coach</option><option value="Construction Manager">Construction Manager</option><option value="Counselor">Counselor</option><option value="Data Scientist">Data Scientist</option><option value="Dentist">Dentist</option><option value="Doctor">Doctor</option><option value="Electrical Engineer">Electrical Engineer</option><option value="Entrepreneur">Entrepreneur</option><option value="Environmental Engineer">Environmental Engineer</option><option value="Financial Analyst">Financial Analyst</option><option value="Firefighter">Firefighter</option><option value="Government Official">Government Official</option><option value="Graphic Designer">Graphic Designer</option><option value="Human Resources Manager">Human Resources Manager</option><option value="Industrial Engineer">Industrial Engineer</option><option value="Insurance Agent">Insurance Agent</option><option value="Investment Banker">Investment Banker</option><option value="Journalist">Journalist</option><option value="Lawyer">Lawyer</option><option value="Marketing Manager">Marketing Manager</option><option value="Mechanical Engineer">Mechanical Engineer</option><option value="Military Officer">Military Officer</option><option value="Musician">Musician</option><option value="Nurse">Nurse</option><option value="Other">Other</option><option value="Petroleum Engineer">Petroleum Engineer</option><option value="Pharmacist">Pharmacist</option><option value="Physical Therapist">Physical Therapist</option><option value="Pilot">Pilot</option><option value="Police Officer">Police Officer</option><option value="Professor">Professor</option><option value="Project Manager">Project Manager</option><option value="Psychologist">Psychologist</option><option value="Real Estate Agent">Real Estate Agent</option><option value="Researcher">Researcher</option><option value="Sales Manager">Sales Manager</option><option value="Scientist">Scientist</option><option value="Social Worker">Social Worker</option><option value="Software Engineer">Software Engineer</option><option value="Student">Student</option><option value="Teacher">Teacher</option><option value="UX Designer">UX Designer</option><option value="Veterinarian">Veterinarian</option><option value="Other">Other</option></select>
+                            <select class="auth-input" id="signup-profession" onchange="toggleCustomProfession()">
+                                <option value="" disabled="" selected="">Select Profession</option>
+                                <option value="Accountant">Accountant</option>
+                                <option value="Actor">Actor</option>
+                                <option value="Aerospace Engineer">Aerospace Engineer</option>
+                                <option value="Architect">Architect</option>
+                                <option value="Artist">Artist</option>
+                                <option value="Athlete">Athlete</option>
+                                <option value="Biomedical Engineer">Biomedical Engineer</option>
+                                <option value="Business Analyst">Business Analyst</option>
+                                <option value="Chef">Chef</option>
+                                <option value="Chemical Engineer">Chemical Engineer</option>
+                                <option value="Civil Engineer">Civil Engineer</option>
+                                <option value="Coach">Coach</option>
+                                <option value="Construction Manager">Construction Manager</option>
+                                <option value="Counselor">Counselor</option>
+                                <option value="Data Scientist">Data Scientist</option>
+                                <option value="Dentist">Dentist</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Electrical Engineer">Electrical Engineer</option>
+                                <option value="Entrepreneur">Entrepreneur</option>
+                                <option value="Environmental Engineer">Environmental Engineer</option>
+                                <option value="Financial Analyst">Financial Analyst</option>
+                                <option value="Firefighter">Firefighter</option>
+                                <option value="Government Official">Government Official</option>
+                                <option value="Graphic Designer">Graphic Designer</option>
+                                <option value="Human Resources Manager">Human Resources Manager</option>
+                                <option value="Industrial Engineer">Industrial Engineer</option>
+                                <option value="Insurance Agent">Insurance Agent</option>
+                                <option value="Investment Banker">Investment Banker</option>
+                                <option value="Journalist">Journalist</option>
+                                <option value="Lawyer">Lawyer</option>
+                                <option value="Marketing Manager">Marketing Manager</option>
+                                <option value="Mechanical Engineer">Mechanical Engineer</option>
+                                <option value="Military Officer">Military Officer</option>
+                                <option value="Musician">Musician</option>
+                                <option value="Nurse">Nurse</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
                         <div class="input-group" id="custom-profession-group" style="display: none;">
                             <input type="text" class="auth-input" id="custom-profession" placeholder="Enter your profession">
                         </div>
                         <div class="input-group">
-                            <select class="auth-input" id="signup-field" required="" onchange="toggleCustomField()"><option value="" disabled="" selected="">Select Field of Interest</option><option value="Agriculture">Agriculture</option><option value="Architecture">Architecture</option><option value="Arts">Arts</option><option value="Biology">Biology</option><option value="Business">Business</option><option value="Chemistry">Chemistry</option><option value="Computer Science">Computer Science</option><option value="Construction">Construction</option><option value="Education">Education</option><option value="Engineering">Engineering</option><option value="Entrepreneurship">Entrepreneurship</option><option value="Environment">Environment</option><option value="Finance">Finance</option><option value="Food Service">Food Service</option><option value="Healthcare">Healthcare</option><option value="Hospitality">Hospitality</option><option value="Law">Law</option><option value="Manufacturing">Manufacturing</option><option value="Mathematics">Mathematics</option><option value="Media">Media</option><option value="Military">Military</option><option value="Non-Profit">Non-Profit</option><option value="Physics">Physics</option><option value="Political Science">Political Science</option><option value="Public Service">Public Service</option><option value="Retail">Retail</option><option value="Social Sciences">Social Sciences</option><option value="Sports">Sports</option><option value="Technology">Technology</option><option value="Transportation">Transportation</option><option value="Other">Other</option></select>
+                            <select class="auth-input" id="signup-field" required="" onchange="toggleCustomField()">
+                                <option value="" disabled="" selected="">Select Field of Interest</option>
+                                <option value="Agriculture">Agriculture</option>
+                                <option value="Architecture">Architecture</option>
+                                <option value="Arts">Arts</option>
+                                <option value="Biology">Biology</option>
+                                <option value="Business">Business</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Education">Education</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Entrepreneurship">Entrepreneurship</option>
+                                <option value="Environment">Environment</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Food Service">Food Service</option>
+                                <option value="Healthcare">Healthcare</option>
+                                <option value="Hospitality">Hospitality</option>
+                                <option value="Law">Law</option>
+                                <option value="Manufacturing">Manufacturing</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Media">Media</option>
+                                <option value="Military">Military</option>
+                                <option value="Non-Profit">Non-Profit</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Political Science">Political Science</option>
+                                <option value="Public Service">Public Service</option>
+                                <option value="Retail">Retail</option>
+                                <option value="Social Sciences">Social Sciences</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Transportation">Transportation</option>
+                                <option value="Other">Other</option>
+                            </select>
                         </div>
                         <div class="input-group" id="custom-field-group" style="display: none;">
                             <input type="text" class="auth-input" id="custom-field" placeholder="Enter your field of interest">
@@ -1409,16 +1550,7 @@
                         </div>
                     </div>
                     
-                    <div class="form-section">
-                        <h3 class="section-title">Profile Picture</h3>
-                        <div class="input-group">
-                            <input type="file" class="auth-input" id="signup-profile-image" accept="image/*" onchange="previewSignupImage(this)">
-                            <div class="password-help">Upload a profile picture (optional)</div>
-                        </div>
-                        <div id="signup-profile-preview" class="profile-image-preview" style="display: none;">
-                            <img src="" alt="Profile picture preview" style="max-width: 100px; max-height: 100px; border-radius: 50%; margin-top: 10px;">
-                        </div>
-                    </div>
+                    <!-- Profile pictures are managed by the system -->
                     
                     <div class="form-section">
                         <h3 class="section-title">Account Security</h3>
@@ -1450,21 +1582,175 @@
                     <option value="graduate">Graduate School</option>
                     <option value="graduated">Graduated</option>
                 </select>
-                <select id="field-filter" class="filter-select"><option value="">All Fields of Interest</option><option value="Agriculture">Agriculture</option><option value="Architecture">Architecture</option><option value="Arts">Arts</option><option value="Biology">Biology</option><option value="Business">Business</option><option value="Chemistry">Chemistry</option><option value="Computer Science">Computer Science</option><option value="Construction">Construction</option><option value="Education">Education</option><option value="Engineering">Engineering</option><option value="Entrepreneurship">Entrepreneurship</option><option value="Environment">Environment</option><option value="Finance">Finance</option><option value="Food Service">Food Service</option><option value="Healthcare">Healthcare</option><option value="Hospitality">Hospitality</option><option value="Law">Law</option><option value="Manufacturing">Manufacturing</option><option value="Mathematics">Mathematics</option><option value="Media">Media</option><option value="Military">Military</option><option value="Non-Profit">Non-Profit</option><option value="Physics">Physics</option><option value="Political Science">Political Science</option><option value="Public Service">Public Service</option><option value="Retail">Retail</option><option value="Social Sciences">Social Sciences</option><option value="Sports">Sports</option><option value="Technology">Technology</option><option value="Transportation">Transportation</option></select>
+                <select id="field-filter" class="filter-select">
+                    <option value="">All Fields of Interest</option>
+                    <option value="Agriculture">Agriculture</option>
+                    <option value="Architecture">Architecture</option>
+                    <option value="Arts">Arts</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Business">Business</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Construction">Construction</option>
+                    <option value="Education">Education</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Entrepreneurship">Entrepreneurship</option>
+                    <option value="Environment">Environment</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Food Service">Food Service</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Hospitality">Hospitality</option>
+                    <option value="Law">Law</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Media">Media</option>
+                    <option value="Military">Military</option>
+                    <option value="Non-Profit">Non-Profit</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Political Science">Political Science</option>
+                    <option value="Public Service">Public Service</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Social Sciences">Social Sciences</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Transportation">Transportation</option>
+                </select>
                 <button id="clear-filters" class="clear-filters-btn">
                     <i class="fas fa-times"></i>
                     Clear Filters
                 </button>
             </div>
             <div class="results-info">
-                <span id="results-count">0 brothers found</span>
+                <span id="results-count">4 brothers found</span>
             </div>
         </div>
 
         <!-- Brothers Grid Container -->
-        <div class="brothers-grid" id="brothers-grid">
-            <!-- Brother cards will be dynamically added here -->
-        </div>
+        <div class="brothers-grid" id="brothers-grid"><div class="brother-card">
+                    <div class="brother-header">
+                        <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Test" class="brother-image">
+                        <div class="brother-title">
+                            <h3 class="brother-name">Test</h3>
+                            <div class="brother-profession">Other</div>
+                            <div class="brother-role">test</div>
+                        </div>
+                    </div>
+                    
+                    <div class="brother-details">
+                        <div class="brother-info">
+                            <div class="brother-info-label">Education Status</div>
+                            <div class="brother-info-value">Graduated</div>
+                        </div>
+                        
+                        <div class="brother-info">
+                            <div class="brother-info-label">Field of Interest</div>
+                            <div class="brother-info-value">Computer Science</div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                    <div class="brother-footer">
+                        
+                    </div>
+                </div><div class="brother-card">
+                    <div class="brother-header">
+                        <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Test" class="brother-image">
+                        <div class="brother-title">
+                            <h3 class="brother-name">Test</h3>
+                            <div class="brother-profession">Athlete</div>
+                            <div class="brother-role">test</div>
+                        </div>
+                    </div>
+                    
+                    <div class="brother-details">
+                        <div class="brother-info">
+                            <div class="brother-info-label">Education Status</div>
+                            <div class="brother-info-value">Graduated</div>
+                        </div>
+                        
+                        <div class="brother-info">
+                            <div class="brother-info-label">Field of Interest</div>
+                            <div class="brother-info-value">Architecture</div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                    <div class="brother-footer">
+                        
+                    </div>
+                </div><div class="brother-card">
+                    <div class="brother-header">
+                        <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Test" class="brother-image">
+                        <div class="brother-title">
+                            <h3 class="brother-name">Test</h3>
+                            <div class="brother-profession">Civil Engineer</div>
+                            <div class="brother-role">Test</div>
+                        </div>
+                    </div>
+                    
+                    <div class="brother-details">
+                        <div class="brother-info">
+                            <div class="brother-info-label">Education Status</div>
+                            <div class="brother-info-value">Graduated</div>
+                        </div>
+                        
+                        <div class="brother-info">
+                            <div class="brother-info-label">Field of Interest</div>
+                            <div class="brother-info-value">Entrepreneurship</div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                    
+                    <div class="brother-footer">
+                        
+                    </div>
+                </div><div class="brother-card">
+                    <div class="brother-header">
+                        <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Test" class="brother-image">
+                        <div class="brother-title">
+                            <h3 class="brother-name">Test</h3>
+                            <div class="brother-profession">Actor</div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="brother-details">
+                        <div class="brother-info">
+                            <div class="brother-info-label">Education Status</div>
+                            <div class="brother-info-value">Undergraduate</div>
+                        </div>
+                        
+                        <div class="brother-info">
+                            <div class="brother-info-label">Field of Interest</div>
+                            <div class="brother-info-value">Agriculture</div>
+                        </div>
+                        
+                        
+                        
+                        <div class="brother-info">
+                            <div class="brother-info-label">Social Media</div>
+                            <div class="brother-info-value" style="display: flex; gap: 1rem;"><a href="https://jbjb" target="_blank" style="color: white; text-decoration: none;">
+                                <i class="fab fa-linkedin" style="font-size: 1.5rem;"></i>
+                            </a></div></div>
+                        
+                    </div>
+                    
+                    <div class="brother-footer">
+                        
+                    </div>
+                </div></div>
     </main>
     
     <script>
@@ -1744,14 +2030,8 @@
                             return;
                         }
                         
-                        // Upload profile image if provided
-                        const profileImageInput = document.getElementById('signup-profile-image');
-                        let profileImageUrl = null;
-                        
-                        if (profileImageInput && profileImageInput.files.length > 0) {
-                            console.log('Uploading profile image...');
-                            profileImageUrl = await uploadProfileImage(profileImageInput.files[0]);
-                        }
+                        // Always use placeholder image
+                        const profileImageUrl = "https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png";
                         
                         // Sign up with Supabase Auth - email is auto-confirmed by database trigger
                         const { data: authData, error: authError } = await supabaseClient.auth.signUp({
@@ -1960,31 +2240,8 @@
                         const instagram = document.getElementById('edit-instagram').value.trim();
                         const twitter = document.getElementById('edit-twitter').value.trim();
                         
-                        // Check if user wants to remove the profile image
-                        const removeImageFlag = document.getElementById('remove-profile-image-flag');
-                        let profileImageUrl = null;
-                        let shouldRemoveImage = false;
-                        
-                        if (removeImageFlag && removeImageFlag.value === 'true') {
-                            console.log('Profile image removal requested');
-                            shouldRemoveImage = true;
-                        } else {
-                            // Handle normal profile image upload if not removing
-                            const profileImageInput = document.getElementById('edit-profile-image');
-                            
-                            if (profileImageInput && profileImageInput.files && profileImageInput.files.length > 0) {
-                                console.log('Profile image file detected, starting upload...');
-                                profileImageUrl = await uploadProfileImage(profileImageInput.files[0]);
-                                
-                                if (profileImageUrl) {
-                                    console.log('✅ Image upload completed, URL:', profileImageUrl);
-                                } else {
-                                    console.log('❌ Image upload failed');
-                                }
-                            } else {
-                                console.log('No new profile image selected');
-                            }
-                        }
+                        // Always use the placeholder image
+                        const profileImageUrl = "https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png";
                         
                         // Prepare update data
                         const updateObj = {
@@ -2000,25 +2257,19 @@
                                 instagram: instagram || null,
                                 twitter: twitter || null
                             },
-                            updated_at: new Date()
+                            profile_image_url: profileImageUrl
                         };
                         
-                        // Add profile image if uploaded or explicitly set to null if removal requested
-                        if (profileImageUrl) {
-                            updateObj.profile_image_url = profileImageUrl;
-                        } else if (shouldRemoveImage) {
-                            updateObj.profile_image_url = null;
-                            console.log('Setting profile_image_url to null');
-                        }
+                        console.log('Updating brother with data:', updateObj);
                         
-                        // Update brother data
+                        // Update profile in database
                         const { error: updateError } = await supabaseClient
                             .from('brothers')
                             .update(updateObj)
                             .eq('id', profileData.brother_id);
                         
                         if (updateError) {
-                            console.error('Update error:', updateError);
+                            console.error('Profile update error:', updateError);
                             if (editError) {
                                 editError.textContent = 'Error updating profile: ' + updateError.message;
                                 editError.style.display = 'block';
@@ -2028,28 +2279,24 @@
                         }
                         
                         console.log('✓ Profile updated successfully');
+                        
                         if (editSuccess) {
                             editSuccess.textContent = 'Profile updated successfully!';
                             editSuccess.style.display = 'block';
                         }
                         
-                        // If a new image was uploaded or removed, immediately update the brother's image in the directory
-                        if ((profileImageUrl || shouldRemoveImage) && currentUser) {
-                            // If removing image, pass null to show placeholder, otherwise pass the new URL
-                            const imageToShow = shouldRemoveImage ? null : profileImageUrl;
-                            updateBrotherImageInDirectory(currentUser.email, imageToShow);
-                        }
-                        
-                        // Reload brothers to show all updated data
+                        // Update local data and refresh display
                         loadBrothers();
                         
-                        // Hide modal after delay
+                        // Close modal after short delay
                         setTimeout(() => {
-                            editProfileModal.style.display = 'none';
-                        }, 1500);
+                            if (editProfileModal) {
+                                editProfileModal.style.display = 'none';
+                            }
+                        }, 2000);
                         
                     } catch (err) {
-                        console.error('Edit profile error:', err);
+                        console.error('Error during profile edit:', err);
                         if (editError) {
                             editError.textContent = 'Unexpected error: ' + err.message;
                             editError.style.display = 'block';
@@ -2060,316 +2307,226 @@
                 });
             }
             
-            // Add chapter password form event listener
-            const chapterForm = document.getElementById('chapter-password-form');
-            if (chapterForm) {
-                chapterForm.addEventListener('submit', handleChapterPassword);
-            }
+            // Check if user is already logged in
+            checkCurrentSession();
             
-            // Check for existing session
-            checkSession();
+            // Load chapter password UI
+            showChapterAuthPrompt();
         });
         
-        // Check for existing session
-        async function checkSession() {
-            console.log('Checking session...');
-            showLoading();
+        // Helper function to capitalize names properly
+        function capitalizeName(name) {
+            if (!name) return '';
             
-            // First check chapter authentication
-            if (!checkChapterAuthentication()) {
-                console.log('Chapter not authenticated, showing password prompt');
-                hideLoading();
-                showChapterAccessOverlay();
-                return;
-            } else {
-                // Hide the chapter access overlay if already authenticated
-                const overlay = document.getElementById('chapter-access-overlay');
-                if (overlay) overlay.classList.add('hidden');
+            return name
+                .split(' ')
+                .map(word => {
+                    if (word.length === 0) return word;
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+                })
+                .join(' ');
+        }
+        
+        // Return default placeholder image
+        async function uploadProfileImage(file) {
+            console.log('Using default placeholder image for all users');
+            return "https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png";
+        }
+        
+        // Preview profile image (simplified to only update UI)
+        function previewProfileImage(input) {
+            console.log('Profile image preview not needed - using placeholder');
+        }
+        
+        function previewSignupImage(input) {
+            console.log('Signup image preview not needed - using placeholder');
+        }
+        
+        // This function is simplified since we no longer need to remove profile images
+        function removeProfileImage() {
+            console.log('Profile image removal not needed - using placeholder for all users');
+        }
+        
+        // Show the chapter password prompt
+        function showChapterAuthPrompt() {
+            const chapterForm = document.getElementById('chapter-password-form');
+            const chapterOverlay = document.getElementById('chapter-access-overlay');
+            
+            if (chapterOverlay && chapterForm) {
+                console.log('Setting up chapter password form');
+                
+                const storedAuth = localStorage.getItem('chapter_auth');
+                
+                if (storedAuth === 'true') {
+                    console.log('Chapter already authenticated');
+                    chapterOverlay.classList.add('hidden');
+                    isChapterAuthenticated = true;
+                    loadBrothers();
+                } else {
+                    console.log('Chapter authentication required');
+                    chapterOverlay.classList.remove('hidden');
+                    
+                    chapterForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const password = document.getElementById('chapter-password').value;
+                        
+                        if (password === 'Phi05Nu29Pi1931') {
+                            localStorage.setItem('chapter_auth', 'true');
+                            chapterOverlay.classList.add('hidden');
+                            isChapterAuthenticated = true;
+                            loadBrothers();
+                        } else {
+                            const errorElement = document.getElementById('chapter-error');
+                            errorElement.textContent = 'Incorrect password. Please try again.';
+                            errorElement.style.display = 'block';
+                        }
+                    });
+                }
             }
+        }
+        
+        // Check if user has an active session
+        async function checkCurrentSession() {
+            console.log('Checking current session...');
             
             try {
-                // Load dropdown options for the forms with timeout
-                console.log('Loading dropdown options...');
-                const timeoutPromise = new Promise((_, reject) => 
-                    setTimeout(() => reject(new Error('Dropdown loading timeout')), 10000)
-                );
-                
-                await Promise.race([loadDropdownOptions(), timeoutPromise]);
-                console.log('✓ Dropdown options loaded successfully');
-                
-                // Check Supabase session
-                console.log('Checking Supabase session...');
                 const { data, error } = await supabaseClient.auth.getSession();
                 
                 if (error) {
                     console.error('Session check error:', error);
-                    showLoggedOutState();
-                } else if (data.session) {
-                    console.log('✓ Existing session found');
+                    return;
+                }
+                
+                console.log('Session check result:', data);
+                
+                if (data && data.session) {
                     currentUser = data.session.user;
+                    console.log('✓ User is already logged in:', currentUser.email);
                     showLoggedInState();
                 } else {
-                    console.log('No existing session');
+                    console.log('× No active session found');
                     showLoggedOutState();
                 }
+                
             } catch (err) {
-                console.error('Error during session check:', err);
-                // Always show logged out state and hide loading on any error
-                showLoggedOutState();
-            } finally {
-                // Always ensure loading is hidden
-                hideLoading();
-                console.log('✓ Session check completed');
+                console.error('Session check error:', err);
             }
         }
         
-        // Show logged in state
-        async function showLoggedInState() {
+        // Show UI for logged in users
+        function showLoggedInState() {
             console.log('Showing logged in state');
             
             const authContainer = document.getElementById('auth-container');
             const loggedInStatus = document.getElementById('logged-in-status');
-            const userNameElement = document.getElementById('user-name');
+            const searchFilterSection = document.getElementById('search-filter-section');
+            const userNameSpan = document.getElementById('user-name');
             
             if (authContainer) authContainer.style.display = 'none';
             if (loggedInStatus) loggedInStatus.style.display = 'flex';
+            if (searchFilterSection) searchFilterSection.style.display = 'block';
             
-            // Get the brother's name from the database
-            if (userNameElement && currentUser) {
-                try {
-                    const { data: profileData, error: profileError } = await supabaseClient
-                        .from('profiles')
-                        .select('brother_id')
-                        .eq('id', currentUser.id)
-                        .single();
-                    
-                    if (profileData && !profileError) {
-                        const { data: brotherData, error: brotherError } = await supabaseClient
-                            .from('brothers')
-                            .select('name')
-                            .eq('id', profileData.brother_id)
-                            .single();
-                        
-                        if (brotherData && !brotherError) {
-                            userNameElement.textContent = brotherData.name;
-                        } else {
-                            userNameElement.textContent = currentUser.email;
-                        }
-                    } else {
-                        userNameElement.textContent = currentUser.email;
-                    }
-                } catch (err) {
-                    console.error('Error getting brother name:', err);
-                    userNameElement.textContent = currentUser.email;
-                }
+            // Set user name in the header
+            if (userNameSpan && currentUser) {
+                getUserDisplayName().then(name => {
+                    userNameSpan.textContent = name || currentUser.email;
+                });
             }
             
-            // Show search and filter section
-            const searchFilterSection = document.getElementById('search-filter-section');
-            if (searchFilterSection) {
-                searchFilterSection.style.display = 'block';
+            // Load brothers data if chapter is authenticated
+            if (isChapterAuthenticated) {
+                loadBrothers();
             }
-            
-            loadBrothers();
         }
         
-        // Show logged out state
+        // Show UI for logged out users
         function showLoggedOutState() {
             console.log('Showing logged out state');
             
             const authContainer = document.getElementById('auth-container');
             const loggedInStatus = document.getElementById('logged-in-status');
             const searchFilterSection = document.getElementById('search-filter-section');
+            const brothersGrid = document.getElementById('brothers-grid');
             
             if (authContainer) authContainer.style.display = 'block';
             if (loggedInStatus) loggedInStatus.style.display = 'none';
             if (searchFilterSection) searchFilterSection.style.display = 'none';
             
-            showPleaseSignIn();
-        }
-        
-        // Handle chapter password verification
-        async function handleChapterPassword(e) {
-            e.preventDefault();
+            // Clear brothers grid
+            if (brothersGrid) brothersGrid.innerHTML = '';
             
-            const chapterPassword = document.getElementById('chapter-password').value;
-            const errorElement = document.getElementById('chapter-error');
+            // Reset local data
+            allBrothers = [];
+        }
+        
+        // Get the display name for the current user
+        async function getUserDisplayName() {
+            console.log('Getting display name for current user');
             
-            console.log('Chapter password entered:', chapterPassword);
-            
-            if (chapterPassword === "Phi05Nu29Pi1931") {
-                console.log('✓ Chapter password correct!');
-                isChapterAuthenticated = true;
-                localStorage.setItem('chapterAuthenticated', 'true');
-                errorElement.textContent = '';
-                
-                // Hide the chapter access overlay
-                const overlay = document.getElementById('chapter-access-overlay');
-                if (overlay) {
-                    overlay.classList.add('hidden');
-                    console.log('✓ Chapter overlay hidden');
-                }
-                
-                // Check if user is already logged in
-                console.log('Starting session check...');
-                checkSession();
-            } else {
-                console.log('✗ Incorrect chapter password');
-                errorElement.textContent = 'Incorrect chapter password. Please try again.';
-                document.getElementById('chapter-password').value = '';
-            }
-        }
-        
-        // Check if chapter is already authenticated
-        function checkChapterAuthentication() {
-            const stored = localStorage.getItem('chapterAuthenticated');
-            if (stored === 'true') {
-                isChapterAuthenticated = true;
-                return true;
-            }
-            return false;
-        }
-        
-        // Show chapter access overlay
-        function showChapterAccessOverlay() {
-            const overlay = document.getElementById('chapter-access-overlay');
-            if (overlay) {
-                overlay.classList.remove('hidden');
-            }
-        }
-        
-        // Show chapter password prompt
-        function showChapterPasswordPrompt() {
-            showChapterAccessOverlay();
-        }
-        
-        // Load dropdown options from database
-        async function loadDropdownOptions() {
-            console.log('Loading dropdown options...');
+            if (!currentUser) return null;
             
             try {
-                // Load fields of interest
-                console.log('Loading fields of interest...');
-                const { data: fieldsData, error: fieldsError } = await supabaseClient
-                    .from('fields_of_interest')
-                    .select('*')
-                    .order('name');
+                // Get the profile link
+                const { data: profileData, error: profileError } = await supabaseClient
+                    .from('profiles')
+                    .select('brother_id')
+                    .eq('id', currentUser.id)
+                    .single();
                 
-                if (fieldsError) {
-                    console.error('Error loading fields of interest:', fieldsError);
-                    // Continue even if this fails
-                } else {
-                    console.log('✓ Fields of interest loaded:', fieldsData.length);
-                    populateFieldsDropdowns(fieldsData);
+                if (profileError) {
+                    console.error('Error fetching profile:', profileError);
+                    return null;
                 }
                 
-                // Load professions
-                console.log('Loading professions...');
-                const { data: professionsData, error: professionsError } = await supabaseClient
-                    .from('professions')
-                    .select('*')
-                    .order('name');
+                // Get the brother record
+                const { data: brotherData, error: brotherError } = await supabaseClient
+                    .from('brothers')
+                    .select('name')
+                    .eq('id', profileData.brother_id)
+                    .single();
                 
-                if (professionsError) {
-                    console.error('Error loading professions:', professionsError);
-                    // Continue even if this fails
-                } else {
-                    console.log('✓ Professions loaded:', professionsData.length);
-                    populateProfessionsDropdowns(professionsData);
+                if (brotherError) {
+                    console.error('Error fetching brother record:', brotherError);
+                    return null;
                 }
                 
-                console.log('✓ All dropdown options processed');
+                return brotherData.name;
+                
             } catch (err) {
-                console.error('Error loading dropdown options:', err);
-                // Don't throw the error, just log it and continue
+                console.error('Error getting display name:', err);
+                return null;
             }
         }
         
-        // Populate fields of interest dropdowns
-        function populateFieldsDropdowns(fields) {
-            const signupField = document.getElementById('signup-field');
-            const editField = document.getElementById('edit-field');
-            const fieldFilter = document.getElementById('field-filter');
-            
-            const fieldOptions = fields.map(field => {
-                return `<option value="${field.name}">${field.name}</option>`;
-            }).join('');
-            
-            // Add "Other" option
-            const otherOption = '<option value="Other">Other</option>';
-            
-            if (signupField) {
-                // Keep the first default option and add the rest
-                const currentDefault = signupField.options[0].outerHTML;
-                signupField.innerHTML = currentDefault + fieldOptions + otherOption;
-            }
-            
-            if (editField) {
-                // Keep the first default option and add the rest
-                const currentDefault = editField.options[0].outerHTML;
-                editField.innerHTML = currentDefault + fieldOptions;
-            }
-            
-            if (fieldFilter) {
-                // Keep the first default option and add the rest
-                const currentDefault = fieldFilter.options[0].outerHTML;
-                fieldFilter.innerHTML = currentDefault + fieldOptions;
-            }
-        }
-        
-        // Populate professions dropdowns
-        function populateProfessionsDropdowns(professions) {
-            const signupProfession = document.getElementById('signup-profession');
-            const editProfession = document.getElementById('edit-profession');
-            
-            const professionOptions = professions.map(profession => {
-                return `<option value="${profession.name}">${profession.name}</option>`;
-            }).join('');
-            
-            // Add "Other" option
-            const otherOption = '<option value="Other">Other</option>';
-            
-            if (signupProfession) {
-                // Keep the first default option and add the rest
-                const currentDefault = signupProfession.options[0].outerHTML;
-                signupProfession.innerHTML = currentDefault + professionOptions + otherOption;
-            }
-            
-            if (editProfession) {
-                // Keep the first default option and add the rest
-                const currentDefault = editProfession.options[0].outerHTML;
-                editProfession.innerHTML = currentDefault + professionOptions;
-            }
-        }
-        
-        // Load brothers from database
+        // Load brothers data from the database
         async function loadBrothers() {
+            console.log('Loading brothers data...');
+            
             if (!isChapterAuthenticated) {
-                showChapterPasswordPrompt();
+                console.log('× Chapter not authenticated, skipping data load');
                 return;
             }
             
-            if (!currentUser) {
-                showLoggedOutState();
-                return;
-            }
-            
-            console.log('Loading brothers...');
             showLoading();
             
             try {
                 const { data, error } = await supabaseClient
                     .from('brothers')
-                    .select('*');
+                    .select('*')
+                    .order('name');
                 
                 if (error) {
                     console.error('Error loading brothers:', error);
-                } else {
-                    console.log('✓ Brothers loaded:', data?.length || 0);
-                    allBrothers = data || [];
-                    displayBrothers(allBrothers);
-                    updateResultsCount(allBrothers.length);
+                    hideLoading();
+                    return;
                 }
+                
+                console.log('✓ Loaded', data.length, 'brothers');
+                allBrothers = data;
+                
+                displayBrothers(allBrothers);
+                
             } catch (err) {
                 console.error('Error loading brothers:', err);
             }
@@ -2377,91 +2534,138 @@
             hideLoading();
         }
         
-        // Display brothers
+        // Populate the brother cards into the grid
         function displayBrothers(brothers) {
+            console.log('Displaying', brothers.length, 'brothers');
+            
             const grid = document.getElementById('brothers-grid');
+            const resultsCount = document.getElementById('results-count');
+            
             if (!grid) return;
             
+            // Clear the grid
+            grid.innerHTML = '';
+            
+            // Update results count
+            if (resultsCount) {
+                resultsCount.textContent = `${brothers.length} brother${brothers.length !== 1 ? 's' : ''} found`;
+            }
+            
+            // If no brothers, show a message
             if (brothers.length === 0) {
-                grid.innerHTML = '<p style="text-align: center; color: white; padding: 2rem;">No brothers found in the directory.</p>';
+                grid.innerHTML = '<div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 2rem; color: white; background-color: rgba(0,0,0,0.5); border-radius: 10px;">' +
+                    '<i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-crimson);"></i>' +
+                    '<h3 style="margin-bottom: 0.5rem; font-family: \'Syncopate\', sans-serif;">No Brothers Found</h3>' +
+                    '<p>Try adjusting your search criteria or clearing the filters.</p>' +
+                    '</div>';
                 return;
             }
             
-            grid.innerHTML = '';
-            
+            // Add each brother to the grid
             brothers.forEach(brother => {
                 const card = document.createElement('div');
                 card.className = 'brother-card';
                 
-                // Use the brother's profile image if available, otherwise use profession-based placeholder
-                const imageUrl = brother.profile_image_url || getImageByProfession(brother.profession);
+                // Always use the placeholder image for everyone
+                const imageUrl = "https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png";
                 
                 // Check if this is the current user's profile
-                const isCurrentUser = currentUser && currentUser.email === brother.email;
+                let isCurrentUser = false;
+                if (currentUser) {
+                    isCurrentUser = brother.email === currentUser.email;
+                }
                 
-                // Social media links
-                let socialLinks = '';
-                if (brother.social_media) {
-                    const social = brother.social_media;
-                    if (social.linkedin) {
-                        socialLinks += `<a href="${social.linkedin}" target="_blank" style="color: white; font-size: 1.2rem; margin-left: 0.8rem; transition: color 0.3s ease;"><i class="fab fa-linkedin"></i></a>`;
-                    }
-                    if (social.instagram) {
-                        socialLinks += `<a href="https://instagram.com/${social.instagram}" target="_blank" style="color: white; font-size: 1.2rem; margin-left: 0.8rem; transition: color 0.3s ease;"><i class="fab fa-instagram"></i></a>`;
-                    }
-                    if (social.twitter) {
-                        socialLinks += `<a href="https://twitter.com/${social.twitter}" target="_blank" style="color: white; font-size: 1.2rem; margin-left: 0.8rem; transition: color 0.3s ease;"><i class="fab fa-twitter"></i></a>`;
+                // Format education status for display
+                const educationDisplay = formatEducationStatus(brother.education_status);
+                
+                // Conditional email display (only show to logged in users)
+                const emailBlock = currentUser ? 
+                    `<div class="brother-info">
+                        <div class="brother-info-label">Email</div>
+                        <div class="brother-info-value">${brother.email}</div>
+                    </div>` : '';
+                
+                // Conditional phone display (only show to logged in users)
+                const phoneBlock = currentUser && brother.phone ? 
+                    `<div class="brother-info">
+                        <div class="brother-info-label">Phone</div>
+                        <div class="brother-info-value">${brother.phone}</div>
+                    </div>` : '';
+                
+                // Social media block
+                let socialBlock = '';
+                if (brother.social_media && Object.keys(brother.social_media).length > 0) {
+                    const socialMedia = brother.social_media;
+                    
+                    if (socialMedia.linkedin || socialMedia.instagram || socialMedia.twitter) {
+                        socialBlock = `<div class="brother-info">
+                            <div class="brother-info-label">Social Media</div>
+                            <div class="brother-info-value" style="display: flex; gap: 1rem;">`;
+                            
+                        if (socialMedia.linkedin) {
+                            socialBlock += `<a href="${ensureUrl(socialMedia.linkedin)}" target="_blank" style="color: white; text-decoration: none;">
+                                <i class="fab fa-linkedin" style="font-size: 1.5rem;"></i>
+                            </a>`;
+                        }
+                        
+                        if (socialMedia.instagram) {
+                            socialBlock += `<a href="https://instagram.com/${socialMedia.instagram.replace('@', '')}" target="_blank" style="color: white; text-decoration: none;">
+                                <i class="fab fa-instagram" style="font-size: 1.5rem;"></i>
+                            </a>`;
+                        }
+                        
+                        if (socialMedia.twitter) {
+                            socialBlock += `<a href="https://twitter.com/${socialMedia.twitter.replace('@', '')}" target="_blank" style="color: white; text-decoration: none;">
+                                <i class="fab fa-twitter" style="font-size: 1.5rem;"></i>
+                            </a>`;
+                        }
+                        
+                        socialBlock += `</div></div>`;
                     }
                 }
+                
+                // Bio block
+                const bioBlock = brother.bio ? 
+                    `<div class="brother-info">
+                        <div class="brother-info-label">Bio</div>
+                        <div class="brother-info-value">${brother.bio}</div>
+                    </div>` : '';
+                
+                // Edit button for current user
+                const editButton = isCurrentUser ? 
+                    `<button class="edit-button" onclick="editProfile('${brother.id}')">
+                        <i class="fas fa-edit" style="margin-right: 0.5rem;"></i> Edit Profile
+                    </button>` : '';
                 
                 card.innerHTML = `
                     <div class="brother-header">
                         <img src="${imageUrl}" alt="${brother.name}" class="brother-image">
                         <div class="brother-title">
                             <h3 class="brother-name">${brother.name}</h3>
-                            <p class="brother-profession">${brother.profession || 'Kappa Alpha Psi Brother'}</p>
-                            ${brother.role ? `<p class="brother-role">${brother.role}</p>` : ''}
+                            <div class="brother-profession">${brother.profession || 'N/A'}</div>
+                            ${brother.role ? `<div class="brother-role">${brother.role}</div>` : ''}
                         </div>
                     </div>
+                    
                     <div class="brother-details">
                         <div class="brother-info">
-                            <div class="brother-info-text">
-                                <p class="brother-info-label">Email</p>
-                                <p class="brother-info-value" style="word-break: break-word;">${brother.email || 'N/A'}</p>
-                            </div>
+                            <div class="brother-info-label">Education Status</div>
+                            <div class="brother-info-value">${educationDisplay}</div>
                         </div>
+                        
                         <div class="brother-info">
-                            <div class="brother-info-text">
-                                <p class="brother-info-label">Phone</p>
-                                <p class="brother-info-value" style="word-break: break-word;">${brother.phone || 'N/A'}</p>
-                            </div>
+                            <div class="brother-info-label">Field of Interest</div>
+                            <div class="brother-info-value">${brother.field_of_interest || 'N/A'}</div>
                         </div>
-                        <div class="brother-info">
-                            <div class="brother-info-text">
-                                <p class="brother-info-label">Education</p>
-                                <p class="brother-info-value" style="word-break: break-word;">${formatEducationStatus(brother.education_status) || 'N/A'}</p>
-                            </div>
-                        </div>
-                        <div class="brother-info">
-                            <div class="brother-info-text">
-                                <p class="brother-info-label">Field of Interest</p>
-                                <p class="brother-info-value" style="word-break: break-word;">${brother.field_of_interest || 'N/A'}</p>
-                            </div>
-                        </div>
-                        ${brother.bio ? `
-                        <div class="brother-info">
-                            <div class="brother-info-text">
-                                <p class="brother-info-label">Bio</p>
-                                <p class="brother-info-value" style="word-break: break-word;">${brother.bio}</p>
-                            </div>
-                        </div>
-                        ` : ''}
+                        
+                        ${emailBlock}
+                        ${phoneBlock}
+                        ${socialBlock}
+                        ${bioBlock}
                     </div>
+                    
                     <div class="brother-footer">
-                        <div style="display: flex; align-items: center;">
-                            ${socialLinks}
-                        </div>
-                        ${isCurrentUser ? `<button class="edit-button" onclick="editProfile('${brother.id}')">Edit Profile</button>` : ''}
+                        ${editButton}
                     </div>
                 `;
                 
@@ -2469,64 +2673,86 @@
             });
         }
         
-        // Get default placeholder image for brothers
-        function getImageByProfession(profession) {
-            // Use the custom Alpha Iota logo as placeholder
-            return 'https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png';
-        }
-        
-        // Format education status
+        // Helper to format education status for display
         function formatEducationStatus(status) {
-            if (!status) return null;
+            if (!status) return 'N/A';
             
-            const statusMap = {
-                'undergraduate': 'Undergraduate',
-                'graduate': 'Graduate School',
-                'graduated': 'Graduated'
-            };
-            
-            return statusMap[status.toLowerCase()] || status;
-        }
-        
-        // This function is replaced by the database-driven dropdown population
-        // Fields are now loaded directly from the fields_of_interest table
-        
-        function updateResultsCount(count) {
-            const resultsCount = document.getElementById('results-count');
-            if (resultsCount) {
-                resultsCount.textContent = `${count} brother${count !== 1 ? 's' : ''} found`;
+            switch (status.toLowerCase()) {
+                case 'undergraduate':
+                    return 'Undergraduate';
+                case 'graduate':
+                    return 'Graduate School';
+                case 'graduated':
+                    return 'Graduated';
+                default:
+                    return status;
             }
         }
         
-        function filterBrothers() {
-            const searchTerm = document.getElementById('search-input')?.value.toLowerCase().trim() || '';
-            const educationFilter = document.getElementById('education-filter')?.value || '';
-            const fieldFilter = document.getElementById('field-filter')?.value || '';
+        // Helper to ensure URLs have http/https
+        function ensureUrl(url) {
+            if (!url) return '#';
             
-            const filtered = allBrothers.filter(brother => {
-                // Search filter (name, role, profession, and field of interest)
+            if (url.startsWith('http://') || url.startsWith('https://')) {
+                return url;
+            }
+            
+            return 'https://' + url;
+        }
+        
+        // Filter brothers based on search and filter criteria
+        function filterBrothers() {
+            console.log('Filtering brothers...');
+            
+            if (!allBrothers || allBrothers.length === 0) {
+                console.log('No brothers data to filter');
+                return;
+            }
+            
+            const searchInput = document.getElementById('search-input');
+            const educationFilter = document.getElementById('education-filter');
+            const fieldFilter = document.getElementById('field-filter');
+            
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            const educationValue = educationFilter ? educationFilter.value.toLowerCase() : '';
+            const fieldValue = fieldFilter ? fieldFilter.value : '';
+            
+            console.log('Filtering with criteria:', {
+                search: searchTerm,
+                education: educationValue,
+                field: fieldValue
+            });
+            
+            // Apply filters
+            const filteredBrothers = allBrothers.filter(brother => {
+                // Search term filter
                 const matchesSearch = !searchTerm || 
-                    brother.name?.toLowerCase().includes(searchTerm) ||
-                    brother.role?.toLowerCase().includes(searchTerm) ||
-                    brother.profession?.toLowerCase().includes(searchTerm) ||
-                    brother.field_of_interest?.toLowerCase().includes(searchTerm);
+                    (brother.name && brother.name.toLowerCase().includes(searchTerm)) ||
+                    (brother.profession && brother.profession.toLowerCase().includes(searchTerm)) ||
+                    (brother.field_of_interest && brother.field_of_interest.toLowerCase().includes(searchTerm)) ||
+                    (brother.role && brother.role.toLowerCase().includes(searchTerm));
                 
-                // Education filter
-                const matchesEducation = !educationFilter || 
-                    brother.education_status?.toLowerCase() === educationFilter.toLowerCase();
+                // Education status filter
+                const matchesEducation = !educationValue || 
+                    (brother.education_status && brother.education_status.toLowerCase() === educationValue);
                 
-                // Field of interest filter
-                const matchesField = !fieldFilter || 
-                    brother.field_of_interest === fieldFilter;
+                // Field filter
+                const matchesField = !fieldValue || 
+                    (brother.field_of_interest && brother.field_of_interest === fieldValue);
                 
                 return matchesSearch && matchesEducation && matchesField;
             });
             
-            displayBrothers(filtered);
-            updateResultsCount(filtered.length);
+            console.log('Filter result:', filteredBrothers.length, 'brothers match criteria');
+            
+            // Update the display
+            displayBrothers(filteredBrothers);
         }
         
+        // Clear all filters and reset display
         function clearAllFilters() {
+            console.log('Clearing all filters');
+            
             const searchInput = document.getElementById('search-input');
             const educationFilter = document.getElementById('education-filter');
             const fieldFilter = document.getElementById('field-filter');
@@ -2535,58 +2761,51 @@
             if (educationFilter) educationFilter.value = '';
             if (fieldFilter) fieldFilter.value = '';
             
+            // Reload all brothers
             displayBrothers(allBrothers);
-            updateResultsCount(allBrothers.length);
         }
         
-        // Edit profile function
+        // Open the edit profile modal
         async function editProfile(brotherId) {
-            console.log('Edit profile clicked for brother:', brotherId);
+            console.log('Editing profile for brother ID:', brotherId);
+            
+            if (!currentUser) {
+                console.error('Cannot edit profile when not logged in');
+                return;
+            }
+            
             showLoading();
             
             try {
-                // Get brother details
-                const { data, error } = await supabaseClient
+                // Get brother data
+                const { data: brother, error } = await supabaseClient
                     .from('brothers')
                     .select('*')
                     .eq('id', brotherId)
                     .single();
                 
                 if (error) {
-                    console.error('Error fetching brother details:', error);
+                    console.error('Error fetching brother data:', error);
                     hideLoading();
                     return;
                 }
                 
-                console.log('✓ Brother data loaded for editing');
+                console.log('Loaded brother data for editing:', brother);
                 
-                // Populate form with current data
-                document.getElementById('edit-name').value = data.name || '';
-                document.getElementById('edit-phone').value = data.phone || '';
-                document.getElementById('edit-education-status').value = data.education_status || '';
-                document.getElementById('edit-profession').value = data.profession || '';
-                document.getElementById('edit-field').value = data.field_of_interest || '';
-                document.getElementById('edit-role').value = data.role || '';
-                document.getElementById('edit-bio').value = data.bio || '';
+                // Populate form fields
+                document.getElementById('edit-name').value = brother.name || '';
+                document.getElementById('edit-phone').value = brother.phone || '';
+                document.getElementById('edit-education-status').value = brother.education_status || '';
+                document.getElementById('edit-profession').value = brother.profession || '';
+                document.getElementById('edit-field').value = brother.field_of_interest || '';
+                document.getElementById('edit-role').value = brother.role || '';
+                document.getElementById('edit-bio').value = brother.bio || '';
                 
-                // Show current profile image if available
-                const currentProfileImage = document.getElementById('current-profile-image');
-                if (currentProfileImage) {
-                    const img = currentProfileImage.querySelector('img');
-                    if (img) {
-                        img.src = data.profile_image_url || getImageByProfession(data.profession);
-                    }
-                }
-                
-                // Social media
-                if (data.social_media) {
-                    document.getElementById('edit-linkedin').value = data.social_media.linkedin || '';
-                    document.getElementById('edit-instagram').value = data.social_media.instagram || '';
-                    document.getElementById('edit-twitter').value = data.social_media.twitter || '';
-                } else {
-                    document.getElementById('edit-linkedin').value = '';
-                    document.getElementById('edit-instagram').value = '';
-                    document.getElementById('edit-twitter').value = '';
+                // Social media fields
+                if (brother.social_media) {
+                    document.getElementById('edit-linkedin').value = brother.social_media.linkedin || '';
+                    document.getElementById('edit-instagram').value = brother.social_media.instagram || '';
+                    document.getElementById('edit-twitter').value = brother.social_media.twitter || '';
                 }
                 
                 // Show modal
@@ -2602,200 +2821,33 @@
             hideLoading();
         }
         
-        // Helper function to capitalize names properly
-        function capitalizeName(name) {
-            if (!name) return '';
-            
-            return name
-                .split(' ')
-                .map(word => {
-                    if (word.length === 0) return word;
-                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-                })
-                .join(' ');
-        }
-        
-        let isChapterAuthenticated = false;
-        
-        // Upload profile image to Supabase Storage
-        async function uploadProfileImage(file) {
-            if (!file) {
-                console.log('No file provided for upload');
-                return null;
-            }
-            
-            console.log('Starting image upload for file:', file.name);
-            
-            try {
-                const fileExt = file.name.split('.').pop();
-                const fileName = `${Date.now()}.${fileExt}`;
-                const filePath = `profile-images/${fileName}`;
-                
-                console.log('Uploading to path:', filePath);
-                
-                // Upload the file to Supabase Storage
-                const { data, error } = await supabaseClient
-                    .storage
-                    .from('profile-pictures')
-                    .upload(filePath, file);
-                
-                if (error) {
-                    console.error('Supabase storage upload error:', error);
-                    alert('Failed to upload image: ' + error.message);
-                    return null;
-                }
-                
-                console.log('Upload successful, getting public URL...');
-                
-                // Get the public URL
-                const { data: urlData } = supabaseClient
-                    .storage
-                    .from('profile-pictures')
-                    .getPublicUrl(filePath);
-                
-                console.log('✅ Image uploaded successfully:', urlData.publicUrl);
-                return urlData.publicUrl;
-            } catch (err) {
-                console.error('Unexpected error uploading image:', err);
-                alert('Unexpected error uploading image: ' + err.message);
-                return null;
-            }
-        }
-        
-        // Preview profile image when user selects a file (edit form)
-        function previewProfileImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const currentProfileImage = document.getElementById('current-profile-image');
-                    if (currentProfileImage) {
-                        const img = currentProfileImage.querySelector('img');
-                        if (img) {
-                            img.src = e.target.result;
-                            img.style.display = 'block';
-                        }
-                    }
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        
-        // Preview profile image when user selects a file (signup form)
-        function previewSignupImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const signupPreview = document.getElementById('signup-profile-preview');
-                    if (signupPreview) {
-                        const img = signupPreview.querySelector('img');
-                        if (img) {
-                            img.src = e.target.result;
-                            signupPreview.style.display = 'block';
-                        }
-                    }
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        
-        // Remove profile picture
-        function removeProfileImage() {
-            console.log('Removing profile picture');
-            
-            // Set hidden field to indicate profile image should be removed
-            let removeImageField = document.getElementById('remove-profile-image-flag');
-            if (!removeImageField) {
-                removeImageField = document.createElement('input');
-                removeImageField.type = 'hidden';
-                removeImageField.id = 'remove-profile-image-flag';
-                removeImageField.name = 'remove-profile-image';
-                removeImageField.value = 'true';
-                document.getElementById('edit-profile-form').appendChild(removeImageField);
-            }
-            
-            // Update preview to show placeholder
-            const currentProfileImage = document.getElementById('current-profile-image');
-            if (currentProfileImage) {
-                const img = currentProfileImage.querySelector('img');
-                if (img) {
-                    img.src = getImageByProfession('');
-                }
-            }
-            
-            // Clear file input
-            const profileImageInput = document.getElementById('edit-profile-image');
-            if (profileImageInput) {
-                profileImageInput.value = '';
-            }
-            
-            alert('Profile picture will be removed when you save changes');
-        }
-        
-        // Update brother's image in the directory immediately (for instant feedback)
-        function updateBrotherImageInDirectory(email, newImageUrl) {
-            const brotherCards = document.querySelectorAll('.brother-card');
-            brotherCards.forEach(card => {
-                // Look for the email in the brother-info-value elements
-                const emailElements = card.querySelectorAll('.brother-info-value');
-                let foundEmail = false;
-                emailElements.forEach(element => {
-                    if (element.textContent.trim() === email) {
-                        foundEmail = true;
-                    }
-                });
-                
-                if (foundEmail) {
-                    const imageElement = card.querySelector('.brother-image');
-                    if (imageElement) {
-                        // If newImageUrl is null, use placeholder
-                        if (newImageUrl === null) {
-                            // Get profession from card to use appropriate placeholder
-                            const professionElement = card.querySelector('.brother-profession');
-                            const profession = professionElement ? professionElement.textContent : '';
-                            imageElement.src = getImageByProfession(profession);
-                            console.log('Reset brother image to placeholder for:', email);
-                        } else {
-                            imageElement.src = newImageUrl;
-                            console.log('Updated brother image in directory for:', email);
-                        }
-                    }
-                }
-            });
-        }
-        
-        // Toggle custom profession input
+        // Toggle custom profession input visibility
         function toggleCustomProfession() {
             const professionSelect = document.getElementById('signup-profession');
             const customProfessionGroup = document.getElementById('custom-profession-group');
-            const customProfessionInput = document.getElementById('custom-profession');
             
-            if (professionSelect.value === 'Other') {
-                customProfessionGroup.style.display = 'block';
-                customProfessionInput.required = true;
-            } else {
-                customProfessionGroup.style.display = 'none';
-                customProfessionInput.required = false;
-                customProfessionInput.value = '';
+            if (professionSelect && customProfessionGroup) {
+                if (professionSelect.value === 'Other') {
+                    customProfessionGroup.style.display = 'block';
+                } else {
+                    customProfessionGroup.style.display = 'none';
+                }
             }
         }
         
-        // Toggle custom field input
+        // Toggle custom field input visibility
         function toggleCustomField() {
             const fieldSelect = document.getElementById('signup-field');
             const customFieldGroup = document.getElementById('custom-field-group');
-            const customFieldInput = document.getElementById('custom-field');
             
-            if (fieldSelect.value === 'Other') {
-                customFieldGroup.style.display = 'block';
-                customFieldInput.required = true;
-            } else {
-                customFieldGroup.style.display = 'none';
-                customFieldInput.required = false;
-                customFieldInput.value = '';
+            if (fieldSelect && customFieldGroup) {
+                if (fieldSelect.value === 'Other') {
+                    customFieldGroup.style.display = 'block';
+                } else {
+                    customFieldGroup.style.display = 'none';
+                }
             }
         }
-        
-        console.log('=== SCRIPT LOADED ===');
     </script>
 
 </body></html>
