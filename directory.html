@@ -4,7 +4,8 @@
     <title>Alpha Iota Chapter - Brothers Directory</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&amp;family=Darker+Grotesque:wght@300;600;800&amp;display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/e12fbea4/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <style>
         :root {
             --color-background: #F5F5DC;
@@ -1173,8 +1174,8 @@
             }
         }
     </style>
-<script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script id="simplify-jobs-page-script" src="chrome-extension://pbanhockgagggenencehbnadejlgchfc/js/pageScript.bundle.js"></script></head>
-<body class="">
+<script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
+<body class="scrolled">
     <!-- Navigation - Transparent -->
     <nav class="nav">
         <div class="nav-inner">
@@ -1219,7 +1220,7 @@
     </div>
     
     <!-- Chapter Access Overlay -->
-    <div class="chapter-access-overlay hidden" id="chapter-access-overlay">
+    <div class="chapter-access-overlay" id="chapter-access-overlay">
         <div class="chapter-password-prompt">
             <div class="chapter-icon">
                 <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Alpha Iota Logo" class="chapter-logo">
@@ -1237,7 +1238,7 @@
     </div>
 
     <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+    <div class="loading-overlay" id="loading-overlay">
         <div class="spinner"></div>
     </div>
     
@@ -1389,7 +1390,7 @@
         <!-- Instructional Video Section -->
         <div class="instruction-video-container">
             <div class="instruction-video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/dkCZDcLBnew?autoplay=1&amp;controls=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1" title="Brothers Directory Instructions" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                <iframe id="tutorial-video" width="560" height="315" src="https://www.youtube.com/embed/dkCZDcLBnew?autoplay=1&amp;controls=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" title="Brothers Directory Instructions" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
             </div>
         </div>
 
@@ -1621,136 +1622,12 @@
                 </button>
             </div>
             <div class="results-info">
-                <span id="results-count">4 brothers found</span>
+                <span id="results-count">0 brothers found</span>
             </div>
         </div>
 
         <!-- Brothers Grid Container -->
-        <div class="brothers-grid" id="brothers-grid"><div class="brother-card">
-                    <div class="brother-header">
-                        <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Test" class="brother-image">
-                        <div class="brother-title">
-                            <h3 class="brother-name">Test</h3>
-                            <div class="brother-profession">Other</div>
-                            <div class="brother-role">test</div>
-                        </div>
-                    </div>
-                    
-                    <div class="brother-details">
-                        <div class="brother-info">
-                            <div class="brother-info-label">Education Status</div>
-                            <div class="brother-info-value">Graduated</div>
-                        </div>
-                        
-                        <div class="brother-info">
-                            <div class="brother-info-label">Field of Interest</div>
-                            <div class="brother-info-value">Computer Science</div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                    
-                    <div class="brother-footer">
-                        
-                    </div>
-                </div><div class="brother-card">
-                    <div class="brother-header">
-                        <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Test" class="brother-image">
-                        <div class="brother-title">
-                            <h3 class="brother-name">Test</h3>
-                            <div class="brother-profession">Athlete</div>
-                            <div class="brother-role">test</div>
-                        </div>
-                    </div>
-                    
-                    <div class="brother-details">
-                        <div class="brother-info">
-                            <div class="brother-info-label">Education Status</div>
-                            <div class="brother-info-value">Graduated</div>
-                        </div>
-                        
-                        <div class="brother-info">
-                            <div class="brother-info-label">Field of Interest</div>
-                            <div class="brother-info-value">Architecture</div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                    
-                    <div class="brother-footer">
-                        
-                    </div>
-                </div><div class="brother-card">
-                    <div class="brother-header">
-                        <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Test" class="brother-image">
-                        <div class="brother-title">
-                            <h3 class="brother-name">Test</h3>
-                            <div class="brother-profession">Civil Engineer</div>
-                            <div class="brother-role">Test</div>
-                        </div>
-                    </div>
-                    
-                    <div class="brother-details">
-                        <div class="brother-info">
-                            <div class="brother-info-label">Education Status</div>
-                            <div class="brother-info-value">Graduated</div>
-                        </div>
-                        
-                        <div class="brother-info">
-                            <div class="brother-info-label">Field of Interest</div>
-                            <div class="brother-info-value">Entrepreneurship</div>
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                    </div>
-                    
-                    <div class="brother-footer">
-                        
-                    </div>
-                </div><div class="brother-card">
-                    <div class="brother-header">
-                        <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Test" class="brother-image">
-                        <div class="brother-title">
-                            <h3 class="brother-name">Test</h3>
-                            <div class="brother-profession">Actor</div>
-                            
-                        </div>
-                    </div>
-                    
-                    <div class="brother-details">
-                        <div class="brother-info">
-                            <div class="brother-info-label">Education Status</div>
-                            <div class="brother-info-value">Undergraduate</div>
-                        </div>
-                        
-                        <div class="brother-info">
-                            <div class="brother-info-label">Field of Interest</div>
-                            <div class="brother-info-value">Agriculture</div>
-                        </div>
-                        
-                        
-                        
-                        <div class="brother-info">
-                            <div class="brother-info-label">Social Media</div>
-                            <div class="brother-info-value" style="display: flex; gap: 1rem;"><a href="https://jbjb" target="_blank" style="color: white; text-decoration: none;">
-                                <i class="fab fa-linkedin" style="font-size: 1.5rem;"></i>
-                            </a></div></div>
-                        
-                    </div>
-                    
-                    <div class="brother-footer">
-                        
-                    </div>
-                </div></div>
+        <div class="brothers-grid" id="brothers-grid"></div>
     </main>
     
     <script>
@@ -1809,6 +1686,34 @@
         }
         
         // Initialize on DOM load
+        // YouTube player variable
+        let player;
+        
+        // Initialize YouTube API
+        function onYouTubeIframeAPIReady() {
+            // Create YouTube player
+            player = new YT.Player('tutorial-video', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+        
+        // When player is ready
+        function onPlayerReady(event) {
+            // Try to unmute and play with sound (this might be blocked by browser policies)
+            event.target.unMute();
+            event.target.playVideo();
+            
+            // Add a click event listener to the document to unmute on first interaction
+            document.addEventListener('click', function handleFirstClick() {
+                event.target.unMute();
+                event.target.playVideo();
+                // Remove the event listener after first click
+                document.removeEventListener('click', handleFirstClick);
+            }, { once: true });
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             console.log('✓ DOM loaded, initializing...');
             
