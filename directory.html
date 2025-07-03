@@ -1096,7 +1096,7 @@
         }
     </style>
 <script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script id="simplify-jobs-page-script" src="chrome-extension://pbanhockgagggenencehbnadejlgchfc/js/pageScript.bundle.js"></script></head>
-<body>
+<body class="">
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-inner">
@@ -1133,7 +1133,7 @@
 
     
     <!-- Chapter Password Protection -->
-    <div id="chapterProtection" class="chapter-protection">
+    <div id="chapterProtection" class="chapter-protection" style="display: none;">
         <h2>Alpha Iota Chapter</h2>
         <p class="subtitle">Enter chapter password to access the brothers directory</p>
         <div id="chapterError" class="chapter-error">Incorrect password. Please try again.</div>
@@ -1142,15 +1142,15 @@
     </div>
 
     <!-- Main Directory Content (hidden initially) -->
-    <div id="directoryContent" style="display: none;">
+    <div id="directoryContent" style="display: block;">
         <!-- Main Content -->
         <main class="directory-container">
             <h1 class="page-title">Alpha Iota Chapter Brothers Directory</h1>
 
             <!-- Logged In Status -->
-            <div class="logged-in-status" id="logged-in-status">
+            <div class="logged-in-status" id="logged-in-status" style="display: flex;">
                 <i class="fas fa-user-check"></i>
-                <span>Logged in as <span id="user-name"></span></span>
+                <span>Logged in as <span id="user-name">terellebony@gmail.com</span></span>
                 <div class="user-actions">
                     <button class="edit-profile-button" id="edit-profile-button">Edit Profile</button>
                     <button class="logout-button" id="logout-button">Logout</button>
@@ -1158,7 +1158,7 @@
             </div>
 
             <!-- Authentication Container -->
-            <div class="auth-container" id="auth-container">
+            <div class="auth-container" id="auth-container" style="display: none;">
             <h2>Brothers Authentication</h2>
             
             <div class="auth-tabs">
@@ -1171,8 +1171,8 @@
                 <form id="login-form">
                     <input type="email" class="auth-input" id="login-email" placeholder="Email Address" required="">
                     <input type="password" class="auth-input" id="login-password" placeholder="Password" required="">
-                    <div id="login-error" class="error-message"></div>
-                    <div id="login-success" class="success-message"></div>
+                    <div id="login-error" class="error-message" style="display: none;"></div>
+                    <div id="login-success" class="success-message" style="display: none;"></div>
                     <div style="margin-bottom: 15px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7); text-align: center;">
                         <i class="fas fa-info-circle"></i> 
                         If you're a new user, please sign up first using the Sign Up tab.
@@ -1208,15 +1208,15 @@
                     <input type="password" class="auth-input" id="signup-password" placeholder="Create Password" required="">
                     <input type="password" class="auth-input" id="signup-password-confirm" placeholder="Confirm Password" required="">
                     
-                    <div id="signup-error" class="error-message"></div>
-                    <div id="signup-success" class="success-message"></div>
+                    <div id="signup-error" class="error-message" style="display: none;"></div>
+                    <div id="signup-success" class="success-message" style="display: none;"></div>
                     <button type="submit" class="auth-button">Complete Sign Up</button>
                 </form>
             </div>
         </div>
 
         <!-- Enhanced Search and Filter Section -->
-        <div class="search-filter-section" id="search-filter-section" style="display: none;">
+        <div class="search-filter-section" id="search-filter-section" style="display: block;">
             <h3 class="search-section-title">Find Brothers by Profession, Location, or Name</h3>
             
             <div class="search-bar">
@@ -1244,28 +1244,13 @@
                     <option value="graduated">Graduated</option>
                 </select>
                 
-                <select id="field-filter" class="filter-select">
-                    <option value="">All Fields</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Healthcare">Healthcare</option>
-                    <option value="Business">Business</option>
-                    <option value="Technology">Technology</option>
-                    <option value="Education">Education</option>
-                    <option value="Law">Law</option>
-                </select>
+                <select id="field-filter" class="filter-select"><option value="">All Fields</option><option value="Automotive">Automotive</option><option value="Computer Science">Computer Science</option><option value="Construction">Construction</option><option value="Engineering">Engineering</option><option value="Law">Law</option><option value="Tech">Tech</option></select>
                 
-                <select id="state-filter" class="filter-select">
-                    <option value="">All States</option>
-                    <option value="Georgia">Georgia</option>
-                    <option value="New York">New York</option>
-                    <option value="California">California</option>
-                    <option value="Texas">Texas</option>
-                    <option value="Florida">Florida</option>
-                </select>
+                <select id="state-filter" class="filter-select"><option value="">All States</option><option value="MD">MD</option></select>
             </div>
             
             <div class="results-info">
-                <span id="results-count">0 brothers found</span>
+                <span id="results-count">7 brothers found</span>
             </div>
             
             <button id="clear-filters" class="clear-filters-btn">
@@ -1274,19 +1259,350 @@
         </div>
 
         <!-- Alphabet Navigation -->
-        <div class="alphabet-nav" id="alphabet-nav" style="display: none;">
-            <!-- Letters A-Z will be generated by JavaScript -->
-        </div>
+        <div class="alphabet-nav" id="alphabet-nav" style="display: flex;"><div class="alphabet-letter" onclick="filterByLetter('A')">A</div><div class="alphabet-letter" onclick="filterByLetter('B')">B</div><div class="alphabet-letter" onclick="filterByLetter('C')">C</div><div class="alphabet-letter" onclick="filterByLetter('D')">D</div><div class="alphabet-letter" onclick="filterByLetter('E')">E</div><div class="alphabet-letter" onclick="filterByLetter('F')">F</div><div class="alphabet-letter" onclick="filterByLetter('G')">G</div><div class="alphabet-letter" onclick="filterByLetter('H')">H</div><div class="alphabet-letter" onclick="filterByLetter('I')">I</div><div class="alphabet-letter" onclick="filterByLetter('J')">J</div><div class="alphabet-letter" onclick="filterByLetter('K')">K</div><div class="alphabet-letter" onclick="filterByLetter('L')">L</div><div class="alphabet-letter" onclick="filterByLetter('M')">M</div><div class="alphabet-letter" onclick="filterByLetter('N')">N</div><div class="alphabet-letter" onclick="filterByLetter('O')">O</div><div class="alphabet-letter" onclick="filterByLetter('P')">P</div><div class="alphabet-letter" onclick="filterByLetter('Q')">Q</div><div class="alphabet-letter" onclick="filterByLetter('R')">R</div><div class="alphabet-letter" onclick="filterByLetter('S')">S</div><div class="alphabet-letter" onclick="filterByLetter('T')">T</div><div class="alphabet-letter" onclick="filterByLetter('U')">U</div><div class="alphabet-letter" onclick="filterByLetter('V')">V</div><div class="alphabet-letter" onclick="filterByLetter('W')">W</div><div class="alphabet-letter" onclick="filterByLetter('X')">X</div><div class="alphabet-letter" onclick="filterByLetter('Y')">Y</div><div class="alphabet-letter" onclick="filterByLetter('Z')">Z</div></div>
 
         <!-- Brothers List View -->
-        <div class="brothers-list" id="brothers-list" style="display: none;">
-            <!-- Brother items will be dynamically generated -->
-        </div>
+        <div class="brothers-list" id="brothers-list" style="display: block;">
+                    <div class="brother-item" onclick="toggleBrotherDetails(this)">
+                        <div class="brother-summary">
+                            <div class="brother-basic-info">
+                                <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Calvin Woody" class="brother-avatar">
+                                <div class="brother-name-profession">
+                                    <div class="brother-name">Calvin Woody</div>
+                                    <div class="brother-quick-info">Sales</div>
+                                </div>
+                            </div>
+                            <div class="brother-location-info">
+                                <div>Location not specified</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">From: Not specified</div>
+                            </div>
+                            <i class="fas fa-chevron-down expand-icon"></i>
+                        </div>
+                        <div class="brother-details">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Education Status</div>
+                                    <div class="detail-value">graduated</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Field of Interest</div>
+                                    <div class="detail-value">Automotive</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Role</div>
+                                    <div class="detail-value">General Sales Manager</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Phone</div>
+                                    <div class="detail-value">4434167186</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Email</div>
+                                    <div class="detail-value">cwoody1019@gmail.com</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Birthplace</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                
+                    <div class="brother-item" onclick="toggleBrotherDetails(this)">
+                        <div class="brother-summary">
+                            <div class="brother-basic-info">
+                                <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Godley Pierre" class="brother-avatar">
+                                <div class="brother-name-profession">
+                                    <div class="brother-name">Godley Pierre</div>
+                                    <div class="brother-quick-info">Student</div>
+                                </div>
+                            </div>
+                            <div class="brother-location-info">
+                                <div>Location not specified</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">From: Not specified</div>
+                            </div>
+                            <i class="fas fa-chevron-down expand-icon"></i>
+                        </div>
+                        <div class="brother-details">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Education Status</div>
+                                    <div class="detail-value">undergraduate</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Field of Interest</div>
+                                    <div class="detail-value">Computer Science</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Role</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Phone</div>
+                                    <div class="detail-value">9083412681</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Email</div>
+                                    <div class="detail-value">godleyp1@gmail.com</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Birthplace</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                
+                    <div class="brother-item" onclick="toggleBrotherDetails(this)">
+                        <div class="brother-summary">
+                            <div class="brother-basic-info">
+                                <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Kamron Hampton" class="brother-avatar">
+                                <div class="brother-name-profession">
+                                    <div class="brother-name">Kamron Hampton</div>
+                                    <div class="brother-quick-info">Not specified</div>
+                                </div>
+                            </div>
+                            <div class="brother-location-info">
+                                <div>Location not specified</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">From: Not specified</div>
+                            </div>
+                            <i class="fas fa-chevron-down expand-icon"></i>
+                        </div>
+                        <div class="brother-details">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Education Status</div>
+                                    <div class="detail-value">undergraduate</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Field of Interest</div>
+                                    <div class="detail-value">Engineering</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Role</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Phone</div>
+                                    <div class="detail-value">4434181363</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Email</div>
+                                    <div class="detail-value">kamron824@hotmail.com</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Birthplace</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                
+                    <div class="brother-item" onclick="toggleBrotherDetails(this)">
+                        <div class="brother-summary">
+                            <div class="brother-basic-info">
+                                <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Lesley Ofosu" class="brother-avatar">
+                                <div class="brother-name-profession">
+                                    <div class="brother-name">Lesley Ofosu</div>
+                                    <div class="brother-quick-info">N/A</div>
+                                </div>
+                            </div>
+                            <div class="brother-location-info">
+                                <div>Location not specified</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">From: Not specified</div>
+                            </div>
+                            <i class="fas fa-chevron-down expand-icon"></i>
+                        </div>
+                        <div class="brother-details">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Education Status</div>
+                                    <div class="detail-value">undergraduate</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Field of Interest</div>
+                                    <div class="detail-value">Construction</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Role</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Phone</div>
+                                    <div class="detail-value">4439294499</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Email</div>
+                                    <div class="detail-value">Lesleyofosu76@gmail.com</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Birthplace</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                
+                    <div class="brother-item" onclick="toggleBrotherDetails(this)">
+                        <div class="brother-summary">
+                            <div class="brother-basic-info">
+                                <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Marcus Mcclean" class="brother-avatar">
+                                <div class="brother-name-profession">
+                                    <div class="brother-name">Marcus Mcclean</div>
+                                    <div class="brother-quick-info">Mechatronics Engineer</div>
+                                </div>
+                            </div>
+                            <div class="brother-location-info">
+                                <div>Location not specified</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">From: Not specified</div>
+                            </div>
+                            <i class="fas fa-chevron-down expand-icon"></i>
+                        </div>
+                        <div class="brother-details">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Education Status</div>
+                                    <div class="detail-value">undergraduate</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Field of Interest</div>
+                                    <div class="detail-value">Engineering</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Role</div>
+                                    <div class="detail-value">Software Engineer</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Phone</div>
+                                    <div class="detail-value">4102749268</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Email</div>
+                                    <div class="detail-value">marcus.c.mcclean@gmail.com</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Birthplace</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                
+                    <div class="brother-item" onclick="toggleBrotherDetails(this)">
+                        <div class="brother-summary">
+                            <div class="brother-basic-info">
+                                <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Terell Reed" class="brother-avatar">
+                                <div class="brother-name-profession">
+                                    <div class="brother-name">Terell Reed</div>
+                                    <div class="brother-quick-info">Cyber</div>
+                                </div>
+                            </div>
+                            <div class="brother-location-info">
+                                <div>Brandywine, MD</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">From: DC</div>
+                            </div>
+                            <i class="fas fa-chevron-down expand-icon"></i>
+                        </div>
+                        <div class="brother-details">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Education Status</div>
+                                    <div class="detail-value">graduated</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Field of Interest</div>
+                                    <div class="detail-value">Tech</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Role</div>
+                                    <div class="detail-value">Government</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Phone</div>
+                                    <div class="detail-value">3013324084</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Email</div>
+                                    <div class="detail-value">terellebony@gmail.com</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Birthplace</div>
+                                    <div class="detail-value">DC</div>
+                                </div>
+                            </div>
+                            
+                            
+                                <div class="social-links">
+                                    <a href="https://www.linkedin.com/in/terell-reed-140377263/" target="_blank" class="social-link"><i class="fab fa-linkedin"></i></a>
+                                    
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                
+                    <div class="brother-item" onclick="toggleBrotherDetails(this)">
+                        <div class="brother-summary">
+                            <div class="brother-basic-info">
+                                <img src="https://i.ibb.co/Vp0rkdpn/AI-LOGO-NO-BACKGROUND-removebg-preview.png" alt="Xavier Johnson" class="brother-avatar">
+                                <div class="brother-name-profession">
+                                    <div class="brother-name">Xavier Johnson</div>
+                                    <div class="brother-quick-info">Civil Engineer</div>
+                                </div>
+                            </div>
+                            <div class="brother-location-info">
+                                <div>Location not specified</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8;">From: Not specified</div>
+                            </div>
+                            <i class="fas fa-chevron-down expand-icon"></i>
+                        </div>
+                        <div class="brother-details">
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Education Status</div>
+                                    <div class="detail-value">undergraduate</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Field of Interest</div>
+                                    <div class="detail-value">Law</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Role</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Phone</div>
+                                    <div class="detail-value">4435992715</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Email</div>
+                                    <div class="detail-value">xavierj23.xj@gmail.com</div>
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Birthplace</div>
+                                    <div class="detail-value">Not specified</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
         </main>
     </div>
     
     <!-- Profile Edit Modal -->
-    <div class="modal-overlay" id="edit-profile-modal">
+    <div class="modal-overlay" id="edit-profile-modal" style="display: none;">
         <div class="modal">
             <button class="modal-close" id="modal-close">
                 <i class="fas fa-times"></i>
@@ -1327,8 +1643,8 @@
                     <textarea class="auth-input" id="edit-bio" placeholder="Short Bio" style="height: 100px; padding-top: 15px;"></textarea>
                 </div>
                 
-                <div id="edit-error" class="error-message"></div>
-                <div id="edit-success" class="success-message"></div>
+                <div id="edit-error" class="error-message" style="display: none;"></div>
+                <div id="edit-success" class="success-message" style="display: block;">Profile updated successfully!</div>
                 <button type="submit" class="auth-button">Save Changes</button>
             </form>
         </div>
@@ -1768,13 +2084,53 @@
             document.getElementById('edit-profile-modal').style.display = 'none';
         }
         
+        // Helper function to populate form fields
+        function populateFormFields(brotherData) {
+            document.getElementById('edit-name').value = brotherData.name || '';
+            document.getElementById('edit-phone').value = brotherData.phone || '';
+            document.getElementById('edit-birthplace').value = brotherData.birthplace || '';
+            document.getElementById('edit-current-city').value = brotherData.current_city || '';
+            document.getElementById('edit-current-state').value = brotherData.current_state || '';
+            document.getElementById('edit-education-status').value = brotherData.education_status || '';
+            document.getElementById('edit-profession').value = brotherData.profession || '';
+            document.getElementById('edit-field').value = brotherData.field_of_interest || '';
+            document.getElementById('edit-role').value = brotherData.role || '';
+            document.getElementById('edit-bio').value = brotherData.bio || '';
+            
+            // Social media
+            if (brotherData.social_media) {
+                document.getElementById('edit-linkedin').value = brotherData.social_media.linkedin || '';
+                document.getElementById('edit-instagram').value = brotherData.social_media.instagram || '';
+                document.getElementById('edit-twitter').value = brotherData.social_media.twitter || '';
+            } else {
+                document.getElementById('edit-linkedin').value = '';
+                document.getElementById('edit-instagram').value = '';
+                document.getElementById('edit-twitter').value = '';
+            }
+        }
+
         async function loadCurrentUserProfile() {
             if (!currentUser) return;
             
             try {
-
+                // Special case for terellebony@gmail.com (direct email lookup)
+                if (currentUser.email === 'terellebony@gmail.com') {
+                    const { data: brotherData, error: brotherError } = await supabaseClient
+                        .from('brothers')
+                        .select('*')
+                        .eq('email', 'terellebony@gmail.com')
+                        .single();
+                    
+                    if (brotherError) {
+                        console.error('Error loading special user data:', brotherError);
+                        return;
+                    }
+                    
+                    populateFormFields(brotherData);
+                    return;
+                }
                 
-                // Get current user's brother profile ID
+                // Standard profile lookup via profiles table
                 const { data: profileData, error: profileError } = await supabaseClient
                     .from('profiles')
                     .select('brother_id')
@@ -1797,32 +2153,9 @@
                     return;
                 }
                 
-                // Populate form with brother data
                 populateFormFields(brotherData);
             } catch (err) {
                 console.error('Unexpected error loading profile:', err);
-            }
-            
-            // Helper function to populate form fields
-            function populateFormFields(brotherData) {
-                // Populate form fields
-                document.getElementById('edit-name').value = brotherData.name || '';
-                document.getElementById('edit-phone').value = brotherData.phone || '';
-                document.getElementById('edit-birthplace').value = brotherData.birthplace || '';
-                document.getElementById('edit-current-city').value = brotherData.current_city || '';
-                document.getElementById('edit-current-state').value = brotherData.current_state || '';
-                document.getElementById('edit-education-status').value = brotherData.education_status || '';
-                document.getElementById('edit-profession').value = brotherData.profession || '';
-                document.getElementById('edit-field').value = brotherData.field_of_interest || '';
-                document.getElementById('edit-role').value = brotherData.role || '';
-                document.getElementById('edit-bio').value = brotherData.bio || '';
-                
-                // Social media
-                if (brotherData.social_media) {
-                    document.getElementById('edit-linkedin').value = brotherData.social_media.linkedin || '';
-                    document.getElementById('edit-instagram').value = brotherData.social_media.instagram || '';
-                    document.getElementById('edit-twitter').value = brotherData.social_media.twitter || '';
-                }
             }
         }
         
@@ -1841,28 +2174,10 @@
             updateButton.disabled = true;
             
             try {
-                // Special case for terellebony@gmail.com
-                if (currentUser.email === 'terellebony@gmail.com') {
-                    console.log('Loading profile for special user:', currentUser.email);
-                    const { data: brotherData, error: brotherError } = await supabaseClient
-                        .from('brothers')
-                        .select('*')
-                        .eq('email', 'terellebony@gmail.com')
-                        .single();
-                    
-                    if (brotherError) {
-                        console.error('Error loading special user data:', brotherError);
-                        return;
-                    }
-                    
-                    // Populate form with brother data
-                    populateFormFields(brotherData);
-                    return;
-                }
+                let brotherId;
                 
-                // Special case for terellebony@gmail.com
+                // Special case for terellebony@gmail.com (direct email lookup)
                 if (currentUser.email === 'terellebony@gmail.com') {
-                    // Get profile data directly using email
                     const { data: brotherData, error: brotherError } = await supabaseClient
                         .from('brothers')
                         .select('id')
@@ -1876,29 +2191,27 @@
                         return;
                     }
                     
-                    // Use the direct ID for the update
-                    const brotherId = brotherData.id;
-                    // Continue with the normal update using this ID
-                    await updateBrotherProfile(brotherId);
-                    return;
+                    brotherId = brotherData.id;
+                } else {
+                    // Standard profile lookup via profiles table
+                    const { data: profileData, error: profileError } = await supabaseClient
+                        .from('profiles')
+                        .select('brother_id')
+                        .eq('id', currentUser.id)
+                        .single();
+                    
+                    if (profileError) {
+                        showError('edit-error', 'Error retrieving profile: ' + profileError.message);
+                        updateButton.textContent = originalButtonText;
+                        updateButton.disabled = false;
+                        return;
+                    }
+                    
+                    brotherId = profileData.brother_id;
                 }
                 
-                // Get current user's brother profile ID
-                const { data: profileData, error: profileError } = await supabaseClient
-                    .from('profiles')
-                    .select('brother_id')
-                    .eq('id', currentUser.id)
-                    .single();
-                
-                if (profileError) {
-                    showError('edit-error', 'Error retrieving profile: ' + profileError.message);
-                    updateButton.textContent = originalButtonText;
-                    updateButton.disabled = false;
-                    return;
-                }
-                
-                // Continue with the normal update
-                await updateBrotherProfile(profileData.brother_id);
+                // Update the brother profile
+                await updateBrotherProfile(brotherId, updateButton, originalButtonText);
             } catch (err) {
                 console.error('Unexpected error in edit profile:', err);
                 showError('edit-error', 'Unexpected error: ' + err.message);
@@ -1907,7 +2220,7 @@
             }
             
             // Helper function to update brother profile
-            async function updateBrotherProfile(brotherId) {
+            async function updateBrotherProfile(brotherId, updateButton, originalButtonText) {
                 // Get form values
                 const formData = {
                     name: document.getElementById('edit-name').value.trim(),
