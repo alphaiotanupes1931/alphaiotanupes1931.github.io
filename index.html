@@ -198,6 +198,14 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         
+        .chapter-title h1 span,
+        .fraternity-title h2,
+        .fraternity-title h3,
+        .hero-info p {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
         @keyframes scaleIn {
             0% { transform: scale(0.9); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
@@ -207,6 +215,13 @@
             0% { border-color: var(--color-crimson); }
             50% { border-color: rgba(220, 20, 60, 0.5); }
             100% { border-color: var(--color-crimson); }
+        }
+        
+        .alpha-text, .iota-text {
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: inline-block;
+            letter-spacing: 2px;
         }
         
         @keyframes textGlow {
@@ -1373,7 +1388,8 @@
             100% { transform: rotate(360deg); }
         }
     </style>
-  <script src="https://www.youtube.com/iframe_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/14397202/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/9fe2e06e/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
+  <script src="https://www.youtube.com/iframe_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/6e20d3a8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://lib.youware.com/youware-lib-editor.1751946057.js" id="yourware-lib"></script><style>@font-face{font-family:luna-console-icon;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAaoAAsAAAAACnAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAAIsAAADcIw4ngk9TLzIAAAGUAAAAPgAAAFZWmlGRY21hcAAAAdQAAAD4AAACyDWnbdFnbHlmAAACzAAAAZsAAAH8Lq6nDGhlYWQAAARoAAAAMQAAADZ25cSzaGhlYQAABJwAAAAdAAAAJAgCBBRobXR4AAAEvAAAABcAAABYGAH//GxvY2EAAATUAAAAGAAAAC4JNAjUbWF4cAAABOwAAAAfAAAAIAEjAFBuYW1lAAAFDAAAASkAAAIWm5e+CnBvc3QAAAY4AAAAcAAAAJ7p9v7ZeJxNjT0OgkAQhb9FFllBFMHGwjN4AipiZckFaDAmxIojeHDf7oboTObvvZk3GGDHjY6kvz8Gqnlc3lxIieb5/97Mr+dIvk7i0lBzxQfLkZ6BiYWEjKtyIc7pR0GpWnOiUW+E/PA9FQfdRj0r3AlxYc7kZ221IXtko/C3cd+Grytr2UrTq9VfrRAJ0wB4nGNgZBRnnMDAysDA1Ml0hoGBoR9CM75mMGLkAIoysDIzYAUBaa4pDAcYdD+ysYC4MSxMYGFGEAEAtDUIzAAAeJzN0s1OwkAUhuF36A8gtBYKiQsXxrVeFEGibJAQCPfgBbnypuYK8Dszx40xJu48kyekH+3M6XSACijkQUoIHwSs3pWGlBdcpbzkTdcLOiUlj6zYsGXPgRPnWF8u+tfSNc/slB6VhpR+r6BZbNxwy53GvQZMGTGk0WpzemZap9U9YyYsudYzg7RuRa0J6h9m/a2mf7zfSt006qWf2UXXplask/9S6Z3C15stsd3PLFu5kazdUJ5cIxun76tvls3lxfWydbYLO9fJq2tl7xZycGM5uomcnPV5dtrLGDI7a3GQYb9FZmczlpmdz1hldm5jnVF/Akk1KvR4nF1RTW8TMRCdZ3udBsSWBcdLG9UlG623pKihaeIIIZVUiHOknlAVNQgu0Jx6oB9/olz4BUXiyv+AAxz4BT1wRIJDT+wG7woQwhqN3vi9Nx6NCeQPf8oDYkRogU/z5xhzUbz2ZcmxD3xccRHwBId8nD/D2FvmOZHgglFIy9QmSrEBWYM02Gr1toG+6+lGpGRiB3Fiy0pJ/q2YKOeUz3W3zu+tu3r+0XSMj61mmro0fcPv2mbT/vyS7Vi7w/YaxjSKd2W+TAfWDtJqpPncvw1B1KFHfjK5CJltILMP0fVTOL0KH0OnY73IYl0LUZNd2C5SFRvEujfc9my/siQVi8vrrQe3Vq7dYEK9SnYjdvtO9JIJfqrvS9E4uHocXxE6XFIzJlherGVnk+nn6eQsW/sH4r3v8Vt31NqNOqssOmBBcBLfNMtqtnASr4Rl/xmT4vGL/90VpD87/8T3KfA7zeoYAocjmOJihP1zD2BGxTmVP+LT90oXeuWwjgyB0j3Xt4nEj1FxUSrf4muy2W5vJn+tbCkpb7z7FwBKXUkAeJxjYGRgYADikOXX2uP5bb4ycLOABKI4H+9rgNH//zIwsDCzMAElOBhAJAMASwoLJgAAAHicY2BkYGBhAAEWhv9///9lYWZgZEAFYgBbLQQgAAAAeJxjYGBgYIHj/3+B+D+MTwkAACOnBBMAeJxjYAACPgYZhiiGEwx3GP7hhwBJdRIJeJxjYGRgYBBjcGFgZgABJiDmAkIGhv9gPgMAEYUBdAB4nGWQPW7CQBSEx2BIAlKCFCkps1UKIpmfkgNAT0GXwpi1MbK91npBossJcoQcIaeIcoIcKGPzaGAtP38zb97uygAG+IWHenm4bWq9WrihOnGb9CDsk5+FO+jjRbhLfyjcwxumwn084p07eP4dnQFK4Rbu8SHcpv8p7JO/hDt4wrdwl/6PcA8r/An38eoN08gUsSncUif7LLRnef6utK1SU6hJMD5bC11oGzq9Ueujqg7J1LlYxdbkas6uzjKjSmt2OnLB1rlyNhrF4geRyZEigkGBuKkOS2gk2CNDCHvVvdQrpi0q+rVWmCDA+Cq1YKpokiGVxobJNY6sFQ48bUrXMa34Ws7kpLnMat4kIyv+77q3oxPRD7BtpkrMMOITX+SD5g75Pz0RXqgAAAB4nG3GSw6CMBRA0XeRohb/H1wFi2qAQCcteWnT7WvC1DO5VyrZWPmvo2JHjaFhz4EjlpYTZy5cuXHnwZMXbzo+YgenU+rHWEK7rfp5SXVxGsykGtX4sObUxJx+YcChTCR6RiKFgGdmYSWLfAGgdBim) format("woff")}[class^=luna-console-icon-],[class*=" luna-console-icon-"]{display:inline-block;font-family:luna-console-icon!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.luna-console-icon-caret-down:before{content:""}.luna-console-icon-caret-right:before{content:""}.luna-console-icon-warn:before{content:""}.luna-console-icon-error:before{content:""}.luna-console-icon-input:before{content:""}.luna-console-icon-output:before{content:""}.luna-console{background:#fff;overflow-y:auto;-webkit-overflow-scrolling:touch;height:100%;position:relative;will-change:scroll-position;cursor:default;font-size:12px;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace}.luna-console.luna-console-theme-dark{background-color:#141414}.luna-console-hidden{display:none!important}.luna-console-fake-logs{position:absolute;left:0;top:0;pointer-events:none;visibility:hidden;width:100%}.luna-console-logs{padding-top:1px;position:absolute;width:100%}.luna-console-log-container{box-sizing:content-box;padding:0 8px}.luna-console-log-container.luna-console-error{background:#fff0f0}.luna-console-log-container.luna-console-warn{background:#fffbe5}.luna-console-log-container.luna-console-selected{background:#ecf1f8}.luna-console-log-container.luna-console-selected:not(.luna-console-error):not(.luna-console-warn){border-color:#ccdef5}.luna-console-log-container.luna-console-selected .luna-console-log-item{background:#ecf1f8}.luna-console-log-container.luna-console-selected .luna-console-log-item:not(.luna-console-error):not(.luna-console-warn){border-color:#ccdef5}.luna-console-header{white-space:nowrap;display:flex;font-size:11px;color:#545454;border-top:1px solid transparent;border-bottom:1px solid rgba(0,0,0,.06)}.luna-console-header .luna-console-time-from-container{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:3px 10px}.luna-console-nesting-level{width:14px;flex-shrink:0;margin-top:-1px;margin-bottom:-1px;position:relative;border-right:1px solid rgba(0,0,0,.06)}.luna-console-nesting-level.luna-console-group-closed:before{content:""}.luna-console-nesting-level:before{border-bottom:1px solid rgba(0,0,0,.06);position:absolute;top:0;left:0;margin-left:100%;width:5px;height:100%;box-sizing:border-box}.luna-console-log-item{position:relative;display:flex;align-items:flex-start;border-top:1px solid transparent;border-bottom:1px solid rgba(0,0,0,.06);margin-top:-1px;color:#333;padding:8px 102px 8px 0}.luna-console-log-item:after{content:"";display:block;clear:both}.luna-console-log-item .luna-console-code{display:inline;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace}.luna-console-log-item .luna-console-code .luna-console-keyword{color:#881280}.luna-console-log-item .luna-console-code .luna-console-number{color:#1c00cf}.luna-console-log-item .luna-console-code .luna-console-operator{color:gray}.luna-console-log-item .luna-console-code .luna-console-comment{color:#236e25}.luna-console-log-item .luna-console-code .luna-console-string{color:#1a1aa6}.luna-console-log-item a{color:#15c!important}.luna-console-log-item .luna-console-icon-container{margin:0 -6px 0 10px;display:flex;align-items:center;min-height:22px}.luna-console-log-item .luna-console-icon-container .luna-console-icon{line-height:1;font-size:12px;color:#333;position:relative}.luna-console-log-item .luna-console-icon-container .luna-console-icon-caret-right,.luna-console-log-item .luna-console-icon-container .luna-console-icon-caret-down{top:0;left:-2px}.luna-console-log-item .luna-console-icon-container .luna-console-icon-error{top:0;color:#ef3842}.luna-console-log-item .luna-console-icon-container .luna-console-icon-warn{top:0;color:#e8a400}.luna-console-log-item .luna-console-count{background:#8097bd;color:#fff;padding:2px 4px;border-radius:10px;font-size:12px;float:left;margin:1px -6px 0 10px}.luna-console-log-item .luna-console-log-content-wrapper{flex:1;overflow:hidden}.luna-console-log-item .luna-console-add-to-chat-btn{position:absolute;top:8px;right:8px;background:#0000000f;border-radius:8px;padding:5px 8px;font-family:monospace;font-size:12px;font-weight:400;color:#000000f2;cursor:pointer;-webkit-user-select:none;user-select:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .2s ease}.luna-console-log-item .luna-console-add-to-chat-btn span{line-height:1.2;letter-spacing:-.04em}.luna-console-log-item.luna-console-error .luna-console-add-to-chat-btn{background:#d427273d}.luna-console-log-item.luna-console-warn .luna-console-add-to-chat-btn{background:#ffc3003d}.luna-console-log-item .luna-console-log-content{padding:3px 0;margin:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:pre-wrap;-webkit-user-select:text;user-select:text}.luna-console-log-item .luna-console-log-content *{-webkit-user-select:text;user-select:text}.luna-console-log-item .luna-console-log-content>*{vertical-align:top}.luna-console-log-item .luna-console-log-content .luna-console-undefined,.luna-console-log-item .luna-console-log-content .luna-console-null{color:#5e5e5e}.luna-console-log-item .luna-console-log-content .luna-console-number{color:#1c00cf}.luna-console-log-item .luna-console-log-content .luna-console-boolean{color:#0d22aa}.luna-console-log-item .luna-console-log-content .luna-console-symbol,.luna-console-log-item .luna-console-log-content .luna-console-regexp{color:#881391}.luna-console-log-item .luna-console-data-grid,.luna-console-log-item .luna-console-dom-viewer{white-space:initial}.luna-console-log-item.luna-console-error{z-index:50;background:#fff0f0;color:#720000;border-top:1px solid #ffd6d6;border-bottom:1px solid #ffd6d6}.luna-console-log-item.luna-console-error .luna-console-stack{padding-left:1.2em;white-space:nowrap}.luna-console-log-item.luna-console-error .luna-console-count{background:#720000}.luna-console-log-item.luna-console-debug{z-index:20}.luna-console-log-item.luna-console-input{border-bottom-color:transparent}.luna-console-log-item.luna-console-warn{z-index:40;color:#5c5c00;background:#fffbe5;border-top:1px solid #fff5c2;border-bottom:1px solid #fff5c2}.luna-console-log-item.luna-console-warn .luna-console-count{background:#e8a400}.luna-console-log-item.luna-console-info{z-index:30}.luna-console-log-item.luna-console-group,.luna-console-log-item.luna-console-groupCollapsed{font-weight:700}.luna-console-preview{display:inline-block}.luna-console-preview .luna-console-preview-container{display:flex;align-items:center}.luna-console-preview .luna-console-json{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-left:12px}.luna-console-preview .luna-console-preview-icon-container{display:block}.luna-console-preview .luna-console-preview-icon-container .luna-console-icon{position:relative;font-size:12px}.luna-console-preview .luna-console-preview-icon-container .luna-console-icon-caret-down{top:2px}.luna-console-preview .luna-console-preview-icon-container .luna-console-icon-caret-right{top:1px}.luna-console-preview .luna-console-preview-content-container{word-break:break-all}.luna-console-preview .luna-console-descriptor,.luna-console-preview .luna-console-object-preview{font-style:italic}.luna-console-preview .luna-console-key{color:#881391}.luna-console-preview .luna-console-number{color:#1c00cf}.luna-console-preview .luna-console-null{color:#5e5e5e}.luna-console-preview .luna-console-string{color:#c41a16}.luna-console-preview .luna-console-boolean{color:#0d22aa}.luna-console-preview .luna-console-special{color:#5e5e5e}.luna-console-theme-dark{color-scheme:dark}.luna-console-theme-dark .luna-console-log-container.luna-console-selected .luna-console-log-item{background:#29323d}.luna-console-theme-dark .luna-console-log-container.luna-console-selected .luna-console-log-item:not(.luna-console-error):not(.luna-console-warn){border-color:#4173b4}.luna-console-theme-dark .luna-console-log-item{color:#a5a5a5;border-bottom-color:#3d3d3d}.luna-console-theme-dark .luna-console-log-item .luna-console-code .luna-console-keyword{color:#e36eec}.luna-console-theme-dark .luna-console-log-item .luna-console-code .luna-console-number{color:#9980ff}.luna-console-theme-dark .luna-console-log-item .luna-console-code .luna-console-operator{color:#7f7f7f}.luna-console-theme-dark .luna-console-log-item .luna-console-code .luna-console-comment{color:#747474}.luna-console-theme-dark .luna-console-log-item .luna-console-code .luna-console-string{color:#f29766}.luna-console-theme-dark .luna-console-log-item.luna-console-error{background:#290000;color:#ff8080;border-top-color:#5c0000;border-bottom-color:#5c0000}.luna-console-theme-dark .luna-console-log-item.luna-console-error .luna-console-count{background:#ff8080}.luna-console-theme-dark .luna-console-log-item.luna-console-warn{color:#ffcb6b;background:#332a00;border-top-color:#650;border-bottom-color:#650}.luna-console-theme-dark .luna-console-log-item .luna-console-count{background:#42597f;color:#949494}.luna-console-theme-dark .luna-console-log-item .luna-console-log-content .luna-console-undefined,.luna-console-theme-dark .luna-console-log-item .luna-console-log-content .luna-console-null{color:#7f7f7f}.luna-console-theme-dark .luna-console-log-item .luna-console-log-content .luna-console-number,.luna-console-theme-dark .luna-console-log-item .luna-console-log-content .luna-console-boolean{color:#9980ff}.luna-console-theme-dark .luna-console-log-item .luna-console-log-content .luna-console-symbol,.luna-console-theme-dark .luna-console-log-item .luna-console-log-content .luna-console-regexp{color:#e36eec}.luna-console-theme-dark .luna-console-log-item .luna-console-add-to-chat-btn{background:#d427274d;color:#ffffffe6}.luna-console-theme-dark .luna-console-log-item .luna-console-add-to-chat-btn:hover{background:#d4272773}.luna-console-theme-dark .luna-console-icon-container .luna-console-icon-caret-right,.luna-console-theme-dark .luna-console-icon-container .luna-console-icon-caret-down{color:#9aa0a6}.luna-console-theme-dark .luna-console-header{border-bottom-color:#3d3d3d}.luna-console-theme-dark .luna-console-nesting-level{border-right-color:#3d3d3d}.luna-console-theme-dark .luna-console-nesting-level:before{border-bottom-color:#3d3d3d}.luna-console-theme-dark .luna-console-preview .luna-console-key{color:#e36eec}.luna-console-theme-dark .luna-console-preview .luna-console-number{color:#9980ff}.luna-console-theme-dark .luna-console-preview .luna-console-null{color:#7f7f7f}.luna-console-theme-dark .luna-console-preview .luna-console-string{color:#f29766}.luna-console-theme-dark .luna-console-preview .luna-console-boolean{color:#9980ff}.luna-console-theme-dark .luna-console-preview .luna-console-special{color:#7f7f7f}@font-face{font-family:luna-object-viewer-icon;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAS8AAsAAAAAB7QAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAAGEAAACMISgl+k9TLzIAAAFsAAAAPQAAAFZLxUkWY21hcAAAAawAAADWAAACdBU42qdnbHlmAAAChAAAAC4AAAAwabU7V2hlYWQAAAK0AAAALwAAADZzjr4faGhlYQAAAuQAAAAYAAAAJAFyANlobXR4AAAC/AAAABAAAABAAZAAAGxvY2EAAAMMAAAAEAAAACIAtACobWF4cAAAAxwAAAAfAAAAIAEbAA9uYW1lAAADPAAAASkAAAIWm5e+CnBvc3QAAARoAAAAUwAAAHZW8MNZeJxNjTsOQFAQRc/z/+sV1mABohKV0gZeJRJR2X9cT4RJZu7nFIMBMjoGvHGaF6rdngcNAc/c/O/Nvq2W5E1igdNE2zv1iGh1c5FQPlYXUlJRyxt9+/pUKadQa/AveGEGZQAAAHicY2BkkGScwMDKwMBQx9ADJGWgdAIDJ4MxAwMTAyszA1YQkOaawnCAQfcjE8MJIFcITDIwMIIIAFqDCGkAAAB4nM2STQ4BQRCFv54ZP8MwFhYW4gQcShBsSERi50BWDuFCcwJedddKRGKnOt8k9aanqudVAy0gF3NRQLgTsLhJDVHP6UW94Kp8zEhKwYIlG/YcOXHm0mTPp96aumLLwdUQ1fcIqmJrwpSZL+iqak5JmyE1Ayr1bdGhr/2ZPmp/qPQtuj/uJzqQl+pfDyypesQD6AT/ElV8PjyrMccT9rdLR3PUFBI227VTio1jbm6dodg5VnPvmAsHxzofHfmi+Sbs/pwdWcXFkWdNSNg9arIE2QufuSCyAAB4nGNgZACBlQzTGZgYGMyVxVc2O073AIpAxHsYloHFRc2dPZY2OTIwAACmEQesAAB4nGNgZGBgAOINe2b6x/PbfGXgZjgBFIjifLyvAUEDwUqGZUCSg4EJxAEAUn4LLAB4nGNgZGBgOMHAACdXMjAyoAIBADizAkx4nGNgAIITUEwGAABZUAGReJxjYAACHgYJ3BAAE94BXXicY2BkYGAQYGBmANEMDExAzAWEDAz/wXwGAApcASsAeJxlkD1uwkAUhMdgSAJSghQpKbNVCiKZn5IDQE9Bl8KYtTGyvdZ6QaLLCXKEHCGniHKCHChj82hgLT9/M2/e7soABviFh3p5uG1qvVq4oTpxm/Qg7JOfhTvo40W4S38o3MMbpsJ9POKdO3j+HZ0BSuEW7vEh3Kb/KeyTv4Q7eMK3cJf+j3APK/wJ9/HqDdPIFLEp3FIn+yy0Z3n+rrStUlOoSTA+WwtdaBs6vVHro6oOydS5WMXW5GrOrs4yo0prdjpywda5cjYaxeIHkcmRIoJBgbipDktoJNgjQwh71b3UK6YtKvq1VpggwPgqtWCqaJIhlcaGyTWOrBUOPG1K1zGt+FrO5KS5zGreJCMr/u+6t6MT0Q+wbaZKzDDiE1/kg+YO+T89EV6oAAAAeJxdxjkOgCAUANE/uOOGB+FQBIjaaEJIuL6FsfE1M6Lk9fXPoKioaWjp6BnQjEzMLKwYNtHepZhtuMs1vpvO/ch4HIlIxhK4KVyc7BwiD8nvDlkA) format("woff")}[class*=" luna-object-viewer-icon-"],[class^=luna-object-viewer-icon-]{display:inline-block;font-family:luna-object-viewer-icon!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.luna-object-viewer-icon-caret-down:before{content:""}.luna-object-viewer-icon-caret-right:before{content:""}.luna-object-viewer{overflow-x:auto;-webkit-overflow-scrolling:touch;overflow-y:hidden;cursor:default;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px;line-height:1.2;min-height:100%;color:#333;list-style:none!important}.luna-object-viewer ul{list-style:none!important;padding:0 0 0 12px!important;margin:0!important}.luna-object-viewer li{position:relative;white-space:nowrap;line-height:16px;min-height:16px}.luna-object-viewer>li>.luna-object-viewer-key{display:none}.luna-object-viewer span{position:static!important}.luna-object-viewer li .luna-object-viewer-collapsed~.luna-object-viewer-close:before{color:#999}.luna-object-viewer-array .luna-object-viewer-object .luna-object-viewer-key{display:inline}.luna-object-viewer-null{color:#5e5e5e}.luna-object-viewer-regexp,.luna-object-viewer-string{color:#c41a16}.luna-object-viewer-number{color:#1c00cf}.luna-object-viewer-boolean{color:#0d22aa}.luna-object-viewer-special{color:#5e5e5e}.luna-object-viewer-key,.luna-object-viewer-key-lighter{color:#881391}.luna-object-viewer-key-lighter{opacity:.6}.luna-object-viewer-key-special{color:#5e5e5e}.luna-object-viewer-collapsed .luna-object-viewer-icon,.luna-object-viewer-expanded .luna-object-viewer-icon{position:absolute!important;left:-12px;color:#727272;font-size:12px}.luna-object-viewer-icon-caret-right{top:0}.luna-object-viewer-icon-caret-down{top:1px}.luna-object-viewer-expanded>.luna-object-viewer-icon-caret-down{display:inline}.luna-object-viewer-expanded>.luna-object-viewer-icon-caret-right{display:none}.luna-object-viewer-collapsed>.luna-object-viewer-icon-caret-down{display:none}.luna-object-viewer-collapsed>.luna-object-viewer-icon-caret-right{display:inline}.luna-object-viewer-hidden~ul{display:none}.luna-object-viewer-theme-dark{color:#fff}.luna-object-viewer-theme-dark .luna-object-viewer-null,.luna-object-viewer-theme-dark .luna-object-viewer-special{color:#a1a1a1}.luna-object-viewer-theme-dark .luna-object-viewer-regexp,.luna-object-viewer-theme-dark .luna-object-viewer-string{color:#f28b54}.luna-object-viewer-theme-dark .luna-object-viewer-boolean,.luna-object-viewer-theme-dark .luna-object-viewer-number{color:#9980ff}.luna-object-viewer-theme-dark .luna-object-viewer-key,.luna-object-viewer-theme-dark .luna-object-viewer-key-lighter{color:#5db0d7}@font-face{font-family:luna-data-grid-icon;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAScAAsAAAAAB4wAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAAFwAAACGIRYl5k9TLzIAAAFkAAAAPQAAAFZLxUkYY21hcAAAAaQAAADLAAACXsU3J5xnbHlmAAACcAAAACUAAAAwNxN2HmhlYWQAAAKYAAAALgAAADZzjr4QaGhlYQAAAsgAAAAYAAAAJAFyANhobXR4AAAC4AAAABAAAAA8AZAAAGxvY2EAAALwAAAAEAAAACAAnACobWF4cAAAAwAAAAAfAAAAIAEaAA9uYW1lAAADIAAAASkAAAIWm5e+CnBvc3QAAARMAAAATQAAAG/8EX8xeJxjYGRgYOBiMGCwY2BycfMJYeDLSSzJY5BiYGGAAJA8MpsxJzM9kYEDxgPKsYBpDiA2A9NMDGwMMkAWF1CGFchmB4pxAnncDDxAOQ4kUV4GPqA6RgZmAE91Bj94nGNgZJBmnMDAysDAUMfQAyRloHQCAyeDMQMDEwMrMwNWEJDmmsJwgEH3IxPDCSBXCEwyMDCCCABbKQhrAAAAeJzNkksKwjAQhr+kvqpVxIUL8Qh6KFG3KtLidVx5Bq/VE+g/ySCIILhzhq+Qv8lkHgG6QCFWogPhRsDsKjUkvWCY9A611jOmUiJrNuw5cabh0sbHQ/9M23KQVksLSXu3oPPmcxbypRwGilxQ0qPSTRNl1GfMSHujDvQ+Yny3wY/7SXUX5eueaphSsAz+xar0vftqgnU6Y9VuHE1P3c/YRHdOKfaOVXlwLOrR0YQ1y4zFPzv2OmqnLxpnLC6O+tSGjL2YNmaITyYUHqgAeJxjYGQAgZUM0xmYGBjMlcVXNjtO9wCKoImbA8X9geIAqRwH2QAAAHicY2BkYGAA4hwJ4Yp4fpuvDNwMJ4ACUZyP9zUgaCBYyTAdSHIwMIE4ABioCdgAAHicY2BkYGA4wcAAJ1cyMDKgAn4AOLICS3icY2AAghNQTCIAAFMMAZF4nGNgAAIeBglcEAARPAFFeJxjYGRgYOBnYGYA0QwMTEDMBYQMDP/BfAYACkEBKgB4nGWQPW7CQBSEx2BIAlKCFCkps1UKIpmfkgNAT0GXwpi1MbK91npBossJcoQcIaeIcoIcKGPzaGAtP38zb97uygAG+IWHenm4bWq9WrihOnGb9CDsk5+FO+jjRbhLfyjcwxumwn084p07eP4dnQFK4Rbu8SHcpv8p7JO/hDt4wrdwl/6PcA8r/An38eoN08gUsSncUif7LLRnef6utK1SU6hJMD5bC11oGzq9Ueujqg7J1LlYxdbkas6uzjKjSmt2OnLB1rlyNhrF4geRyZEigkGBuKkOS2gk2CNDCHvVvdQrpi0q+rVWmCDA+Cq1YKpokiGVxobJNY6sFQ48bUrXMa34Ws7kpLnMat4kIyv+77q3oxPRD7BtpkrMMOITX+SD5g75Pz0RXqgAAAB4nF3GOQ6AIBQA0T+44YoX4VAEaNEYCNe3IDa+ZkaUNF//DIqOnoGRCc3MwsrGzoHhlMW7J2Ybrpp023LjcTxEMpbARSVRuEVebe8MtgAAAA==) format("woff")}[class*=" luna-data-grid-icon-"],[class^=luna-data-grid-icon-]{display:inline-block;font-family:luna-data-grid-icon!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.luna-data-grid-icon-caret-down:before{content:""}.luna-data-grid-icon-caret-up:before{content:""}.luna-data-grid{position:relative;border:1px solid;overflow:hidden;outline:0;color:#000000e0;color:var(--luna-color-text,rgba(0,0,0,.88));background-color:#fff;background-color:var(--luna-color-bg-container,#fff);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-family:var(--luna-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;user-select:none;font-size:14px}.luna-data-grid .luna-data-grid-hidden,.luna-data-grid.luna-data-grid-hidden{display:none!important}.luna-data-grid .luna-data-grid-invisible,.luna-data-grid.luna-data-grid-invisible{visibility:hidden}.luna-data-grid *{box-sizing:border-box}.luna-data-grid.luna-data-grid-theme-dark{color-scheme:dark;color:#ffffffd9;color:var(--luna-color-text-dark,rgba(255,255,255,.85));background-color:#141414;background-color:var(--luna-color-bg-container-dark,#141414)}.luna-data-grid{font-size:12px}.luna-data-grid table{width:100%;min-height:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}.luna-data-grid td,.luna-data-grid th{padding:1px 4px;border-left:1px solid;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.luna-data-grid td:first-child,.luna-data-grid th:first-child{border-left:none}.luna-data-grid th{font-weight:400;border-bottom:1px solid;text-align:left;position:relative}.luna-data-grid th.luna-data-grid-sortable{padding-right:12px}.luna-data-grid th .luna-data-grid-icon-caret-down,.luna-data-grid th .luna-data-grid-icon-caret-up{font-size:12px;position:absolute;display:none;top:6px;right:2px}.luna-data-grid td{height:20px;cursor:default;-webkit-user-select:text;-moz-user-select:text;user-select:text}.luna-data-grid:focus .luna-data-grid-node.luna-data-grid-selectable.luna-data-grid-selected{color:#fff}.luna-data-grid-data-container,.luna-data-grid-header-container{overflow:hidden}.luna-data-grid-header-container{height:21px}.luna-data-grid-data-container{overflow-y:auto;position:relative}.luna-data-grid-data-space{min-height:100%}.luna-data-grid-data{position:absolute;left:0;top:0}.luna-data-grid-filler-row td{height:auto}.luna-data-grid-resizer{position:absolute;top:0;bottom:0;width:5px;z-index:500;touch-action:none;cursor:col-resize}.luna-data-grid-resizing,.luna-data-grid-resizing .luna-data-grid *{cursor:col-resize!important}.luna-data-grid-theme-light,.luna-data-grid-theme-light td,.luna-data-grid-theme-light th{border-color:#d9d9d9;border-color:var(--luna-color-border,#d9d9d9)}.luna-data-grid-theme-light th{background-color:#0000000f;background-color:var(--luna-color-fill-secondary,rgba(0,0,0,.06))}.luna-data-grid-theme-light th.luna-data-grid-sortable:hover{background-color:#00000026;background-color:var(--luna-color-fill,rgba(0,0,0,.15))}.luna-data-grid-theme-light .luna-data-grid-data-container .luna-data-grid-node.luna-data-grid-selectable:hover,.luna-data-grid-theme-light .luna-data-grid-data-container .luna-data-grid-node.luna-data-grid-selected{background-color:#ddd}.luna-data-grid-theme-light .luna-data-grid-data-container tr:nth-child(2n){background-color:#f2f7fd}.luna-data-grid-theme-light:focus .luna-data-grid-node.luna-data-grid-selectable.luna-data-grid-selected{background-color:#1a73e8;background-color:var(--luna-color-primary,#1a73e8)}.luna-data-grid-theme-dark,.luna-data-grid-theme-dark td,.luna-data-grid-theme-dark th{border-color:#424242;border-color:var(--luna-color-border,#424242)}.luna-data-grid-theme-dark th{background-color:#ffffff1f;background-color:var(--luna-color-fill-secondary,rgba(255,255,255,.12))}.luna-data-grid-theme-dark th.luna-data-grid-sortable:hover{background-color:#ffffff2e;background-color:var(--luna-color-fill,rgba(255,255,255,.18))}.luna-data-grid-theme-dark .luna-data-grid-data-container .luna-data-grid-node.luna-data-grid-selectable:hover,.luna-data-grid-theme-dark .luna-data-grid-data-container .luna-data-grid-node.luna-data-grid-selected{background-color:#393939}.luna-data-grid-theme-dark .luna-data-grid-data-container tr:nth-child(2n){background-color:#0b2544}.luna-data-grid-theme-dark:focus .luna-data-grid-node.luna-data-grid-selectable.luna-data-grid-selected{background-color:#1965c8;background-color:var(--luna-color-primary,#1965c8)}@font-face{font-family:luna-dom-viewer-icon;src:url(data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAAS8AAsAAAAAB7QAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAAGEAAACMISgl+k9TLzIAAAFsAAAAPQAAAFZLxUkWY21hcAAAAawAAADWAAACdBU42qdnbHlmAAAChAAAAC4AAAAwabU7V2hlYWQAAAK0AAAALwAAADZzjr4faGhlYQAAAuQAAAAYAAAAJAFyANlobXR4AAAC/AAAABAAAABAAZAAAGxvY2EAAAMMAAAAEAAAACIAtACobWF4cAAAAxwAAAAfAAAAIAEbAA9uYW1lAAADPAAAASkAAAIWm5e+CnBvc3QAAARoAAAAUwAAAHZW8MNZeJxNjTsOQFAQRc/z/+sV1mABohKV0gZeJRJR2X9cT4RJZu7nFIMBMjoGvHGaF6rdngcNAc/c/O/Nvq2W5E1igdNE2zv1iGh1c5FQPlYXUlJRyxt9+/pUKadQa/AveGEGZQAAAHicY2BkkGScwMDKwMBQx9ADJGWgdAIDJ4MxAwMTAyszA1YQkOaawnCAQfcjE8MJIFcITDIwMIIIAFqDCGkAAAB4nM2STQ4BQRCFv54ZP8MwFhYW4gQcShBsSERi50BWDuFCcwJedddKRGKnOt8k9aanqudVAy0gF3NRQLgTsLhJDVHP6UW94Kp8zEhKwYIlG/YcOXHm0mTPp96aumLLwdUQ1fcIqmJrwpSZL+iqak5JmyE1Ayr1bdGhr/2ZPmp/qPQtuj/uJzqQl+pfDyypesQD6AT/ElV8PjyrMccT9rdLR3PUFBI227VTio1jbm6dodg5VnPvmAsHxzofHfmi+Sbs/pwdWcXFkWdNSNg9arIE2QufuSCyAAB4nGNgZACBlQzTGZgYGMyVxVc2O073AIpAxHsYloHFRc2dPZY2OTIwAACmEQesAAB4nGNgZGBgAOINe2b6x/PbfGXgZjgBFIjifLyvAUEDwUqGZUCSg4EJxAEAUn4LLAB4nGNgZGBgOMHAACdXMjAyoAIBADizAkx4nGNgAIITUEwGAABZUAGReJxjYAACHgYJ3BAAE94BXXicY2BkYGAQYGBmANEMDExAzAWEDAz/wXwGAApcASsAeJxlkD1uwkAUhMdgSAJSghQpKbNVCiKZn5IDQE9Bl8KYtTGyvdZ6QaLLCXKEHCGniHKCHChj82hgLT9/M2/e7soABviFh3p5uG1qvVq4oTpxm/Qg7JOfhTvo40W4S38o3MMbpsJ9POKdO3j+HZ0BSuEW7vEh3Kb/KeyTv4Q7eMK3cJf+j3APK/wJ9/HqDdPIFLEp3FIn+yy0Z3n+rrStUlOoSTA+WwtdaBs6vVHro6oOydS5WMXW5GrOrs4yo0prdjpywda5cjYaxeIHkcmRIoJBgbipDktoJNgjQwh71b3UK6YtKvq1VpggwPgqtWCqaJIhlcaGyTWOrBUOPG1K1zGt+FrO5KS5zGreJCMr/u+6t6MT0Q+wbaZKzDDiE1/kg+YO+T89EV6oAAAAeJxdxjkOgCAUANE/uOOGB+FQBIjaaEJIuL6FsfE1M6Lk9fXPoKioaWjp6BnQjEzMLKwYNtHepZhtuMs1vpvO/ch4HIlIxhK4KVyc7BwiD8nvDlkA) format("woff")}[class*=" luna-dom-viewer-icon-"],[class^=luna-dom-viewer-icon-]{display:inline-block;font-family:luna-dom-viewer-icon!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.luna-dom-viewer-icon-caret-down:before{content:""}.luna-dom-viewer-icon-caret-right:before{content:""}.luna-dom-viewer{padding:0 0 0 12px;cursor:default;list-style:none;min-width:100%;color:#000000e0;color:var(--luna-color-text,rgba(0,0,0,.88));background-color:#0000;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";font-family:var(--luna-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;user-select:none;font-size:14px}.luna-dom-viewer .luna-dom-viewer-hidden,.luna-dom-viewer.luna-dom-viewer-hidden{display:none}.luna-dom-viewer .luna-dom-viewer-invisible,.luna-dom-viewer.luna-dom-viewer-invisible{visibility:hidden}.luna-dom-viewer *{box-sizing:border-box}.luna-dom-viewer.luna-dom-viewer-theme-dark{color-scheme:dark;color:#ffffffd9;color:var(--luna-color-text-dark,rgba(255,255,255,.85));background-color:#0000}.luna-dom-viewer{font-size:12px;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace}.luna-dom-viewer ul{display:inline-block}.luna-dom-viewer-toggle{min-width:12px;margin-left:-12px}.luna-dom-viewer-icon-caret-down,.luna-dom-viewer-icon-caret-right{position:absolute!important;font-size:12px!important}.luna-dom-viewer-tree-item{min-width:200px;line-height:16px;min-height:16px;position:relative;z-index:10;outline:0}.luna-dom-viewer-tree-item.luna-dom-viewer-selected .luna-dom-viewer-selection,.luna-dom-viewer-tree-item:hover .luna-dom-viewer-selection{display:block}.luna-dom-viewer-tree-item .luna-dom-viewer-icon-caret-down{display:none}.luna-dom-viewer-tree-item.luna-dom-viewer-expanded .luna-dom-viewer-icon-caret-down{display:inline-block}.luna-dom-viewer-tree-item.luna-dom-viewer-expanded .luna-dom-viewer-icon-caret-right{display:none}.luna-dom-viewer-attribute-value{word-break:break-all}.luna-dom-viewer-attribute-value.luna-dom-viewer-attribute-underline{text-decoration:underline}.luna-dom-viewer-selection{position:absolute;display:none;left:-10000px;right:0;top:0;bottom:0;z-index:-1}.luna-dom-viewer-children{margin:0;overflow-x:visible;overflow-y:visible;padding-left:15px}.luna-dom-viewer-theme-light .luna-dom-viewer-icon-caret-down,.luna-dom-viewer-theme-light .luna-dom-viewer-icon-caret-right{color:#9aa0a6}.luna-dom-viewer-theme-light .luna-dom-viewer-html-tag,.luna-dom-viewer-theme-light .luna-dom-viewer-tag-name{color:#881280}.luna-dom-viewer-theme-light .luna-dom-viewer-attribute-name{color:#994500}.luna-dom-viewer-theme-light .luna-dom-viewer-attribute-value{color:#1a1aa6}.luna-dom-viewer-theme-light .luna-dom-viewer-html-comment{color:#236e25}.luna-dom-viewer-theme-light .luna-dom-viewer-tree-item:hover .luna-dom-viewer-selection{background:#e8eaed}.luna-dom-viewer-theme-light .luna-dom-viewer-tree-item.luna-dom-viewer-selected .luna-dom-viewer-selection{background:#e0e0e0}.luna-dom-viewer-theme-light .luna-dom-viewer-tree-item.luna-dom-viewer-selected:focus .luna-dom-viewer-selection{background:#cfe8fc}.luna-dom-viewer-theme-light .luna-dom-viewer-text-node{word-break:break-all}.luna-dom-viewer-theme-light .luna-dom-viewer-text-node .luna-dom-viewer-keyword{color:#881280}.luna-dom-viewer-theme-light .luna-dom-viewer-text-node .luna-dom-viewer-number{color:#1c00cf}.luna-dom-viewer-theme-light .luna-dom-viewer-text-node .luna-dom-viewer-operator{color:gray}.luna-dom-viewer-theme-light .luna-dom-viewer-text-node .luna-dom-viewer-comment{color:#236e25}.luna-dom-viewer-theme-light .luna-dom-viewer-text-node .luna-dom-viewer-string{color:#1a1aa6}.luna-dom-viewer-theme-dark{color:#e8eaed}.luna-dom-viewer-theme-dark .luna-dom-viewer-icon-caret-down,.luna-dom-viewer-theme-dark .luna-dom-viewer-icon-caret-right{color:#9aa0a6}.luna-dom-viewer-theme-dark .luna-dom-viewer-html-tag,.luna-dom-viewer-theme-dark .luna-dom-viewer-tag-name{color:#5db0d7}.luna-dom-viewer-theme-dark .luna-dom-viewer-attribute-name{color:#9bbbdc}.luna-dom-viewer-theme-dark .luna-dom-viewer-attribute-value{color:#f29766}.luna-dom-viewer-theme-dark .luna-dom-viewer-html-comment{color:#898989}.luna-dom-viewer-theme-dark .luna-dom-viewer-tree-item:hover .luna-dom-viewer-selection{background:#083c69}.luna-dom-viewer-theme-dark .luna-dom-viewer-tree-item.luna-dom-viewer-selected .luna-dom-viewer-selection{background:#454545}.luna-dom-viewer-theme-dark .luna-dom-viewer-tree-item.luna-dom-viewer-selected:focus .luna-dom-viewer-selection{background:#073d69}.luna-dom-viewer-theme-dark .luna-dom-viewer-text-node{word-break:break-all}.luna-dom-viewer-theme-dark .luna-dom-viewer-text-node .luna-dom-viewer-keyword{color:#e36eec}.luna-dom-viewer-theme-dark .luna-dom-viewer-text-node .luna-dom-viewer-number{color:#9980ff}.luna-dom-viewer-theme-dark .luna-dom-viewer-text-node .luna-dom-viewer-operator{color:#7f7f7f}.luna-dom-viewer-theme-dark .luna-dom-viewer-text-node .luna-dom-viewer-comment{color:#747474}.luna-dom-viewer-theme-dark .luna-dom-viewer-text-node .luna-dom-viewer-string{color:#f29766}
+</style><script src="https://www.youtube.com/iframe_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/14397202/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/9fe2e06e/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/94f771d8/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/59b252b9/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script type="text/javascript" id="www-widgetapi-script" src="https://www.youtube.com/s/player/22f02d3d/www-widgetapi.vflset/www-widgetapi.js" async=""></script><script src="https://www.youtube.com/iframe_api"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><style>.ytp-spinner, .ytp-spinner-container, .ytp-spinner-rotator, .ytp-bezel { display: none !important; }</style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://www.youtube.com/iframe_api"></script><style>
             .ytp-chrome-top, .ytp-chrome-bottom, .ytp-watermark, 
             .ytp-youtube-button, .ytp-spinner, .ytp-spinner-container, 
             .ytp-spinner-rotator, .ytp-spinner-left, .ytp-spinner-right, 
@@ -1401,7 +1417,7 @@
                 height: 100% !important;
                 overflow: hidden !important;
             }
-        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script></head>
+        </style><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.yourware.so/yourware-lib.umd.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script src="https://lib.youware.com/youware-lib.1747145198.js" id="yourware-lib"></script><script id="simplify-jobs-page-script" src="chrome-extension://pbanhockgagggenencehbnadejlgchfc/js/pageScript.bundle.js"></script></head>
   
   
   
@@ -1833,19 +1849,19 @@
   
         <!-- Hero Content -->
         <div class="hero-content">
-            <div class="fraternity-title" style="animation: fadeIn 1s ease-out;">
+            <div class="fraternity-title" style="opacity: 1; visibility: visible;">
                 <h2>KAPPA ALPHA PSI®</h2>
                 <h3>FRATERNITY, INCORPORATED</h3>
             </div>
-            <div class="chapter-title" style="animation: slideUp 1s ease-out 0.3s both;">
+            <div class="chapter-title" style="opacity: 1; visibility: visible;">
                 <h1>
-                    <span>ALPHA</span>
-                    <span>IOTA</span>
+                    <span class="alpha-text">ALPHA</span>
+                    <span class="iota-text">IOTA</span>
                     <span class="chapter-letters">(AI)</span>
                 </h1>
               
             </div>
-            <div class="hero-info" style="animation: fadeIn 1s ease-out 0.6s both;">
+            <div class="hero-info" style="opacity: 1; visibility: visible;">
                 <p>Morgan State University Chapter of Kappa Alpha Psi</p>
                 <p>Chartered May 29, 1931</p>
             </div>
@@ -1867,7 +1883,7 @@
                 <div class="polemarch-card polemarch-content-card">
                     <div class="card-content">
                         <p class="polemarch-text">
-                            Greetings to all who have come to learn more about "THE NOTORIOUS" Alpha Iota Chapter of Kappa Alpha Psi Fraternity, Inc. As the current Polemarch, I am honored to welcome you to our beloved chapter.
+                            Greetings to all who have come to learn more about the Alpha Iota Chapter of Kappa Alpha Psi Fraternity, Inc. As the current Polemarch, I am honored to welcome you to our beloved chapter.
                         </p>
                         <p class="polemarch-text">
                             Our brothers are trailblazers, innovators, and visionaries who have made indelible marks in their respective fields. From Grand Chapter Officers to Province Leaders, the Alpha Iota Chapter continues to embody the ideals of Kappa Alpha Psi and inspire the next generation of change-makers.
@@ -1882,8 +1898,867 @@
         </div>
     </section>
   
+    <!-- Brothers in the News Section -->
+<section class="brother-news" style="background: #f8f8f8; border-top: 4px solid #000; border-bottom: 4px solid #000;">
+    <div class="container" style="max-width: 95%; margin: 0 auto; padding: 2rem 0; position: relative; overflow: hidden;">
+        <!-- Journal Header with Expand Button -->
+        <div class="journal-header-section" style="background: #fff; padding: 2rem; border: 2px solid #000; margin-bottom: 2rem;">
+            <h2 class="section-title" style="text-align: center; font-family: 'Old English Text MT', serif; font-size: 3rem; color: #000; margin-bottom: 0.5rem; text-shadow: none;">THE ALPHA IOTA JOURNAL</h2>
+            <p style="text-align: center; font-family: 'Times New Roman', serif; font-size: 0.9rem; color: #333; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #000; padding-bottom: 0.5rem;">Brothers Making Headlines</p>
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <button id="expandJournalBtn" class="expand-journal-btn"><i class="fas fa-newspaper"></i> EXPAND JOURNAL <i class="fas fa-chevron-down expand-icon"></i></button>
+            </div>
+        </div>
+        
+        <!-- Achievement Cards Container (Initially Hidden) -->
+        <div id="achievementCards" class="achievement-cards-container" style="display: block; animation: 0.3s ease-in 0s 1 normal none running slideUp; background-color: rgb(249, 247, 241); border: 2px solid rgb(51, 51, 51); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px; padding: 20px; max-width: 100%; margin: 0px auto;"><div class="newspaper-header">
+        <div class="newspaper-title">THE ALPHA IOTA JOURNAL</div>
+        <div class="newspaper-subtitle">Achievement &amp; Excellence in Every Field of Human Endeavor</div>
+        <div class="newspaper-date">Morgan State University • Est. 1953</div>
+    </div><div class="newspaper-grid"><div class="news-article-card compact" data-index="0">
+            <div class="article-headline">BET Networks Selects Kappa Alpha Psi Brother for Prestigious...</div>
+            <div class="article-meta">
+                <span class="article-date">January 15, 2025</span>
+            </div>
+            <div class="article-image-small">
+                <img src="https://cdnph.upi.com/pv/upi/eb47a7ca3f4df55c1852b23e7f64f73a/BET-AWARDS-2025.jpg" alt="Kemoy Martin at BET Awards ceremony in Los Angeles">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>Alpha Iota Chapter of Kappa Alpha Psi Fraternity, Inc. proudly announces that Brother Kemoy Martin (0AI08FA) has been se...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        </div><div class="news-article-card compact" data-index="1">
+            <div class="article-headline">Netflix Executive Joins Spike Lee's Production Company</div>
+            <div class="article-meta">
+                <span class="article-date">January 24, 2022</span>
+            </div>
+            <div class="article-image-small">
+                <img src="https://deadline.com/wp-content/uploads/2022/01/steven-jackson.jpg" alt="Steven Jackson, Netflix executive joining Spike Lee's company">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>Alpha Iota Chapter celebrates Brother Steven Jackson's appointment as Head of Production and Development at Spike Lee's ...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        </div><div class="news-article-card compact" data-index="2">
+            <div class="article-headline">Morgan State Alumnus Recognized as iPower Under 30 Honoree</div>
+            <div class="article-meta">
+                <span class="article-date">April 2018</span>
+            </div>
+            <div class="article-image-small">
+                <img src="https://ipowerrichmond.com/wp-content/uploads/sites/72/2018/04/1523207072002.jpg?strip=all&amp;quality=80" alt="Pastor Alvin Hill receiving iPower Under 30 recognition">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>Alpha Iota Chapter proudly recognizes Brother Alvin L. Hill (Spring 2011) for his selection as an iPower Under 30 honore...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        </div><div class="news-article-card compact" data-index="3">
+            <div class="article-headline">Kappa Alpha Psi Brother Stars in Carmen Opera Film</div>
+            <div class="article-meta">
+                <span class="article-date">2024</span>
+            </div>
+            <div class="article-image-small">
+                <img src="https://res.cloudinary.com/project-casting/image/upload/x_10,y_0,w_1345,h_2048,c_crop/v1668188925/1760F7D6-CA1D-49C2-9821-81322F75BF1F_e11ape.jpg" alt="Harold L'amour in promotional photo for Carmen">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>Alpha Iota Chapter celebrates Brother Harold L'amour's starring role in the film adaptation of Carmen, marking a signifi...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        </div><div class="news-article-card compact" data-index="4">
+            <div class="article-headline">Morgan State Student Wins Major Hackathon, Lands MITRE Cyber...</div>
+            <div class="article-meta">
+                <span class="article-date">October 2024</span>
+            </div>
+            <div class="article-image-small">
+                <img src="https://www.mitre.org/sites/default/files/styles/small/public/hero/2024-10/Terell-presentation.jpg.jpeg?itok=gvZF9z2u" alt="Terell Reed presenting cybersecurity research at MITRE Corporation">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>Alpha Iota Chapter celebrates Brother Terell Reed (8AI24FA) for his outstanding achievements in cybersecurity and techno...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        </div><div class="news-article-card compact" data-index="5">
+            <div class="article-headline">Kappa Alpha Psi Brother Crowned 37th Mister Morgan State Uni...</div>
+            <div class="article-meta">
+                <span class="article-date">April 2024</span>
+            </div>
+            <div class="article-image-small">
+                <img src="https://www.morgan.edu/Images/ADMINISTRATION/OFFICES/StudentLife/Screenshot%202025-03-27%20140322.png" alt="Xavier C. Johnson and Yasmine J. Bryant as Mister and Miss Morgan State University">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>The Alpha Iota Chapter proudly announces that Brother Xavier C. Johnson has been crowned the 37th Mister Morgan State Un...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        </div><div class="news-article-card compact" data-index="6">
+            <div class="article-headline">Baltimore Funeral Home CEO Named to Business Journal's 40 Un...</div>
+            <div class="article-meta">
+                <span class="article-date">2019</span>
+            </div>
+            <div class="article-image-small">
+                <img src="https://media.bizj.us/view/img/11519511/brandon-wylie*866xx5568-3138-0-148.jpg" alt="Brandon Wylie, CEO of Wylie Funeral Home">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>Alpha Iota Chapter celebrates Brother Brandon Wylie's recognition as one of Baltimore Business Journal's 40 Under 40 hon...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        </div><div class="news-article-card compact" data-index="7">
+            <div class="article-headline">Cornelius Hairston Named to RealLIST Engineers 2023 for Tech...</div>
+            <div class="article-meta">
+                <span class="article-date">October 6, 2023</span>
+            </div>
+            <div class="article-image-small">
+                <img src="https://d1hbpr09pwz0sk.cloudfront.net/profile_pic/cornelius-hairston-58206d25" alt="Cornelius Hairston, Senior Software Developer">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>BALTIMORE - Brother Cornelius Hairston, a member of the Alpha Iota Chapter, has been named to Technical.ly's prestigious...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        </div></div></div>
+        
+        <!-- Selected Article Display -->
+        <div id="selectedArticle" class="newspaper-container" style="display: none;">
+            <!-- Selected article will be displayed here -->
+        </div>
+    </div>
+</section>
+
+<style>
+/* Achievement Cards Animation System */
+.achievement-cards-container {
+    position: relative;
+    min-height: 400px;
+    width: 100%;
+    overflow: visible;
+    background: #f8f8f8;
+    border: 2px solid #000;
+    padding: 1rem;
+}
+
+/* Compact Newspaper Styling */
+.newspaper-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px double #000;
+    padding-bottom: 1rem;
+}
+
+.newspaper-title {
+    font-family: 'Old English Text MT', 'Times New Roman', serif;
+    font-size: 2.5rem;
+    color: #000;
+    margin-bottom: 0.25rem;
+    line-height: 1;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.newspaper-subtitle {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 0.25rem;
+    color: #000;
+}
+
+.newspaper-date {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.7rem;
+    color: #000;
+}
+
+.newspaper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    column-rule: 1px solid #ccc;
+}
+
+.news-article-card.compact {
+    background-color: #fff;
+    padding: 1rem;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: fit-content;
+}
+
+.news-article-card.compact:hover {
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    transform: translateY(-2px);
+}
+
+.news-article-card.compact .article-headline {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+.news-article-card.compact .article-meta {
+    margin-bottom: 0.75rem;
+    font-size: 0.7rem;
+    color: #333;
+    font-family: 'Times New Roman', Times, serif;
+    border-bottom: 1px solid #000;
+    padding-bottom: 0.25rem;
+}
+
+.article-image-small {
+    float: left;
+    width: 80px;
+    height: 60px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.article-image-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #000;
+}
+
+.article-excerpt-compact p {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    text-align: justify;
+}
+
+.article-excerpt-compact .read-more {
+    font-weight: bold;
+    color: #B01030;
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    text-decoration: underline;
+    display: block;
+    clear: both;
+}
+
+.back-to-news-btn {
+    background-color: #B01030;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: 4px;
+    display: block;
+    margin: 2rem auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.back-to-news-btn:hover {
+    background-color: #8a0c28;
+}
+
+/* Journal Expand Button */
+.expand-journal-btn {
+    background: #fefefe;
+    color: #333;
+    border: 3px double #B01030;
+    padding: 0.8rem 2.5rem;
+    font-family: 'Old English Text MT', serif;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.expand-journal-btn:hover {
+    background: #B01030;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.expand-journal-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.expand-journal-btn:hover::before {
+    left: 100%;
+}
+
+.expand-journal-btn .expand-icon {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 1000px;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 1000px;
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+        max-height: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .newspaper-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .newspaper-title {
+        font-size: 2rem;
+    }
+    
+    .article-image-small {
+        width: 60px;
+        height: 45px;
+    }
+    
+    .expand-journal-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.8rem;
+    }
+}
+    height: auto;
+}
+
+/* Newspaper Container Styles */
+.newspaper-container {
+    background: #fefefe;
+    border: 3px solid #000;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    margin-bottom: 2rem;
+    font-family: 'Times New Roman', serif;
+}
+
+.newspaper-article {
+    padding: 2rem;
+    border-bottom: 2px solid #000;
+}
+
+.newspaper-masthead {
+    text-align: center;
+    border-bottom: 4px double #000;
+    padding: 1rem;
+    background: #fff;
+}
+
+.news-date-header {
+    font-family: 'Times New Roman', serif;
+    font-size: 0.75rem;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.news-headline {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.news-subheading {
+    font-family: 'Times New Roman', serif;
+    font-size: 1rem;
+    color: #444;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.newspaper-content {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.news-column {
+    font-family: 'Times New Roman', serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #222;
+    text-align: justify;
+    column-count: 1;
+}
+
+.news-column p {
+    margin-bottom: 0.8rem;
+    text-indent: 1em;
+}
+
+.news-photo-box {
+    border: 2px solid #333;
+    padding: 0.5rem;
+    background: white;
+}
+
+.news-photo-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-caption {
+    font-family: 'Times New Roman', serif;
+    font-size: 0.8rem;
+    color: #333;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ccc;
+}
+
+.news-sources-box {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: #f5f5f5;
+    border-left: 3px solid #B01030;
+}
+
+.news-sources-box h4 {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.8rem;
+    color: #B01030;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.newspaper-source-link {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    font-family: 'Times New Roman', serif;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px dotted #ccc;
+}
+
+.newspaper-source-link:hover {
+    color: #B01030;
+}
+
+.news-nav-btn {
+    background-color: #B01030;
+    color: white;
+    border: 2px solid #B01030;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.news-nav-btn:hover {
+    background-color: white;
+    color: #B01030;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .achievement-card {
+        width: 240px;
+        height: 160px;
+        padding: 0.8rem;
+    }
+    
+    .achievement-card h3 {
+        font-size: 0.8rem;
+    }
+    
+    .achievement-card p {
+        font-size: 0.65rem;
+    }
+    
+    .newspaper-content {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .news-headline {
+        font-size: 1.3rem;
+    }
+    
+    .newspaper-article {
+        padding: 1rem;
+    }
+    
+    .news-column {
+        font-size: 0.9rem;
+        column-count: 1;
+    }
+    
+    .news-column p {
+        text-indent: 0;
+        margin-bottom: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .achievement-card {
+        width: 200px;
+        height: 140px;
+        padding: 0.6rem;
+    }
+    
+    .achievement-card h3 {
+        font-size: 0.7rem;
+    }
+    
+    .achievement-card p {
+        font-size: 0.6rem;
+    }
+    
+    .news-headline {
+        font-size: 1.1rem;
+    }
+    
+    .newspaper-article {
+        padding: 0.75rem;
+    }
+    
+    .news-nav-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.7rem;
+    }
+}
+</style>
+
+<script>
+// News articles data array
+const newsArticles = [
+    {
+        headline: "BET Networks Selects Kappa Alpha Psi Brother for Prestigious Culture Class 2025",
+        date: "January 15, 2025",
+        subheading: "Entertainment Industry Recognition Highlights Brotherhood Excellence",
+        image: "https://cdnph.upi.com/pv/upi/eb47a7ca3f4df55c1852b23e7f64f73a/BET-AWARDS-2025.jpg",
+        alt: "Kemoy Martin at BET Awards ceremony in Los Angeles",
+        caption: "Brother Kemoy Martin (0AI08FA) represents Alpha Iota Chapter at the 25th Annual BET Awards at Peacock Theater in Los Angeles.",
+        content: [
+            "Alpha Iota Chapter of Kappa Alpha Psi Fraternity, Inc. proudly announces that Brother Kemoy Martin (0AI08FA) has been selected for BET's prestigious \"CULTURE CLASS 2025,\" a distinguished honor recognizing emerging leaders in entertainment and cultural advancement.",
+            "The announcement comes following Brother Martin's prominent appearance at the 25th Annual BET Awards held at the Peacock Theater in Los Angeles, where he represented both his chapter and the broader Kappa Alpha Psi brotherhood with distinction.",
+            "This recognition underscores the continued excellence and leadership that Alpha Iota Chapter brothers demonstrate across various industries, particularly in entertainment and media where cultural impact drives societal change."
+        ],
+        sources: [
+            { url: "https://www.upi.com/News_Photos/view/upi/eb47a7ca3f4df55c1852b23e7f64f73a/The-25th-Annual-BET-Awards-Held-in-Los-Angeles/", site_name: "UPI News Photos" }
+        ]
+    },
+    {
+        headline: "Netflix Executive Joins Spike Lee's Production Company",
+        date: "January 24, 2022",
+        subheading: "Steven Jackson Appointed Head of Production for 40 Acres and A Mule Filmworks",
+        image: "https://deadline.com/wp-content/uploads/2022/01/steven-jackson.jpg",
+        alt: "Steven Jackson, Netflix executive joining Spike Lee's company",
+        caption: "Brother Steven Jackson transitions from Netflix to head production and development at Spike Lee's 40 Acres and A Mule Filmworks.",
+        content: [
+            "Alpha Iota Chapter celebrates Brother Steven Jackson's appointment as Head of Production and Development at Spike Lee's 40 Acres and A Mule Filmworks. Jackson previously served as Manager of Original Series and Interactive at Netflix.",
+            "At Netflix, Brother Jackson oversaw the company's expanding catalog of interactive content and a slate of live action half hours including Cobra Kai, Dear White People, The Upshaws and the upcoming Blockbuster series.",
+            "Spike Lee praised the appointment, stating: 'It Is With Great Excitement That My Brother Steven Jackson Will Do The Deeds That Need To Be Done To Build 40 Acres And Mule Filmworks To A High Level Of Creative Works.'"
+        ],
+        sources: [
+            { url: "https://deadline.com/2022/01/steven-jackson-netflix-head-production-development-spike-lee-40-acres-and-a-mule-filmworks-1234918839/", site_name: "Deadline Hollywood" }
+        ]
+    },
+    {
+        headline: "Morgan State Alumnus Recognized as iPower Under 30 Honoree",
+        date: "April 2018",
+        subheading: "Pastor Alvin Hill Named Rising Leader in Community Development",
+        image: "https://ipowerrichmond.com/wp-content/uploads/sites/72/2018/04/1523207072002.jpg?strip=all&quality=80",
+        alt: "Pastor Alvin Hill receiving iPower Under 30 recognition",
+        caption: "Brother Alvin Hill (Spring 2011), pastor and community leader, honored for his work in rural community revitalization.",
+        content: [
+            "Alpha Iota Chapter proudly recognizes Brother Alvin L. Hill (Spring 2011) for his selection as an iPower Under 30 honoree, celebrating his leadership in ministry and community development at age 26.",
+            "Pastor Hill, who graduated from Morgan State University in 2014 with a Bachelor of Arts in Sociology, served as SGA president and worked as a lobbyist for the university's Office of Governmental Relations during his time on campus.",
+            "Following his initiation into Alpha Iota Chapter in Fall 2011, Brother Hill became active in fraternity leadership, serving as Eastern Province Junior Vice Polemarch and as a member of the Undergraduate Grand Board of Directors."
+        ],
+        sources: [
+            { url: "https://ipowerrichmond.com/3073648/ipower-under-30-alvin-hill/", site_name: "iPower 92.1" }
+        ]
+    },
+    {
+        headline: "Kappa Alpha Psi Brother Stars in Carmen Opera Film",
+        date: "2024",
+        subheading: "Harold L'amour Takes Lead Role in Acclaimed Opera Adaptation",
+        image: "https://res.cloudinary.com/project-casting/image/upload/x_10,y_0,w_1345,h_2048,c_crop/v1668188925/1760F7D6-CA1D-49C2-9821-81322F75BF1F_e11ape.jpg",
+        alt: "Harold L'amour in promotional photo for Carmen",
+        caption: "Brother Harold L'amour showcases his acting talents in the film adaptation of the classic opera Carmen.",
+        content: [
+            "Alpha Iota Chapter celebrates Brother Harold L'amour's starring role in the film adaptation of Carmen, marking a significant achievement in his growing acting career.",
+            "The production represents a major breakthrough for Brother L'amour, who has been building his portfolio in film and theater while maintaining his connection to the fraternity and its values.",
+            "This role in Carmen demonstrates the artistic excellence and creative achievement that Alpha Iota Chapter brothers continue to display across entertainment industries."
+        ],
+        sources: [
+            { url: "https://www.rottentomatoes.com/celebrity/harold_lamour", site_name: "Rotten Tomatoes" }
+        ]
+    },
+    {
+        headline: "Morgan State Student Wins Major Hackathon, Lands MITRE Cybersecurity Internship", 
+        date: "October 2024",
+        subheading: "Technology Innovation Leads to National Security Opportunities",
+        image: "https://www.mitre.org/sites/default/files/styles/small/public/hero/2024-10/Terell-presentation.jpg.jpeg?itok=gvZF9z2u",
+        alt: "Terell Reed presenting cybersecurity research at MITRE Corporation",
+        caption: "Brother Terell Reed (8AI24FA) presents his cybersecurity research during his MITRE Cyber Futures internship program.",
+        content: [
+            "Alpha Iota Chapter celebrates Brother Terell Reed (8AI24FA) for his outstanding achievements in cybersecurity and technology innovation. Brother Reed earned second place at Lincoln Financial Group's codeLinc hackathon as part of Team Future Innovators.",
+            "His exceptional performance led to his selection for MITRE Corporation's prestigious Cyber Futures internship program, where he has been working on advanced cybersecurity projects and contributing to national security initiatives.",
+            "Brother Reed's achievements exemplify the innovative spirit and academic excellence that define Alpha Iota Chapter, demonstrating how fraternity brothers are making significant contributions to critical technology sectors."
+        ],
+        sources: [
+            { url: "https://baltimoretimes-online.com/latest-news/2023/04/28/morgan-state-university-students-take-home-prize-money-land-internships-after-hackathon/", site_name: "The Baltimore Times" },
+            { url: "https://www.mitre.org/news-insights/mitre-360/mitre-360-october", site_name: "MITRE News & Insights" }
+        ]
+    },
+    {
+        headline: "Kappa Alpha Psi Brother Crowned 37th Mister Morgan State University",
+        date: "April 2024", 
+        subheading: "Campus Leadership Excellence Continues Brotherhood Tradition",
+        image: "https://www.morgan.edu/Images/ADMINISTRATION/OFFICES/StudentLife/Screenshot%202025-03-27%20140322.png",
+        alt: "Xavier C. Johnson and Yasmine J. Bryant as Mister and Miss Morgan State University",
+        caption: "Brother Xavier C. Johnson represents Alpha Iota Chapter as the 37th Mister Morgan State University for the 2024-2025 academic year alongside Miss Morgan State University Yasmine J. Bryant.",
+        content: [
+            "The Alpha Iota Chapter proudly announces that Brother Xavier C. Johnson has been crowned the 37th Mister Morgan State University for the 2024-2025 academic year, marking another significant achievement for the chapter in campus leadership.",
+            "Brother Johnson will serve as an official host and representative of Morgan State University alongside Miss Morgan State University Yasmine J. Bryant, embodying the university's values and traditions throughout his reign.",
+            "This prestigious appointment highlights the continued leadership presence of Alpha Iota Chapter brothers in Morgan State University's most prominent student positions, reinforcing the chapter's commitment to excellence in academics, leadership, and service."
+        ],
+        sources: [
+            { url: "https://www.morgan.edu/student-life-and-development/mister-and-miss-morgan-state-university-pageant-system", site_name: "Morgan State University" }
+        ]
+    },
+    {
+        headline: "Baltimore Funeral Home CEO Named to Business Journal's 40 Under 40",
+        date: "2019",
+        subheading: "Brandon Wylie Recognized for Business Excellence and Community Leadership",
+        image: "https://media.bizj.us/view/img/11519511/brandon-wylie*866xx5568-3138-0-148.jpg",
+        alt: "Brandon Wylie, CEO of Wylie Funeral Home",
+        caption: "Brother Brandon Wylie, CEO of Wylie Funeral Home, honored by Baltimore Business Journal for outstanding business achievement and community impact.",
+        content: [
+            "Alpha Iota Chapter celebrates Brother Brandon Wylie's recognition as one of Baltimore Business Journal's 40 Under 40 honorees for 2019. As CEO of Wylie Funeral Home, Brother Wylie has demonstrated exceptional leadership in both business and community service.",
+            "Brother Wylie became the youngest mortician in Maryland when he received his license in 1999. He holds degrees from Morgan State University and Johns Hopkins University, combining his business acumen with his commitment to serving families during their most difficult times.",
+            "Under his leadership, Wylie Funeral Home won an Inner-City 100 award in 2016 for being one of the fastest growing inner-city companies. Brother Wylie has also founded two community organizations and recently purchased a local flower shop to prevent it from closing, demonstrating his dedication to neighborhood revitalization."
+        ],
+        sources: [
+            { url: "https://www.bizjournals.com/baltimore/c/meet-the-baltimore-business-journals40-under-40/11129/40-under-40-2019-brandon-wylie-wylie-funeral-home.html", site_name: "Baltimore Business Journal" }
+        ]
+    },
+    {
+        headline: "Cornelius Hairston Named to RealLIST Engineers 2023 for Technical Innovation",
+        date: "October 6, 2023",
+        subheading: "Recognized by Technical.ly for Technical Expertise and Community Leadership",
+        image: "https://d1hbpr09pwz0sk.cloudfront.net/profile_pic/cornelius-hairston-58206d25",
+        alt: "Cornelius Hairston, Senior Software Developer",
+        caption: "Brother Cornelius Hairston recognized for his contributions to Baltimore's tech community through the Baltimore Tech Meetup.",
+        content: [
+            "BALTIMORE - Brother Cornelius Hairston, a member of the Alpha Iota Chapter, has been named to Technical.ly's prestigious RealLIST Engineers 2023, a curated list of influential technologists building in Baltimore who show technical aptitude, community leadership, and collaborative practices.",
+            "Hairston, a senior software developer at Los Angeles-based tech and design company Use All Five, was recognized for his significant contributions to Baltimore's tech ecosystem, particularly for organizing the Baltimore Tech Meetup, which has connected and supported hundreds of professionals in the local tech community.",
+            "In addition to his technical work, Hairston serves as a mentor for seed-stage investment programs like Techstars, helping nurture the next generation of tech entrepreneurs and innovators in Baltimore.",
+            "'Any technologist behind a meetup as aptly named as the Baltimore Tech Meetup, or any mentor for seed-stage investment programs like Techstars, merits a spot on this list — like Hairston does,' noted Technical.ly in their announcement.",
+            "The RealLIST Engineers recognition highlights Hairston's dual impact as both a skilled software engineer and a community builder who is strengthening Baltimore's growing technology sector through knowledge sharing and networking opportunities.",
+            "The Alpha Iota Chapter continues to produce leaders across various professional fields, with brothers like Hairston exemplifying achievement in the technology sector while giving back to their communities."
+        ],
+        sources: [
+            { url: "https://technical.ly/software-development/baltimore-reallist-engineers-2023/", site_name: "Technical.ly" }
+        ]
+    }
+];
+
+// Achievement Cards System - Compact Newspaper Style
+// Display achievement cards automatically without button
+function createNewsStyleAchievements() {
+    const container = document.getElementById('achievementCards');
+    container.innerHTML = ''; // Clear existing cards
+    
+    // Set up compact newspaper-style layout
+    container.style.display = 'block';
+    container.style.backgroundColor = '#f9f7f1';
+    container.style.border = '2px solid #333';
+    container.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+    container.style.padding = '20px';
+    container.style.maxWidth = '100%';
+    container.style.margin = '0 auto';
+    
+    // Newspaper header
+    const header = document.createElement('div');
+    header.className = 'newspaper-header';
+    header.innerHTML = `
+        <div class="newspaper-title">THE ALPHA IOTA JOURNAL</div>
+        <div class="newspaper-subtitle">Achievement & Excellence in Every Field of Human Endeavor</div>
+        <div class="newspaper-date">Morgan State University • Est. 1953</div>
+    `;
+    container.appendChild(header);
+    
+    // Create newspaper grid with multiple columns
+    const articlesGrid = document.createElement('div');
+    articlesGrid.className = 'newspaper-grid';
+    
+    newsArticles.forEach((article, index) => {
+        const card = document.createElement('div');
+        card.className = 'news-article-card compact';
+        card.dataset.index = index;
+        
+        // Create compact newspaper-style article preview
+        card.innerHTML = `
+            <div class="article-headline">${article.headline.length > 60 ? article.headline.substring(0, 60) + '...' : article.headline}</div>
+            <div class="article-meta">
+                <span class="article-date">${article.date}</span>
+            </div>
+            <div class="article-image-small">
+                <img src="${article.image}" alt="${article.alt}">
+            </div>
+            <div class="article-excerpt-compact">
+                <p>${article.content[0].substring(0, 120)}...</p>
+                <div class="read-more">Read More</div>
+            </div>
+        `;
+        
+        card.addEventListener('click', () => showArticle(index));
+        articlesGrid.appendChild(card);
+    });
+    
+    container.appendChild(articlesGrid);
+}
+
+// Function to show individual article
+function showArticle(index) {
+    const article = newsArticles[index];
+    const container = document.getElementById('selectedArticle');
+    
+    // Build sources HTML
+    const sourcesHTML = article.sources.map(source => 
+        `<a href="${source.url}" target="_blank" class="newspaper-source-link">
+            ${source.site_name}
+        </a>`
+    ).join('');
+    
+    // Build content HTML
+    const contentHTML = article.content.map(paragraph => `<p>${paragraph}</p>`).join('');
+    
+    container.innerHTML = `
+        <article class="newspaper-article">
+            <div class="newspaper-masthead">
+                <div class="news-date-header">${article.date}</div>
+                <h1 class="news-headline">${article.headline}</h1>
+                <div class="news-subheading">${article.subheading}</div>
+            </div>
+            
+            <div class="newspaper-content">
+                <div class="news-column">
+                    ${contentHTML}
+                    <div class="news-sources-box">
+                        <h4>Sources</h4>
+                        ${sourcesHTML}
+                    </div>
+                </div>
+                
+                <div class="news-photo-box">
+                    <img src="${article.image}" alt="${article.alt}">
+                    <div class="photo-caption">${article.caption}</div>
+                </div>
+            </div>
+            <button class="back-to-news-btn" onclick="backToNews()">Back to Articles</button>
+        </article>
+    `;
+    
+    // Hide cards and show article
+    document.getElementById('achievementCards').style.display = 'none';
+    container.style.display = 'block';
+}
+
+// Function to go back to news listing
+function backToNews() {
+    document.getElementById('achievementCards').style.display = 'block';
+    document.getElementById('selectedArticle').style.display = 'none';
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    // Recreate news layout for responsive design
+    setTimeout(() => {
+        createNewsStyleAchievements();
+    }, 100);
+});
+
+// Journal expansion state
+let journalExpanded = false;
+
+// Function to toggle journal expansion
+function toggleJournal() {
+    const cardsContainer = document.getElementById('achievementCards');
+    const expandBtn = document.getElementById('expandJournalBtn');
+    const expandIcon = expandBtn.querySelector('.expand-icon');
+    
+    if (!journalExpanded) {
+        // Expand journal
+        if (cardsContainer.innerHTML === '') {
+            createNewsStyleAchievements();
+        }
+        cardsContainer.style.display = 'block';
+        cardsContainer.style.animation = 'slideDown 0.5s ease-out';
+        expandBtn.innerHTML = '<i class="fas fa-newspaper"></i> COLLAPSE JOURNAL <i class="fas fa-chevron-up expand-icon"></i>';
+        journalExpanded = true;
+    } else {
+        // Collapse journal
+        cardsContainer.style.animation = 'slideUp 0.3s ease-in';
+        setTimeout(() => {
+            cardsContainer.style.display = 'none';
+        }, 300);
+        expandBtn.innerHTML = '<i class="fas fa-newspaper"></i> EXPAND JOURNAL <i class="fas fa-chevron-down expand-icon"></i>';
+        journalExpanded = false;
+    }
+}
+
+// Initialize the achievement system
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener for expand button
+    document.getElementById('expandJournalBtn').addEventListener('click', toggleJournal);
+    
+    // Hide containers initially
+    document.getElementById('selectedArticle').style.display = 'none';
+    document.getElementById('achievementCards').style.display = 'none';
+});
+</script>
+
     <!-- Brother Spotlight Section -->
-    <section class="mean-mugging">
+<section class="mean-mugging">
         <div class="container" style="overflow-x: auto; white-space: nowrap; max-width: 90%; margin: 0 auto; scrollbar-width: none; -ms-overflow-style: none;">
             <h2 class="section-title">BROTHER SPOTLIGHT</h2>
             <div class="mean-mug-grid" style="display: flex; flex-wrap: nowrap; gap: 2rem; padding: 1rem; scroll-snap-type: x mandatory; width: fit-content;">
@@ -1952,7 +2827,7 @@
 
                 <div class="mug-card">
                     <div class="mug-image">
-                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGAFUI6N-YlSA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705440934190?e=1758153600&v=beta&t=ACCKTdRIRTHlY-vP96IjUmwbbUwLkFy42JwdXj2gRR8" alt="Fraternity Brother">
+                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGAFUI6N-YlSA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705440934190?e=1758153600&amp;v=beta&amp;t=ACCKTdRIRTHlY-vP96IjUmwbbUwLkFy42JwdXj2gRR8" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Michael Ragland Jr.</span>
                             <span class="section-header">Current Positions:</span>
@@ -2074,7 +2949,7 @@
                 <!-- Brother 2 -->
                 <div class="mug-card">
                     <div class="mug-image">
-                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQEqEL7HWgv1xA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1667310331726?e=1756339200&v=beta&t=BpUwj82kqcc4-6JfiapjeWRhD_x6c5iEkd8jso_xNNI" alt="Fraternity Brother">
+                        <img src="https://media.licdn.com/dms/image/v2/D4E03AQEqEL7HWgv1xA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1667310331726?e=1756339200&amp;v=beta&amp;t=BpUwj82kqcc4-6JfiapjeWRhD_x6c5iEkd8jso_xNNI" alt="Fraternity Brother">
                         <div class="brother-info">
                             <span class="line-name">Enyinna Anthony</span>
                             <span class="line-year">44th Guy L. Grant Awardee</span>
@@ -2091,7 +2966,7 @@
   
               <div class="mug-card">
                 <div class="mug-image">
-                    <img src="https://media.licdn.com/dms/image/v2/C4E03AQE_GetN69Hg4Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1648555691335?e=1757548800&v=beta&t=qW-NK5rrO3p_r-WtOKA13Hexfj88uUx3QjPxFEXjT30" alt="Fraternity Brother">
+                    <img src="https://media.licdn.com/dms/image/v2/C4E03AQE_GetN69Hg4Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1648555691335?e=1757548800&amp;v=beta&amp;t=qW-NK5rrO3p_r-WtOKA13Hexfj88uUx3QjPxFEXjT30" alt="Fraternity Brother">
                     <div class="brother-info">
                         <span class="line-name">D. Jason DeSousa</span>
                         <span class="line-year">18th Guy L. Grant Awardee</span>
@@ -2104,7 +2979,7 @@
            
                 <div class="mug-card">
                   <div class="mug-image">
-                      <img src="https://media.licdn.com/dms/image/v2/D5603AQFF5JvxJQRHvg/profile-displayphoto-shrink_800_800/B56ZQk.VNgG4Ac-/0/1735787107884?e=1757548800&v=beta&t=vDKng5XiKypHnjHGWiYCYpBkJ4jSVHC2uFaZUfjU5co" alt="Fraternity Brother">
+                      <img src="https://media.licdn.com/dms/image/v2/D5603AQFF5JvxJQRHvg/profile-displayphoto-shrink_800_800/B56ZQk.VNgG4Ac-/0/1735787107884?e=1757548800&amp;v=beta&amp;t=vDKng5XiKypHnjHGWiYCYpBkJ4jSVHC2uFaZUfjU5co" alt="Fraternity Brother">
                       <div class="brother-info">
                           <span class="line-name">Aaron Burt</span>
                           <span class="line-year">40th Guy L. Grant Awardee</span>
@@ -2114,7 +2989,7 @@
 
                    <div class="mug-card">
                   <div class="mug-image">
-                      <img src="https://b2488207.smushcdn.com/2488207/wp-content/uploads/2022/11/Screen-Shot-2022-11-14-at-10.16.54-AM.jpg?lossy=1&strip=1&webp=1" alt="Fraternity Brother">
+                      <img src="https://b2488207.smushcdn.com/2488207/wp-content/uploads/2022/11/Screen-Shot-2022-11-14-at-10.16.54-AM.jpg?lossy=1&amp;strip=1&amp;webp=1" alt="Fraternity Brother">
                       <div class="brother-info">
                           <span class="line-name">Arnold Sampson</span>
                           <span class="line-year">Vietnam War Veteran; Distinguished Flying Cross, a Broken Wing Award, and two Purple Hearts.</span>
@@ -3171,4 +4046,7 @@
   });
   </script>
   
-</body></html>
+<div id="youware-console" class="youware-console-container" style="position: fixed; top: 0px; left: 0px; width: 100vw; height: 100vh; background: white; z-index: 99999999; display: none; flex-direction: column;"><div class="youware-console-logs luna-console luna-console-platform-mac luna-console-theme-light" style="width: 100%; height: 100%; overflow: hidden auto; position: relative; overscroll-behavior: contain;"><div class="luna-console-logs-space">
+  <div class="luna-console-fake-logs"></div>
+  <div class="luna-console-logs"></div>
+</div></div><div class="youware-console-empty-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgb(153, 153, 153); font-size: 16px; user-select: none; pointer-events: none; z-index: 10; display: none;">No logs from this project</div></div></body></html>
