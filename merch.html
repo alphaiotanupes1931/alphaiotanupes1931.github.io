@@ -896,7 +896,7 @@
                 <a href="about.html" class="menu-link">ABOUT</a>
                 <a href="brothers.html" class="menu-link">LINEAGE</a>
                 <a href="directory.html" class="menu-link">DIRECTORY</a>
-                <a href="merch.html" class="menu-link">MERCH</a>
+                <a href="clothing.html" class="menu-link">MERCH</a>
                 <a href="gallery.html" class="menu-link">GALLERY</a>
                 <a href="https://cash.app/$MorganNupes" target="_blank" class="menu-link donate-button">DONATE</a>
             </div>
@@ -944,7 +944,7 @@
     </nav>
 
     <!-- Password Protection Overlay -->
-    <div id="password-overlay" class="password-overlay" style="display: none;">
+    <div id="password-overlay" class="password-overlay" style="display: flex;">
         <div class="password-container">
             <h2 class="password-title">ACCESS REQUIRED</h2>
             <p class="password-description">Enter password to access the storefronts</p>
@@ -959,7 +959,7 @@
     </div>
 
     <!-- Main Content -->
-    <main id="main-content" style="display: block;">
+    <main id="main-content" style="display: none;">
         <div class="clothing-container">
             <h1 class="page-title">OFFICIAL STOREFRONTS</h1>
             
@@ -1126,8 +1126,7 @@
             if (input.value === 'rdg1911') {
                 overlay.style.display = 'none';
                 mainContent.style.display = 'block';
-                // Save password state in session storage
-                sessionStorage.setItem('authenticated', 'true');
+                // No longer saving authentication state to session storage
             } else {
                 error.style.display = 'block';
                 input.value = '';
@@ -1137,12 +1136,12 @@
             }
         }
 
-        // Check if already authenticated
+        // Always show password prompt on page load
         document.addEventListener('DOMContentLoaded', function() {
-            if (sessionStorage.getItem('authenticated') === 'true') {
-                document.getElementById('password-overlay').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-            }
+            // Reset authentication state
+            document.getElementById('password-overlay').style.display = 'flex';
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('password-input').value = '';
         });
 
         // Allow Enter key for password submission
