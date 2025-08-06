@@ -757,6 +757,49 @@
             border: 1px solid rgba(220, 53, 69, 0.3);
         }
         
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 2rem auto;
+        }
+        
+        .loading-spinner div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border: 8px solid var(--color-crimson);
+            border-radius: 50%;
+            animation: loading-spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: var(--color-crimson) transparent transparent transparent;
+        }
+        
+        .loading-spinner div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+        
+        .loading-spinner div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+        
+        .loading-spinner div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+        
+        @keyframes loading-spinner {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
         /* Thank You Page Styles */
         .thank-you-overlay {
             position: fixed;
@@ -886,7 +929,7 @@
         }
     </style>
 <script id="simplify-jobs-page-script" src="chrome-extension://pbanhockgagggenencehbnadejlgchfc/js/pageScript.bundle.js"></script></head>
-<body>
+<body class="">
     <!-- Desktop Navigation - Transparent (shown at top) -->
     <nav class="nav desktop-nav">
         <div class="nav-inner">
@@ -944,7 +987,7 @@
     </nav>
 
     <!-- Password Protection Overlay -->
-    <div id="password-overlay" class="password-overlay" style="display: flex;">
+    <div id="password-overlay" class="password-overlay" style="display: none;">
         <div class="password-container">
             <h2 class="password-title">ACCESS REQUIRED</h2>
             <p class="password-description">Enter password to access the storefronts</p>
@@ -959,16 +1002,16 @@
     </div>
 
     <!-- Main Content -->
-    <main id="main-content" style="display: none;">
+    <main id="main-content" style="display: block;">
         <div class="clothing-container">
             <h1 class="page-title">OFFICIAL STOREFRONTS</h1>
             
             <!-- Storefront Navigation -->
             <div class="storefront-sections">
                 <div class="storefront-nav">
-                    <button class="storefront-btn active" data-storefront="maison1911">RDG</button>
-                    <button class="storefront-btn disabled" data-storefront="relzco">FORHIRE</button>
-                    <button class="storefront-btn disabled" data-storefront="seybranded">ROIL</button>
+                    <button class="storefront-btn active" data-storefront="maison1911">MAISON1911</button>
+                    <button class="storefront-btn disabled" data-storefront="relzco">RELZCO</button>
+                    <button class="storefront-btn disabled" data-storefront="seybranded">SEYBRANDED</button>
                 </div>
                 
 
@@ -978,52 +1021,50 @@
             <div class="clothing-grid" id="maison1911-grid">
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="https://i.ibb.co/SDrK7vZz/Front-2-1.jpg" alt="Premium Cotton T-Shirt">
+                        <img src="https://images-api.printify.com/mockup/689258ec85a6e0dbd50c8d15/12100/92570/ai-definition-graphic-tee-statement-clothing.jpg?camera_label=front&amp;revision=1754421740718&amp;s=400" alt="AI Definition Graphic Tee, Statement Clothing" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
                     </div>
-                  <div class="clothing-details">
-    <h3 class="clothing-name">AI BOYS Nineteen Thirteen T-Shirt (Maroon)</h3>
-    <div class="clothing-price">$29.99</div>
-    <p class="clothing-description">Maroon t-shirt featuring bold “AI BOYS” text with “Nineteen Thirteen” underneath. Clean, collegiate style with premium cotton comfort.</p>
-    <button class="shop-now-btn" data-id="ai-boys-1913">SHOP NOW</button>
-</div>
-
+                    <div class="clothing-details">
+                        <h3 class="clothing-name">AI Definition Graphic Tee, Statement Clothing</h3>
+                        <div class="clothing-price">$19.31</div>
+                        <p class="clothing-description">Quality AI Definition graphic tee featuring authentic fraternity design.</p>
+                        <button class="shop-now-btn" data-id="1">SHOP NOW</button>
+                    </div>
                 </div>
             
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="https://i.ibb.co/397J9TD8/Front-1-1.jpg" alt="Classic Polo Shirt">
+                        <img src="https://images-api.printify.com/mockup/689257c50f668c615c01a4a6/12100/92570/football-nupes-unisex-heavy-cotton-tee-engineered-to-achieve-sporty-apparel-gift-for-athletes-team-spirit-shirt-casual-wear.jpg?camera_label=front&amp;revision=1754421336163&amp;s=400" alt="Football NUPES Unisex Heavy Cotton Tee" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
                     </div>
-                  <div class="clothing-details">
-    <h3 class="clothing-name">Football Nupes T-Shirt (White)</h3>
-    <div class="clothing-price">$29.99</div>
-    <p class="clothing-description">White t-shirt featuring bold “FOOTBALL NUPES” text with motivational tagline “Engineered to Achieve On and Off the Field.” Premium cotton with athletic-inspired style.</p>
-    <button class="shop-now-btn" data-id="football-nupes">SHOP NOW</button>
-</div>
-
+                    <div class="clothing-details">
+                        <h3 class="clothing-name">Football NUPES Unisex Heavy Cotton Tee</h3>
+                        <div class="clothing-price">$19.31</div>
+                        <p class="clothing-description">Bold Football NUPES design on comfortable heavy cotton tee.</p>
+                        <button class="shop-now-btn" data-id="2">SHOP NOW</button>
+                    </div>
                 </div>
             
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="https://i.ibb.co/397J9TD8/Front-1-1.jpg" alt="Designer Hoodie">
+                        <img src="https://images-api.printify.com/mockup/68924dfe80d5a5ec830d43ec/12100/92570/a-chiev-er-unisex-cotton-tee-casual-wear.jpg?camera_label=front&amp;revision=1754422106794&amp;s=400" alt="A-chiev-er Unisex Cotton Tee" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
                     </div>
-                           <div class="clothing-details">
-    <h3 class="clothing-name">Football Nupes T-Shirt (White)</h3>
-    <div class="clothing-price">$29.99</div>
-    <p class="clothing-description">White t-shirt featuring bold “FOOTBALL NUPES” text with motivational tagline “Engineered to Achieve On and Off the Field.” Premium cotton with athletic-inspired style.</p>
-    <button class="shop-now-btn" data-id="football-nupes">SHOP NOW</button>
-</div>
+                    <div class="clothing-details">
+                        <h3 class="clothing-name">A-chiev-er Unisex Cotton Tee</h3>
+                        <div class="clothing-price">$19.31</div>
+                        <p class="clothing-description">Inspirational A-chiev-er design celebrating achievement in every field.</p>
+                        <button class="shop-now-btn" data-id="3">SHOP NOW</button>
+                    </div>
                 </div>
             
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="https://i.ibb.co/397J9TD8/Front-1-1.jpg" alt="Athletic Tank Top">
+                        <img src="https://images-api.printify.com/mockup/68922d56be2bf49f20058e05/78542/38504/ai-boys-license-plate-frame-unique-car-accessory-gift-for-car-enthusiasts-customizable-auto-decor-fun-automotive-gift-trendy.jpg?camera_label=front&amp;revision=1754421997358&amp;s=400" alt="AI Boys License Plate Frame" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
                     </div>
-                 <div class="clothing-details">
-    <h3 class="clothing-name">Football Nupes T-Shirt (White)</h3>
-    <div class="clothing-price">$29.99</div>
-    <p class="clothing-description">White t-shirt featuring bold “FOOTBALL NUPES” text with motivational tagline “Engineered to Achieve On and Off the Field.” Premium cotton with athletic-inspired style.</p>
-    <button class="shop-now-btn" data-id="football-nupes">SHOP NOW</button>
-</div>
+                    <div class="clothing-details">
+                        <h3 class="clothing-name">AI Boys License Plate Frame</h3>
+                        <div class="clothing-price">$15.31</div>
+                        <p class="clothing-description">Premium license plate frame featuring Alpha Iota Boys design.</p>
+                        <button class="shop-now-btn" data-id="4">SHOP NOW</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1152,6 +1193,17 @@
                 checkPassword();
             }
         });
+        
+        // Add loading indicator for API data
+        function showLoadingIndicator(element) {
+            element.innerHTML = '<div class="loading-spinner"><div></div><div></div><div></div><div></div></div>';
+        }
+        
+        // Handle image loading errors
+        function handleImageError(img) {
+            img.onerror = null; 
+            img.src = 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop';
+        }
 
         // Thank you page functions
         function showThankYou(orderData) {
@@ -1184,46 +1236,56 @@
             }
         });
 
-        // Storefront management
-const storefronts = {
-    maison1911: {
-        name: "MAISON1911",
-        paypalLink: "https://paypal.me/reeddigitalgroup",
-        active: true,
-        items: [
-            {
-                id: "ai-boys-1913",
-                name: "AI BOYS Nineteen Thirteen T-Shirt (Maroon)",
-                price: 29.99,
-                image: "https://i.ibb.co/SDrK7vZz/Front-2-1.jpg",
-                description: "Maroon t-shirt featuring bold “AI BOYS” text with “Nineteen Thirteen” underneath. Clean, collegiate style with premium cotton comfort.",
-                sizes: ["S", "M", "L", "XL", "XXL"]
-            },
-            {
-                id: "football-nupes",
-                name: "Football Nupes T-Shirt (White)",
-                price: 29.99,
-                image: "https://i.ibb.co/397J9TD8/Front-1-1.jpg",
-                description: "White t-shirt featuring bold “FOOTBALL NUPES” text with motivational tagline “Engineered to Achieve On and Off the Field.” Premium cotton with athletic-inspired style.",
-                sizes: ["S", "M", "L", "XL", "XXL"]
-            },
-            {
-                id: "football-nupes-2",
-                name: "Football Nupes T-Shirt (White)",
-                price: 29.99,
-                image: "https://i.ibb.co/397J9TD8/Front-1-1.jpg",
-                description: "White t-shirt featuring bold “FOOTBALL NUPES” text with motivational tagline “Engineered to Achieve On and Off the Field.” Premium cotton with athletic-inspired style.",
-                sizes: ["S", "M", "L", "XL", "XXL"]
-            },
-            {
-                id: "football-nupes-3",
-                name: "Football Nupes T-Shirt (White)",
-                price: 29.99,
-                image: "https://i.ibb.co/397J9TD8/Front-1-1.jpg",
-                description: "White t-shirt featuring bold “FOOTBALL NUPES” text with motivational tagline “Engineered to Achieve On and Off the Field.” Premium cotton with athletic-inspired style.",
-                sizes: ["S", "M", "L", "XL", "XXL"]
-            }
-        ]
+        // Printify API access token
+        const printifyToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzN2Q0YmQzMDM1ZmUxMWU5YTgwM2FiN2VlYjNjY2M5NyIsImp0aSI6ImM4MjA0NmE2YmE2ZTI5MmVmZmE4NTA5MTQ1YTY4ZDY0NDU1NjA1ZTEyMmQ0Njg5N2VmZTMyNWVhNzI4MjQxYzZjYzBhMWU1YTkwNGFhNzA3IiwiaWF0IjoxNzU0NDIzNTY0Ljc4ODM5OSwibmJmIjoxNzU0NDIzNTY0Ljc4ODQwMiwiZXhwIjoxNzg1OTU5NTY0Ljc3MjU3Mywic3ViIjoiNzk0MDU2OSIsInNjb3BlcyI6WyJzaG9wcy5tYW5hZ2UiLCJzaG9wcy5yZWFkIiwiY2F0YWxvZy5yZWFkIiwib3JkZXJzLnJlYWQiLCJvcmRlcnMud3JpdGUiLCJwcm9kdWN0cy5yZWFkIiwicHJvZHVjdHMud3JpdGUiLCJ3ZWJob29rcy5yZWFkIiwid2ViaG9va3Mud3JpdGUiLCJ1cGxvYWRzLnJlYWQiLCJ1cGxvYWRzLndyaXRlIiwicHJpbnRfcHJvdmlkZXJzLnJlYWQiLCJ1c2VyLmluZm8iXX0.iKES0u8Xivr9DrstnWwqvC0XPqZxY6E32nT4Z-p2RUe3VNDI3a7xBGVGWm4mxen2c_cdZbzd4_2AwoY915rmu_NVIxE_Ls4MDwZQbnTA78aEI7HhwYVHhaCHJCE38G0Edlctm7QU0G0KpwD5sMEXvSEyU2t07AmxoqNnkfyd_gUuCjfO8FMGmV0bHkq8Z6J9ei2T62xRRWQpuyykKnCzMarqrg4YkOF9kj400rvGEpmeZgWx3fwGvlqYdE34azJAb2WcIaPZHDwN0ewbmD9AsbnxR1g7aeK1zl534aWN1-t5FbJG3Vm92VESOsSV_bRKbjJOaeTCQgImdQ-O6uegO6G7ic8Aefc8QnC30Wa6dULXEIJ7BY0beEjCMP3IdBXQDfBl-rpE-hgAkWXkXZIJC0dUDZTyfyxitTY575VLYLNHcAhGMr95r8inn7S43nMRSucH7Tc_3y_4Tzvx_8mwPSz0GXsSs3y5Lt9w1axanwY21104LwNFgfytJYE3QIcGSOAbW7jlGxJ6me_OKcQO4BYJP49lnYuLb61-gTYrjdEIVa35YGOXr6lwk4Zg4JYYkLV-0sCQwD96xHHcYR_-UNMRketAZqF0EAVVA3W4xBS_fjxTC4SvgwjaN6hOKELPgLY0Z0eNDTgnDOAmM5qxcxZmotE1g8yeFW_gYVINshU';
+
+        // Initialize Supabase client
+        const supabaseUrl = 'https://oaoddjfsxgwuknbznnbo.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hb2RkamZzeGd3dWtuYnpubmJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEyNTI5MzMsImV4cCI6MjA2NjgyODkzM30.Kr3frdXTggWLxTafaE91_Rn5aumcOoln9eAo2oZ9e3M';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Storefront management with dynamic Printify products
+        const storefronts = {
+            maison1911: {
+                name: "MAISON1911",
+                paypalLink: "https://paypal.me/reeddigitalgroup",
+                active: true,
+                items: [
+                    // This will be populated from Supabase database
+                    // Temporarily showing the latest products we fetched directly
+                    {
+                        id: 1,
+                        name: "AI Definition Graphic Tee, Statement Clothing",
+                        price: "19.31",
+                        image: "https://images-api.printify.com/mockup/689258ec85a6e0dbd50c8d15/12100/92570/ai-definition-graphic-tee-statement-clothing.jpg?camera_label=front&revision=1754421740718&s=400",
+                        description: "Quality AI Definition graphic tee featuring authentic fraternity design.",
+                        sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+                    },
+                    {
+                        id: 2,
+                        name: "Football NUPES Unisex Heavy Cotton Tee",
+                        price: "19.31",
+                        image: "https://images-api.printify.com/mockup/689257c50f668c615c01a4a6/12100/92570/football-nupes-unisex-heavy-cotton-tee-engineered-to-achieve-sporty-apparel-gift-for-athletes-team-spirit-shirt-casual-wear.jpg?camera_label=front&revision=1754421336163&s=400",
+                        description: "Bold Football NUPES design on comfortable heavy cotton tee.",
+                        sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+                    },
+                    {
+                        id: 3,
+                        name: "A-chiev-er Unisex Cotton Tee",
+                        price: "19.31",
+                        image: "https://images-api.printify.com/mockup/68924dfe80d5a5ec830d43ec/12100/92570/a-chiev-er-unisex-cotton-tee-casual-wear.jpg?camera_label=front&revision=1754422106794&s=400",
+                        description: "Inspirational A-chiev-er design celebrating achievement in every field.",
+                        sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+                    },
+                    {
+                        id: 4,
+                        name: "AI Boys License Plate Frame",
+                        price: "15.31",
+                        image: "https://images-api.printify.com/mockup/68922d56be2bf49f20058e05/78542/38504/ai-boys-license-plate-frame-unique-car-accessory-gift-for-car-enthusiasts-customizable-auto-decor-fun-automotive-gift-trendy.jpg?camera_label=front&revision=1754421997358&s=400",
+                        description: "Premium license plate frame featuring Alpha Iota Boys design.",
+                        sizes: ["One Size"]
+                    }
+                ]
             },
             relzco: {
                 name: "RELZCO",
@@ -1237,13 +1299,62 @@ const storefronts = {
             }
         };
 
+        // Note: Printify API integration removed due to CORS restrictions
+        // Products are now loaded directly in the storefronts object above
+
         let currentStorefront = 'maison1911';
         let selectedItem = null;
 
         // Initialize storefront
-        function initializeStorefront() {
+        async function initializeStorefront() {
+            // Fetch products from Supabase
+            await fetchProductsFromSupabase();
+            
+            // Render the products grid
             renderClothingGrid();
+            
+            // Set up event listeners
             setupEventListeners();
+        }
+        
+        // Fetch products from Supabase
+        async function fetchProductsFromSupabase() {
+            try {
+                // Fetch products from the printify_products table
+                const { data, error } = await supabase
+                    .from('printify_products')
+                    .select('*')
+                    .order('updated_at', { ascending: false });
+                
+                if (error) {
+                    console.error('Error fetching products from Supabase:', error);
+                    return; // Keep using the default products
+                }
+                
+                if (data && data.length > 0) {
+                    // Transform the data into our format
+                    const transformedProducts = data.map((product, index) => {
+                        return {
+                            id: index + 1,
+                            name: product.title,
+                            price: parseFloat(product.price).toFixed(2),
+                            image: product.image_url,
+                            description: product.description || "Quality product from our collection.",
+                            sizes: Array.isArray(product.sizes) ? product.sizes : ["S", "M", "L", "XL"]
+                        };
+                    });
+                    
+                    // Update the storefront with the new products
+                    storefronts.maison1911.items = transformedProducts;
+                    
+                    console.log(`Loaded ${transformedProducts.length} products from Supabase`);
+                } else {
+                    console.log('No products found in Supabase database, using default products');
+                }
+            } catch (error) {
+                console.error('Error in fetchProductsFromSupabase:', error);
+                // Keep using the default products
+            }
         }
 
         // Render clothing grid
@@ -1252,14 +1363,14 @@ const storefronts = {
             const storefront = storefronts[currentStorefront];
             
             if (!storefront.active || storefront.items.length === 0) {
-                grid.innerHTML = '<div class="coming-soon"><h3>Coming Soon!</h3><p>This storefront will be available soon.</p></div>';
+                grid.innerHTML = '<div class="coming-soon"><h3>Loading Products...</h3><p>Please wait while we fetch your clothing items...</p></div>';
                 return;
             }
 
             grid.innerHTML = storefront.items.map(item => `
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="${item.image}" alt="${item.name}">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop';">
                     </div>
                     <div class="clothing-details">
                         <h3 class="clothing-name">${item.name}</h3>
