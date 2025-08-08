@@ -1,4 +1,4 @@
-<html lang="en" data-theme="dark"><head>
+<html lang="en" data-theme="dark"><plasmo-csui id="jobright-helper-plugin"></plasmo-csui><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alpha Iota Chapter | Merch</title>
@@ -487,31 +487,9 @@
             transform: scale(1.05);
         }
         
+        /* Remove clothing details since we're only showing images */
         .clothing-details {
-            padding: 1.5rem;
-        }
-        
-        .clothing-name {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--color-text);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-        
-        .clothing-price {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--color-crimson);
-            margin-bottom: 0.75rem;
-        }
-        
-        .clothing-description {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            display: none;
         }
         
         .shop-now-btn {
@@ -533,6 +511,35 @@
             background: #8B0000;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Big shop now button at the bottom of storefront */
+        .big-shop-now-container {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+        
+        .big-shop-now-btn {
+            background: var(--color-crimson);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 8px;
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .big-shop-now-btn:hover {
+            background: #8B0000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         
         /* Order Form Styles */
@@ -929,7 +936,7 @@
         }
     </style>
 <script id="simplify-jobs-page-script" src="chrome-extension://pbanhockgagggenencehbnadejlgchfc/js/pageScript.bundle.js"></script></head>
-<body>
+<body class="">
     <!-- Desktop Navigation - Transparent (shown at top) -->
     <nav class="nav desktop-nav">
         <div class="nav-inner">
@@ -987,7 +994,7 @@
     </nav>
 
     <!-- Password Protection Overlay -->
-    <div id="password-overlay" class="password-overlay" style="display: flex;">
+    <div id="password-overlay" class="password-overlay" style="display: none;">
         <div class="password-container">
             <h2 class="password-title">ACCESS REQUIRED</h2>
             <p class="password-description">Enter password to access the storefronts</p>
@@ -1002,16 +1009,16 @@
     </div>
 
     <!-- Main Content -->
-    <main id="main-content" style="display: none;">
+    <main id="main-content" style="display: block;">
         <div class="clothing-container">
             <h1 class="page-title">OFFICIAL STOREFRONTS</h1>
             
             <!-- Storefront Navigation -->
             <div class="storefront-sections">
                 <div class="storefront-nav">
-                    <button class="storefront-btn active" data-storefront="maison1911">RDG</button>
-                    <button class="storefront-btn disabled" data-storefront="relzco">FORHIRE</button>
-                    <button class="storefront-btn disabled" data-storefront="seybranded">ROIL</button>
+                    <button class="storefront-btn active" data-storefront="rdg">RDG</button>
+                    <button class="storefront-btn" data-storefront="forhire">FORHIRE</button>
+                    <button class="storefront-btn" data-storefront="roil">ROIL</button>
                 </div>
                 
 
@@ -1021,52 +1028,38 @@
             <div class="clothing-grid" id="maison1911-grid">
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="https://images-api.printify.com/mockup/689258ec85a6e0dbd50c8d15/12100/92570/ai-definition-graphic-tee-statement-clothing.jpg?camera_label=front&amp;revision=1754421740718&amp;s=400" alt="AI Definition Graphic Tee, Statement Clothing" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
-                    </div>
-                    <div class="clothing-details">
-                        <h3 class="clothing-name">AI Definition Graphic Tee, Statement Clothing</h3>
-                        <div class="clothing-price">$19.31</div>
-                        <p class="clothing-description">Quality AI Definition graphic tee featuring authentic fraternity design.</p>
-                        <button class="shop-now-btn" data-id="1">SHOP NOW</button>
+                        <img src="https://images-api.printify.com/mockup/689258ec85a6e0dbd50c8d15/12100/92570/ai-definition-graphic-tee-statement-clothing.jpg?camera_label=front&amp;revision=1754421740718&amp;s=400" alt="Product Image" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
                     </div>
                 </div>
             
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="https://images-api.printify.com/mockup/689257c50f668c615c01a4a6/12100/92570/football-nupes-unisex-heavy-cotton-tee-engineered-to-achieve-sporty-apparel-gift-for-athletes-team-spirit-shirt-casual-wear.jpg?camera_label=front&amp;revision=1754421336163&amp;s=400" alt="Football NUPES Unisex Heavy Cotton Tee" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
-                    </div>
-                    <div class="clothing-details">
-                        <h3 class="clothing-name">Football NUPES Unisex Heavy Cotton Tee</h3>
-                        <div class="clothing-price">$19.31</div>
-                        <p class="clothing-description">Bold Football NUPES design on comfortable heavy cotton tee.</p>
-                        <button class="shop-now-btn" data-id="2">SHOP NOW</button>
+                        <img src="https://images-api.printify.com/mockup/689257c50f668c615c01a4a6/12100/92570/football-nupes-unisex-heavy-cotton-tee-engineered-to-achieve-sporty-apparel-gift-for-athletes-team-spirit-shirt-casual-wear.jpg?camera_label=front&amp;revision=1754421336163&amp;s=400" alt="Product Image" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
                     </div>
                 </div>
             
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="https://images-api.printify.com/mockup/68924dfe80d5a5ec830d43ec/12100/92570/a-chiev-er-unisex-cotton-tee-casual-wear.jpg?camera_label=front&amp;revision=1754422106794&amp;s=400" alt="A-chiev-er Unisex Cotton Tee" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
-                    </div>
-                    <div class="clothing-details">
-                        <h3 class="clothing-name">A-chiev-er Unisex Cotton Tee</h3>
-                        <div class="clothing-price">$19.31</div>
-                        <p class="clothing-description">Inspirational A-chiev-er design celebrating achievement in every field.</p>
-                        <button class="shop-now-btn" data-id="3">SHOP NOW</button>
+                        <img src="https://images-api.printify.com/mockup/68924dfe80d5a5ec830d43ec/12100/92570/a-chiev-er-unisex-cotton-tee-casual-wear.jpg?camera_label=front&amp;revision=1754422106794&amp;s=400" alt="Product Image" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
                     </div>
                 </div>
             
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="https://images-api.printify.com/mockup/68922d56be2bf49f20058e05/78542/38504/ai-boys-license-plate-frame-unique-car-accessory-gift-for-car-enthusiasts-customizable-auto-decor-fun-automotive-gift-trendy.jpg?camera_label=front&amp;revision=1754421997358&amp;s=400" alt="AI Boys License Plate Frame" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
-                    </div>
-                    <div class="clothing-details">
-                        <h3 class="clothing-name">AI Boys License Plate Frame</h3>
-                        <div class="clothing-price">$15.31</div>
-                        <p class="clothing-description">Premium license plate frame featuring Alpha Iota Boys design.</p>
-                        <button class="shop-now-btn" data-id="4">SHOP NOW</button>
+                        <img src="https://images-api.printify.com/mockup/68922d56be2bf49f20058e05/78542/38504/ai-boys-license-plate-frame-unique-car-accessory-gift-for-car-enthusiasts-customizable-auto-decor-fun-automotive-gift-trendy.jpg?camera_label=front&amp;revision=1754421997358&amp;s=400" alt="Product Image" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&amp;h=400&amp;fit=crop';">
                     </div>
                 </div>
             </div>
+                <div class="big-shop-now-container">
+                    <button class="big-shop-now-btn" data-storefront="rdg">SHOP NOW</button>
+                </div>
+            
+                
+            
+                
+            
+                
+            
         </div>
         
         <!-- Order Form Modal -->
@@ -1166,7 +1159,7 @@
             const overlay = document.getElementById('password-overlay');
             const mainContent = document.getElementById('main-content');
             
-            if (input.value === 'rdg1911') {
+            if (input.value === 'rdg1911') { // Password updated to match the new storefront name
                 overlay.style.display = 'none';
                 mainContent.style.display = 'block';
                 // No longer saving authentication state to session storage
@@ -1223,8 +1216,8 @@
 
         function closeThankYou() {
             document.getElementById('thank-you-overlay').style.display = 'none';
-            // Redirect to Printify store
-            window.open('https://alphaiotamerch.printify.me/', '_blank');
+            // Redirect to appropriate shop based on current storefront
+            window.open(storefronts[currentStorefront].shopLink, '_blank');
         }
 
         // Scroll detection for navbar change
@@ -1246,69 +1239,71 @@
 
         // Storefront management with dynamic Printify products
         const storefronts = {
-            maison1911: {
-                name: "MAISON1911",
+            rdg: {
+                name: "RDG",
                 paypalLink: "https://paypal.me/reeddigitalgroup",
+                shopLink: "https://alphaiotamerch.printify.me/",
                 active: true,
                 items: [
                     // This will be populated from Supabase database
                     // Temporarily showing the latest products we fetched directly
                     {
                         id: 1,
-                        name: "AI Definition Graphic Tee, Statement Clothing",
-                        price: "19.31",
-                        image: "https://images-api.printify.com/mockup/689258ec85a6e0dbd50c8d15/12100/92570/ai-definition-graphic-tee-statement-clothing.jpg?camera_label=front&revision=1754421740718&s=400",
-                        description: "Quality AI Definition graphic tee featuring authentic fraternity design.",
-                        sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+                        image: "https://images-api.printify.com/mockup/689258ec85a6e0dbd50c8d15/12100/92570/ai-definition-graphic-tee-statement-clothing.jpg?camera_label=front&revision=1754421740718&s=400"
                     },
                     {
                         id: 2,
-                        name: "Football NUPES Unisex Heavy Cotton Tee",
-                        price: "19.31",
-                        image: "https://images-api.printify.com/mockup/689257c50f668c615c01a4a6/12100/92570/football-nupes-unisex-heavy-cotton-tee-engineered-to-achieve-sporty-apparel-gift-for-athletes-team-spirit-shirt-casual-wear.jpg?camera_label=front&revision=1754421336163&s=400",
-                        description: "Bold Football NUPES design on comfortable heavy cotton tee.",
-                        sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+                        image: "https://images-api.printify.com/mockup/689257c50f668c615c01a4a6/12100/92570/football-nupes-unisex-heavy-cotton-tee-engineered-to-achieve-sporty-apparel-gift-for-athletes-team-spirit-shirt-casual-wear.jpg?camera_label=front&revision=1754421336163&s=400"
                     },
                     {
                         id: 3,
-                        name: "A-chiev-er Unisex Cotton Tee",
-                        price: "19.31",
-                        image: "https://images-api.printify.com/mockup/68924dfe80d5a5ec830d43ec/12100/92570/a-chiev-er-unisex-cotton-tee-casual-wear.jpg?camera_label=front&revision=1754422106794&s=400",
-                        description: "Inspirational A-chiev-er design celebrating achievement in every field.",
-                        sizes: ["XS", "S", "M", "L", "XL", "XXL"]
+                        image: "https://images-api.printify.com/mockup/68924dfe80d5a5ec830d43ec/12100/92570/a-chiev-er-unisex-cotton-tee-casual-wear.jpg?camera_label=front&revision=1754422106794&s=400"
                     },
                     {
                         id: 4,
-                        name: "AI Boys License Plate Frame",
-                        price: "15.31",
-                        image: "https://images-api.printify.com/mockup/68922d56be2bf49f20058e05/78542/38504/ai-boys-license-plate-frame-unique-car-accessory-gift-for-car-enthusiasts-customizable-auto-decor-fun-automotive-gift-trendy.jpg?camera_label=front&revision=1754421997358&s=400",
-                        description: "Premium license plate frame featuring Alpha Iota Boys design.",
-                        sizes: ["One Size"]
+                        image: "https://images-api.printify.com/mockup/68922d56be2bf49f20058e05/78542/38504/ai-boys-license-plate-frame-unique-car-accessory-gift-for-car-enthusiasts-customizable-auto-decor-fun-automotive-gift-trendy.jpg?camera_label=front&revision=1754421997358&s=400"
                     }
                 ]
             },
-            relzco: {
-                name: "RELZCO",
-                active: false,
-                items: []
+            forhire: {
+                name: "FORHIRE",
+                shopLink: "instagram:@forhireco",
+                active: true,
+                items: [
+                    {
+                        id: 1,
+                        image: "https://public.youware.com/users-website-assets/prod/04cc8a7c-babc-40fb-a372-83b2b8bf7a0f/611b784364704ad792e65533a8c86879.png"
+                    }
+                ]
             },
-            seybranded: {
-                name: "SEYBRANDED", 
-                active: false,
-                items: []
+            roil: {
+                name: "ROIL", 
+                shopLink: "https://roildesigns.com/",
+                active: true,
+                items: [
+                    {
+                        id: 1,
+                        image: "https://public.youware.com/users-website-assets/prod/04cc8a7c-babc-40fb-a372-83b2b8bf7a0f/e917602e817d4f9baacb3d638e0283aa.png"
+                    },
+                    {
+                        id: 2,
+                        image: "https://public.youware.com/users-website-assets/prod/04cc8a7c-babc-40fb-a372-83b2b8bf7a0f/68cb54bcb4794fd694be5c0ac51f3163.png"
+                    }
+                ]
             }
         };
 
         // Note: Printify API integration removed due to CORS restrictions
         // Products are now loaded directly in the storefronts object above
 
-        let currentStorefront = 'maison1911';
+        let currentStorefront = 'rdg';
         let selectedItem = null;
 
         // Initialize storefront
         async function initializeStorefront() {
-            // Fetch products from Supabase
-            await fetchProductsFromSupabase();
+            // Fetch products from Supabase - Note: we're not actually updating with Supabase data
+            // since we've already set up the storefronts with the specified images
+            // await fetchProductsFromSupabase();
             
             // Render the products grid
             renderClothingGrid();
@@ -1318,6 +1313,7 @@
         }
         
         // Fetch products from Supabase
+        // This function is no longer used as we're displaying specific images
         async function fetchProductsFromSupabase() {
             try {
                 // Fetch products from the printify_products table
@@ -1336,16 +1332,12 @@
                     const transformedProducts = data.map((product, index) => {
                         return {
                             id: index + 1,
-                            name: product.title,
-                            price: parseFloat(product.price).toFixed(2),
-                            image: product.image_url,
-                            description: product.description || "Quality product from our collection.",
-                            sizes: Array.isArray(product.sizes) ? product.sizes : ["S", "M", "L", "XL"]
+                            image: product.image_url
                         };
                     });
                     
                     // Update the storefront with the new products
-                    storefronts.maison1911.items = transformedProducts;
+                    storefronts.rdg.items = transformedProducts;
                     
                     console.log(`Loaded ${transformedProducts.length} products from Supabase`);
                 } else {
@@ -1359,27 +1351,40 @@
 
         // Render clothing grid
         function renderClothingGrid() {
-            const grid = document.getElementById('maison1911-grid');
+            const grid = document.getElementById('maison1911-grid'); // Keeping the ID the same to avoid changing HTML
             const storefront = storefronts[currentStorefront];
             
             if (!storefront.active || storefront.items.length === 0) {
                 grid.innerHTML = '<div class="coming-soon"><h3>Loading Products...</h3><p>Please wait while we fetch your clothing items...</p></div>';
                 return;
             }
-
+            
+            // If it's the forhire storefront, show "more designs coming soon" message
+            let comingSoonMessage = '';
+            if (currentStorefront === 'forhire') {
+                comingSoonMessage = '<div class="coming-soon"><h3>More Designs Coming Soon</h3></div>';
+            }
+            
+            // Render the grid with just images
             grid.innerHTML = storefront.items.map(item => `
                 <div class="clothing-item">
                     <div class="clothing-image">
-                        <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop';">
-                    </div>
-                    <div class="clothing-details">
-                        <h3 class="clothing-name">${item.name}</h3>
-                        <div class="clothing-price">$${item.price}</div>
-                        <p class="clothing-description">${item.description}</p>
-                        <button class="shop-now-btn" data-id="${item.id}">SHOP NOW</button>
+                        <img src="${item.image}" alt="Product Image" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop';">
                     </div>
                 </div>
-            `).join('');
+            `).join('') + comingSoonMessage;
+            
+            // Add a big button at the bottom - different text for forhire
+            let buttonText = 'SHOP NOW';
+            if (currentStorefront === 'forhire') {
+                buttonText = 'CONTACT @FORHIRECO ON INSTAGRAM';
+            }
+            
+            grid.insertAdjacentHTML('afterend', `
+                <div class="big-shop-now-container">
+                    <button class="big-shop-now-btn" data-storefront="${currentStorefront}">${buttonText}</button>
+                </div>
+            `);
         }
 
         // Setup event listeners
@@ -1389,18 +1394,43 @@
                 btn.addEventListener('click', function() {
                     if (this.classList.contains('disabled')) return;
                     
+                    // Remove active class from all buttons
                     document.querySelectorAll('.storefront-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
+                    
+                    // Update current storefront
                     currentStorefront = this.dataset.storefront;
+                    
+                    // Remove any existing big shop now button
+                    const existingContainer = document.querySelector('.big-shop-now-container');
+                    if (existingContainer) {
+                        existingContainer.remove();
+                    }
+                    
+                    // Render the new grid
                     renderClothingGrid();
                 });
             });
 
-            // Shop now buttons - redirect to Printify
+            // Shop now buttons - redirect to appropriate store
             document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('shop-now-btn')) {
-                    // Redirect directly to Printify store
-                    window.open('https://alphaiotamerch.printify.me/', '_blank');
+                if (e.target.classList.contains('shop-now-btn') || e.target.classList.contains('big-shop-now-btn')) {
+                    const storefrontId = e.target.dataset.storefront || currentStorefront;
+                    const storefront = storefronts[storefrontId];
+                    
+                    if (storefront.shopLink.startsWith('instagram:')) {
+                        // For forhire, show Instagram contact message
+                        alert('Please contact ' + storefront.shopLink.replace('instagram:', '') + ' on Instagram to place an order.');
+                    } else {
+                        // For other storefronts, redirect to their shop URL
+                        window.open(storefront.shopLink, '_blank');
+                    }
+                    
+                    // Remove the button after it's been clicked (if it's the big one)
+                    if (e.target.classList.contains('big-shop-now-btn')) {
+                        document.querySelector('.big-shop-now-container').innerHTML = '';
+                        renderClothingGrid(); // Re-render to show the button again
+                    }
                 }
             });
 
@@ -1455,9 +1485,21 @@
             const formData = new FormData(e.target);
             const orderData = Object.fromEntries(formData.entries());
             
-            // Only proceed if maison1911 storefront
-            if (currentStorefront !== 'maison1911') {
-                alert('This storefront is not yet available for checkout.');
+            // Checkout handling for each storefront type
+            if (currentStorefront === 'rdg') {
+                // Direct to Printify store
+                window.open(storefronts.rdg.shopLink, '_blank');
+                closeOrderForm();
+                return;
+            } else if (currentStorefront === 'forhire') {
+                // Instagram contact
+                alert('Please contact ' + storefronts.forhire.shopLink.replace('instagram:', '') + ' on Instagram to place an order.');
+                closeOrderForm();
+                return;
+            } else if (currentStorefront === 'roil') {
+                // Roil designs website
+                window.open(storefronts.roil.shopLink, '_blank');
+                closeOrderForm();
                 return;
             }
 
@@ -1465,7 +1507,7 @@
             const emailSent = await sendOrderEmail(orderData);
             
             // Create PayPal link with pre-filled amount
-            const paypalLink = `${storefronts.maison1911.paypalLink}/${orderData.itemPrice}`;
+            const paypalLink = `${storefronts.rdg.paypalLink}/${orderData.itemPrice}`;
             
             // Redirect to PayPal
             setTimeout(() => {
