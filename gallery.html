@@ -4,8 +4,294 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - ALPHA IOTA</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #333;
+            --text-color: #fff;
+            --accent-color: #gold;
+            --hover-color: #555;
+        }
+
+        [data-theme="light"] {
+            --primary-color: #fff;
+            --secondary-color: #f5f5f5;
+            --text-color: #1a1a1a;
+            --accent-color: #gold;
+            --hover-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Navigation Styles */
+        .nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .menu-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .menu-link:hover {
+            color: #gold;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        #mobile-menu-checkbox {
+            display: none;
+        }
+
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .mobile-menu-toggle {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .mobile-menu-toggle .fa-times {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        #mobile-menu-checkbox:checked ~ .mobile-menu {
+            display: flex;
+        }
+
+        #mobile-menu-checkbox:checked ~ .mobile-nav-header .mobile-menu-toggle .fa-bars {
+            display: none;
+        }
+
+        #mobile-menu-checkbox:checked ~ .mobile-nav-header .mobile-menu-toggle .fa-times {
+            display: block;
+        }
+
+        .mobile-menu .menu-link {
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--hover-color);
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem 0;
+            letter-spacing: 3px;
+        }
+
+        /* Gallery Container */
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Gallery Tabs */
+        .gallery-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-tab {
+            padding: 0.75rem 2rem;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-tab:hover {
+            background-color: var(--hover-color);
+        }
+
+        .gallery-tab.active {
+            background-color: #gold;
+            color: #000;
+        }
+
+        /* Gallery Content */
+        .gallery-content {
+            display: none;
+        }
+
+        .gallery-content.active {
+            display: block;
+        }
+
+        /* Photos Grid */
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background-color: var(--secondary-color);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .modal-close:hover {
+            color: #gold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-nav {
+                display: block;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .photos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .gallery-container {
+                padding: 1rem;
+            }
+
+            .modal-close {
+                right: 20px;
+                font-size: 30px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .desktop-nav {
+                display: block;
+            }
+
+            .mobile-nav {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body data-dark-mode="true">
 
