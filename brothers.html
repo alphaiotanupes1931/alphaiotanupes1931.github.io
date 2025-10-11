@@ -229,6 +229,15 @@
             body {
                 padding-top: 70px;
             }
+
+            .search-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .export-button {
+                width: 100%;
+            }
         }
 
         /* Brothers Section */
@@ -278,7 +287,15 @@
             padding: 0 1.5rem;
         }
 
+        .search-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .search-input {
+            flex: 1;
+            min-width: 0;
             width: 100%;
             padding: 1rem 1.5rem;
             background-color: var(--white);
@@ -288,6 +305,32 @@
             font-size: 1rem;
             border-radius: 0;
             transition: var(--transition);
+        }
+
+        .export-button {
+            white-space: nowrap;
+            padding: 0.9rem 1.5rem;
+            background: var(--crimson);
+            color: var(--white);
+            border: 1px solid transparent;
+            font-family: var(--font-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .export-button:hover,
+        .export-button:focus {
+            background: var(--crimson-hover);
+            border-color: var(--crimson);
+        }
+
+        .export-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(205, 16, 65, 0.3);
         }
 
         .search-input:focus {
@@ -789,7 +832,10 @@ body.light-mode .modal-year {
         
         
         <div class="search-container aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-            <input type="text" id="brotherSearch" class="search-input" placeholder="Search by name, year, or line...">
+            <div class="search-controls">
+                <input type="text" id="brotherSearch" class="search-input" placeholder="Search by name, year, or line...">
+                <button type="button" id="exportCsv" class="export-button" aria-label="Export brothers roster to CSV">Export CSV</button>
+            </div>
         </div>
         
         <div class="years-grid"><div class="year-diamond aos-init aos-animate" data-year-key="2024FA" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="0">
@@ -1373,13 +1419,33 @@ body.light-mode .modal-year {
                 });
             });
             
-            // Search functionality
             const searchInput = document.getElementById('brotherSearch');
             const yearDiamonds = document.querySelectorAll('.year-diamond');
+            const exportButton = document.getElementById('exportCsv');
             
-            // Debug function to print to console
             function debugLog(message) {
                 console.log("[Search Debug] " + message);
+            }
+
+            if (exportButton) {
+                exportButton.addEventListener('click', () => {
+                    const activeData = window.lineData || lineData;
+                    const csvContent = buildLineageCsv(activeData);
+
+                    if (!csvContent) {
+                        return;
+                    }
+
+                    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = url;
+                    downloadLink.setAttribute('download', `alpha-iota-brothers-${new Date().toISOString().slice(0, 10)}.csv`);
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    URL.revokeObjectURL(url);
+                });
             }
             
             searchInput.addEventListener('input', function() {
@@ -2647,6 +2713,68 @@ body.light-mode .modal-year {
 }
 };
 
+        function formatLineYear(key) {
+            if (!key) {
+                return '';
+            }
+            const year = key.substring(0, 4);
+            const term = key.substring(4);
+            return term ? `${year} ${term}` : year;
+        }
+
+        function sanitizeForCsv(value) {
+            const stringValue = value === undefined || value === null ? '' : String(value);
+            const escapedValue = stringValue.replace(/"/g, '""');
+            return `"${escapedValue}"`;
+        }
+
+        function buildLineageCsv(dataSource) {
+            if (!dataSource) {
+                return '';
+            }
+
+            const headers = ['Line Year', 'Line Name', 'Brother Name', 'Brother Number'];
+            const rows = [headers.map(sanitizeForCsv).join(',')];
+
+            const keys = Object.keys(dataSource).sort((a, b) => {
+                const yearDifference = parseInt(b.slice(0, 4), 10) - parseInt(a.slice(0, 4), 10);
+                if (yearDifference !== 0) {
+                    return yearDifference;
+                }
+                return a.slice(4).localeCompare(b.slice(4));
+            });
+
+            keys.forEach((key) => {
+                const record = dataSource[key];
+                if (!record || !Array.isArray(record.brothers)) {
+                    return;
+                }
+
+                record.brothers.forEach((brother) => {
+                    if (!brother || !brother.name || brother.name.trim() === '' || brother.name.trim().toLowerCase() === '(none)') {
+                        return;
+                    }
+
+                    const brotherNumber = brother.number && brother.number.trim() && brother.number.trim().toLowerCase() !== '(none)'
+                        ? brother.number
+                        : 'N/A';
+
+                    const brotherName = brother.alias
+                        ? `${brother.name} ("${brother.alias}")`
+                        : brother.name;
+
+                    rows.push([
+                        sanitizeForCsv(formatLineYear(key)),
+                        sanitizeForCsv(record.title || ''),
+                        sanitizeForCsv(brotherName),
+                        sanitizeForCsv(brotherNumber)
+                    ].join(','));
+                });
+            });
+
+            return rows.join('\n');
+        }
+
 
         // Initialize AOS
         document.addEventListener('DOMContentLoaded', function() {
@@ -2747,17 +2875,13 @@ body.light-mode .modal-year {
             }
         });
 
-        // Add search functionality
         const searchInput = document.getElementById('brotherSearch');
         const yearDiamonds = document.querySelectorAll('.year-diamond');
-        
-        // No mobile menu toggle needed for the vertical menu
 
         searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase().trim();
-            
+
             if (searchTerm === '') {
-                // Show all diamonds if search is empty
                 yearDiamonds.forEach(diamond => {
                     diamond.style.display = '';
                     diamond.classList.remove('hidden');
@@ -2767,57 +2891,31 @@ body.light-mode .modal-year {
 
             yearDiamonds.forEach(diamond => {
                 const yearKey = diamond.dataset.yearKey;
-                const lineData = window.lineData[yearKey];
-                
-                // Search through brothers in this line
-                const matchFound = lineData.brothers.some(brother => {
+                const line = window.lineData[yearKey];
+
+                if (!line) {
+                    diamond.classList.add('hidden');
+                    setTimeout(() => {
+                        if (diamond.classList.contains('hidden')) {
+                            diamond.style.display = 'none';
+                        }
+                    }, 300);
+                    return;
+                }
+
+                const matchFound = line.brothers.some(brother => {
                     const searchString = [
                         brother.number,
                         brother.name,
                         brother.alias,
-                        lineData.title,
-                        lineData.subtitle,
+                        line.title,
+                        line.subtitle,
                         yearKey
                     ].filter(Boolean).join(' ').toLowerCase();
-                    
+
                     return searchString.includes(searchTerm);
                 });
 
-                // Add this to your existing JavaScript code at the bottom of the page
-
-// Theme toggle functionality
-const themeToggle = document.querySelector('.theme-toggle');
-const body = document.body;
-const moonIcon = document.querySelector('.theme-toggle i');
-
-// Check for saved theme preference
-const savedTheme = localStorage.getItem('theme');
-
-// Apply saved theme if it exists
-if (savedTheme === 'light') {
-    body.classList.add('light-mode');
-    moonIcon.classList.remove('fa-moon');
-    moonIcon.classList.add('fa-sun');
-}
-
-// Toggle theme when button is clicked
-themeToggle.addEventListener('click', () => {
-    // Toggle body class
-    body.classList.toggle('light-mode');
-    
-    // Toggle icon
-    if (body.classList.contains('light-mode')) {
-        moonIcon.classList.remove('fa-moon');
-        moonIcon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'light');
-    } else {
-        moonIcon.classList.remove('fa-sun');
-        moonIcon.classList.add('fa-moon');
-        localStorage.setItem('theme', 'dark');
-    }
-});
-                
-                // Show/hide the diamond based on match
                 if (matchFound) {
                     diamond.style.display = '';
                     diamond.classList.remove('hidden');
@@ -2832,48 +2930,9 @@ themeToggle.addEventListener('click', () => {
             });
         });
 
-        // Create sample data for the lineData object if it doesn't exist in window scope
         if (typeof window.lineData === 'undefined') {
             window.lineData = lineData;
         }
-
-        // Add this to the bottom of your existing JavaScript in brothers.html
-
-// Theme toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    const body = document.body;
-    const icon = themeToggle.querySelector('i');
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    
-    // Apply saved theme if it exists
-    if (savedTheme === 'light') {
-        body.classList.add('light-mode');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-    }
-    
-    // Toggle theme when button is clicked
-    themeToggle.addEventListener('click', function() {
-        // Toggle body class
-        body.classList.toggle('light-mode');
-        
-        // Toggle icon
-        if (body.classList.contains('light-mode')) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-            localStorage.setItem('theme', 'light');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-            localStorage.setItem('theme', 'dark');
-        }
-
-        
-    });
-});
     </script>
 
     
