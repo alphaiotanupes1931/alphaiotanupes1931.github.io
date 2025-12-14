@@ -785,15 +785,30 @@
         }
         
         /* Chapter Password Protection */
-        .chapter-protection {
-            max-width: 500px;
-            margin: 2rem auto 3rem auto;
-            background-color: rgba(0, 0, 0, 0.9);
-            border-radius: 10px;
-            padding: 2rem;
-            border: 1px solid var(--color-crimson);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
+    .chapter-protection {
+    max-width: 500px;
+    margin: 150px auto 3rem auto; /* Increased top margin from 2rem to 150px */
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid var(--color-crimson);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Add media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .chapter-protection {
+        margin: 120px auto 2rem auto; /* Adjusted for mobile header */
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .chapter-protection {
+        margin: 100px auto 2rem auto;
+        padding: 1.5rem 1rem;
+    }
+}
         
         .chapter-protection h2 {
             font-family: 'Syncopate', sans-serif;
