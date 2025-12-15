@@ -1862,90 +1862,82 @@
                         margin-bottom: 0.3rem !important;
                     }
                 }
+
+                .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.background-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Make sure your hero text sits above the video */
+.direct-youtube-container .content,
+.direct-youtube-container .hero-content {
+  position: relative;
+  z-index: 1;
+}
+
             </style>
             
 <!-- Desktop Only: YouTube Video Background -->
 <div class="direct-youtube-container">
-    <div class="video-container loaded">
-        <iframe id="background-player" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Alpha Iota Chapter of Kappa Alpha Psi" width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/sPUlSrbrMk0?autoplay=1&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;rel=0&amp;showinfo=0&amp;mute=0&amp;loop=1&amp;playlist=sPUlSrbrMk0&amp;cc_load_policy=0&amp;enablejsapi=1&amp;hd=1&amp;html5=1&amp;wmode=transparent&amp;vq=highres&amp;fmt=22&amp;widgetid=1"></iframe>
-        
-      <script>
-    // Generate random start time (e.g., between 0 and 300 seconds)
-    const randomStart = Math.floor(Math.random() * 300);
-    
-    // Update the iframe src with random start time
-    const iframe = document.getElementById('background-player');
-    const currentSrc = iframe.src;
-    
-    // Add the start parameter
-    iframe.src = currentSrc + '&start=' + randomStart;
-    
-    // Force video to stay playing
-    let player;
-    
-    // Wait for YouTube API to load
-    window.onYouTubeIframeAPIReady = function() {
-        player = new YT.Player('background-player', {
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
+  <div class="video-container loaded">
+
+    <video
+      id="background-video"
+      class="background-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster=""
+    >
+      <source
+        src="https://res.cloudinary.com/dtckdyg5x/video/upload/q_auto,f_auto/videoplayback_b2vzov.mp4"
+        type="video/mp4"
+      />
+    </video>
+
+    <script>
+      // Optional: start at a random point (like your old code)
+      (function () {
+        const video = document.getElementById('background-video');
+        if (!video) return;
+
+        // once metadata loads we can safely seek
+        video.addEventListener('loadedmetadata', () => {
+          const maxStart = Math.min(300, Math.floor(video.duration || 0));
+          const randomStart = maxStart > 1 ? Math.floor(Math.random() * maxStart) : 0;
+          video.currentTime = randomStart;
         });
-    };
-    
-    function onPlayerReady(event) {
-        // Force play when ready
-        event.target.playVideo();
-        event.target.mute();
-        
-        // Check every second if video is paused and restart it
-        setInterval(function() {
-            if (player && player.getPlayerState && player.getPlayerState() === 2) { // 2 = PAUSED
-                console.log('Video paused, restarting...');
-                player.playVideo();
-            }
-        }, 1000);
-    }
-    
-    function onPlayerStateChange(event) {
-        // If video is paused or ended, play it again
-        if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-            event.target.playVideo();
-        }
-        
-        // If video is buffering, wait and try to play
-        if (event.data === YT.PlayerState.BUFFERING) {
-            setTimeout(function() {
-                event.target.playVideo();
-            }, 1000);
-        }
-    }
-    
-    // Also restart on any page interaction (click, scroll, etc.)
-    document.addEventListener('click', function() {
-        if (player && player.playVideo) {
-            player.playVideo();
-        }
-    });
-    
-    // Restart on visibility change (when user returns to tab)
-    document.addEventListener('visibilitychange', function() {
-        if (!document.hidden && player && player.playVideo) {
-            player.playVideo();
-        }
-    });
-</script>
-    </div>
+
+        // Force play (some browsers need an extra nudge even if muted)
+        const tryPlay = () => {
+          const p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        };
+
+        tryPlay();
+        document.addEventListener('click', tryPlay, { passive: true });
+        document.addEventListener('visibilitychange', () => {
+          if (!document.hidden) tryPlay();
+        });
+      })();
+    </script>
+
+  </div>
 </div>
-                <!-- Alternative: Direct video hosting instructions -->
-                <!-- 
-                To use direct 4K video (guaranteed quality):
-                1. Download the video in 4K from the source
-                2. Upload to your server or CDN
-                3. Uncomment and set: workarounds.directVideoUrl = 'path/to/video.mp4'
-                4. Comment out the YouTube player code
-                -->
-            </div>
+
             
             <!-- Overlay for both mobile and desktop -->
             <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.7)); z-index: 1;"></div>
