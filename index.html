@@ -1744,16 +1744,29 @@
         <div class="hero-bg">
             <!-- Direct YouTube Embed with Inline Styles - Mobile Detection -->
             <style>
-                @media (max-width: 768px) {
-                    .hero-bg {
-                        background-image: url('https://i.ibb.co/m5BJs5nM/Snap-Insta-to-589141163-18541603267059119-125225766753561315-n.jpg') !important;
-                        background-size: cover !important;
-                        background-position: center 10% !important; /* Move images down 3 inches */
-                    }
-                    .direct-youtube-container {
-                        display: none !important;
-                    }
-                }
+         /* Mobile - both portrait and landscape */
+@media (max-width: 768px), (max-height: 768px) and (orientation: landscape) {
+    .hero-bg {
+        background-image: url('https://i.ibb.co/mC7mtv7K/IMG-3586.jpg') !important;
+        background-size: cover !important;
+        background-position: center 10% !important;
+    }
+    .direct-youtube-container {
+        display: none !important;
+    }
+}
+
+/* Additional fix - force hide video on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .direct-youtube-container {
+        display: none !important;
+    }
+    .hero-bg {
+        background-image: url('https://i.ibb.co/mC7mtv7K/IMG-3586.jpg') !important;
+        background-size: cover !important;
+        background-position: center center !important;
+    }
+}
                 
                 @media (min-width: 769px) {
                     .direct-youtube-container {
