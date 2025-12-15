@@ -1745,11 +1745,31 @@
             <!-- Direct YouTube Embed with Inline Styles - Mobile Detection -->
             <style>
          /* Mobile - both portrait and landscape */
-@media (max-width: 768px), (max-height: 768px) and (orientation: landscape) {
+/* Desktop - Show video */
+@media (min-width: 769px) {
+    .direct-youtube-container {
+        display: block !important;
+    }
+}
+
+/* Mobile - Show static image, hide video */
+@media (max-width: 768px) {
     .hero-bg {
         background-image: url('https://i.ibb.co/mC7mtv7K/IMG-3586.jpg') !important;
         background-size: cover !important;
         background-position: center 10% !important;
+    }
+    .direct-youtube-container {
+        display: none !important;
+    }
+}
+
+/* Mobile landscape - Still show static image */
+@media (max-width: 1024px) and (orientation: landscape) and (max-height: 768px) {
+    .hero-bg {
+        background-image: url('https://i.ibb.co/mC7mtv7K/IMG-3586.jpg') !important;
+        background-size: cover !important;
+        background-position: center center !important;
     }
     .direct-youtube-container {
         display: none !important;
