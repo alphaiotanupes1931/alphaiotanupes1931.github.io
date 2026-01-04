@@ -8,13 +8,13 @@ const programs = [
     title: "Guide Right",
     description: "Our signature mentorship program provides guidance to young men in the community. Through tutoring, career counseling, and life skills workshops, we help guide youth toward success and achievement.",
     highlights: ["Career Mentorship", "Academic Tutoring", "Life Skills Workshops", "College Preparation"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    videoUrl: "https://www.youtube.com/embed/DYbpvz-u7VI"
   },
   {
     title: "Kappa League",
     description: "A national program designed to guide, mentor, and prepare high school young men for college. Members receive ACT/SAT prep, college tours, leadership training, and community service opportunities.",
     highlights: ["SAT/ACT Preparation", "College Tours", "Leadership Training", "Scholarship Guidance"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    videoUrl: "https://www.youtube.com/embed/3DwqUv81UKo"
   },
   {
     title: "Community Outreach",
